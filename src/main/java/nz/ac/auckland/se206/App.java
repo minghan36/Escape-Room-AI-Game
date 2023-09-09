@@ -43,11 +43,24 @@ public class App extends Application {
    */
   @Override
   public void start(final Stage stage) throws IOException {
-    Parent root = loadFxml("room");
+    Parent root = loadFxml("intro");
     scene = new Scene(root, 600, 470);
     stage.setScene(scene);
     stage.show();
     root.requestFocus();
   }
 
+  /**
+   * This method allows for the switching between the two different scenes
+   *
+   * @param fxml The name of the FXML file (without extension).
+   * @throws IOException If the file is not found.
+   */
+  public static void setUi(String fxml) {
+    try {
+      scene.setRoot(loadFxml(fxml));
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
 }
