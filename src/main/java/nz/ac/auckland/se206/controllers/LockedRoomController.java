@@ -10,7 +10,7 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 
 /** Controller class for the room view. */
-public class RoomController {
+public class LockedRoomController {
 
   @FXML private Rectangle door;
   @FXML private Rectangle window;
