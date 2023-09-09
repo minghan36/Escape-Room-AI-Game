@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="intro" focusTraversable="true" prefHeight="269.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.IntroController">
+   <children>
+      <ImageView blendMode="DARKEN" fitHeight="277.0" fitWidth="620.0" layoutX="-7.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/intro.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="title" layoutX="112.0" layoutY="21.0" text="Mission 206" textFill="#ffa723">
+         <font>
+            <Font name="Zero Velocity BRK" size="41.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="58.0" layoutY="138.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/blue_button02.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="360.0" layoutY="138.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/blue_button02.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="203.0" layoutY="203.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/red_button00.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="111.0" layoutY="147.0" text="Level" textFill="#fcb141">
+         <font>
+            <Font name="Zero Velocity BRK" size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="413.0" layoutY="147.0" text="Time" textFill="#fcb141">
+         <font>
+            <Font name="Zero Velocity BRK" size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="242.0" layoutY="213.0" text="START" textFill="#3640ab">
+         <font>
+            <Font name="Zero Velocity BRK" size="22.0" />
+         </font>
+      </Label>
+      <Rectangle fx:id="level" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="47.0" layoutX="58.0" layoutY="138.0" onMouseClicked="#pickLevel" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+      <Rectangle fx:id="time" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="47.0" layoutX="360.0" layoutY="138.0" onMouseClicked="#pickTime" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+      <Rectangle fx:id="start" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="47.0" layoutX="203.0" layoutY="204.0" onMouseClicked="#startGame" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+   </children>
+</Pane>
