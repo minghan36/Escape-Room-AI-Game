@@ -7,9 +7,9 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="intro" focusTraversable="true" prefHeight="269.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.IntroController">
+<Pane fx:id="intro" focusTraversable="true" prefHeight="400.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.IntroController">
    <children>
-      <ImageView blendMode="DARKEN" fitHeight="277.0" fitWidth="620.0" layoutX="-7.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView blendMode="DARKEN" fitHeight="400.0" fitWidth="650.0" pickOnBounds="true">
          <image>
             <Image url="@../images/intro.png" />
          </image>
