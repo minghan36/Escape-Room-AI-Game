@@ -3,14 +3,15 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="756.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.BathroomController">
    <children>
-      <ImageView fitHeight="400.0" fitWidth="650.0" pickOnBounds="true">
+      <ImageView fitHeight="503.0" fitWidth="757.0" pickOnBounds="true">
          <image>
             <Image url="@../images/Bathroom.png" />
          </image>
       </ImageView>
+      <Rectangle fx:id="toLockedRoom" arcHeight="5.0" arcWidth="5.0" fill="#f7f7f7" height="503.0" onMouseClicked="#enterLockedRoom" onMouseEntered="#highlight" onMouseExited="#removeHighlight" opacity="0.4" stroke="#999999" strokeType="INSIDE" width="27.0" />
    </children>
 </Pane>
