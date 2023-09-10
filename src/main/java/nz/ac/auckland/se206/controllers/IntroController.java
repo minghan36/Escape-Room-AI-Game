@@ -2,7 +2,6 @@ package nz.ac.auckland.se206.controllers;
 
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -30,6 +29,8 @@ public class IntroController {
   @FXML private Button twoMin;
   @FXML private Button fourMin;
   @FXML private Button sixMin;
+  @FXML private Label startStatus;
+  @FXML private Label levelDetail;
 
   public void initialize() {
     // create a translate transition for the label
@@ -63,17 +64,17 @@ public class IntroController {
     if (levelIsPicked && timeIsPicked) {
       App.setUi("lockedroom");
     } else {
-      showDialog("Info", "select", "You need to select a time and level to start the game");
+      startStatus.setText("Please pick a level and a time duration");
     }
   }
 
-  private void showDialog(String title, String headerText, String message) {
-    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-    alert.setTitle(title);
-    alert.setHeaderText(headerText);
-    alert.setContentText(message);
-    alert.showAndWait();
-  }
+  // private void showDialog(String title, String headerText, String message) {
+  //   Alert alert = new Alert(Alert.AlertType.INFORMATION);
+  //   alert.setTitle(title);
+  //   alert.setHeaderText(headerText);
+  //   alert.setContentText(message);
+  //   alert.showAndWait();
+  // }
 
   @FXML
   private void easyPicked(MouseEvent event) {
@@ -84,6 +85,12 @@ public class IntroController {
     GameState.isEasyPicked = true;
     GameState.isMediumPicked = false;
     GameState.isDifficultPicked = false;
+    if (timeIsPicked) {
+      startStatus.setText("");
+    }
+    levelDetail.setText(
+        "EASY: You can ask as many questions as you like and get unlimited hints from the"
+            + " Gamemaster");
   }
 
   @FXML
@@ -95,6 +102,12 @@ public class IntroController {
     chooseMedium.setText("CHOSEN");
     chooseDifficult.setText("");
     chooseEasy.setText("");
+    if (timeIsPicked) {
+      startStatus.setText("");
+    }
+    levelDetail.setText(
+        "MEDIUM: You have a maximum of five hints from the"
+            + " Gamemaster, but feel free to talk to him");
   }
 
   @FXML
@@ -106,6 +119,12 @@ public class IntroController {
     chooseDifficult.setText("CHOSEN");
     chooseEasy.setText("");
     chooseMedium.setText("");
+    if (timeIsPicked) {
+      startStatus.setText("");
+    }
+    levelDetail.setText(
+        "DIFFICULT: You are not able to get hints from the"
+            + " Gamemaster, but feel free to talk to him");
   }
 
   @FXML
@@ -117,6 +136,10 @@ public class IntroController {
     minTwo.setText("CHOSEN");
     minFour.setText("");
     minSix.setText("");
+
+    if (levelIsPicked) {
+      startStatus.setText("");
+    }
   }
 
   @FXML
@@ -128,6 +151,9 @@ public class IntroController {
     minFour.setText("CHOSEN");
     minTwo.setText("");
     minSix.setText("");
+    if (levelIsPicked) {
+      startStatus.setText("");
+    }
   }
 
   @FXML
@@ -139,5 +165,8 @@ public class IntroController {
     minSix.setText("CHOSEN");
     minTwo.setText("");
     minFour.setText("");
+    if (levelIsPicked) {
+      startStatus.setText("");
+    }
   }
 }
