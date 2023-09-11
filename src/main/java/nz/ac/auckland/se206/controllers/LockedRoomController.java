@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
 import javafx.animation.AnimationTimer;
+import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 // import javafx.scene.control.Alert;
 import javafx.scene.canvas.Canvas;
@@ -9,7 +10,9 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.GameState;
 
 /** Controller class for the room view. */
 public class LockedRoomController {
@@ -35,6 +38,21 @@ public class LockedRoomController {
 
     // Start the animation
     startAnimation();
+
+    TranslateTransition translateTransition =
+        new TranslateTransition(Duration.seconds(2), gameMaster);
+
+    // set the Y-axis translation value
+    translateTransition.setByY(-10);
+
+    // set the number of cycles for the animation
+    translateTransition.setCycleCount(TranslateTransition.INDEFINITE);
+
+    // Set auto-reverse to true to make the label return to its original position
+    translateTransition.setAutoReverse(true);
+
+    // Start the animation
+    translateTransition.play();
   }
 
   private void startAnimation() {
@@ -126,6 +144,8 @@ public class LockedRoomController {
   // pressing on the quiz master to open the chat box
   @FXML
   public void clickQuizMaster(MouseEvent event) {
-    App.setUi("chat");
+    if (!GameState.isRiddleResolved) {
+      App.setUi("chat");
+    }
   }
 }
