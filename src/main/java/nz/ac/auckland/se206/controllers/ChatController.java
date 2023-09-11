@@ -133,16 +133,20 @@ public class ChatController {
    */
   @FXML
   private void onSendMessage(ActionEvent event) throws ApiProxyException, IOException {
-    String message = inputText.getText();
-    if (message.trim().isEmpty()) {
-      return;
-    }
-    inputText.clear();
-    ChatMessage msg = new ChatMessage("user", message);
-    appendChatMessage(msg);
-    ChatMessage lastMsg = runGpt(msg);
-    if (lastMsg.getRole().equals("assistant") && lastMsg.getContent().startsWith("Correct")) {
-      GameState.isRiddleResolved = true;
+    if (!GameState.isRiddleResolved) {
+      String message = inputText.getText();
+      if (message.trim().isEmpty()) {
+        return;
+      }
+      inputText.clear();
+      ChatMessage msg = new ChatMessage("user", message);
+      appendChatMessage(msg);
+      ChatMessage lastMsg = runGpt(msg);
+      if (lastMsg.getRole().equals("assistant") && lastMsg.getContent().startsWith("Correct")) {
+        GameState.isRiddleResolved = true;
+        inputText.setOpacity(0.0);
+        inputText.disableProperty().setValue(true);
+      }
     }
   }
 
