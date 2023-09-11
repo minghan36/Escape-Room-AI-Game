@@ -2,6 +2,7 @@ package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
 import javafx.animation.AnimationTimer;
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
@@ -10,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -45,6 +47,21 @@ public class ChatController {
     // game master animation
     // Initialize alienImages with your image paths
     alienImages = new Image[] {new Image("images/blink1.png"), new Image("images/blink2.png")};
+
+    TranslateTransition translateTransition =
+        new TranslateTransition(Duration.seconds(2), quizMaster);
+
+    // set the Y-axis translation value
+    translateTransition.setByY(-10);
+
+    // set the number of cycles for the animation
+    translateTransition.setCycleCount(TranslateTransition.INDEFINITE);
+
+    // Set auto-reverse to true to make the label return to its original position
+    translateTransition.setAutoReverse(true);
+
+    // Start the animation
+    translateTransition.play();
 
     // Start the animation
     startAnimation();
@@ -138,6 +155,6 @@ public class ChatController {
    */
   @FXML
   private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
-    App.setRoot("room");
+    App.setRoot("lockedroom");
   }
 }
