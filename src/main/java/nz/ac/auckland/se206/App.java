@@ -44,9 +44,10 @@ public class App extends Application {
   @Override
   public void start(final Stage stage) throws IOException {
     Parent root = loadFxml("intro");
-    scene = new Scene(root, 757, 503);
+    scene = new Scene(root, 756, 503);
     stage.setScene(scene);
     stage.show();
+    stage.setResizable(false);
     root.requestFocus();
   }
 
