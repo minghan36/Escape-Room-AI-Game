@@ -32,4 +32,5 @@
             <Font name="Arial Rounded MT Bold" size="13.0" />
          </font>
       </TextArea>
+   </children>
 </AnchorPane>
