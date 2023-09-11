@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -9,28 +9,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ChatController">
+<AnchorPane fx:id="chat" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ChatController">
   <children>
-      <ImageView blendMode="SRC_ATOP" fitHeight="640.0" fitWidth="927.0" layoutX="-153.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView blendMode="SRC_ATOP" fitHeight="508.0" fitWidth="911.0" layoutX="-160.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/intro.png" />
          </image>
       </ImageView>
-    <TextField fx:id="inputText" layoutX="35.0" layoutY="341.0" opacity="0.7" prefHeight="26.0" prefWidth="463.0">
+    <TextArea fx:id="chatTextArea" layoutX="43.0" layoutY="51.0" opacity="0.72" prefHeight="299.0" prefWidth="482.0" style="-fx-font-style: Arial Rounded MT Bold;" wrapText="true">
          <font>
             <Font name="Arial Rounded MT Bold" size="13.0" />
-         </font></TextField>
-    <Button fx:id="sendButton" layoutX="507.0" layoutY="341.0" mnemonicParsing="false" onAction="#onSendMessage" text="Send" />
-    <Button layoutX="35.0" layoutY="29.0" mnemonicParsing="false" onAction="#onGoBack" text="Go Back" AnchorPane.bottomAnchor="345.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="502.0" AnchorPane.topAnchor="29.0" />
-      <Label layoutX="189.0" layoutY="16.0" text="Quiz Master " textFill="#eb9f3b">
-         <font>
-            <Font name="System Bold" size="42.0" />
-         </font>
-      </Label>
-      <TextArea layoutX="35.0" layoutY="75.0" opacity="0.77" prefHeight="240.0" prefWidth="518.0">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="13.0" />
-         </font>
-      </TextArea>
-   </children>
+         </font></TextArea>
+    <TextField fx:id="inputText" layoutX="42.0" layoutY="354.0" opacity="0.8" prefHeight="26.0" prefWidth="419.0" />
+    <Button fx:id="sendButton" layoutX="479.0" layoutY="354.0" mnemonicParsing="false" onAction="#onSendMessage" text="Send" />
+    <Button layoutX="23.0" layoutY="10.0" mnemonicParsing="false" onAction="#onGoBack" text="Go Back" />
+      <Canvas fx:id="quizMaster" height="100.0" layoutX="534.0" layoutY="278.0" width="59.0" />
+  </children>
 </AnchorPane>

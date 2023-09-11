@@ -1,11 +1,15 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -15,11 +19,16 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 
+// import javafx.scene.control.Alert;
+
 /** Controller class for the chat view. */
 public class ChatController {
   @FXML private TextArea chatTextArea;
   @FXML private TextField inputText;
   @FXML private Button sendButton;
+  @FXML private Canvas quizMaster;
+  private Image[] alienImages;
+  private int currentImageIndex = 0;
 
   private ChatCompletionRequest chatCompletionRequest;
 
@@ -33,6 +42,38 @@ public class ChatController {
     chatCompletionRequest =
         new ChatCompletionRequest().setN(1).setTemperature(0.2).setTopP(0.5).setMaxTokens(100);
     runGpt(new ChatMessage("user", GptPromptEngineering.getRiddleWithGivenWord("vase")));
+    // game master animation
+    // Initialize alienImages with your image paths
+    alienImages = new Image[] {new Image("images/blink1.png"), new Image("images/blink2.png")};
+
+    // Start the animation
+    startAnimation();
+  }
+
+  private void startAnimation() {
+    GraphicsContext gc = quizMaster.getGraphicsContext2D();
+    AnimationTimer timer =
+        new AnimationTimer() {
+          private long lastTime = 0;
+          private final long frameDurationMillis = 1000; // 1000 milliseconds = 1 second
+
+          @Override
+          public void handle(long currentTime) {
+            if (currentTime - lastTime >= frameDurationMillis * 1_000_000) {
+              if (currentImageIndex < alienImages.length) {
+                gc.clearRect(0, 0, quizMaster.getWidth(), quizMaster.getHeight());
+                gc.drawImage(alienImages[currentImageIndex], 0, 0);
+                currentImageIndex++;
+                // Check if we have displayed all images; if so, reset the index to 0
+                if (currentImageIndex >= alienImages.length) {
+                  currentImageIndex = 0;
+                }
+                lastTime = currentTime;
+              }
+            }
+          }
+        };
+    timer.start();
   }
 
   /**
