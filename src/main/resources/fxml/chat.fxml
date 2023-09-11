@@ -16,7 +16,7 @@
             <Image url="@../images/intro.png" />
          </image>
       </ImageView>
-    <TextArea fx:id="chatTextArea" layoutX="31.0" layoutY="50.0" opacity="0.72" prefHeight="299.0" prefWidth="510.0" style="-fx-font-style: Arial Rounded MT Bold;" wrapText="true">
+    <TextArea fx:id="chatTextArea" editable="false" layoutX="31.0" layoutY="50.0" opacity="0.72" prefHeight="299.0" prefWidth="510.0" style="-fx-font-style: Arial Rounded MT Bold;" wrapText="true">
          <font>
             <Font name="Arial Rounded MT Bold" size="13.0" />
          </font></TextArea>

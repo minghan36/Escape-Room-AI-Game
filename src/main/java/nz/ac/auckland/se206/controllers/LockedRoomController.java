@@ -12,6 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.GameState;
 
 /** Controller class for the room view. */
 public class LockedRoomController {
@@ -143,6 +144,8 @@ public class LockedRoomController {
   // pressing on the quiz master to open the chat box
   @FXML
   public void clickQuizMaster(MouseEvent event) {
-    App.setUi("chat");
+    if (!GameState.isRiddleResolved) {
+      App.setUi("chat");
+    }
   }
 }
