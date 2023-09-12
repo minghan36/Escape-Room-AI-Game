@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Rectangle?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="756.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ComputerRoomController">
+<Pane fx:id="computerrrom" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="756.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ComputerRoomController">
 
    <children>
       <ImageView fitHeight="503.0" fitWidth="757.0" pickOnBounds="true">
@@ -15,5 +15,7 @@
          </image>
       </ImageView>
       <Rectangle fx:id="toLockedRoom" arcHeight="5.0" arcWidth="5.0" fill="#f7f7f7" height="503.0" layoutX="730.0" onMouseClicked="#enterLockedRoom" onMouseEntered="#highlight" onMouseExited="#removeHighlight" opacity="0.4" stroke="#999999" strokeType="INSIDE" width="27.0" />
+      <Canvas fx:id="gameMaster" height="89.0" layoutX="576.0" layoutY="406.0" width="142.0" />
+      <Rectangle fx:id="quizMater" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="121.0" layoutX="574.0" layoutY="365.0" onMouseClicked="#clickQuizMaster" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="142.0" />
    </children>
 </Pane>
