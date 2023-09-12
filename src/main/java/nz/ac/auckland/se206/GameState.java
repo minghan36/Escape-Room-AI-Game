@@ -5,6 +5,7 @@ public class GameState {
 
   /** Indicates whether the riddle has been resolved. */
   public static boolean isRiddleResolved = false;
+  public static String currentRoom = "lockedroom";
 
   /** Indicates whether the key has been found. */
   public static boolean isKeyFound = false;
