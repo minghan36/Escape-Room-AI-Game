@@ -1,8 +1,11 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import java.util.concurrent.CompletableFuture;
 import javafx.animation.AnimationTimer;
 import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
@@ -109,19 +112,37 @@ public class ChatController {
    * @return the response chat message
    * @throws ApiProxyException if there is an error communicating with the API proxy
    */
-  private ChatMessage runGpt(ChatMessage msg) throws ApiProxyException {
+  private CompletableFuture<ChatMessage> runGpt(ChatMessage msg) throws ApiProxyException {
     chatCompletionRequest.addMessage(msg);
-    try {
-      ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
-      Choice result = chatCompletionResult.getChoices().iterator().next();
-      chatCompletionRequest.addMessage(result.getChatMessage());
-      appendChatMessage(result.getChatMessage());
-      return result.getChatMessage();
-    } catch (ApiProxyException e) {
-      // TODO handle exception appropriately
-      e.printStackTrace();
-      return null;
-    }
+    CompletableFuture<ChatMessage> completableFuture = new CompletableFuture<>();
+
+    Task<Void> task =
+        new Task<Void>() {
+          @Override
+          protected Void call() throws Exception {
+            try {
+              ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
+              Choice result = chatCompletionResult.getChoices().iterator().next();
+              chatCompletionRequest.addMessage(result.getChatMessage());
+
+              Platform.runLater(
+                  () -> {
+                    appendChatMessage(result.getChatMessage());
+                    completableFuture.complete(result.getChatMessage()); // Complete the future
+                  });
+            } catch (ApiProxyException e) {
+              // TODO handle exception appropriately
+              e.printStackTrace();
+              completableFuture.completeExceptionally(e); // Complete the future exceptionally
+            }
+            return null;
+          }
+        };
+
+    Thread thread = new Thread(task);
+    thread.start();
+
+    return completableFuture;
   }
 
   /**
@@ -133,21 +154,21 @@ public class ChatController {
    */
   @FXML
   private void onSendMessage(ActionEvent event) throws ApiProxyException, IOException {
-    if (!GameState.isRiddleResolved) {
-      String message = inputText.getText();
-      if (message.trim().isEmpty()) {
-        return;
-      }
-      inputText.clear();
-      ChatMessage msg = new ChatMessage("user", message);
-      appendChatMessage(msg);
-      ChatMessage lastMsg = runGpt(msg);
-      if (lastMsg.getRole().equals("assistant") && lastMsg.getContent().startsWith("Correct")) {
-        GameState.isRiddleResolved = true;
-        inputText.setOpacity(0.0);
-        inputText.disableProperty().setValue(true);
-      }
+    String message = inputText.getText();
+    if (message.trim().isEmpty()) {
+      return;
     }
+    inputText.clear();
+    ChatMessage msg = new ChatMessage("user", message);
+    appendChatMessage(msg);
+
+    CompletableFuture<ChatMessage> future = runGpt(msg);
+    future.thenAccept(
+        lastMsg -> {
+          if (lastMsg.getRole().equals("assistant") && lastMsg.getContent().startsWith("Correct")) {
+            GameState.isRiddleResolved = true;
+          }
+        });
   }
 
   /**
