@@ -159,6 +159,6 @@ public class ChatController {
    */
   @FXML
   private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
-    App.setRoot("lockedroom");
+    App.setRoot(GameState.currentRoom);
   }
 }

@@ -87,6 +87,7 @@ public class BathroomController {
 
   @FXML
   public void enterLockedRoom(MouseEvent event) {
+    GameState.currentRoom = "lockedroom";
     App.setUi("lockedroom");
   }
 

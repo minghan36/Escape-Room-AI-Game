@@ -113,11 +113,13 @@ public class LockedRoomController {
    */
   @FXML
   public void enterBathroom() {
+    GameState.currentRoom = "bathroom";
     App.setUi("bathroom");
   }
 
   @FXML
   public void enterComputerRoom() {
+    GameState.currentRoom = "computerroom";
     App.setUi("computerroom");
   }
 
