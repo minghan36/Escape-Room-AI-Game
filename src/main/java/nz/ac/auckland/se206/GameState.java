@@ -1,5 +1,7 @@
 package nz.ac.auckland.se206;
 
+
+
 /** Represents the state of the game. */
 public class GameState {
 
@@ -13,7 +15,22 @@ public class GameState {
   public static boolean isEasyPicked = false;
   public static boolean isMediumPicked = false;
   public static boolean isDifficultPicked = false;
-  public static boolean isTwoMinutesPicked = false;
-  public static boolean isFourMinutesPicked = false;
-  public static boolean isSixMinutesPicked = false;
+
+  public static int minutes = 0;
+  public static int seconds = 0;
+
+    /**
+   * Returns time left in the round.
+   *
+   * @return String of the time left in minutes:seconds format.
+   */
+  public static String getTimeLeft() {
+    if (seconds == 0) {
+      return String.valueOf(minutes) + ":00";
+    } else if (seconds < 10) {
+      return String.valueOf(minutes) + ":0" + String.valueOf(seconds);
+    } else {
+      return String.valueOf(minutes) + ":" + String.valueOf(seconds);
+    }
+  }
 }

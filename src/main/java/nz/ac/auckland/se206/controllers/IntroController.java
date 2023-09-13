@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
+
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -130,9 +131,7 @@ public class IntroController {
   @FXML
   private void twoPicked(MouseEvent event) {
     timeIsPicked = true;
-    GameState.isTwoMinutesPicked = true;
-    GameState.isFourMinutesPicked = false;
-    GameState.isSixMinutesPicked = false;
+    GameState.minutes = 2;
     minTwo.setText("CHOSEN");
     minFour.setText("");
     minSix.setText("");
@@ -145,9 +144,7 @@ public class IntroController {
   @FXML
   private void fourPicked(MouseEvent event) {
     timeIsPicked = true;
-    GameState.isFourMinutesPicked = true;
-    GameState.isTwoMinutesPicked = false;
-    GameState.isSixMinutesPicked = false;
+    GameState.minutes = 4;
     minFour.setText("CHOSEN");
     minTwo.setText("");
     minSix.setText("");
@@ -159,9 +156,7 @@ public class IntroController {
   @FXML
   private void sixPicked(MouseEvent event) {
     timeIsPicked = true;
-    GameState.isSixMinutesPicked = true;
-    GameState.isTwoMinutesPicked = false;
-    GameState.isFourMinutesPicked = false;
+    GameState.minutes = 6;
     minSix.setText("CHOSEN");
     minTwo.setText("");
     minFour.setText("");
@@ -169,4 +164,5 @@ public class IntroController {
       startStatus.setText("");
     }
   }
+
 }

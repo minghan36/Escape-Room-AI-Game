@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
 <Pane fx:id="lockedroom" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="756.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LockedRoomController">
 
@@ -18,5 +20,10 @@
       <Rectangle fx:id="toComputerRoom" arcHeight="5.0" arcWidth="5.0" fill="#f7f7f7" height="503.0" layoutX="-5.0" onMouseClicked="#enterComputerRoom" onMouseEntered="#highlightComputerRoom" onMouseExited="#removeHighlightComputerRoom" opacity="0.4" stroke="#999999" strokeType="INSIDE" width="32.0" />
       <Canvas fx:id="gameMaster" height="91.0" layoutX="566.0" layoutY="391.0" width="158.0" />
       <Rectangle fx:id="quizMaster" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="92.0" layoutX="550.0" layoutY="396.0" onMouseClicked="#clickQuizMaster" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="166.0" />
+      <Label fx:id="Timer" layoutX="619.0" prefHeight="53.0" prefWidth="91.0" textFill="#ffa723">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
