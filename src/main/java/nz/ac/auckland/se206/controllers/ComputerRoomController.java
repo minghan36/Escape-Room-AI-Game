@@ -24,6 +24,7 @@ public class ComputerRoomController {
   @FXML private Rectangle quizMaster;
   @FXML private Canvas gameMaster;
   @FXML private Label Timer;
+  @FXML private Rectangle decrypt;
   private Image[] alienImages;
   private int currentImageIndex = 0;
 
@@ -63,7 +64,6 @@ public class ComputerRoomController {
 
     // Start the animation
     translateTransition.play();
-
   }
 
   private void startAnimation() {
@@ -137,5 +137,11 @@ public class ComputerRoomController {
 
     timeline.setCycleCount((GameState.minutes * 60) + GameState.seconds - 1);
     timeline.play();
+  }
+
+  @FXML
+  public void enterDecrypt(MouseEvent event) {
+    GameState.currentRoom = "decrypt";
+    App.setUi("decrypt");
   }
 }
