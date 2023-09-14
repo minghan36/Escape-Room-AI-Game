@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="756.0" style="-fx-background-color: #494D7B;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.DecryptController">
@@ -55,5 +61,33 @@
          <font>
             <Font name="Tamil MN" size="36.0" />
          </font></Label>
+      <TextField layoutX="23.0" layoutY="498.0" prefHeight="26.0" prefWidth="488.0" style="-fx-background-color: BABFEE;" />
+      <Button layoutX="540.0" layoutY="498.0" mnemonicParsing="false" style="-fx-background-color: #2E40F9;" text="Send" textFill="#fcb141">
+         <font>
+            <Font name="Telugu MN" size="13.0" />
+         </font>
+      </Button>
+      <Label layoutX="23.0" layoutY="24.0" text="Current Objective:" textFill="#fcb141">
+         <font>
+            <Font name="Telugu MN" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="208.0" layoutY="28.0" text="Label" textFill="#fcb141">
+         <font>
+            <Font name="Tamil MN" size="13.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="374.0" fitWidth="400.0" layoutX="8.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/18157432-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <TextArea layoutX="23.0" layoutY="82.0" prefHeight="200.0" prefWidth="370.0" text="☌⍜  ⏁⍜  ⏁⊑⟒  ⏚⏃⏁⊑⍀⍜⍜⋔  ⏃⋏⎅  ⎎⟟⌖  ⏁⊑⟒                  ⌰⟟☌⊑⏁&#10;" wrapText="true">
+         <font>
+            <Font size="31.0" />
+         </font>
+      </TextArea>
+      <Label fx:id="randomLight" layoutX="117.0" layoutY="170.0" prefHeight="34.0" prefWidth="91.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8ce89c" height="200.0" layoutX="23.0" layoutY="82.0" opacity="0.37" stroke="BLACK" strokeType="INSIDE" width="370.0" />
    </children>
 </AnchorPane>
