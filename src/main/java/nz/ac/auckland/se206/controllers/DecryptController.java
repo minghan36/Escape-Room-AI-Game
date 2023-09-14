@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.io.IOException;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
@@ -8,7 +9,9 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.util.Duration;
+import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 public class DecryptController {
 
@@ -45,5 +48,11 @@ public class DecryptController {
 
     timeline.setCycleCount((GameState.minutes * 60) + GameState.seconds - 1);
     timeline.play();
+  }
+
+  @FXML
+  private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
+    GameState.currentRoom = "computerroom";
+    App.setUi("computerroom");
   }
 }

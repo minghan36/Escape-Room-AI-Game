@@ -89,5 +89,10 @@
       </TextArea>
       <Label fx:id="randomLight" layoutX="117.0" layoutY="170.0" prefHeight="34.0" prefWidth="91.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8ce89c" height="200.0" layoutX="23.0" layoutY="82.0" opacity="0.37" stroke="BLACK" strokeType="INSIDE" width="370.0" />
+      <Button layoutX="672.0" layoutY="498.0" mnemonicParsing="false" onAction="#onGoBack" style="-fx-background-color: #2E40F9;" text="Go Back" textFill="#fcb141">
+         <font>
+            <Font name="Telugu MN" size="13.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
