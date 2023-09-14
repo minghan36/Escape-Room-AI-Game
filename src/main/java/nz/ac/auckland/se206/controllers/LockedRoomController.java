@@ -1,11 +1,17 @@
 package nz.ac.auckland.se206.controllers;
 
 import javafx.animation.AnimationTimer;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 // import javafx.scene.control.Alert;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -21,11 +27,19 @@ public class LockedRoomController {
   @FXML private Rectangle toComputerRoom;
   @FXML private Rectangle quizMaster;
   @FXML private Canvas gameMaster;
+  @FXML private Label Timer;
   private Image[] alienImages;
   private int currentImageIndex = 0;
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
+    Timer.setText(GameState.getTimeLeft());
+    Thread timeThread =
+        new Thread(
+            () -> {
+              startTimer();
+            });
+    timeThread.start();
     // game master animation
     // Initialize alienImages with your image paths
     alienImages =
@@ -149,5 +163,35 @@ public class LockedRoomController {
     if (!GameState.isRiddleResolved) {
       App.setUi("chat");
     }
+  }
+
+  public void startTimer() {
+    Timeline timeline =
+        new Timeline(
+            new KeyFrame(
+                Duration.seconds(1),
+                new EventHandler<ActionEvent>() {
+                  @Override
+                  public void handle(ActionEvent event) {
+                    // Counts down the timer.
+                    if (GameState.seconds == 0) {
+                      GameState.minutes--;
+                      GameState.seconds = 59;
+                    } else if (GameState.seconds > 0) {
+                      GameState.seconds--;
+                    }
+                    // Counts down the timer.
+                    Platform.runLater(
+                        new Runnable() {
+                          @Override
+                          public void run() {
+                            Timer.setText(GameState.getTimeLeft());
+                          }
+                        });
+                  }
+                }));
+
+    timeline.setCycleCount((GameState.minutes * 60) + GameState.seconds - 1);
+    timeline.play();
   }
 }

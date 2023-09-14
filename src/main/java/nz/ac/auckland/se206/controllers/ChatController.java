@@ -3,14 +3,18 @@ package nz.ac.auckland.se206.controllers;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import javafx.animation.AnimationTimer;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -32,6 +36,7 @@ public class ChatController {
   @FXML private TextField inputText;
   @FXML private Button sendButton;
   @FXML private Canvas quizMaster;
+  @FXML private Label Timer;
   private Image[] alienImages;
   private int currentImageIndex = 0;
 
@@ -44,6 +49,14 @@ public class ChatController {
    */
   @FXML
   public void initialize() throws ApiProxyException {
+    Timer.setText(GameState.getTimeLeft());
+    Thread timeThread =
+        new Thread(
+            () -> {
+              startTimer();
+            });
+    timeThread.start();
+
     chatCompletionRequest =
         new ChatCompletionRequest().setN(1).setTemperature(0.2).setTopP(0.5).setMaxTokens(100);
     runGpt(new ChatMessage("user", GptPromptEngineering.getRiddleWithGivenWord("vase")));
@@ -68,6 +81,7 @@ public class ChatController {
 
     // Start the animation
     startAnimation();
+
   }
 
   private void startAnimation() {
@@ -181,5 +195,28 @@ public class ChatController {
   @FXML
   private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
     App.setRoot(GameState.currentRoom);
+  }
+
+  public void startTimer() {
+    Timeline timeline =
+        new Timeline(
+            new KeyFrame(
+                Duration.seconds(1),
+                new EventHandler<ActionEvent>() {
+                  @Override
+                  public void handle(ActionEvent event) {
+                    // Counts down the timer.
+                    Platform.runLater(
+                        new Runnable() {
+                          @Override
+                          public void run() {
+                            Timer.setText(GameState.getTimeLeft());
+                          }
+                        });
+                  }
+                }));
+
+    timeline.setCycleCount((GameState.minutes * 60) + GameState.seconds - 1);
+    timeline.play();
   }
 }
