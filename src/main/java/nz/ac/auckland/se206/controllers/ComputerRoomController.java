@@ -141,7 +141,11 @@ public class ComputerRoomController {
 
   @FXML
   public void enterDecrypt(MouseEvent event) {
-    GameState.currentRoom = "decrypt";
-    App.setUi("decrypt");
+    if (GameState.isDecryptCompleted) {
+      return;
+    } else {
+      GameState.currentRoom = "decrypt";
+      App.setUi("decrypt");
+    }
   }
 }

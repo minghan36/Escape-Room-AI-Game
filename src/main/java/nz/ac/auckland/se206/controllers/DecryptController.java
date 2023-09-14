@@ -21,6 +21,8 @@ public class DecryptController {
   @FXML private Label randomLight;
   @FXML private TextField inputText;
   @FXML private Button sendButton;
+  @FXML private Label objective;
+  @FXML private Label incorrect;
 
   public void initialize() {
     Timer.setText(GameState.getTimeLeft());
@@ -54,7 +56,8 @@ public class DecryptController {
     timeline.setCycleCount((GameState.minutes * 60) + GameState.seconds - 1);
     timeline.play();
 
-    randomLight.setText(GameState.randomLight);
+    // randomLight.setText(GameState.randomLight);
+    objective.setText("Decipher the message to unlock the next clue");
   }
 
   @FXML
@@ -69,6 +72,9 @@ public class DecryptController {
     if (message.equals("go to the bathroom and fix the first light")) {
       GameState.currentRoom = "computerroom";
       App.setUi("computerroom");
+      GameState.isDecryptCompleted = true;
+    } else {
+      incorrect.setText("Incorrect! Try again");
     }
   }
 

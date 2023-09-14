@@ -72,7 +72,7 @@
             <Font name="Telugu MN" size="19.0" />
          </font>
       </Label>
-      <Label layoutX="208.0" layoutY="28.0" text="Label" textFill="#fcb141">
+      <Label fx:id="objective" layoutX="208.0" layoutY="28.0" textFill="#fcb141">
          <font>
             <Font name="Tamil MN" size="13.0" />
          </font>
@@ -82,17 +82,22 @@
             <Image url="@../images/18157432-removebg-preview.png" />
          </image>
       </ImageView>
-      <TextArea layoutX="23.0" layoutY="82.0" prefHeight="200.0" prefWidth="370.0" text="☌⍜  ⏁⍜  ⏁⊑⟒  ⏚⏃⏁⊑⍀⍜⍜⋔  ⏃⋏⎅  ⎎⟟⌖  ⏁⊑⟒                  ⌰⟟☌⊑⏁&#10;" wrapText="true">
+      <TextArea layoutX="23.0" layoutY="82.0" prefHeight="200.0" prefWidth="370.0" text="☌⍜  ⏁⍜  ⏁⊑⟒  ⏚⏃⏁⊑⍀⍜⍜⋔  ⏃⋏⎅  ⎎⟟⌖  ⏁⊑⟒  ⎎⟟⍀⌇⏁  ⌰⟟☌⊑⏁&#10;" wrapText="true">
          <font>
             <Font size="31.0" />
          </font>
       </TextArea>
-      <Label fx:id="randomLight" layoutX="117.0" layoutY="170.0" prefHeight="34.0" prefWidth="91.0" />
+      <Label fx:id="randomLight" layoutX="117.0" layoutY="170.0" prefHeight="34.0" prefWidth="91.0" text="  " />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8ce89c" height="200.0" layoutX="23.0" layoutY="82.0" opacity="0.37" stroke="BLACK" strokeType="INSIDE" width="370.0" />
       <Button layoutX="672.0" layoutY="498.0" mnemonicParsing="false" onAction="#onGoBack" style="-fx-background-color: #2E40F9;" text="Go Back" textFill="#fcb141">
          <font>
             <Font name="Telugu MN" size="13.0" />
          </font>
       </Button>
+      <Label fx:id="incorrect" layoutX="23.0" layoutY="537.0" textFill="#fcb141">
+         <font>
+            <Font name="Telugu MN" size="16.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
