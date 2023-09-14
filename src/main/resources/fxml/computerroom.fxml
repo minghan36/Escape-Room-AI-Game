@@ -34,6 +34,6 @@
             <Font name="Telugu MN" size="13.0" />
          </font>
       </Label>
-      <Rectangle fx:id="decrypt" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="111.0" layoutX="301.0" layoutY="357.0" onMouseClicked="#clickDecrypt" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="131.0" />
+      <Rectangle fx:id="decrypt" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="111.0" layoutX="301.0" layoutY="357.0" onMouseClicked="#enterDecrypt" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="131.0" />
    </children>
 </Pane>
