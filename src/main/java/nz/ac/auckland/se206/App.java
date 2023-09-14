@@ -47,7 +47,7 @@ public class App extends Application {
   public void start(final Stage stage) throws IOException {
     chatParent = loadFxml("chat");
     Parent root = loadFxml("intro");
-    scene = new Scene(root, 756, 503);
+    scene = new Scene(root, 756, 568);
     stage.setScene(scene);
     stage.show();
     stage.setResizable(false);
@@ -61,17 +61,17 @@ public class App extends Application {
    * @throws IOException If the file is not found.
    */
   public static void setUi(String fxml) {
-    if (fxml.equals("chat")){
+    if (fxml.equals("chat")) {
       scene.setRoot(chatParent);
       return;
-    } else if(fxml.equals("lockedroom")&&lockedParent != null){
+    } else if (fxml.equals("lockedroom") && lockedParent != null) {
       scene.setRoot(lockedParent);
       return;
     }
     Parent root;
     try {
       root = loadFxml(fxml);
-      if(fxml.equals("lockedroom")){
+      if (fxml.equals("lockedroom")) {
         lockedParent = root;
         scene.setRoot(lockedParent);
         return;
