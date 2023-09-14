@@ -9,7 +9,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
@@ -19,7 +19,7 @@ public class DecryptController {
 
   @FXML private Label Timer;
   @FXML private Label randomLight;
-  @FXML private TextArea inputText;
+  @FXML private TextField inputText;
   @FXML private Button sendButton;
 
   public void initialize() {
@@ -67,7 +67,6 @@ public class DecryptController {
     message = message.toLowerCase();
     // check if the message is equal to another string
     if (message.equals("go to the bathroom and fix the first light")) {
-
       GameState.currentRoom = "computerroom";
       App.setUi("computerroom");
     }
