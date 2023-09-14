@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
@@ -89,7 +90,7 @@
       </TextArea>
       <Label fx:id="randomLight" layoutX="117.0" layoutY="170.0" prefHeight="34.0" prefWidth="91.0" text="  " />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8ce89c" height="200.0" layoutX="23.0" layoutY="82.0" opacity="0.37" stroke="BLACK" strokeType="INSIDE" width="370.0" />
-      <Button layoutX="672.0" layoutY="498.0" mnemonicParsing="false" onAction="#onGoBack" style="-fx-background-color: #2E40F9;" text="Go Back" textFill="#fcb141">
+      <Button layoutX="644.0" layoutY="535.0" mnemonicParsing="false" onAction="#onGoBack" style="-fx-background-color: #2E40F9;" text="Go Back" textFill="#fcb141">
          <font>
             <Font name="Telugu MN" size="13.0" />
          </font>
@@ -99,5 +100,7 @@
             <Font name="Telugu MN" size="16.0" />
          </font>
       </Label>
+      <Canvas fx:id="gameMaster" height="89.0" layoutX="641.0" layoutY="425.0" width="115.0" />
+      <Rectangle fx:id="quizMaster" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="126.0" layoutX="613.0" layoutY="407.0" onMouseClicked="#clickQuizMaster" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="142.0" />
    </children>
 </AnchorPane>

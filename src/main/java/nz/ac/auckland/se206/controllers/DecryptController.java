@@ -1,15 +1,22 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
@@ -23,6 +30,10 @@ public class DecryptController {
   @FXML private Button sendButton;
   @FXML private Label objective;
   @FXML private Label incorrect;
+  @FXML private Canvas gameMaster;
+  @FXML private Rectangle quizMaster;
+  private Image[] alienImages;
+  private int currentImageIndex = 0;
 
   public void initialize() {
     Timer.setText(GameState.getTimeLeft());
@@ -32,6 +43,65 @@ public class DecryptController {
               startTimer();
             });
     timeThread.start();
+    alienImages =
+        new Image[] {
+          new Image("images/move1.png"),
+          new Image("images/move2.png"),
+          new Image("images/move3.png"),
+          new Image("images/move4.png")
+        };
+
+    // Start the animation
+    startAnimation();
+
+    TranslateTransition translateTransition =
+        new TranslateTransition(Duration.seconds(2), gameMaster);
+
+    // set the Y-axis translation value
+    translateTransition.setByY(-10);
+
+    // set the number of cycles for the animation
+    translateTransition.setCycleCount(TranslateTransition.INDEFINITE);
+
+    // Set auto-reverse to true to make the label return to its original position
+    translateTransition.setAutoReverse(true);
+
+    // Start the animation
+    translateTransition.play();
+  }
+
+  private void startAnimation() {
+    GraphicsContext gc = gameMaster.getGraphicsContext2D();
+    AnimationTimer timer =
+        new AnimationTimer() {
+          private long lastTime = 0;
+          private final long frameDurationMillis = 100; // 1000 milliseconds = 1 second
+
+          @Override
+          public void handle(long currentTime) {
+            if (currentTime - lastTime >= frameDurationMillis * 1_000_000) {
+              if (currentImageIndex < alienImages.length) {
+                gc.clearRect(0, 0, gameMaster.getWidth(), gameMaster.getHeight());
+                gc.drawImage(alienImages[currentImageIndex], 0, 0);
+                currentImageIndex++;
+                // Check if we have displayed all images; if so, reset the index to 0
+                if (currentImageIndex >= alienImages.length) {
+                  currentImageIndex = 0;
+                }
+                lastTime = currentTime;
+              }
+            }
+          }
+        };
+    timer.start();
+  }
+
+  // pressing on the quiz master to open the chat box
+  @FXML
+  public void clickQuizMaster(MouseEvent event) {
+    if (!GameState.isRiddleResolved) {
+      App.setUi("chat");
+    }
   }
 
   public void startTimer() {
@@ -55,7 +125,6 @@ public class DecryptController {
 
     timeline.setCycleCount((GameState.minutes * 60) + GameState.seconds - 1);
     timeline.play();
-
     // randomLight.setText(GameState.randomLight);
     objective.setText("Decipher the message to unlock the next clue");
   }
