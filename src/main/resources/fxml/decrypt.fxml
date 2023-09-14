@@ -61,8 +61,8 @@
          <font>
             <Font name="Tamil MN" size="36.0" />
          </font></Label>
-      <TextField layoutX="23.0" layoutY="498.0" prefHeight="26.0" prefWidth="488.0" style="-fx-background-color: BABFEE;" />
-      <Button layoutX="540.0" layoutY="498.0" mnemonicParsing="false" style="-fx-background-color: #2E40F9;" text="Send" textFill="#fcb141">
+      <TextField fx:id="inputText" layoutX="23.0" layoutY="498.0" prefHeight="26.0" prefWidth="488.0" style="-fx-background-color: BABFEE;" />
+      <Button fx:id="sendButton" layoutX="540.0" layoutY="498.0" mnemonicParsing="false" onAction="#onSendMessage" style="-fx-background-color: #2E40F9;" text="Send" textFill="#fcb141">
          <font>
             <Font name="Telugu MN" size="13.0" />
          </font>

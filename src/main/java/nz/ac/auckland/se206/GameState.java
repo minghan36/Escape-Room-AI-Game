@@ -1,12 +1,11 @@
 package nz.ac.auckland.se206;
 
-
-
 /** Represents the state of the game. */
 public class GameState {
 
   /** Indicates whether the riddle has been resolved. */
   public static boolean isRiddleResolved = false;
+
   public static String currentRoom = "lockedroom";
 
   /** Indicates whether the key has been found. */
@@ -19,7 +18,11 @@ public class GameState {
   public static int minutes = 0;
   public static int seconds = 0;
 
-    /**
+  public static String[] randomLights = {"first", "second", "third"};
+
+  public static String randomLight = randomLights[(int) (Math.random() * randomLights.length)];
+
+  /**
    * Returns time left in the round.
    *
    * @return String of the time left in minutes:seconds format.
