@@ -194,7 +194,7 @@ public class ChatController {
    */
   @FXML
   private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
-    App.setRoot(GameState.currentRoom);
+    App.setUi(GameState.currentRoom);
   }
 
   public void startTimer() {
