@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.io.IOException;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -10,25 +11,30 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
-public class ComputerRoomController {
+public class DecryptController {
 
-  @FXML private Rectangle toLockedRoom;
-  @FXML private Rectangle quizMaster;
-  @FXML private Canvas gameMaster;
   @FXML private Label Timer;
-  @FXML private Rectangle decrypt;
+  @FXML private Label randomLight;
+  @FXML private TextField inputText;
+  @FXML private Button sendButton;
+  @FXML private Label objective;
+  @FXML private Label incorrect;
+  @FXML private Canvas gameMaster;
+  @FXML private Rectangle quizMaster;
   private Image[] alienImages;
   private int currentImageIndex = 0;
 
-  /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
     Timer.setText(GameState.getTimeLeft());
     Thread timeThread =
@@ -37,8 +43,6 @@ public class ComputerRoomController {
               startTimer();
             });
     timeThread.start();
-    // game master animation
-    // Initialize alienImages with your image paths
     alienImages =
         new Image[] {
           new Image("images/move1.png"),
@@ -100,22 +104,6 @@ public class ComputerRoomController {
     }
   }
 
-  @FXML
-  public void enterLockedRoom(MouseEvent event) {
-    GameState.currentRoom = "lockedroom";
-    App.setUi("lockedroom");
-  }
-
-  @FXML
-  public void highlight() {
-    toLockedRoom.setOpacity(0.7);
-  }
-
-  @FXML
-  public void removeHighlight() {
-    toLockedRoom.setOpacity(0.4);
-  }
-
   public void startTimer() {
     Timeline timeline =
         new Timeline(
@@ -137,15 +125,31 @@ public class ComputerRoomController {
 
     timeline.setCycleCount((GameState.minutes * 60) + GameState.seconds - 1);
     timeline.play();
+    // randomLight.setText(GameState.randomLight);
+    objective.setText("Decipher the message to unlock the next clue");
   }
 
   @FXML
-  public void enterDecrypt(MouseEvent event) {
-    if (GameState.isDecryptCompleted) {
+  private void onSendMessage(ActionEvent event) throws ApiProxyException, IOException {
+    String message = inputText.getText();
+    if (message.trim().isEmpty()) {
       return;
-    } else {
-      GameState.currentRoom = "decrypt";
-      App.setUi("decrypt");
     }
+    inputText.clear();
+    message = message.toLowerCase();
+    // check if the message is equal to another string
+    if (message.equals("go to the bathroom and fix the first light")) {
+      GameState.currentRoom = "computerroom";
+      App.setUi("computerroom");
+      GameState.isDecryptCompleted = true;
+    } else {
+      incorrect.setText("Incorrect! Try again");
+    }
+  }
+
+  @FXML
+  private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
+    GameState.currentRoom = "computerroom";
+    App.setUi("computerroom");
   }
 }
