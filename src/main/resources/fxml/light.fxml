@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:id="chat" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="756.0" style="-fx-background-color: #494D7B;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LightController">
+   <children>
+      <Label layoutX="33.0" layoutY="34.0" text="Current Objective:" textFill="#fcb141">
+         <font>
+            <Font name="Telugu MN" size="19.0" />
+         </font>
+      </Label>
+      <Label fx:id="Timer" layoutX="642.0" layoutY="24.0" prefHeight="53.0" prefWidth="91.0" textFill="#fcb141">
+         <font>
+            <Font name="Tamil MN" size="36.0" />
+         </font>
+      </Label>
+      <StackPane layoutX="40.0" layoutY="62.0" prefHeight="490.0" prefWidth="535.0">
+         <children>
+            <Circle fx:id="behindLight" fill="#464646" radius="247.0" stroke="#01204b" strokeType="INSIDE" strokeWidth="5.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#383838" height="217.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" width="419.0" />
+            <ImageView fitHeight="228.0" fitWidth="461.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/wires.png" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
+      <Button layoutX="671.0" layoutY="528.0" mnemonicParsing="false" onAction="#onGoBack" style="-fx-background-color: #2E40F9;" text="Go Back" textFill="#fcb141">
+         <font>
+            <Font name="Telugu MN" size="13.0" />
+         </font>
+      </Button>
+      <Canvas fx:id="gameMaster" height="89.0" layoutX="651.0" layoutY="435.0" width="115.0" />
+      <Rectangle fx:id="quizMaster" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="126.0" layoutX="623.0" layoutY="417.0" onMouseClicked="#clickQuizMaster" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="142.0" />
+   </children>
+</AnchorPane>

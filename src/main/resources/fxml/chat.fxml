@@ -47,6 +47,6 @@
             <Font name="Telugu MN" size="13.0" />
          </font>
       </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#494d7b" height="8.0" layoutY="58.0" stroke="BLACK" strokeType="INSIDE" width="756.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#494d7b" height="8.0" layoutY="58.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="756.0" />
   </children>
 </AnchorPane>

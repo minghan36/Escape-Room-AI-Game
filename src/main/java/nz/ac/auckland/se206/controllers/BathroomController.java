@@ -15,6 +15,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
@@ -26,6 +27,9 @@ public class BathroomController {
   @FXML private Rectangle quizMaster;
   @FXML private Canvas gameMaster;
   @FXML private Label Timer;
+  @FXML private Ellipse lightOne;
+  @FXML private Ellipse lightTwo;
+  @FXML private Ellipse lightThree;
   private Image[] alienImages;
   private int currentImageIndex = 0;
 
@@ -116,6 +120,12 @@ public class BathroomController {
   @FXML
   public void removeHighlight() {
     toLockedRoom.setOpacity(0.4);
+  }
+
+  @FXML
+  public void clickLight(){
+    GameState.currentRoom = "light";
+    App.setUi("light");
   }
 
     public void startTimer() {

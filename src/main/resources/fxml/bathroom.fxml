@@ -5,6 +5,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Ellipse?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
@@ -34,5 +35,8 @@
             <Font name="Tamil MN" size="13.0" />
          </font>
       </Label>
+      <Ellipse fx:id="lightTwo" fill="DODGERBLUE" layoutX="129.0" layoutY="210.0" onMouseClicked="#clickLight" opacity="0.0" radiusX="15.0" radiusY="20.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+      <Ellipse fx:id="lightThree" fill="DODGERBLUE" layoutX="728.0" layoutY="210.0" onMouseClicked="#clickLight" opacity="0.0" radiusX="18.0" radiusY="20.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+      <Ellipse fx:id="lightOne" fill="DODGERBLUE" layoutX="50.0" layoutY="197.0" onMouseClicked="#clickLight" opacity="0.0" radiusX="15.0" radiusY="27.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
    </children>
 </Pane>
