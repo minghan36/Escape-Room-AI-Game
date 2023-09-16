@@ -14,6 +14,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -28,10 +29,20 @@ public class LightController {
   @FXML private Label Timer;
   @FXML private Canvas gameMaster;
   @FXML private Rectangle quizMaster;
+  @FXML private ImageView fixOne;
+  @FXML private ImageView fixTwoOne;
+  @FXML private ImageView fixTwoTwo;
+  @FXML private Rectangle fixTwoThree;
+  @FXML private ImageView fixThreeOne;
+  @FXML private ImageView fixThreeTwo;
+  @FXML private ImageView fixFour;
+  @FXML private Label suggestions;
+  private int fixes = 0;
   private Image[] alienImages;
   private int currentImageIndex = 0;
 
   public void initialize() {
+    suggestions.setWrapText(true);
     Timer.setText(GameState.getTimeLeft());
     Thread timeThread =
         new Thread(
@@ -128,5 +139,51 @@ public class LightController {
   private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
     GameState.currentRoom = "bathroom";
     App.setUi("bathroom");
+  }
+
+  @FXML
+  private void clickBreakOne(){
+    fixOne.setOpacity(1);
+    fixOne.setOnMouseClicked(null);
+    fixes++;
+    if (fixes == 4){
+      suggestions.setText("Well done! All the wires are fixed!");
+    }
+  }
+
+  @FXML
+  private void clickBreakTwo(){
+    fixTwoOne.setOpacity(1);
+    fixTwoTwo.setOpacity(1);
+    fixTwoThree.setOpacity(1);
+    fixTwoOne.setOnMouseClicked(null);
+    fixTwoTwo.setOnMouseClicked(null);
+    fixTwoThree.setOnMouseClicked(null);
+    fixes++;
+    if (fixes == 4){
+      suggestions.setText("Well done! All the wires are fixed!");
+    }
+  }
+
+  @FXML
+  private void clickBreakThree(){
+    fixThreeOne.setOpacity(1);
+    fixThreeTwo.setOpacity(1);
+    fixThreeOne.setOnMouseClicked(null);
+    fixThreeTwo.setOnMouseClicked(null);
+    fixes++;
+    if (fixes == 4){
+      suggestions.setText("Well done! All the wires are fixed!");
+    }
+  }
+
+  @FXML
+  private void clickBreakFour(){
+    fixFour.setOpacity(1);
+    fixFour.setOnMouseClicked(null);
+    fixes++;
+    if (fixes == 4){
+      suggestions.setText("Well done! All the wires are fixed!");
+    }
   }
 }
