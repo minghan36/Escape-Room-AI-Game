@@ -19,9 +19,11 @@ public class GameState {
   public static int minutes = 0;
   public static int seconds = 0;
 
+  // choose a random number between zero and two
+  public static int randomNum = (int) (Math.random() * 3);
+  // create string array having first second third
   public static String[] randomLights = {"first", "second", "third"};
-
-  public static String randomLight = randomLights[(int) (Math.random() * randomLights.length)];
+  public static String randomLight = randomLights[randomNum];
 
   /**
    * Returns time left in the round.
