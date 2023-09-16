@@ -35,6 +35,9 @@ public class DecryptController {
   private Image[] alienImages;
   private int currentImageIndex = 0;
 
+  // create array of alien symbols
+  private String[] randomLights = {"⎎⟟⍀⌇⏁", "⌇⟒☊⍜⋏⎅", "⏁⊑⟟⍀⎅"};
+
   public void initialize() {
     Timer.setText(GameState.getTimeLeft());
     Thread timeThread =
@@ -94,6 +97,8 @@ public class DecryptController {
           }
         };
     timer.start();
+    randomLight.setText(randomLights[GameState.randomNum]);
+    objective.setText("Decipher the message to unlock the next clue");
   }
 
   // pressing on the quiz master to open the chat box
@@ -125,8 +130,6 @@ public class DecryptController {
 
     timeline.setCycleCount((GameState.minutes * 60) + GameState.seconds - 1);
     timeline.play();
-    // randomLight.setText(GameState.randomLight);
-    objective.setText("Decipher the message to unlock the next clue");
   }
 
   @FXML
@@ -138,7 +141,8 @@ public class DecryptController {
     inputText.clear();
     message = message.toLowerCase();
     // check if the message is equal to another string
-    if (message.equals("go to the bathroom and fix the first light")) {
+    System.out.println(GameState.randomNum);
+    if (message.equals("go to the bathroom and fix the " + GameState.randomLight + " light")) {
       GameState.currentRoom = "computerroom";
       App.setUi("computerroom");
       GameState.isDecryptCompleted = true;
