@@ -67,7 +67,12 @@
          </image>
       </ImageView>
       <Rectangle fx:id="fixTwoThree" arcHeight="5.0" arcWidth="5.0" fill="#383838" height="15.0" layoutX="317.0" layoutY="286.0" onMouseClicked="#clickBreakTwo" opacity="0.0" rotate="-16.1" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="106.0" />
-      <Label fx:id="suggestions" layoutX="527.0" layoutY="140.0" prefHeight="114.0" prefWidth="213.0" text="Find something in the bathroom to patch these wires with." textFill="#fcb141">
+      <Label fx:id="objective" layoutX="201.0" layoutY="-7.0" prefHeight="112.0" prefWidth="478.0" textFill="#fcb141">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lightSuggest" layoutX="527.0" layoutY="146.0" prefHeight="112.0" prefWidth="218.0" textFill="#fcb141">
          <font>
             <Font size="14.0" />
          </font>

@@ -1,7 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
-
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -36,13 +35,14 @@ public class LightController {
   @FXML private ImageView fixThreeOne;
   @FXML private ImageView fixThreeTwo;
   @FXML private ImageView fixFour;
-  @FXML private Label suggestions;
+  @FXML private Label objective;
+  @FXML private Label lightSuggest;
   private int fixes = 0;
   private Image[] alienImages;
   private int currentImageIndex = 0;
 
   public void initialize() {
-    suggestions.setWrapText(true);
+    lightSuggest.setWrapText(true);
     Timer.setText(GameState.getTimeLeft());
     Thread timeThread =
         new Thread(
@@ -106,8 +106,7 @@ public class LightController {
   // pressing on the quiz master to open the chat box
   @FXML
   public void clickQuizMaster(MouseEvent event) {
-      App.setUi("chat");
-
+    App.setUi("chat");
   }
 
   public void startTimer() {
@@ -135,55 +134,71 @@ public class LightController {
 
   }
 
-   @FXML
+  @FXML
   private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
     GameState.currentRoom = "bathroom";
     App.setUi("bathroom");
   }
 
   @FXML
-  private void clickBreakOne(){
-    fixOne.setOpacity(1);
-    fixOne.setOnMouseClicked(null);
-    fixes++;
-    if (fixes == 4){
-      suggestions.setText("Well done! All the wires are fixed!");
+  private void clickBreakOne() {
+    if (GameState.isElectricalTapeFound) {
+      fixOne.setOpacity(1);
+      fixOne.setOnMouseClicked(null);
+      fixes++;
+      if (fixes == 4) {
+        lightSuggest.setText("All the wires have been fixed. Good Job!");
+      }
+    } else {
+      lightSuggest.setText("Find something in a room to patch the wires with.");
     }
   }
 
   @FXML
-  private void clickBreakTwo(){
-    fixTwoOne.setOpacity(1);
-    fixTwoTwo.setOpacity(1);
-    fixTwoThree.setOpacity(1);
-    fixTwoOne.setOnMouseClicked(null);
-    fixTwoTwo.setOnMouseClicked(null);
-    fixTwoThree.setOnMouseClicked(null);
-    fixes++;
-    if (fixes == 4){
-      suggestions.setText("Well done! All the wires are fixed!");
+  private void clickBreakTwo() {
+    if (GameState.isElectricalTapeFound) {
+      fixTwoOne.setOpacity(1);
+      fixTwoTwo.setOpacity(1);
+      fixTwoThree.setOpacity(1);
+      fixTwoOne.setOnMouseClicked(null);
+      fixTwoTwo.setOnMouseClicked(null);
+      fixTwoThree.setOnMouseClicked(null);
+      fixes++;
+      if (fixes == 4) {
+        lightSuggest.setText("All the wires have been fixed. Good Job!");
+      }
+    } else {
+      lightSuggest.setText("Find something in a room to patch the wires with.");
     }
   }
 
   @FXML
-  private void clickBreakThree(){
-    fixThreeOne.setOpacity(1);
-    fixThreeTwo.setOpacity(1);
-    fixThreeOne.setOnMouseClicked(null);
-    fixThreeTwo.setOnMouseClicked(null);
-    fixes++;
-    if (fixes == 4){
-      suggestions.setText("Well done! All the wires are fixed!");
+  private void clickBreakThree() {
+    if (GameState.isElectricalTapeFound) {
+      fixThreeOne.setOpacity(1);
+      fixThreeTwo.setOpacity(1);
+      fixThreeOne.setOnMouseClicked(null);
+      fixThreeTwo.setOnMouseClicked(null);
+      fixes++;
+      if (fixes == 4) {
+        lightSuggest.setText("All the wires have been fixed. Good Job!");
+      }
+    } else {
+      lightSuggest.setText("Find something in a room to patch the wires with.");
     }
   }
 
   @FXML
-  private void clickBreakFour(){
-    fixFour.setOpacity(1);
-    fixFour.setOnMouseClicked(null);
-    fixes++;
-    if (fixes == 4){
-      suggestions.setText("Well done! All the wires are fixed!");
+  private void clickBreakFour() {
+    if (GameState.isElectricalTapeFound) {
+      fixFour.setOpacity(1);
+      fixFour.setOnMouseClicked(null);
+      fixes++;
+      if (fixes == 4) {
+        lightSuggest.setText("All the wires have been fixed. Good Job!");
+      }
+    } else {
+      lightSuggest.setText("Find something in a room to patch the wires with.");
     }
   }
 }

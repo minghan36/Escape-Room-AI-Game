@@ -1,7 +1,5 @@
 package nz.ac.auckland.se206.controllers;
 
-
-
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -14,6 +12,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
@@ -30,11 +29,16 @@ public class BathroomController {
   @FXML private Ellipse lightOne;
   @FXML private Ellipse lightTwo;
   @FXML private Ellipse lightThree;
+  @FXML private ImageView tape;
   private Image[] alienImages;
   private int currentImageIndex = 0;
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
+    if (GameState.isElectricalTapeFound) {
+      tape.setOpacity(0);
+      tape.setOnMouseClicked(null);
+    }
     Timer.setText(GameState.getTimeLeft());
     Thread timeThread =
         new Thread(
@@ -69,7 +73,6 @@ public class BathroomController {
 
     // Start the animation
     translateTransition.play();
-
   }
 
   private void startAnimation() {
@@ -123,12 +126,12 @@ public class BathroomController {
   }
 
   @FXML
-  public void clickLight(){
+  public void clickLight() {
     GameState.currentRoom = "light";
     App.setUi("light");
   }
 
-    public void startTimer() {
+  public void startTimer() {
     Timeline timeline =
         new Timeline(
             new KeyFrame(
@@ -149,5 +152,12 @@ public class BathroomController {
 
     timeline.setCycleCount((GameState.minutes * 60) + GameState.seconds - 1);
     timeline.play();
+  }
+
+  @FXML
+  public void clickTape() {
+    tape.setOpacity(0);
+    tape.setOnMouseClicked(null);
+    GameState.isElectricalTapeFound = true;
   }
 }

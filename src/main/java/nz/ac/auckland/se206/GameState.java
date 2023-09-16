@@ -11,6 +11,8 @@ public class GameState {
   /** Indicates whether the key has been found. */
   public static boolean isKeyFound = false;
 
+  public static boolean isElectricalTapeFound = false;
+
   public static boolean isEasyPicked = false;
   public static boolean isMediumPicked = false;
   public static boolean isDifficultPicked = false;
