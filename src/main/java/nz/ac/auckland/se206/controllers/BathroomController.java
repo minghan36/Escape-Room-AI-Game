@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
@@ -34,31 +35,33 @@ public class BathroomController {
   @FXML private Ellipse ellipseOne;
   @FXML private Ellipse ellipseTwo;
   @FXML private Ellipse ellipseThree;
+  @FXML private Circle puzzle;
+
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
-    if(!GameState.isLightPuzzleSolved){
+    if (!GameState.isLightPuzzleSolved) {
       ellipseOne.setOpacity(0.45);
       ellipseTwo.setOpacity(0.45);
       ellipseThree.setOpacity(0.45);
     }
-    if (!GameState.isDecryptCompleted){
+    if (!GameState.isDecryptCompleted) {
       ellipseOne.setOnMouseClicked(null);
       ellipseOne.setOnMouseEntered(null);
       ellipseTwo.setOnMouseClicked(null);
       ellipseTwo.setOnMouseEntered(null);
       ellipseThree.setOnMouseClicked(null);
       ellipseThree.setOnMouseEntered(null);
-    } else if (GameState.randomLight.equals("first")){
+    } else if (GameState.randomLight.equals("first")) {
       ellipseTwo.setOnMouseClicked(null);
       ellipseTwo.setOnMouseEntered(null);
       ellipseThree.setOnMouseClicked(null);
       ellipseThree.setOnMouseEntered(null);
-    } else if(GameState.randomLight.equals("second")){
+    } else if (GameState.randomLight.equals("second")) {
       ellipseOne.setOnMouseClicked(null);
       ellipseOne.setOnMouseEntered(null);
       ellipseThree.setOnMouseClicked(null);
       ellipseThree.setOnMouseEntered(null);
-    } else{
+    } else {
       ellipseTwo.setOnMouseClicked(null);
       ellipseTwo.setOnMouseEntered(null);
       ellipseOne.setOnMouseClicked(null);
@@ -169,6 +172,12 @@ public class BathroomController {
     GameState.isLightPuzzleStarted = true;
     GameState.currentRoom = "light";
     App.setUi("light");
+  }
+
+  @FXML
+  public void openPuzzle(MouseEvent event) {
+    GameState.currentRoom = "puz";
+    App.setUi("puz");
   }
 
   public void startTimer() {
