@@ -153,6 +153,9 @@ public class ComputerRoomController {
 
   @FXML
   public void increaseSize(MouseEvent event) {
+    if (GameState.isDecryptCompleted) {
+      return;
+    }
     // increase the size of the image
     hoverImage.setScaleX(1.05); // Increase the size by a factor of 1.2 horizontally
     hoverImage.setScaleY(1.05);

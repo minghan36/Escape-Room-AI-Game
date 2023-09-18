@@ -14,7 +14,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
@@ -26,12 +25,12 @@ public class BathroomController {
   @FXML private Rectangle quizMaster;
   @FXML private Canvas gameMaster;
   @FXML private Label Timer;
-  @FXML private Ellipse lightOne;
-  @FXML private Ellipse lightTwo;
-  @FXML private Ellipse lightThree;
   @FXML private ImageView tape;
   private Image[] alienImages;
   private int currentImageIndex = 0;
+  @FXML private ImageView lightOne;
+  @FXML private ImageView lightTwo;
+  @FXML private ImageView lightThree;
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
@@ -126,7 +125,19 @@ public class BathroomController {
   }
 
   @FXML
-  public void clickLight() {
+  public void clickLightOne() {
+    GameState.currentRoom = "light";
+    App.setUi("light");
+  }
+
+  @FXML
+  public void clickLightTwo() {
+    GameState.currentRoom = "light";
+    App.setUi("light");
+  }
+
+  @FXML
+  public void clickLightThree() {
     GameState.currentRoom = "light";
     App.setUi("light");
   }
@@ -159,5 +170,53 @@ public class BathroomController {
     tape.setOpacity(0);
     tape.setOnMouseClicked(null);
     GameState.isElectricalTapeFound = true;
+  }
+
+  @FXML
+  public void increaseTapeSize(MouseEvent event) {
+    tape.setScaleX(1.2);
+    tape.setScaleY(1.2);
+  }
+
+  @FXML
+  public void decreaseTapeSize(MouseEvent event) {
+    tape.setScaleX(1);
+    tape.setScaleY(1);
+  }
+
+  @FXML
+  public void increaseSizeOne(MouseEvent event) {
+    lightOne.setScaleX(1.2);
+    lightOne.setScaleY(1.2);
+  }
+
+  @FXML
+  public void increaseSizeTwo(MouseEvent event) {
+    lightTwo.setScaleX(1.2);
+    lightTwo.setScaleY(1.2);
+  }
+
+  @FXML
+  public void increaseSizeThree(MouseEvent event) {
+    lightThree.setScaleX(1.2);
+    lightThree.setScaleY(1.2);
+  }
+
+  @FXML
+  public void decreaseSizeOne(MouseEvent event) {
+    lightOne.setScaleX(1);
+    lightOne.setScaleY(1);
+  }
+
+  @FXML
+  public void decreaseSizeTwo(MouseEvent event) {
+    lightTwo.setScaleX(1);
+    lightTwo.setScaleY(1);
+  }
+
+  @FXML
+  public void decreaseSizeThree(MouseEvent event) {
+    lightThree.setScaleX(1);
+    lightThree.setScaleY(1);
   }
 }

@@ -5,7 +5,6 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Ellipse?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
@@ -35,12 +34,24 @@
             <Font name="Tamil MN" size="13.0" />
          </font>
       </Label>
-      <Ellipse fx:id="lightTwo" fill="DODGERBLUE" layoutX="129.0" layoutY="210.0" onMouseClicked="#clickLight" opacity="0.0" radiusX="15.0" radiusY="20.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-      <Ellipse fx:id="lightThree" fill="DODGERBLUE" layoutX="728.0" layoutY="210.0" onMouseClicked="#clickLight" opacity="0.0" radiusX="18.0" radiusY="20.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-      <Ellipse fx:id="lightOne" fill="DODGERBLUE" layoutX="50.0" layoutY="197.0" onMouseClicked="#clickLight" opacity="0.0" radiusX="15.0" radiusY="27.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-      <ImageView fx:id="tape" fitHeight="40.0" fitWidth="36.0" layoutX="224.0" layoutY="194.0" onMouseClicked="#clickTape" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+      <ImageView fx:id="tape" fitHeight="40.0" fitWidth="36.0" layoutX="224.0" layoutY="194.0" onMouseClicked="#clickTape" onMouseEntered="#increaseTapeSize" onMouseExited="#decreaseTapeSize" pickOnBounds="true" preserveRatio="true" rotate="180.0">
          <image>
             <Image url="@../images/tape.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="lightOne" fitHeight="53.0" fitWidth="30.0" layoutX="33.0" layoutY="171.0" onMouseClicked="#clickLightOne" onMouseEntered="#increaseSizeOne" onMouseExited="#decreaseSizeOne" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Light1.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="lightTwo" fitHeight="70.0" fitWidth="30.0" layoutX="114.0" layoutY="190.0" onMouseClicked="#clickLightTwo" onMouseEntered="#increaseSizeTwo" onMouseExited="#decreaseSizeTwo" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Light2.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="lightThree" fitHeight="40.0" fitWidth="36.0" layoutX="712.0" layoutY="190.0" onMouseClicked="#clickLightThree" onMouseEntered="#increaseSizeThree" onMouseExited="#decreaseSizeThree" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Light3.png" />
          </image>
       </ImageView>
    </children>
