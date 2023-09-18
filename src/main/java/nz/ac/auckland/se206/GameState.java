@@ -17,6 +17,8 @@ public class GameState {
   public static boolean isMediumPicked = false;
   public static boolean isDifficultPicked = false;
   public static boolean isDecryptCompleted = false;
+  public static boolean isLightPuzzleStarted = false;
+  public static boolean isLightPuzzleSolved = false;
 
   public static int minutes = 0;
   public static int seconds = 0;

@@ -148,6 +148,7 @@ public class LightController {
       fixes++;
       if (fixes == 4) {
         lightSuggest.setText("All the wires have been fixed. Good Job!");
+        GameState.isLightPuzzleSolved = true;
       }
     } else {
       lightSuggest.setText("Find something in a room to patch the wires with.");
@@ -166,6 +167,7 @@ public class LightController {
       fixes++;
       if (fixes == 4) {
         lightSuggest.setText("All the wires have been fixed. Good Job!");
+        GameState.isLightPuzzleSolved = true;
       }
     } else {
       lightSuggest.setText("Find something in a room to patch the wires with.");
@@ -182,6 +184,7 @@ public class LightController {
       fixes++;
       if (fixes == 4) {
         lightSuggest.setText("All the wires have been fixed. Good Job!");
+        GameState.isLightPuzzleSolved = true;
       }
     } else {
       lightSuggest.setText("Find something in a room to patch the wires with.");
@@ -196,6 +199,7 @@ public class LightController {
       fixes++;
       if (fixes == 4) {
         lightSuggest.setText("All the wires have been fixed. Good Job!");
+        GameState.isLightPuzzleSolved = true;
       }
     } else {
       lightSuggest.setText("Find something in a room to patch the wires with.");

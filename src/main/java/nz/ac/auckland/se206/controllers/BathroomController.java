@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
@@ -31,9 +32,47 @@ public class BathroomController {
   @FXML private ImageView lightOne;
   @FXML private ImageView lightTwo;
   @FXML private ImageView lightThree;
-
+  @FXML private Ellipse ellipseOne;
+  @FXML private Ellipse ellipseTwo;
+  @FXML private Ellipse ellipseThree;
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
+    if(!GameState.isLightPuzzleStarted){
+      tape.setOnMouseClicked(null);
+      tape.setOnMouseEntered(null);
+    }
+    if(!GameState.isLightPuzzleSolved){
+      if (GameState.randomLight.equals("first")){
+        ellipseOne.setOpacity(0.45);
+      } else if(GameState.randomLight.equals("second")){
+        ellipseTwo.setOpacity(0.45);
+      } else {
+        ellipseThree.setOpacity(0.45);
+      }
+    }
+    if (!GameState.isDecryptCompleted){
+      ellipseOne.setOnMouseClicked(null);
+      ellipseOne.setOnMouseEntered(null);
+      ellipseTwo.setOnMouseClicked(null);
+      ellipseTwo.setOnMouseEntered(null);
+      ellipseThree.setOnMouseClicked(null);
+      ellipseThree.setOnMouseEntered(null);
+    } else if (GameState.randomLight.equals("first")){
+      ellipseTwo.setOnMouseClicked(null);
+      ellipseTwo.setOnMouseEntered(null);
+      ellipseThree.setOnMouseClicked(null);
+      ellipseThree.setOnMouseEntered(null);
+    } else if(GameState.randomLight.equals("second")){
+      ellipseOne.setOnMouseClicked(null);
+      ellipseOne.setOnMouseEntered(null);
+      ellipseThree.setOnMouseClicked(null);
+      ellipseThree.setOnMouseEntered(null);
+    } else{
+      ellipseTwo.setOnMouseClicked(null);
+      ellipseTwo.setOnMouseEntered(null);
+      ellipseOne.setOnMouseClicked(null);
+      ellipseOne.setOnMouseEntered(null);
+    }
     if (GameState.isElectricalTapeFound) {
       tape.setOpacity(0);
       tape.setOnMouseClicked(null);
@@ -126,18 +165,21 @@ public class BathroomController {
 
   @FXML
   public void clickLightOne() {
+    GameState.isLightPuzzleStarted = true;
     GameState.currentRoom = "light";
     App.setUi("light");
   }
 
   @FXML
   public void clickLightTwo() {
+    GameState.isLightPuzzleStarted = true;
     GameState.currentRoom = "light";
     App.setUi("light");
   }
 
   @FXML
   public void clickLightThree() {
+    GameState.isLightPuzzleStarted = true;
     GameState.currentRoom = "light";
     App.setUi("light");
   }
@@ -186,36 +228,48 @@ public class BathroomController {
 
   @FXML
   public void increaseSizeOne(MouseEvent event) {
+    ellipseOne.setScaleX(1.2);
+    ellipseOne.setScaleY(1.2);
     lightOne.setScaleX(1.2);
     lightOne.setScaleY(1.2);
   }
 
   @FXML
   public void increaseSizeTwo(MouseEvent event) {
+    ellipseTwo.setScaleX(1.2);
+    ellipseTwo.setScaleY(1.2);
     lightTwo.setScaleX(1.2);
     lightTwo.setScaleY(1.2);
   }
 
   @FXML
   public void increaseSizeThree(MouseEvent event) {
+    ellipseThree.setScaleX(1.2);
+    ellipseThree.setScaleY(1.2);
     lightThree.setScaleX(1.2);
     lightThree.setScaleY(1.2);
   }
 
   @FXML
   public void decreaseSizeOne(MouseEvent event) {
+    ellipseOne.setScaleX(1);
+    ellipseOne.setScaleY(1);
     lightOne.setScaleX(1);
     lightOne.setScaleY(1);
   }
 
   @FXML
   public void decreaseSizeTwo(MouseEvent event) {
+    ellipseTwo.setScaleX(1);
+    ellipseTwo.setScaleY(1);
     lightTwo.setScaleX(1);
     lightTwo.setScaleY(1);
   }
 
   @FXML
   public void decreaseSizeThree(MouseEvent event) {
+    ellipseThree.setScaleX(1);
+    ellipseThree.setScaleY(1);
     lightThree.setScaleX(1);
     lightThree.setScaleY(1);
   }
