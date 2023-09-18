@@ -40,17 +40,17 @@
             <Image url="@../images/tape.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="lightOne" fitHeight="53.0" fitWidth="30.0" layoutX="33.0" layoutY="171.0" onMouseClicked="#clickLightOne" onMouseEntered="#increaseSizeOne" onMouseExited="#decreaseSizeOne" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="lightOne" fitHeight="53.0" fitWidth="30.0" layoutX="33.0" layoutY="171.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Light1.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="lightTwo" fitHeight="70.0" fitWidth="30.0" layoutX="114.0" layoutY="190.0" onMouseClicked="#clickLightTwo" onMouseEntered="#increaseSizeTwo" onMouseExited="#decreaseSizeTwo" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="lightTwo" fitHeight="70.0" fitWidth="30.0" layoutX="114.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Light2.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="lightThree" fitHeight="40.0" fitWidth="36.0" layoutX="712.0" layoutY="190.0" onMouseClicked="#clickLightThree" onMouseEntered="#increaseSizeThree" onMouseExited="#decreaseSizeThree" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="lightThree" fitHeight="40.0" fitWidth="36.0" layoutX="712.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Light3.png" />
          </image>
