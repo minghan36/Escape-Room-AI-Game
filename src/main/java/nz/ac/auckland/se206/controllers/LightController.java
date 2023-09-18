@@ -151,7 +151,7 @@ public class LightController {
         GameState.isLightPuzzleSolved = true;
       }
     } else {
-      lightSuggest.setText("Find something in a room to patch the wires with.");
+      lightSuggest.setText("Find something to patch the wires with.");
     }
   }
 
@@ -170,7 +170,7 @@ public class LightController {
         GameState.isLightPuzzleSolved = true;
       }
     } else {
-      lightSuggest.setText("Find something in a room to patch the wires with.");
+      lightSuggest.setText("Find something to patch the wires with.");
     }
   }
 
@@ -187,7 +187,7 @@ public class LightController {
         GameState.isLightPuzzleSolved = true;
       }
     } else {
-      lightSuggest.setText("Find something in a room to patch the wires with.");
+      lightSuggest.setText("Find something to patch the wires with.");
     }
   }
 
@@ -202,7 +202,7 @@ public class LightController {
         GameState.isLightPuzzleSolved = true;
       }
     } else {
-      lightSuggest.setText("Find something in a room to patch the wires with.");
+      lightSuggest.setText("Find something to patch the wires with.");
     }
   }
 }

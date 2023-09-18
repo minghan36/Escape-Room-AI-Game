@@ -21,6 +21,7 @@ import nz.ac.auckland.se206.GameState;
 
 public class ComputerRoomController {
 
+  @FXML private ImageView tape;
   @FXML private Rectangle toLockedRoom;
   @FXML private Rectangle quizMaster;
   @FXML private Canvas gameMaster;
@@ -32,6 +33,15 @@ public class ComputerRoomController {
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
+    if(!GameState.isLightPuzzleStarted){
+      tape.setOnMouseClicked(null);
+      tape.setOnMouseEntered(null);
+      tape.setOpacity(0);
+    }
+    if (GameState.isElectricalTapeFound) {
+      tape.setOpacity(0);
+      tape.setOnMouseClicked(null);
+    }
     Timer.setText(GameState.getTimeLeft());
     Thread timeThread =
         new Thread(
@@ -166,5 +176,24 @@ public class ComputerRoomController {
     // decrease the size of the image
     hoverImage.setScaleX(1);
     hoverImage.setScaleY(1);
+  }
+
+  @FXML
+  public void clickTape() {
+    tape.setOpacity(0);
+    tape.setOnMouseClicked(null);
+    GameState.isElectricalTapeFound = true;
+  }
+
+  @FXML
+  public void increaseTapeSize(MouseEvent event) {
+    tape.setScaleX(1.2);
+    tape.setScaleY(1.2);
+  }
+
+  @FXML
+  public void decreaseTapeSize(MouseEvent event) {
+    tape.setScaleX(1);
+    tape.setScaleY(1);
   }
 }

@@ -26,7 +26,6 @@ public class BathroomController {
   @FXML private Rectangle quizMaster;
   @FXML private Canvas gameMaster;
   @FXML private Label Timer;
-  @FXML private ImageView tape;
   private Image[] alienImages;
   private int currentImageIndex = 0;
   @FXML private ImageView lightOne;
@@ -37,10 +36,6 @@ public class BathroomController {
   @FXML private Ellipse ellipseThree;
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
-    if(!GameState.isLightPuzzleStarted){
-      tape.setOnMouseClicked(null);
-      tape.setOnMouseEntered(null);
-    }
     if(!GameState.isLightPuzzleSolved){
       ellipseOne.setOpacity(0.45);
       ellipseTwo.setOpacity(0.45);
@@ -68,10 +63,6 @@ public class BathroomController {
       ellipseTwo.setOnMouseEntered(null);
       ellipseOne.setOnMouseClicked(null);
       ellipseOne.setOnMouseEntered(null);
-    }
-    if (GameState.isElectricalTapeFound) {
-      tape.setOpacity(0);
-      tape.setOnMouseClicked(null);
     }
     Timer.setText(GameState.getTimeLeft());
     Thread timeThread =
@@ -201,25 +192,6 @@ public class BathroomController {
 
     timeline.setCycleCount((GameState.minutes * 60) + GameState.seconds - 1);
     timeline.play();
-  }
-
-  @FXML
-  public void clickTape() {
-    tape.setOpacity(0);
-    tape.setOnMouseClicked(null);
-    GameState.isElectricalTapeFound = true;
-  }
-
-  @FXML
-  public void increaseTapeSize(MouseEvent event) {
-    tape.setScaleX(1.2);
-    tape.setScaleY(1.2);
-  }
-
-  @FXML
-  public void decreaseTapeSize(MouseEvent event) {
-    tape.setScaleX(1);
-    tape.setScaleY(1);
   }
 
   @FXML
