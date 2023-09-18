@@ -42,13 +42,9 @@ public class BathroomController {
       tape.setOnMouseEntered(null);
     }
     if(!GameState.isLightPuzzleSolved){
-      if (GameState.randomLight.equals("first")){
-        ellipseOne.setOpacity(0.45);
-      } else if(GameState.randomLight.equals("second")){
-        ellipseTwo.setOpacity(0.45);
-      } else {
-        ellipseThree.setOpacity(0.45);
-      }
+      ellipseOne.setOpacity(0.45);
+      ellipseTwo.setOpacity(0.45);
+      ellipseThree.setOpacity(0.45);
     }
     if (!GameState.isDecryptCompleted){
       ellipseOne.setOnMouseClicked(null);
