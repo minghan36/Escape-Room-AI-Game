@@ -13,6 +13,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -25,7 +26,6 @@ import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 public class DecryptController {
 
   @FXML private Label Timer;
-  @FXML private Label randomLight;
   @FXML private TextField inputText;
   @FXML private Button sendButton;
   @FXML private Label objective;
@@ -34,6 +34,7 @@ public class DecryptController {
   @FXML private Rectangle quizMaster;
   private Image[] alienImages;
   private int currentImageIndex = 0;
+  @FXML private TextArea message;
 
   // create array of alien symbols
   private String[] randomLights = {"⎎⟟⍀⌇⏁", "⌇⟒☊⍜⋏⎅", "⏁⊑⟟⍀⎅"};
@@ -97,8 +98,9 @@ public class DecryptController {
           }
         };
     timer.start();
-    randomLight.setText(randomLights[GameState.randomNum]);
     objective.setText("Decipher the message to unlock the next clue");
+    message.setText(
+        "☌⍜  ⏁⍜  ⏁⊑⟒  ⏚⏃⏁⊑⍀⍜⍜⋔  ⏃⋏⎅  ⎎⟟⌖  ⏁⊑⟒  " + randomLights[GameState.randomNum] + "  ⌰⟟☌⊑⏁");
   }
 
   // pressing on the quiz master to open the chat box
@@ -141,7 +143,6 @@ public class DecryptController {
     inputText.clear();
     message = message.toLowerCase();
     // check if the message is equal to another string
-    System.out.println(GameState.randomNum);
     if (message.equals("go to the bathroom and fix the " + GameState.randomLight + " light")) {
       GameState.currentRoom = "computerroom";
       App.setUi("computerroom");
