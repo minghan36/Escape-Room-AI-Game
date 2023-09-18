@@ -13,6 +13,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
@@ -30,6 +31,7 @@ public class LockedRoomController {
   @FXML private Label Timer;
   private Image[] alienImages;
   private int currentImageIndex = 0;
+  @FXML private ImageView globe;
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
@@ -193,5 +195,17 @@ public class LockedRoomController {
 
     timeline.setCycleCount((GameState.minutes * 60) + GameState.seconds - 1);
     timeline.play();
+  }
+
+  @FXML
+  public void increaseGlobeSize(MouseEvent event) {
+    globe.setScaleX(1.05);
+    globe.setScaleY(1.05);
+  }
+
+  @FXML
+  public void decreaseGlobeSize(MouseEvent event) {
+    globe.setScaleX(1);
+    globe.setScaleY(1);
   }
 }

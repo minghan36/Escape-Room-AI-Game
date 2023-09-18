@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="computerrrom" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="756.0" style="-fx-background-color: #494D7B;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ComputerRoomController">
+<Pane fx:id="computerrrom" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="756.0" style="-fx-background-color: #21464B;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ComputerRoomController">
 
    <children>
       <ImageView fitHeight="503.0" fitWidth="757.0" layoutY="65.0" pickOnBounds="true">
@@ -34,6 +34,10 @@
             <Font name="Telugu MN" size="13.0" />
          </font>
       </Label>
-      <Rectangle fx:id="decrypt" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="111.0" layoutX="301.0" layoutY="357.0" onMouseClicked="#enterDecrypt" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="131.0" />
+      <ImageView fx:id="hoverImage" fitHeight="111.0" fitWidth="131.0" layoutX="301.0" layoutY="357.0" onMouseClicked="#enterDecrypt" onMouseEntered="#increaseSize" onMouseExited="#decreaseSize" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/ComputerHover.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>
