@@ -34,8 +34,7 @@
             <Font name="Telugu MN" size="13.0" />
          </font>
       </Label>
-      <Rectangle fx:id="decrypt" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="111.0" layoutX="301.0" layoutY="357.0" onMouseClicked="#enterDecrypt" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="131.0" />
-      <ImageView fx:id="hoverImage" fitHeight="111.0" fitWidth="131.0" layoutX="301.0" layoutY="357.0" onMouseEntered="#increaseSize" onMouseExited="#decreaseSize" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="hoverImage" fitHeight="111.0" fitWidth="131.0" layoutX="301.0" layoutY="357.0" onMouseClicked="#enterDecrypt" onMouseEntered="#increaseSize" onMouseExited="#decreaseSize" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/ComputerHover.png" />
          </image>

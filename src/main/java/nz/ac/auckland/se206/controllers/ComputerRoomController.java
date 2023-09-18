@@ -12,6 +12,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
@@ -27,7 +28,7 @@ public class ComputerRoomController {
   @FXML private Rectangle decrypt;
   private Image[] alienImages;
   private int currentImageIndex = 0;
-  @FXML private Image hoverImage;
+  @FXML private ImageView hoverImage;
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
@@ -148,5 +149,19 @@ public class ComputerRoomController {
       GameState.currentRoom = "decrypt";
       App.setUi("decrypt");
     }
+  }
+
+  @FXML
+  public void increaseSize(MouseEvent event) {
+    // increase the size of the image
+    hoverImage.setScaleX(1.05); // Increase the size by a factor of 1.2 horizontally
+    hoverImage.setScaleY(1.05);
+  }
+
+  @FXML
+  public void decreaseSize(MouseEvent event) {
+    // decrease the size of the image
+    hoverImage.setScaleX(1);
+    hoverImage.setScaleY(1);
   }
 }
