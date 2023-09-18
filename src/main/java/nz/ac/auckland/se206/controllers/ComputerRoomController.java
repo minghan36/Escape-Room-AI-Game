@@ -27,6 +27,7 @@ public class ComputerRoomController {
   @FXML private Rectangle decrypt;
   private Image[] alienImages;
   private int currentImageIndex = 0;
+  @FXML private Image hoverImage;
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
