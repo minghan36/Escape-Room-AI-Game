@@ -12,13 +12,13 @@
    <children>
       <ImageView fx:id="pic9" fitHeight="95.0" fitWidth="175.0" layoutX="389.0" layoutY="302.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="pic8" fitHeight="95.0" fitWidth="175.0" layoutX="214.0" layoutY="302.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="pic7" fitHeight="95.0" fitWidth="175.0" layoutX="40.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="pic7" fitHeight="95.0" fitWidth="175.0" layoutX="40.0" layoutY="302.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="pic6" fitHeight="95.0" fitWidth="175.0" layoutX="389.0" layoutY="205.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="pic5" fitHeight="95.0" fitWidth="175.0" layoutX="214.0" layoutY="206.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="pic1" fitHeight="95.0" fitWidth="175.0" layoutX="38.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="pic2" fitHeight="95.0" fitWidth="175.0" layoutX="212.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="pic5" fitHeight="95.0" fitWidth="175.0" layoutX="214.0" layoutY="205.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="pic1" fitHeight="95.0" fitWidth="175.0" layoutX="40.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="pic2" fitHeight="95.0" fitWidth="175.0" layoutX="214.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="pic3" fitHeight="95.0" fitWidth="175.0" layoutX="389.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="pic4" fitHeight="95.0" fitWidth="175.0" layoutX="42.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="pic4" fitHeight="95.0" fitWidth="175.0" layoutX="40.0" layoutY="205.0" pickOnBounds="true" preserveRatio="true" />
       <Rectangle fx:id="p1" arcHeight="5.0" arcWidth="5.0" height="95.0" layoutX="38.0" layoutY="110.0" onMouseClicked="#swap" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="175.0" />
       <Rectangle fx:id="p2" arcHeight="5.0" arcWidth="5.0" fill="#010203" height="95.0" layoutX="214.0" layoutY="110.0" onMouseClicked="#swap" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="175.0" />
       <Rectangle fx:id="p3" arcHeight="5.0" arcWidth="5.0" height="95.0" layoutX="390.0" layoutY="110.0" onMouseClicked="#swap" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="175.0" />

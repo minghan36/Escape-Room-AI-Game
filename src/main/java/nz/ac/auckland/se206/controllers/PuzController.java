@@ -246,6 +246,7 @@ public class PuzController {
     if (isCorrectOrder()) {
       status.setText("Correct");
       objective.setText("Now find this room");
+      GameState.isPuzzleSolved = true;
     } else {
       status.setText("incorrect!!");
     }
