@@ -44,4 +44,8 @@ public class GameState {
       return String.valueOf(minutes) + ":" + String.valueOf(seconds);
     }
   }
+
+  public static String[] randomLetters = {"R", "G", "B", "Y"};
+  public static String password = randomLetters[(int)(Math.random()*4)]+randomLetters[(int)(Math.random()*4)]+randomLetters[(int)(Math.random()*4)]+randomLetters[(int)(Math.random()*4)];
+  
 }
