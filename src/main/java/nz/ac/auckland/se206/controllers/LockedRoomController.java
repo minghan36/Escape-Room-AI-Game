@@ -1,6 +1,5 @@
 package nz.ac.auckland.se206.controllers;
 
-
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -222,64 +221,64 @@ public class LockedRoomController {
   }
 
   @FXML
-  public void enterBlue(){
-    if(GameState.isPuzzleSolved){
+  public void enterBlue() {
+    if (GameState.isPuzzleSolved) {
       buttonBlue.setScaleX(1.2);
       buttonBlue.setScaleY(1.2);
     }
   }
 
   @FXML
-  public void exitBlue(){
-    if(GameState.isPuzzleSolved){
+  public void exitBlue() {
+    if (GameState.isPuzzleSolved) {
       buttonBlue.setScaleX(1);
       buttonBlue.setScaleY(1);
     }
   }
 
   @FXML
-  public void enterRed(){
-    if(GameState.isPuzzleSolved){
+  public void enterRed() {
+    if (GameState.isPuzzleSolved) {
       buttonRed.setScaleX(1.2);
       buttonRed.setScaleY(1.2);
     }
   }
 
   @FXML
-  public void exitRed(){
-    if(GameState.isPuzzleSolved){
+  public void exitRed() {
+    if (GameState.isPuzzleSolved) {
       buttonRed.setScaleX(1);
       buttonRed.setScaleY(1);
     }
   }
 
   @FXML
-  public void enterGreen(){
-    if(GameState.isPuzzleSolved){
+  public void enterGreen() {
+    if (GameState.isPuzzleSolved) {
       buttonGreen.setScaleX(1.2);
       buttonGreen.setScaleY(1.2);
     }
   }
 
   @FXML
-  public void exitGreen(){
-    if(GameState.isPuzzleSolved){
+  public void exitGreen() {
+    if (GameState.isPuzzleSolved) {
       buttonGreen.setScaleX(1);
       buttonGreen.setScaleY(1);
     }
   }
 
   @FXML
-  public void enterYellow(){
-    if(GameState.isPuzzleSolved){
+  public void enterYellow() {
+    if (GameState.isPuzzleSolved) {
       buttonYellow.setScaleX(1.2);
       buttonYellow.setScaleY(1.2);
     }
   }
 
   @FXML
-  public void exitYellow(){
-    if(GameState.isPuzzleSolved){
+  public void exitYellow() {
+    if (GameState.isPuzzleSolved) {
       buttonYellow.setScaleX(1);
       buttonYellow.setScaleY(1);
     }
@@ -301,8 +300,29 @@ public class LockedRoomController {
       rectangleDoorOne.setOpacity(0);
       rectangleDoorTwo.setOpacity(0);
       rectangleDoorThree.setOpacity(0);
+      GameState.isRgbSolved = true;
+
     } else {
       labelPasscode.setText("");
+    }
+  }
+
+  public void endGame() {
+    // create a to mintues delay
+    // then go to the win screen
+    if (GameState.isRgbSolved) {
+      Timeline timeline =
+          new Timeline(
+              new KeyFrame(
+                  Duration.seconds(1.2),
+                  new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                      GameState.currentRoom = "win";
+                      App.setUi("win");
+                    }
+                  }));
+      timeline.play();
     }
   }
 
@@ -319,6 +339,7 @@ public class LockedRoomController {
       }
       if (labelPasscode.getText().length() == 4) {
         checkPasscode();
+        endGame();
       }
     }
   }
@@ -336,6 +357,7 @@ public class LockedRoomController {
       }
       if (labelPasscode.getText().length() == 4) {
         checkPasscode();
+        endGame();
       }
     }
   }
@@ -353,6 +375,7 @@ public class LockedRoomController {
       }
       if (labelPasscode.getText().length() == 4) {
         checkPasscode();
+        endGame();
       }
     }
   }
@@ -370,6 +393,7 @@ public class LockedRoomController {
       }
       if (labelPasscode.getText().length() == 4) {
         checkPasscode();
+        endGame();
       }
     }
   }
