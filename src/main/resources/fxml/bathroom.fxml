@@ -31,7 +31,7 @@
             <Font name="Tamil MN" size="19.0" />
          </font>
       </Label>
-      <Label layoutX="212.0" layoutY="37.0" text="Label" textFill="#fcb141">
+      <Label fx:id="label" layoutX="212.0" layoutY="37.0" text="Label" textFill="#fcb141">
          <font>
             <Font name="Tamil MN" size="13.0" />
          </font>
@@ -54,6 +54,7 @@
       <Ellipse fx:id="ellipseOne" fill="#333333" layoutX="46.0" layoutY="196.0" onMouseClicked="#clickLightOne" onMouseEntered="#increaseSizeOne" onMouseExited="#decreaseSizeOne" opacity="0.0" radiusX="16.0" radiusY="30.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
       <Ellipse fx:id="ellipseTwo" fill="#333333" layoutX="129.0" layoutY="209.0" onMouseClicked="#clickLightTwo" onMouseEntered="#increaseSizeTwo" onMouseExited="#decreaseSizeTwo" opacity="0.0" radiusX="16.0" radiusY="23.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
       <Ellipse fx:id="ellipseThree" fill="#333333" layoutX="728.0" layoutY="210.0" onMouseClicked="#clickLightThree" onMouseEntered="#increaseSizeThree" onMouseExited="#decreaseSizeThree" opacity="0.0" radiusX="16.0" radiusY="23.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-      <Circle fx:id="puzzle" fill="DODGERBLUE" layoutX="294.0" layoutY="494.0" onMouseClicked="#openPuzzle" radius="39.0" stroke="BLACK" strokeType="INSIDE" />
+      <ImageView fx:id="key" fitHeight="92.0" fitWidth="91.0" layoutX="249.0" layoutY="448.0" pickOnBounds="true" preserveRatio="true" />
+      <Circle fx:id="puzzle" fill="DODGERBLUE" layoutX="294.0" layoutY="494.0" onMouseClicked="#openPuzzle" opacity="0.0" radius="39.0" stroke="BLACK" strokeType="INSIDE" />
    </children>
 </Pane>

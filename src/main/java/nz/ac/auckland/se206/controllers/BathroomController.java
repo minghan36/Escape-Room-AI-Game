@@ -36,6 +36,10 @@ public class BathroomController {
   @FXML private Ellipse ellipseTwo;
   @FXML private Ellipse ellipseThree;
   @FXML private Circle puzzle;
+  @FXML private ImageView key;
+  @FXML private Label label;
+  private Image[] keyImages;
+  private int currentKeyImageIndex = 0;
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
@@ -66,6 +70,11 @@ public class BathroomController {
       ellipseTwo.setOnMouseEntered(null);
       ellipseOne.setOnMouseClicked(null);
       ellipseOne.setOnMouseEntered(null);
+    }
+
+    if (GameState.isPuzzleSolved) {
+      key.setOpacity(0);
+      puzzle.setOnMouseClicked(null);
     }
     Timer.setText(GameState.getTimeLeft());
     Thread timeThread =
@@ -101,6 +110,38 @@ public class BathroomController {
 
     // Start the animation
     translateTransition.play();
+    if (GameState.isLightPuzzleSolved) {
+      // Load the key images into the array
+      keyImages = new Image[12];
+      for (int i = 0; i < 12; i++) {
+        keyImages[i] = new Image("images/key" + (i + 1) + ".png");
+      }
+
+      startKeyAnimation();
+    }
+  }
+
+  private void startKeyAnimation() {
+    AnimationTimer keyTimer =
+        new AnimationTimer() {
+          private long lastTime = 0;
+          private final long frameDurationMillis = 100; // Adjust this as needed
+
+          @Override
+          public void handle(long currentTime) {
+            if (currentTime - lastTime >= frameDurationMillis * 1_000_000) {
+              if (currentKeyImageIndex < keyImages.length) {
+                key.setImage(keyImages[currentKeyImageIndex]);
+                currentKeyImageIndex++;
+                if (currentKeyImageIndex >= keyImages.length) {
+                  currentKeyImageIndex = 0;
+                }
+                lastTime = currentTime;
+              }
+            }
+          }
+        };
+    keyTimer.start();
   }
 
   private void startAnimation() {
@@ -176,8 +217,12 @@ public class BathroomController {
 
   @FXML
   public void openPuzzle(MouseEvent event) {
-    GameState.currentRoom = "puz";
-    App.setUi("puz");
+    if (GameState.isLightPuzzleSolved) {
+      GameState.currentRoom = "puz";
+      App.setUi("puz");
+    } else {
+
+    }
   }
 
   public void startTimer() {
