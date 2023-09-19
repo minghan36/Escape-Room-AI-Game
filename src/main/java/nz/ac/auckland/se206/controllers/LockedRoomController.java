@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
+
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -27,14 +28,25 @@ public class LockedRoomController {
   @FXML private Rectangle toBathroom;
   @FXML private Rectangle toComputerRoom;
   @FXML private Rectangle quizMaster;
+  @FXML private Rectangle buttonBlue;
+  @FXML private Rectangle buttonRed;
+  @FXML private Rectangle buttonGreen;
+  @FXML private Rectangle buttonYellow;
+  @FXML private Rectangle rectangleDoorOne;
+  @FXML private Rectangle rectangleDoorTwo;
+  @FXML private Rectangle rectangleDoorThree;
   @FXML private Canvas gameMaster;
   @FXML private Label Timer;
+  @FXML private Label labelPasscode;
+  @FXML private Label labelObjective;
+  @FXML private ImageView globe;
   private Image[] alienImages;
   private int currentImageIndex = 0;
-  @FXML private ImageView globe;
+  private Timeline timeline;
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
+    labelObjective.setText(GameState.password);
     Timer.setText(GameState.getTimeLeft());
     Thread timeThread =
         new Thread(
@@ -168,7 +180,7 @@ public class LockedRoomController {
   }
 
   public void startTimer() {
-    Timeline timeline =
+    timeline =
         new Timeline(
             new KeyFrame(
                 Duration.seconds(1),
@@ -207,5 +219,158 @@ public class LockedRoomController {
   public void decreaseGlobeSize(MouseEvent event) {
     globe.setScaleX(1);
     globe.setScaleY(1);
+  }
+
+  @FXML
+  public void enterBlue(){
+    if(GameState.isPuzzleSolved){
+      buttonBlue.setScaleX(1.2);
+      buttonBlue.setScaleY(1.2);
+    }
+  }
+
+  @FXML
+  public void exitBlue(){
+    if(GameState.isPuzzleSolved){
+      buttonBlue.setScaleX(1);
+      buttonBlue.setScaleY(1);
+    }
+  }
+
+  @FXML
+  public void enterRed(){
+    if(GameState.isPuzzleSolved){
+      buttonRed.setScaleX(1.2);
+      buttonRed.setScaleY(1.2);
+    }
+  }
+
+  @FXML
+  public void exitRed(){
+    if(GameState.isPuzzleSolved){
+      buttonRed.setScaleX(1);
+      buttonRed.setScaleY(1);
+    }
+  }
+
+  @FXML
+  public void enterGreen(){
+    if(GameState.isPuzzleSolved){
+      buttonGreen.setScaleX(1.2);
+      buttonGreen.setScaleY(1.2);
+    }
+  }
+
+  @FXML
+  public void exitGreen(){
+    if(GameState.isPuzzleSolved){
+      buttonGreen.setScaleX(1);
+      buttonGreen.setScaleY(1);
+    }
+  }
+
+  @FXML
+  public void enterYellow(){
+    if(GameState.isPuzzleSolved){
+      buttonYellow.setScaleX(1.2);
+      buttonYellow.setScaleY(1.2);
+    }
+  }
+
+  @FXML
+  public void exitYellow(){
+    if(GameState.isPuzzleSolved){
+      buttonYellow.setScaleX(1);
+      buttonYellow.setScaleY(1);
+    }
+  }
+
+  private void checkPasscode() {
+    // If passcode is correct, pauses the timer.
+    if (labelPasscode.getText().equals(GameState.password)) {
+      timeline.pause();
+      System.out.println("Success");
+      buttonBlue.setOnMouseClicked(null);
+      buttonBlue.setOnMouseEntered(null);
+      buttonRed.setOnMouseClicked(null);
+      buttonRed.setOnMouseEntered(null);
+      buttonGreen.setOnMouseClicked(null);
+      buttonGreen.setOnMouseEntered(null);
+      buttonYellow.setOnMouseClicked(null);
+      buttonYellow.setOnMouseEntered(null);
+      rectangleDoorOne.setOpacity(0);
+      rectangleDoorTwo.setOpacity(0);
+      rectangleDoorThree.setOpacity(0);
+    } else {
+      labelPasscode.setText("");
+    }
+  }
+
+  @FXML
+  public void clickBlue(MouseEvent event) {
+    // Adds the letter "B" to the passcode and checks if it is correct if the length of the passcode
+    // is now equal to four.
+    if (GameState.isPuzzleSolved) {
+      labelPasscode.setText(labelPasscode.getText() + "B");
+      try {
+        Thread.sleep(250);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+      if (labelPasscode.getText().length() == 4) {
+        checkPasscode();
+      }
+    }
+  }
+
+  @FXML
+  public void clickRed(MouseEvent event) {
+    // Adds the letter "B" to the passcode and checks if it is correct if the length of the passcode
+    // is now equal to four.
+    if (GameState.isPuzzleSolved) {
+      labelPasscode.setText(labelPasscode.getText() + "R");
+      try {
+        Thread.sleep(250);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+      if (labelPasscode.getText().length() == 4) {
+        checkPasscode();
+      }
+    }
+  }
+
+  @FXML
+  public void clickGreen(MouseEvent event) {
+    // Adds the letter "B" to the passcode and checks if it is correct if the length of the passcode
+    // is now equal to four.
+    if (GameState.isPuzzleSolved) {
+      labelPasscode.setText(labelPasscode.getText() + "G");
+      try {
+        Thread.sleep(50);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+      if (labelPasscode.getText().length() == 4) {
+        checkPasscode();
+      }
+    }
+  }
+
+  @FXML
+  public void clickYellow(MouseEvent event) {
+    // Adds the letter "B" to the passcode and checks if it is correct if the length of the passcode
+    // is now equal to four.
+    if (GameState.isPuzzleSolved) {
+      labelPasscode.setText(labelPasscode.getText() + "Y");
+      try {
+        Thread.sleep(250);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+      if (labelPasscode.getText().length() == 4) {
+        checkPasscode();
+      }
+    }
   }
 }

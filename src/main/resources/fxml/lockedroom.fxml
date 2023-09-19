@@ -30,7 +30,7 @@
             <Font name="Telugu MN" size="19.0" />
          </font>
       </Label>
-      <Label layoutX="198.0" layoutY="30.0" text="Label" textFill="#fcb141">
+      <Label fx:id="labelObjective" layoutX="198.0" layoutY="30.0" text="Label" textFill="#fcb141">
          <font>
             <Font name="Telugu MN" size="13.0" />
          </font>
@@ -40,5 +40,17 @@
             <Image url="@../images/Globe2.png" />
          </image>
       </ImageView>
+      <Rectangle fx:id="buttonBlue" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="28.0" layoutX="36.0" layoutY="220.0" onMouseClicked="#clickBlue" onMouseEntered="#enterBlue" onMouseExited="#exitBlue" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" width="30.0" />
+      <Rectangle fx:id="buttonRed" arcHeight="5.0" arcWidth="5.0" fill="#b44633" height="28.0" layoutX="78.0" layoutY="220.0" onMouseClicked="#clickRed" onMouseEntered="#enterRed" onMouseExited="#exitRed" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" width="30.0" />
+      <Rectangle fx:id="buttonGreen" arcHeight="5.0" arcWidth="5.0" fill="#34b241" height="28.0" layoutX="36.0" layoutY="256.0" onMouseClicked="#clickGreen" onMouseEntered="#enterGreen" onMouseExited="#exitGreen" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" width="30.0" />
+      <Rectangle fx:id="buttonYellow" arcHeight="5.0" arcWidth="5.0" fill="#a5b035" height="28.0" layoutX="78.0" layoutY="256.0" onMouseClicked="#clickYellow" onMouseEntered="#enterYellow" onMouseExited="#exitYellow" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" width="30.0" />
+      <Rectangle fx:id="rectangleDoorOne" arcHeight="5.0" arcWidth="5.0" fill="#434343" height="45.0" layoutX="173.0" layoutY="353.0" opacity="0.75" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="84.0" />
+      <Rectangle fx:id="rectangleDoorTwo" arcHeight="5.0" arcWidth="5.0" fill="#434343" height="45.0" layoutX="255.0" layoutY="199.0" opacity="0.75" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="84.0" />
+      <Rectangle fx:id="rectangleDoorThree" arcHeight="5.0" arcWidth="5.0" fill="#434343" height="45.0" layoutX="204.0" layoutY="90.0" opacity="0.75" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="118.0" />
+      <Label fx:id="labelPasscode" alignment="CENTER" contentDisplay="CENTER" layoutX="205.0" layoutY="86.0" prefHeight="53.0" prefWidth="116.0" textAlignment="CENTER">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
