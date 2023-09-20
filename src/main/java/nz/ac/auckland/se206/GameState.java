@@ -20,10 +20,15 @@ public class GameState {
   public static boolean isLightPuzzleStarted = false;
   public static boolean isLightPuzzleSolved = false;
   public static boolean isPuzzleSolved = false;
+  public static boolean isWireOneFixed = false;
+  public static boolean isWireTwoFixed = false;
+  public static boolean isWireThreeFixed = false;
+  public static boolean isWireFourFixed = false;
   public static boolean isRgbSolved = false;
 
   public static int minutes = 0;
   public static int seconds = 0;
+  public static int wireFixes = 0;
 
   // choose a random number between zero and two
   public static int randomNum = (int) (Math.random() * 3);
