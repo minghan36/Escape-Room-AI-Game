@@ -2,6 +2,7 @@
 
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -21,7 +22,7 @@
       <Rectangle fx:id="toLockedRoom" arcHeight="5.0" arcWidth="5.0" fill="#f7f7f7" height="503.0" onMouseClicked="#enterLockedRoom" onMouseEntered="#highlight" onMouseExited="#removeHighlight" opacity="0.4" stroke="#999999" strokeType="INSIDE" width="26.0" />
       <Canvas fx:id="gameMaster" height="114.0" layoutX="576.0" layoutY="369.0" width="130.0" />
       <Rectangle fx:id="quizMater" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="121.0" layoutX="570.0" layoutY="366.0" onMouseClicked="#clickQuizMaster" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="142.0" />
-      <Label fx:id="Timer" layoutX="651.0" layoutY="6.0" prefHeight="53.0" prefWidth="91.0" textFill="#fcb141">
+      <Label fx:id="Timer" layoutX="861.0" layoutY="14.0" prefHeight="53.0" prefWidth="91.0" textFill="#fcb141">
          <font>
             <Font name="Tamil MN" size="36.0" />
          </font>
@@ -46,5 +47,37 @@
       <Ellipse fx:id="ellipseThree" fill="#333333" layoutX="728.0" layoutY="145.0" onMouseClicked="#clickLightThree" onMouseEntered="#increaseSizeThree" onMouseExited="#decreaseSizeThree" opacity="0.0" radiusX="16.0" radiusY="23.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
       <ImageView fx:id="key" fitHeight="92.0" fitWidth="91.0" layoutX="250.0" layoutY="391.0" pickOnBounds="true" preserveRatio="true" />
       <Circle fx:id="puzzle" fill="DODGERBLUE" layoutX="295.0" layoutY="426.0" onMouseClicked="#openPuzzle" opacity="0.0" radius="39.0" stroke="BLACK" strokeType="INSIDE" />
+      <TextArea layoutX="776.0" layoutY="93.0" prefHeight="78.0" prefWidth="200.0" />
+      <TextArea layoutX="776.0" layoutY="196.0" prefHeight="200.0" prefWidth="200.0" />
+      <Label layoutX="777.0" layoutY="28.0" text="Time: " textFill="#fcb141">
+         <font>
+            <Font name="Telugu MN" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="777.0" layoutY="179.0" text="Hints" textFill="#fcb141">
+         <font>
+            <Font name="Sinhala MN" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="777.0" layoutY="408.0" text="Items Collected" textFill="#fcb141">
+         <font>
+            <Font name="Tamil MN" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="776.0" layoutY="67.0" text="Current Objective:" textFill="#fcb141">
+         <font>
+            <Font name="Tamil MN" size="19.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="tape" fitHeight="36.0" fitWidth="42.0" layoutX="776.0" layoutY="430.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/tape.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="sdCard" fitHeight="36.0" fitWidth="42.0" layoutX="776.0" layoutY="465.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/sdcard.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>

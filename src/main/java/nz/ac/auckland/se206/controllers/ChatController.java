@@ -18,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
@@ -39,6 +40,8 @@ public class ChatController {
   @FXML private Label Timer;
   private Image[] alienImages;
   private int currentImageIndex = 0;
+  @FXML private ImageView sdCard;
+  @FXML private Label sdCollect;
 
   private ChatCompletionRequest chatCompletionRequest;
 
@@ -49,6 +52,7 @@ public class ChatController {
    */
   @FXML
   public void initialize() throws ApiProxyException {
+    sdCard.setVisible(false);
     Timer.setText(GameState.getTimeLeft());
     Thread timeThread =
         new Thread(
@@ -81,7 +85,6 @@ public class ChatController {
 
     // Start the animation
     startAnimation();
-
   }
 
   private void startAnimation() {
@@ -181,6 +184,8 @@ public class ChatController {
         lastMsg -> {
           if (lastMsg.getRole().equals("assistant") && lastMsg.getContent().startsWith("Correct")) {
             GameState.isRiddleResolved = true;
+            sdCard.setVisible(true);
+            sdCollect.setText("Collect the SD card!");
           }
         });
   }
@@ -218,5 +223,24 @@ public class ChatController {
 
     timeline.setCycleCount((GameState.minutes * 60) + GameState.seconds - 1);
     timeline.play();
+  }
+
+  @FXML
+  public void increaseSize() {
+    sdCard.setScaleX(1.2);
+    sdCard.setScaleY(1.2);
+  }
+
+  @FXML
+  public void decreaseSize() {
+    sdCard.setScaleX(1);
+    sdCard.setScaleY(1);
+  }
+
+  @FXML
+  public void clickSdCard() {
+    GameState.isSdCardFound = true;
+    sdCard.setVisible(false);
+    sdCollect.setText("");
   }
 }

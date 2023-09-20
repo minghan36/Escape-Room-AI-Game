@@ -8,45 +8,61 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="chat" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="756.0" style="-fx-background-color: #494D7B;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ChatController">
+<AnchorPane fx:id="chat" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="1000.0" style="-fx-background-color: #494D7B;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ChatController">
   <children>
-      <ImageView blendMode="SRC_ATOP" fitHeight="513.0" fitWidth="1143.0" layoutX="-230.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView blendMode="SRC_ATOP" fitHeight="578.0" fitWidth="1200.0" layoutX="-442.0" layoutY="-24.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/intro.png" />
          </image>
       </ImageView>
-    <TextArea fx:id="chatTextArea" editable="false" layoutX="31.0" layoutY="164.0" opacity="0.7" prefHeight="299.0" prefWidth="510.0" style="-fx-font-style: Arial Rounded MT Bold;" wrapText="true">
+    <TextArea fx:id="chatTextArea" editable="false" layoutX="31.0" layoutY="94.0" opacity="0.7" prefHeight="299.0" prefWidth="510.0" style="-fx-font-style: Arial Rounded MT Bold;" wrapText="true">
          <font>
             <Font name="Arial Rounded MT Bold" size="13.0" />
          </font></TextArea>
-    <TextField fx:id="inputText" layoutX="31.0" layoutY="491.0" opacity="0.8" prefHeight="26.0" prefWidth="443.0" style="-fx-background-color: BABFEE;" />
-    <Button fx:id="sendButton" layoutX="492.0" layoutY="491.0" mnemonicParsing="false" onAction="#onSendMessage" style="-fx-background-color: #2E40F9;" text="Send" textFill="#fcb141">
+    <TextField fx:id="inputText" layoutX="31.0" layoutY="437.0" opacity="0.8" prefHeight="26.0" prefWidth="443.0" style="-fx-background-color: BABFEE;" />
+    <Button fx:id="sendButton" layoutX="492.0" layoutY="437.0" mnemonicParsing="false" onAction="#onSendMessage" style="-fx-background-color: #2E40F9;" text="Send" textFill="#fcb141">
          <font>
             <Font name="Tamil MN" size="13.0" />
          </font></Button>
-    <Button layoutX="31.0" layoutY="100.0" mnemonicParsing="false" onAction="#onGoBack" style="-fx-background-color: #2E40F9;" text="Go Back" textFill="#fcb141">
+    <Button layoutX="31.0" layoutY="20.0" mnemonicParsing="false" onAction="#onGoBack" style="-fx-background-color: #2E40F9;" text="Go Back" textFill="#fcb141">
          <font>
             <Font name="Telugu MN" size="13.0" />
          </font></Button>
-      <Canvas fx:id="quizMaster" height="100.0" layoutX="600.0" layoutY="363.0" width="59.0" />
-      <Label fx:id="Timer" layoutX="640.0" layoutY="6.0" prefHeight="53.0" prefWidth="91.0" textFill="#ffa723">
+      <Canvas fx:id="quizMaster" height="100.0" layoutX="627.0" layoutY="363.0" width="59.0" />
+      <Label fx:id="Timer" layoutX="861.0" layoutY="14.0" prefHeight="53.0" prefWidth="91.0" textFill="#ffa723">
          <font>
             <Font name="Telugu MN" size="36.0" />
          </font>
       </Label>
-      <Label layoutX="31.0" layoutY="24.0" text="Current Objective: " textFill="#fcb141">
+      <ImageView fx:id="sdCard" fitHeight="113.0" fitWidth="140.0" layoutX="582.0" layoutY="163.0" onMouseClicked="#clickSdCard" onMouseEntered="#increaseSize" onMouseExited="#decreaseSize" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/sdcard.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="sdCollect" layoutX="552.0" layoutY="105.0" textFill="WHITE">
          <font>
-            <Font name="Telugu MN" size="19.0" />
+            <Font name="Sinhala MN" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="211.0" layoutY="28.0" text="Label" textFill="#fcb141">
+      <Label layoutX="777.0" layoutY="28.0" text="Time: " textFill="#fcb141">
          <font>
-            <Font name="Telugu MN" size="13.0" />
+            <Font name="Tamil MN" size="19.0" />
          </font>
       </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#494d7b" height="8.0" layoutY="58.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="756.0" />
+      <Label layoutX="776.0" layoutY="67.0" text="Current Objective:" textFill="#fcb141">
+         <font>
+            <Font name="Sinhala MN" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="777.0" layoutY="179.0" text="Hints" textFill="#fcb141">
+         <font>
+            <Font name="Tamil MN" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="777.0" layoutY="408.0" text="Label" />
+      <TextArea layoutX="776.0" layoutY="93.0" prefHeight="78.0" prefWidth="200.0" />
+      <TextArea layoutX="776.0" layoutY="196.0" prefHeight="200.0" prefWidth="200.0" />
   </children>
 </AnchorPane>
