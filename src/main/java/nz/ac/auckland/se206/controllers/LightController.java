@@ -37,11 +37,35 @@ public class LightController {
   @FXML private ImageView fixFour;
   @FXML private Label objective;
   @FXML private Label lightSuggest;
-  private int fixes = 0;
   private Image[] alienImages;
   private int currentImageIndex = 0;
 
   public void initialize() {
+    if (GameState.isWireOneFixed){
+      fixOne.setOpacity(1);
+      fixOne.setOnMouseClicked(null);
+    }
+    if (GameState.isWireTwoFixed){
+      fixTwoOne.setOpacity(1);
+      fixTwoTwo.setOpacity(1);
+      fixTwoThree.setOpacity(1);
+      fixTwoOne.setOnMouseClicked(null);
+      fixTwoTwo.setOnMouseClicked(null);
+      fixTwoThree.setOnMouseClicked(null);
+    }
+    if (GameState.isWireThreeFixed){
+      fixThreeOne.setOpacity(1);
+      fixThreeTwo.setOpacity(1);
+      fixThreeOne.setOnMouseClicked(null);
+      fixThreeTwo.setOnMouseClicked(null);
+    }
+    if (GameState.isWireFourFixed){
+      fixFour.setOpacity(1);
+      fixFour.setOnMouseClicked(null);
+    }
+    if (GameState.wireFixes == 4) {
+      lightSuggest.setText("All the wires have been fixed. Good Job!");
+    }
     lightSuggest.setWrapText(true);
     Timer.setText(GameState.getTimeLeft());
     Thread timeThread =
@@ -144,9 +168,10 @@ public class LightController {
   private void clickBreakOne() {
     if (GameState.isElectricalTapeFound) {
       fixOne.setOpacity(1);
+      GameState.isWireOneFixed = true;
       fixOne.setOnMouseClicked(null);
-      fixes++;
-      if (fixes == 4) {
+      GameState.wireFixes++;
+      if (GameState.wireFixes == 4) {
         lightSuggest.setText("All the wires have been fixed. Good Job!");
         GameState.isLightPuzzleSolved = true;
       }
@@ -161,11 +186,12 @@ public class LightController {
       fixTwoOne.setOpacity(1);
       fixTwoTwo.setOpacity(1);
       fixTwoThree.setOpacity(1);
+      GameState.isWireTwoFixed = true;
       fixTwoOne.setOnMouseClicked(null);
       fixTwoTwo.setOnMouseClicked(null);
       fixTwoThree.setOnMouseClicked(null);
-      fixes++;
-      if (fixes == 4) {
+      GameState.wireFixes++;
+      if (GameState.wireFixes == 4) {
         lightSuggest.setText("All the wires have been fixed. Good Job!");
         GameState.isLightPuzzleSolved = true;
       }
@@ -179,10 +205,11 @@ public class LightController {
     if (GameState.isElectricalTapeFound) {
       fixThreeOne.setOpacity(1);
       fixThreeTwo.setOpacity(1);
+      GameState.isWireThreeFixed = true;
       fixThreeOne.setOnMouseClicked(null);
       fixThreeTwo.setOnMouseClicked(null);
-      fixes++;
-      if (fixes == 4) {
+      GameState.wireFixes++;
+      if (GameState.wireFixes == 4) {
         lightSuggest.setText("All the wires have been fixed. Good Job!");
         GameState.isLightPuzzleSolved = true;
       }
@@ -195,9 +222,10 @@ public class LightController {
   private void clickBreakFour() {
     if (GameState.isElectricalTapeFound) {
       fixFour.setOpacity(1);
+      GameState.isWireFourFixed = true;
       fixFour.setOnMouseClicked(null);
-      fixes++;
-      if (fixes == 4) {
+      GameState.wireFixes++;
+      if (GameState.wireFixes == 4) {
         lightSuggest.setText("All the wires have been fixed. Good Job!");
         GameState.isLightPuzzleSolved = true;
       }

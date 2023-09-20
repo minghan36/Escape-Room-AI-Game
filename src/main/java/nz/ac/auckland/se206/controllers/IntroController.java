@@ -1,6 +1,5 @@
 package nz.ac.auckland.se206.controllers;
 
-
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -63,6 +62,12 @@ public class IntroController {
   @FXML
   public void startGame(MouseEvent event) {
     if (levelIsPicked && timeIsPicked) {
+      Thread timeThread =
+          new Thread(
+              () -> {
+                GameState.startTimer();
+              });
+      timeThread.start();
       App.setUi("lockedroom");
     } else {
       startStatus.setText("Please pick a level and a time duration");
@@ -164,5 +169,4 @@ public class IntroController {
       startStatus.setText("");
     }
   }
-
 }

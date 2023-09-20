@@ -41,7 +41,6 @@ public class LockedRoomController {
   @FXML private ImageView globe;
   private Image[] alienImages;
   private int currentImageIndex = 0;
-  private Timeline timeline;
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
@@ -179,20 +178,13 @@ public class LockedRoomController {
   }
 
   public void startTimer() {
-    timeline =
+    Timeline timeline =
         new Timeline(
             new KeyFrame(
                 Duration.seconds(1),
                 new EventHandler<ActionEvent>() {
                   @Override
                   public void handle(ActionEvent event) {
-                    // Counts down the timer.
-                    if (GameState.seconds == 0) {
-                      GameState.minutes--;
-                      GameState.seconds = 59;
-                    } else if (GameState.seconds > 0) {
-                      GameState.seconds--;
-                    }
                     // Counts down the timer.
                     Platform.runLater(
                         new Runnable() {
@@ -287,7 +279,7 @@ public class LockedRoomController {
   private void checkPasscode() {
     // If passcode is correct, pauses the timer.
     if (labelPasscode.getText().equals(GameState.password)) {
-      timeline.pause();
+      GameState.timeline.pause();
       System.out.println("Success");
       buttonBlue.setOnMouseClicked(null);
       buttonBlue.setOnMouseEntered(null);
