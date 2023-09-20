@@ -46,7 +46,7 @@ public class App extends Application {
   public void start(final Stage stage) throws IOException {
     chatParent = loadFxml("chat");
     Parent root = loadFxml("intro");
-    scene = new Scene(root, 1000, 568);
+    scene = new Scene(root, 1000, 503);
     stage.setScene(scene);
     stage.show();
     stage.setResizable(false);
