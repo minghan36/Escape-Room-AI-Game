@@ -20,6 +20,7 @@ public class GameState {
   public static boolean isLightPuzzleStarted = false;
   public static boolean isLightPuzzleSolved = false;
   public static boolean isPuzzleSolved = false;
+  public static boolean isRgbSolved = false;
 
   public static int minutes = 0;
   public static int seconds = 0;
@@ -46,6 +47,9 @@ public class GameState {
   }
 
   public static String[] randomLetters = {"R", "G", "B", "Y"};
-  public static String password = randomLetters[(int)(Math.random()*4)]+randomLetters[(int)(Math.random()*4)]+randomLetters[(int)(Math.random()*4)]+randomLetters[(int)(Math.random()*4)];
-  
+  public static String password =
+      randomLetters[(int) (Math.random() * 4)]
+          + randomLetters[(int) (Math.random() * 4)]
+          + randomLetters[(int) (Math.random() * 4)]
+          + randomLetters[(int) (Math.random() * 4)];
 }
