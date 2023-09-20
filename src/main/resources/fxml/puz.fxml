@@ -3,12 +3,14 @@
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="puz" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="518.0" prefWidth="667.0" style="-fx-background-color: #494D7B;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.PuzController">
+<AnchorPane fx:id="puz" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="1000.0" style="-fx-background-color: #494D7B;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.PuzController">
    <children>
       <ImageView fx:id="pic9" fitHeight="95.0" fitWidth="175.0" layoutX="389.0" layoutY="302.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="pic8" fitHeight="95.0" fitWidth="175.0" layoutX="214.0" layoutY="302.0" pickOnBounds="true" preserveRatio="true" />
@@ -33,19 +35,62 @@
             <Font name="Tamil MN" size="22.0" />
          </font>
       </Label>
-      <Label fx:id="Timer" layoutX="577.0" layoutY="19.0" textFill="#f89500">
+      <Label fx:id="Timer" layoutX="878.0" layoutY="12.0" textFill="#fcb141">
          <font>
-            <Font size="36.0" />
+            <Font name="Tamil MN" size="36.0" />
          </font>
       </Label>
-      <Button fx:id="goBackBtn" layoutX="589.0" layoutY="429.0" mnemonicParsing="false" onAction="#goBack" text="Go Back" />
-      <Button fx:id="check" layoutX="40.0" layoutY="429.0" mnemonicParsing="false" onAction="#checkPuzzle" text="Check" />
+      <Button fx:id="goBackBtn" layoutX="589.0" layoutY="429.0" mnemonicParsing="false" onAction="#goBack" style="-fx-background-color: #2E40F9;" text="Go Back" textFill="#fcb141">
+         <font>
+            <Font name="Sinhala MN" size="13.0" />
+         </font></Button>
+      <Button fx:id="check" layoutX="40.0" layoutY="429.0" mnemonicParsing="false" onAction="#checkPuzzle" style="-fx-background-color: #2E40F9;" text="Check" textFill="#fcb141">
+         <font>
+            <Font name="Tamil MN" size="13.0" />
+         </font></Button>
       <Label fx:id="status" layoutX="110.0" layoutY="431.0" prefHeight="21.0" prefWidth="253.0" text="Pic 2 neighbouring boxes to swap" textFill="#e48407">
          <font>
             <Font name="Tamil MN" size="16.0" />
          </font>
       </Label>
-      <Canvas fx:id="gameMaster" height="114.0" layoutX="557.0" layoutY="304.0" width="103.0" />
-      <Rectangle fx:id="quizMaster" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="104.0" layoutX="580.0" layoutY="314.0" onMouseClicked="#clickQuizMaster" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
+      <Canvas fx:id="gameMaster" height="114.0" layoutX="596.0" layoutY="288.0" width="103.0" />
+      <Rectangle fx:id="quizMaster" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="114.0" layoutX="597.0" layoutY="288.0" onMouseClicked="#clickQuizMaster" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
+      <Label layoutX="777.0" layoutY="28.0" text="Time:" textFill="#fcb141">
+         <font>
+            <Font name="Sinhala MN" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="777.0" layoutY="67.0" text="Current Objective:" textFill="#fcb141">
+         <font>
+            <Font name="Tamil MN" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="777.0" layoutY="179.0" text="Hints" textFill="#fcb141">
+         <font>
+            <Font name="Sinhala MN" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="777.0" layoutY="408.0" text="Items Collected" textFill="#fcb141">
+         <font>
+            <Font name="Tamil MN" size="13.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="objText" editable="false" layoutX="777.0" layoutY="93.0" prefHeight="78.0" prefWidth="200.0" wrapText="true" />
+      <TextArea fx:id="hintsText" editable="false" layoutX="777.0" layoutY="196.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+      <ImageView fx:id="tape" fitHeight="36.0" fitWidth="42.0" layoutX="777.0" layoutY="430.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/tape.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="sdCard" fitHeight="36.0" fitWidth="42.0" layoutX="777.0" layoutY="465.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/sdcard.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="globe" fitHeight="36.0" fitWidth="42.0" layoutX="844.0" layoutY="430.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/GlobeItem.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

@@ -46,11 +46,13 @@ public class LockedRoomController {
   @FXML private ImageView sdCard;
   @FXML private TextArea objText;
   @FXML private TextArea hintsText;
+  @FXML private ImageView globe1;
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
     sdCard.setVisible(GameState.isSdCardFound);
     tape.setVisible(GameState.isElectricalTapeFound);
+    globe1.setVisible(GameState.isGlobeFound);
     labelObjective.setText(GameState.password);
     Timer.setText(GameState.getTimeLeft());
     Thread timeThread =
@@ -209,8 +211,12 @@ public class LockedRoomController {
 
   @FXML
   public void increaseGlobeSize(MouseEvent event) {
-    globe.setScaleX(1.05);
-    globe.setScaleY(1.05);
+    if (GameState.isLightPuzzleSolved) {
+      globe.setScaleX(1.05);
+      globe.setScaleY(1.05);
+    } else {
+      return;
+    }
   }
 
   @FXML
@@ -399,6 +405,11 @@ public class LockedRoomController {
 
   @FXML
   public void clickGlobe(MouseEvent event) {
-    App.setUi("puz");
+    if (!GameState.isGlobeFound) {
+      objText.setText("You're missing the globe item required to access the puzzle!");
+      return;
+    } else {
+      App.setUi("puz");
+    }
   }
 }

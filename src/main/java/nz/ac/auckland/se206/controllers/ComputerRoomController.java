@@ -35,11 +35,13 @@ public class ComputerRoomController {
   @FXML private ImageView sdCard;
   @FXML private TextArea objText;
   @FXML private TextArea hintsText;
+  @FXML private ImageView globe;
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
     sdCard.setVisible(GameState.isSdCardFound);
     tape1.setVisible(GameState.isElectricalTapeFound);
+    globe.setVisible(GameState.isGlobeFound);
     if (!GameState.isLightPuzzleStarted) {
       tape.setOnMouseClicked(null);
       tape.setOnMouseEntered(null);
@@ -162,6 +164,8 @@ public class ComputerRoomController {
   public void enterDecrypt(MouseEvent event) {
     if (GameState.isDecryptCompleted) {
       return;
+    } else if (!GameState.isRiddleResolved) {
+      objText.setText("You need the SD card to access the computer!");
     } else {
       GameState.currentRoom = "decrypt";
       App.setUi("decrypt");
@@ -172,10 +176,12 @@ public class ComputerRoomController {
   public void increaseSize(MouseEvent event) {
     if (GameState.isDecryptCompleted) {
       return;
+    } else if (!GameState.isRiddleResolved) {
+      return;
+    } else {
+      hoverImage.setScaleX(1.05); // Increase the size by a factor of 1.2 horizontally
+      hoverImage.setScaleY(1.05);
     }
-    // increase the size of the image
-    hoverImage.setScaleX(1.05); // Increase the size by a factor of 1.2 horizontally
-    hoverImage.setScaleY(1.05);
   }
 
   @FXML

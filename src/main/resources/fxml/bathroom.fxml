@@ -79,5 +79,10 @@
             <Image url="@../images/sdcard.png" />
          </image>
       </ImageView>
+      <ImageView fx:id="globe" fitHeight="36.0" fitWidth="42.0" layoutX="844.0" layoutY="430.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/GlobeItem.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>

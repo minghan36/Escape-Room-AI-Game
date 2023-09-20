@@ -23,8 +23,8 @@
             <Font name="Telugu MN" size="13.0" />
          </font>
       </Button>
-      <Canvas fx:id="gameMaster" height="89.0" layoutX="566.0" layoutY="277.0" width="115.0" />
-      <Rectangle fx:id="quizMaster" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="112.0" layoutX="553.0" layoutY="266.0" onMouseClicked="#clickQuizMaster" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="142.0" />
+      <Canvas fx:id="gameMaster" height="89.0" layoutX="589.0" layoutY="322.0" width="115.0" />
+      <Rectangle fx:id="quizMaster" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="112.0" layoutX="575.0" layoutY="304.0" onMouseClicked="#clickQuizMaster" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="142.0" />
       <Circle fx:id="behindLight" fill="#464646" layoutX="276.0" layoutY="252.0" radius="247.0" stroke="#01204b" strokeType="INSIDE" strokeWidth="5.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#383838" height="217.0" layoutX="67.0" layoutY="143.0" stroke="BLACK" strokeType="INSIDE" width="419.0" />
       <ImageView fitHeight="228.0" fitWidth="461.0" layoutX="67.0" layoutY="138.0" pickOnBounds="true" preserveRatio="true">
@@ -95,12 +95,12 @@
             <Image url="@../images/sdcard.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="globe" fitHeight="123.0" fitWidth="115.0" layoutX="580.0" layoutY="196.0" onMouseClicked="#clickGlobe" onMouseEntered="#increaseGlobeSize" onMouseExited="#decreaseGlobeSize" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="globe" fitHeight="123.0" fitWidth="115.0" layoutX="589.0" layoutY="153.0" onMouseClicked="#clickGlobe" onMouseEntered="#increaseGlobeSize" onMouseExited="#decreaseGlobeSize" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/GlobeItem.png" />
          </image>
       </ImageView>
-      <Label fx:id="lightSuggest" layoutX="523.0" layoutY="163.0" textFill="#fcb141" />
+      <Label fx:id="lightSuggest" layoutX="523.0" layoutY="92.0" prefHeight="44.0" prefWidth="40.0" textFill="#fcb141" />
       <ImageView fx:id="globe1" fitHeight="36.0" fitWidth="42.0" layoutX="844.0" layoutY="430.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/GlobeItem.png" />
