@@ -63,7 +63,6 @@
          </image>
       </ImageView>
       <Rectangle fx:id="fixTwoThree" arcHeight="5.0" arcWidth="5.0" fill="#383838" height="15.0" layoutX="313.0" layoutY="227.0" onMouseClicked="#clickBreakTwo" opacity="0.0" rotate="-16.1" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="106.0" />
-      <Label fx:id="lightSuggest" layoutX="570.0" layoutY="143.0" textFill="#fcb141" />
       <Label layoutX="777.0" layoutY="28.0" text="Time:" textFill="#fcb141">
          <font>
             <Font name="Sinhala MN" size="19.0" />
@@ -94,6 +93,17 @@
       <ImageView fx:id="sdCard" fitHeight="36.0" fitWidth="42.0" layoutX="777.0" layoutY="465.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/sdcard.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="globe" fitHeight="123.0" fitWidth="115.0" layoutX="580.0" layoutY="196.0" onMouseClicked="#clickGlobe" onMouseEntered="#increaseGlobeSize" onMouseExited="#decreaseGlobeSize" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/GlobeItem.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="lightSuggest" layoutX="523.0" layoutY="163.0" textFill="#fcb141" />
+      <ImageView fx:id="globe1" fitHeight="36.0" fitWidth="42.0" layoutX="844.0" layoutY="430.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/GlobeItem.png" />
          </image>
       </ImageView>
    </children>

@@ -32,6 +32,7 @@ public class GameState {
   public static boolean isWireFourFixed = false;
   public static boolean isRgbSolved = false;
   public static boolean isSdCardFound = false;
+  public static boolean isGlobeFound = false;
 
   public static int minutes = 0;
   public static int seconds = 0;

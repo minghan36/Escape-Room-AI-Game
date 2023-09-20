@@ -43,10 +43,15 @@ public class LightController {
   @FXML private TextArea hintsText;
   @FXML private ImageView tape;
   @FXML private ImageView sdCard;
+  @FXML private ImageView globe;
+  @FXML private ImageView globe1;
 
   public void initialize() {
     tape.setVisible(GameState.isElectricalTapeFound);
     sdCard.setVisible(GameState.isSdCardFound);
+    globe.setVisible(false);
+    globe1.setVisible(GameState.isGlobeFound);
+
     objText.setText("Fix the wires to turn on the light.");
     if (GameState.isWireOneFixed) {
       fixOne.setOpacity(1);
@@ -183,6 +188,7 @@ public class LightController {
         lightSuggest.setText("Good Job! Collect your next clue.");
         objText.setText("Navigate to the next puzzle using the clue you have been given.");
         GameState.isLightPuzzleSolved = true;
+        globe.setVisible(true);
       }
     } else {
       objText.setText("Find something to patch the wires with.");
@@ -205,6 +211,7 @@ public class LightController {
         lightSuggest.setText("Good Job! Collect your next clue.");
         objText.setText("Navigate to the next puzzle using the clue you have been given.");
         GameState.isLightPuzzleSolved = true;
+        globe.setVisible(true);
       }
     } else {
       objText.setText("Find something to patch the wires with.");
@@ -225,6 +232,7 @@ public class LightController {
         lightSuggest.setText("Good Job! Collect your next clue.");
         objText.setText("Navigate to the next puzzle using the clue you have been given.");
         GameState.isLightPuzzleSolved = true;
+        globe.setVisible(true);
       }
     } else {
       objText.setText("Find something to patch the wires with.");
@@ -243,9 +251,29 @@ public class LightController {
         lightSuggest.setText("Good Job! Collect your next clue.");
         objText.setText("Navigate to the next puzzle using the clue you have been given.");
         GameState.isLightPuzzleSolved = true;
+        globe.setVisible(true);
       }
     } else {
       objText.setText("Find something to patch the wires with.");
     }
+  }
+
+  @FXML
+  private void increaseGlobeSize() {
+    globe.setScaleX(1.2);
+    globe.setScaleY(1.2);
+  }
+
+  @FXML
+  private void decreaseGlobeSize() {
+    globe.setScaleX(1);
+    globe.setScaleY(1);
+  }
+
+  @FXML
+  private void clickGlobe() {
+    GameState.isGlobeFound = true;
+    globe.setVisible(false);
+    globe1.setVisible(true);
   }
 }
