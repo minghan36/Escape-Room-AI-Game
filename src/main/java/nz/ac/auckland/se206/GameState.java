@@ -1,5 +1,11 @@
 package nz.ac.auckland.se206;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.util.Duration;
+
 /** Represents the state of the game. */
 public class GameState {
 
@@ -30,6 +36,8 @@ public class GameState {
   public static int seconds = 0;
   public static int wireFixes = 0;
 
+  public static Timeline timeline;
+
   // choose a random number between zero and two
   public static int randomNum = (int) (Math.random() * 3);
   // create string array having first second third
@@ -57,4 +65,26 @@ public class GameState {
           + randomLetters[(int) (Math.random() * 4)]
           + randomLetters[(int) (Math.random() * 4)]
           + randomLetters[(int) (Math.random() * 4)];
+
+  public static void startTimer() {
+    timeline =
+        new Timeline(
+            new KeyFrame(
+                Duration.seconds(1),
+                new EventHandler<ActionEvent>() {
+                  @Override
+                  public void handle(ActionEvent event) {
+                    // Counts down the timer.
+                    if (GameState.seconds == 0) {
+                      GameState.minutes--;
+                      GameState.seconds = 59;
+                    } else if (GameState.seconds > 0) {
+                      GameState.seconds--;
+                    }
+                  }
+                }));
+
+    timeline.setCycleCount((GameState.minutes * 60) + GameState.seconds - 1);
+    timeline.play();
+  }
 }

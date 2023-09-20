@@ -15,7 +15,6 @@ public class App extends Application {
 
   private static Scene scene;
   private static Parent chatParent;
-  private static Parent lockedParent = null;
 
   public static void main(final String[] args) {
     launch();
@@ -64,18 +63,8 @@ public class App extends Application {
     if (fxml.equals("chat")) {
       scene.setRoot(chatParent);
       return;
-    } else if (fxml.equals("lockedroom") && lockedParent != null) {
-      scene.setRoot(lockedParent);
-      return;
     }
-    Parent root;
     try {
-      root = loadFxml(fxml);
-      if (fxml.equals("lockedroom")) {
-        lockedParent = root;
-        scene.setRoot(lockedParent);
-        return;
-      }
       scene.setRoot(loadFxml(fxml));
     } catch (IOException e) {
       e.printStackTrace();
