@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -40,9 +41,15 @@ public class BathroomController {
   @FXML private Label label;
   private Image[] keyImages;
   private int currentKeyImageIndex = 0;
+  @FXML private ImageView sdCard;
+  @FXML private ImageView tape;
+  @FXML private TextArea objText;
+  @FXML private TextArea hintsText;
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
+    sdCard.setVisible(GameState.isSdCardFound);
+    tape.setVisible(GameState.isElectricalTapeFound);
     if (!GameState.isLightPuzzleSolved) {
       ellipseOne.setOpacity(0.45);
       ellipseTwo.setOpacity(0.45);

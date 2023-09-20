@@ -42,6 +42,10 @@ public class ChatController {
   private int currentImageIndex = 0;
   @FXML private ImageView sdCard;
   @FXML private Label sdCollect;
+  @FXML private ImageView sdCard1;
+  @FXML private ImageView tape;
+  @FXML private TextArea objText;
+  @FXML private TextArea hintsText;
 
   private ChatCompletionRequest chatCompletionRequest;
 
@@ -53,6 +57,8 @@ public class ChatController {
   @FXML
   public void initialize() throws ApiProxyException {
     sdCard.setVisible(false);
+    sdCard1.setVisible(GameState.isSdCardFound);
+    tape.setVisible(GameState.isElectricalTapeFound);
     Timer.setText(GameState.getTimeLeft());
     Thread timeThread =
         new Thread(
@@ -242,5 +248,6 @@ public class ChatController {
     GameState.isSdCardFound = true;
     sdCard.setVisible(false);
     sdCollect.setText("");
+    sdCard1.setVisible(true);
   }
 }

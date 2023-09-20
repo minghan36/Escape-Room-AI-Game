@@ -61,8 +61,22 @@
             <Font name="Tamil MN" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="777.0" layoutY="408.0" text="Label" />
-      <TextArea layoutX="776.0" layoutY="93.0" prefHeight="78.0" prefWidth="200.0" />
-      <TextArea layoutX="776.0" layoutY="196.0" prefHeight="200.0" prefWidth="200.0" />
+      <Label layoutX="777.0" layoutY="408.0" text="Items Collected" textFill="#fcb141">
+         <font>
+            <Font name="Telugu MN" size="13.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="objText" layoutX="776.0" layoutY="93.0" prefHeight="78.0" prefWidth="200.0" />
+      <TextArea fx:id="hintsText" layoutX="776.0" layoutY="196.0" prefHeight="200.0" prefWidth="200.0" />
+      <ImageView fx:id="tape" fitHeight="36.0" fitWidth="42.0" layoutX="776.0" layoutY="430.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/tape.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="sdCard1" fitHeight="36.0" fitWidth="42.0" layoutX="776.0" layoutY="465.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/sdcard.png" />
+         </image>
+      </ImageView>
   </children>
 </AnchorPane>

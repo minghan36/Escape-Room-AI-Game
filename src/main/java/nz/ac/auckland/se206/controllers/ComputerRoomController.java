@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -30,10 +31,16 @@ public class ComputerRoomController {
   private Image[] alienImages;
   private int currentImageIndex = 0;
   @FXML private ImageView hoverImage;
+  @FXML private ImageView tape1;
+  @FXML private ImageView sdCard;
+  @FXML private TextArea objText;
+  @FXML private TextArea hintsText;
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
-    if(!GameState.isLightPuzzleStarted){
+    sdCard.setVisible(GameState.isSdCardFound);
+    tape1.setVisible(GameState.isElectricalTapeFound);
+    if (!GameState.isLightPuzzleStarted) {
       tape.setOnMouseClicked(null);
       tape.setOnMouseEntered(null);
       tape.setOpacity(0);
@@ -183,6 +190,7 @@ public class ComputerRoomController {
     tape.setOpacity(0);
     tape.setOnMouseClicked(null);
     GameState.isElectricalTapeFound = true;
+    tape1.setVisible(true);
   }
 
   @FXML
