@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -38,11 +39,19 @@ public class BathroomController {
   @FXML private Circle puzzle;
   @FXML private ImageView key;
   @FXML private Label label;
-  private Image[] keyImages;
-  private int currentKeyImageIndex = 0;
+  // private Image[] keyImages;
+  // private int currentKeyImageIndex = 0;
+  @FXML private ImageView sdCard;
+  @FXML private ImageView tape;
+  @FXML private TextArea objText;
+  @FXML private TextArea hintsText;
+  @FXML private ImageView globe;
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
+    sdCard.setVisible(GameState.isSdCardFound);
+    tape.setVisible(GameState.isElectricalTapeFound);
+    globe.setVisible(GameState.isGlobeFound);
     if (!GameState.isLightPuzzleSolved) {
       ellipseOne.setOpacity(0.45);
       ellipseTwo.setOpacity(0.45);
@@ -110,39 +119,39 @@ public class BathroomController {
 
     // Start the animation
     translateTransition.play();
-    if (GameState.isLightPuzzleSolved) {
-      // Load the key images into the array
-      keyImages = new Image[12];
-      for (int i = 0; i < 12; i++) {
-        keyImages[i] = new Image("images/key" + (i + 1) + ".png");
-      }
+    // if (GameState.isLightPuzzleSolved) {
+    //   // Load the key images into the array
+    //   keyImages = new Image[12];
+    //   for (int i = 0; i < 12; i++) {
+    //     keyImages[i] = new Image("images/key" + (i + 1) + ".png");
+    //   }
 
-      startKeyAnimation();
-    }
+    //   // startKeyAnimation();
+    // }
   }
 
-  private void startKeyAnimation() {
-    AnimationTimer keyTimer =
-        new AnimationTimer() {
-          private long lastTime = 0;
-          private final long frameDurationMillis = 100; // Adjust this as needed
+  // private void startKeyAnimation() {
+  //   AnimationTimer keyTimer =
+  //       new AnimationTimer() {
+  //         private long lastTime = 0;
+  //         private final long frameDurationMillis = 100; // Adjust this as needed
 
-          @Override
-          public void handle(long currentTime) {
-            if (currentTime - lastTime >= frameDurationMillis * 1_000_000) {
-              if (currentKeyImageIndex < keyImages.length) {
-                key.setImage(keyImages[currentKeyImageIndex]);
-                currentKeyImageIndex++;
-                if (currentKeyImageIndex >= keyImages.length) {
-                  currentKeyImageIndex = 0;
-                }
-                lastTime = currentTime;
-              }
-            }
-          }
-        };
-    keyTimer.start();
-  }
+  //         @Override
+  //         public void handle(long currentTime) {
+  //           if (currentTime - lastTime >= frameDurationMillis * 1_000_000) {
+  //             if (currentKeyImageIndex < keyImages.length) {
+  //               key.setImage(keyImages[currentKeyImageIndex]);
+  //               currentKeyImageIndex++;
+  //               if (currentKeyImageIndex >= keyImages.length) {
+  //                 currentKeyImageIndex = 0;
+  //               }
+  //               lastTime = currentTime;
+  //             }
+  //           }
+  //         }
+  //       };
+  //   keyTimer.start();
+  // }
 
   private void startAnimation() {
     GraphicsContext gc = gameMaster.getGraphicsContext2D();

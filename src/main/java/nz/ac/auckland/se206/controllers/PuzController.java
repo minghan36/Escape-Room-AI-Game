@@ -19,6 +19,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.PixelReader;
@@ -58,6 +59,11 @@ public class PuzController {
   @FXML private Rectangle quizMaster;
   private Image[] alienImages;
   private int currentImageIndex = 0;
+  @FXML private TextArea objText;
+  @FXML private TextArea hintsText;
+  @FXML private ImageView tape;
+  @FXML private ImageView sdCard;
+  @FXML private ImageView globe;
 
   private List<Rectangle> rectangles;
   private List<ImageView> imageViews;
@@ -70,6 +76,9 @@ public class PuzController {
   private Map<Rectangle, int[]> positionMap = new HashMap<>();
 
   public void initialize() {
+    tape.setVisible(GameState.isElectricalTapeFound);
+    sdCard.setVisible(GameState.isSdCardFound);
+    globe.setVisible(GameState.isGlobeFound);
     Timer.setText(GameState.getTimeLeft());
     Thread timeThread =
         new Thread(
@@ -298,7 +307,7 @@ public class PuzController {
 
   @FXML
   private void goBack(ActionEvent event) throws ApiProxyException, IOException {
-    GameState.currentRoom = "bathroom";
-    App.setUi("bathroom");
+    GameState.currentRoom = "lockedroom";
+    App.setUi("lockedroom");
   }
 }

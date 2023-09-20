@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -30,10 +31,18 @@ public class ComputerRoomController {
   private Image[] alienImages;
   private int currentImageIndex = 0;
   @FXML private ImageView hoverImage;
+  @FXML private ImageView tape1;
+  @FXML private ImageView sdCard;
+  @FXML private TextArea objText;
+  @FXML private TextArea hintsText;
+  @FXML private ImageView globe;
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
-    if(!GameState.isLightPuzzleStarted){
+    sdCard.setVisible(GameState.isSdCardFound);
+    tape1.setVisible(GameState.isElectricalTapeFound);
+    globe.setVisible(GameState.isGlobeFound);
+    if (!GameState.isLightPuzzleStarted) {
       tape.setOnMouseClicked(null);
       tape.setOnMouseEntered(null);
       tape.setOpacity(0);
@@ -155,6 +164,8 @@ public class ComputerRoomController {
   public void enterDecrypt(MouseEvent event) {
     if (GameState.isDecryptCompleted) {
       return;
+    } else if (!GameState.isRiddleResolved) {
+      objText.setText("You need the SD card to access the computer!");
     } else {
       GameState.currentRoom = "decrypt";
       App.setUi("decrypt");
@@ -165,10 +176,12 @@ public class ComputerRoomController {
   public void increaseSize(MouseEvent event) {
     if (GameState.isDecryptCompleted) {
       return;
+    } else if (!GameState.isRiddleResolved) {
+      return;
+    } else {
+      hoverImage.setScaleX(1.05); // Increase the size by a factor of 1.2 horizontally
+      hoverImage.setScaleY(1.05);
     }
-    // increase the size of the image
-    hoverImage.setScaleX(1.05); // Increase the size by a factor of 1.2 horizontally
-    hoverImage.setScaleY(1.05);
   }
 
   @FXML
@@ -183,6 +196,7 @@ public class ComputerRoomController {
     tape.setOpacity(0);
     tape.setOnMouseClicked(null);
     GameState.isElectricalTapeFound = true;
+    tape1.setVisible(true);
   }
 
   @FXML

@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -35,17 +36,28 @@ public class LightController {
   @FXML private ImageView fixThreeOne;
   @FXML private ImageView fixThreeTwo;
   @FXML private ImageView fixFour;
-  @FXML private Label objective;
   @FXML private Label lightSuggest;
   private Image[] alienImages;
   private int currentImageIndex = 0;
+  @FXML private TextArea objText;
+  @FXML private TextArea hintsText;
+  @FXML private ImageView tape;
+  @FXML private ImageView sdCard;
+  @FXML private ImageView globe;
+  @FXML private ImageView globe1;
 
   public void initialize() {
-    if (GameState.isWireOneFixed){
+    tape.setVisible(GameState.isElectricalTapeFound);
+    sdCard.setVisible(GameState.isSdCardFound);
+    globe.setVisible(false);
+    globe1.setVisible(GameState.isGlobeFound);
+
+    objText.setText("Fix the wires to turn on the light.");
+    if (GameState.isWireOneFixed) {
       fixOne.setOpacity(1);
       fixOne.setOnMouseClicked(null);
     }
-    if (GameState.isWireTwoFixed){
+    if (GameState.isWireTwoFixed) {
       fixTwoOne.setOpacity(1);
       fixTwoTwo.setOpacity(1);
       fixTwoThree.setOpacity(1);
@@ -53,13 +65,13 @@ public class LightController {
       fixTwoTwo.setOnMouseClicked(null);
       fixTwoThree.setOnMouseClicked(null);
     }
-    if (GameState.isWireThreeFixed){
+    if (GameState.isWireThreeFixed) {
       fixThreeOne.setOpacity(1);
       fixThreeTwo.setOpacity(1);
       fixThreeOne.setOnMouseClicked(null);
       fixThreeTwo.setOnMouseClicked(null);
     }
-    if (GameState.isWireFourFixed){
+    if (GameState.isWireFourFixed) {
       fixFour.setOpacity(1);
       fixFour.setOnMouseClicked(null);
     }
@@ -167,22 +179,26 @@ public class LightController {
   @FXML
   private void clickBreakOne() {
     if (GameState.isElectricalTapeFound) {
+      objText.setText("Patch the wires with the electrical tape.");
       fixOne.setOpacity(1);
       GameState.isWireOneFixed = true;
       fixOne.setOnMouseClicked(null);
       GameState.wireFixes++;
       if (GameState.wireFixes == 4) {
-        lightSuggest.setText("All the wires have been fixed. Good Job!");
+        lightSuggest.setText("Good Job! Collect your next clue.");
+        objText.setText("Navigate to the next puzzle using the clue you have been given.");
         GameState.isLightPuzzleSolved = true;
+        globe.setVisible(true);
       }
     } else {
-      lightSuggest.setText("Find something to patch the wires with.");
+      objText.setText("Find something to patch the wires with.");
     }
   }
 
   @FXML
   private void clickBreakTwo() {
     if (GameState.isElectricalTapeFound) {
+      objText.setText("Patch the wires with the electrical tape.");
       fixTwoOne.setOpacity(1);
       fixTwoTwo.setOpacity(1);
       fixTwoThree.setOpacity(1);
@@ -192,17 +208,20 @@ public class LightController {
       fixTwoThree.setOnMouseClicked(null);
       GameState.wireFixes++;
       if (GameState.wireFixes == 4) {
-        lightSuggest.setText("All the wires have been fixed. Good Job!");
+        lightSuggest.setText("Good Job! Collect your next clue.");
+        objText.setText("Navigate to the next puzzle using the clue you have been given.");
         GameState.isLightPuzzleSolved = true;
+        globe.setVisible(true);
       }
     } else {
-      lightSuggest.setText("Find something to patch the wires with.");
+      objText.setText("Find something to patch the wires with.");
     }
   }
 
   @FXML
   private void clickBreakThree() {
     if (GameState.isElectricalTapeFound) {
+      objText.setText("Patch the wires with the electrical tape.");
       fixThreeOne.setOpacity(1);
       fixThreeTwo.setOpacity(1);
       GameState.isWireThreeFixed = true;
@@ -210,27 +229,51 @@ public class LightController {
       fixThreeTwo.setOnMouseClicked(null);
       GameState.wireFixes++;
       if (GameState.wireFixes == 4) {
-        lightSuggest.setText("All the wires have been fixed. Good Job!");
+        lightSuggest.setText("Good Job! Collect your next clue.");
+        objText.setText("Navigate to the next puzzle using the clue you have been given.");
         GameState.isLightPuzzleSolved = true;
+        globe.setVisible(true);
       }
     } else {
-      lightSuggest.setText("Find something to patch the wires with.");
+      objText.setText("Find something to patch the wires with.");
     }
   }
 
   @FXML
   private void clickBreakFour() {
     if (GameState.isElectricalTapeFound) {
+      objText.setText("Patch the wires with the electrical tape.");
       fixFour.setOpacity(1);
       GameState.isWireFourFixed = true;
       fixFour.setOnMouseClicked(null);
       GameState.wireFixes++;
       if (GameState.wireFixes == 4) {
-        lightSuggest.setText("All the wires have been fixed. Good Job!");
+        lightSuggest.setText("Good Job! Collect your next clue.");
+        objText.setText("Navigate to the next puzzle using the clue you have been given.");
         GameState.isLightPuzzleSolved = true;
+        globe.setVisible(true);
       }
     } else {
-      lightSuggest.setText("Find something to patch the wires with.");
+      objText.setText("Find something to patch the wires with.");
     }
+  }
+
+  @FXML
+  private void increaseGlobeSize() {
+    globe.setScaleX(1.2);
+    globe.setScaleY(1.2);
+  }
+
+  @FXML
+  private void decreaseGlobeSize() {
+    globe.setScaleX(1);
+    globe.setScaleY(1);
+  }
+
+  @FXML
+  private void clickGlobe() {
+    GameState.isGlobeFound = true;
+    globe.setVisible(false);
+    globe1.setVisible(true);
   }
 }
