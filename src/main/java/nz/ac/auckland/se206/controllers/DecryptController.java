@@ -16,6 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
@@ -28,18 +29,23 @@ public class DecryptController {
   @FXML private Label Timer;
   @FXML private TextField inputText;
   @FXML private Button sendButton;
-  @FXML private Label objective;
   @FXML private Label incorrect;
   @FXML private Canvas gameMaster;
   @FXML private Rectangle quizMaster;
   private Image[] alienImages;
   private int currentImageIndex = 0;
   @FXML private TextArea message;
+  @FXML private TextArea objText;
+  @FXML private TextArea hintsText;
+  @FXML private ImageView tape;
+  @FXML private ImageView sdCard;
 
   // create array of alien symbols
   private String[] randomLights = {"⎎⟟⍀⌇⏁", "⌇⟒☊⍜⋏⎅", "⏁⊑⟟⍀⎅"};
 
   public void initialize() {
+    tape.setVisible(GameState.isElectricalTapeFound);
+    sdCard.setVisible(GameState.isSdCardFound);
     Timer.setText(GameState.getTimeLeft());
     Thread timeThread =
         new Thread(
@@ -98,7 +104,7 @@ public class DecryptController {
           }
         };
     timer.start();
-    objective.setText("Decipher the message to unlock the next clue");
+    objText.setText("Decipher the message from the quiz master");
     message.setText(
         "☌⍜  ⏁⍜  ⏁⊑⟒  ⏚⏃⏁⊑⍀⍜⍜⋔  ⏃⋏⎅  ⎎⟟⌖  ⏁⊑⟒  " + randomLights[GameState.randomNum] + "  ⌰⟟☌⊑⏁");
   }

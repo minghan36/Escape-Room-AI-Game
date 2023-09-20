@@ -396,4 +396,9 @@ public class LockedRoomController {
       }
     }
   }
+
+  @FXML
+  public void clickGlobe(MouseEvent event) {
+    App.setUi("puz");
+  }
 }

@@ -66,8 +66,8 @@
             <Font name="Telugu MN" size="13.0" />
          </font>
       </Label>
-      <TextArea fx:id="objText" layoutX="776.0" layoutY="93.0" prefHeight="78.0" prefWidth="200.0" />
-      <TextArea fx:id="hintsText" layoutX="776.0" layoutY="196.0" prefHeight="200.0" prefWidth="200.0" />
+      <TextArea fx:id="objText" editable="false" layoutX="776.0" layoutY="93.0" prefHeight="78.0" prefWidth="200.0" wrapText="true" />
+      <TextArea fx:id="hintsText" editable="false" layoutX="776.0" layoutY="196.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
       <ImageView fx:id="tape" fitHeight="36.0" fitWidth="42.0" layoutX="776.0" layoutY="430.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/tape.png" />
