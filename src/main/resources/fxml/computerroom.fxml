@@ -20,7 +20,7 @@
       <Rectangle fx:id="toLockedRoom" arcHeight="5.0" arcWidth="5.0" fill="#f7f7f7" height="503.0" layoutX="730.0" onMouseClicked="#enterLockedRoom" onMouseEntered="#highlight" onMouseExited="#removeHighlight" opacity="0.4" stroke="#999999" strokeType="INSIDE" width="27.0" />
       <Canvas fx:id="gameMaster" height="89.0" layoutX="578.0" layoutY="393.0" width="142.0" />
       <Rectangle fx:id="quizMater" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="121.0" layoutX="578.0" layoutY="361.0" onMouseClicked="#clickQuizMaster" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="142.0" />
-      <Label fx:id="Timer" layoutX="861.0" layoutY="14.0" prefHeight="53.0" prefWidth="91.0" textFill="#fcb141">
+      <Label fx:id="Timer" layoutX="878.0" layoutY="12.0" prefHeight="53.0" prefWidth="91.0" textFill="#fcb141">
          <font>
             <Font name="Telugu MN" size="36.0" />
          </font>
