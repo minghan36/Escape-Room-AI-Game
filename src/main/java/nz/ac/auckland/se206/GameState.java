@@ -5,6 +5,7 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.util.Duration;
+import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 
 /** Represents the state of the game. */
 public class GameState {
@@ -13,6 +14,10 @@ public class GameState {
   public static boolean isRiddleResolved = false;
 
   public static String currentRoom = "lockedroom";
+  public static String chatContents;
+
+  public static ChatCompletionRequest chatCompletionRequest =
+  new ChatCompletionRequest().setN(1).setTemperature(0.2).setTopP(0.5).setMaxTokens(100);
 
   /** Indicates whether the key has been found. */
   public static boolean isKeyFound = false;
@@ -33,6 +38,7 @@ public class GameState {
   public static boolean isRgbSolved = false;
   public static boolean isSdCardFound = false;
   public static boolean isGlobeFound = false;
+  public static boolean isGameMasterLoaded = false;
 
   public static int minutes = 0;
   public static int seconds = 0;
@@ -45,7 +51,6 @@ public class GameState {
   // create string array having first second third
   public static String[] randomLights = {"first", "second", "third"};
   public static String randomLight = randomLights[randomNum];
-
   /**
    * Returns time left in the round.
    *

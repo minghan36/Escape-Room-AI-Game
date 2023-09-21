@@ -182,9 +182,7 @@ public class BathroomController {
   // pressing on the quiz master to open the chat box
   @FXML
   public void clickQuizMaster(MouseEvent event) {
-    if (!GameState.isRiddleResolved) {
-      App.setUi("chat");
-    }
+    App.setUi("chat");
   }
 
   @FXML
