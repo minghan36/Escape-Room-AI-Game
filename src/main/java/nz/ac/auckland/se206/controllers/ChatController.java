@@ -48,6 +48,7 @@ public class ChatController {
   @FXML private TextArea hintsText;
 
   private ChatCompletionRequest chatCompletionRequest;
+  private static int hintCounter = 0;
 
   /**
    * Initializes the chat view, loading the riddle.
@@ -56,6 +57,17 @@ public class ChatController {
    */
   @FXML
   public void initialize() throws ApiProxyException {
+    // when the enter key is pressed
+    inputText.setOnAction(
+        e -> {
+          try {
+            onSendMessage(e);
+          } catch (ApiProxyException | IOException ex) {
+            ex.printStackTrace();
+            // Handle other exceptions appropriately.
+          }
+        });
+
     sdCard.setVisible(false);
     sdCard1.setVisible(GameState.isSdCardFound);
     tape.setVisible(GameState.isElectricalTapeFound);
@@ -188,10 +200,20 @@ public class ChatController {
     CompletableFuture<ChatMessage> future = runGpt(msg);
     future.thenAccept(
         lastMsg -> {
-          if (lastMsg.getRole().equals("assistant") && lastMsg.getContent().startsWith("Correct")) {
-            GameState.isRiddleResolved = true;
-            sdCard.setVisible(true);
-            sdCollect.setText("Collect the SD card!");
+          if (lastMsg.getRole().equals("assistant")) {
+            if (lastMsg.getContent().startsWith("Correct")) {
+              GameState.isRiddleResolved = true;
+              sdCard.setVisible(true);
+              sdCollect.setText("Collect the SD card!");
+            } else if (lastMsg.getContent().startsWith("hint")
+                || lastMsg.getContent().startsWith("Hint")) {
+              hintCounter++;
+
+              // Display the hint count if its medium level
+              if (GameState.isMediumPicked) {
+                hintsText.setText("Hints used: " + hintCounter);
+              }
+            }
           }
         });
   }
