@@ -51,6 +51,7 @@ public class PuzController {
   @FXML private ImageView pic8;
   @FXML private ImageView pic9;
   @FXML private Label status;
+  @FXML private Label objective;
   @FXML private Label Timer;
   @FXML private Button check;
   @FXML private Button goBackBtn;
@@ -63,8 +64,6 @@ public class PuzController {
   @FXML private ImageView tape;
   @FXML private ImageView sdCard;
   @FXML private ImageView globe;
-  @FXML private Button rgbClue;
-  @FXML private Button rgbClue1;
 
   private List<Rectangle> rectangles;
   private List<ImageView> imageViews;
@@ -77,25 +76,6 @@ public class PuzController {
   private Map<Rectangle, int[]> positionMap = new HashMap<>();
 
   public void initialize() {
-    if (GameState.isPuzzleSolved && !GameState.isRgbClueFound) {
-      rgbClue.setVisible(true);
-      rgbClue.setText(GameState.password);
-    } else {
-      rgbClue.setVisible(false);
-    }
-    if (GameState.isRgbClueFound) {
-      rgbClue1.setVisible(true);
-      rgbClue1.setText(GameState.password);
-    } else {
-      rgbClue1.setVisible(false);
-    }
-    if (!GameState.isPuzzleSolved) {
-      objText.setText(
-          "You need to solve the picture puzzle by unscrambling it. Remember you can only move"
-              + " neighbouring tiles.");
-    } else {
-      objText.setText(GameState.objMessage);
-    }
     tape.setVisible(GameState.isElectricalTapeFound);
     sdCard.setVisible(GameState.isSdCardFound);
     globe.setVisible(GameState.isGlobeFound);
@@ -131,6 +111,7 @@ public class PuzController {
 
     // Start the animation
     translateTransition.play();
+    objective.setText("Solve the puzzle for a clue");
     // Define position (row, column) for each rectangle
     positionMap.put(p1, new int[] {0, 0});
     positionMap.put(p2, new int[] {0, 1});
@@ -273,14 +254,10 @@ public class PuzController {
   public void checkPuzzle(ActionEvent event) {
     if (isCorrectOrder()) {
       status.setText("Correct");
+      objective.setText("Now find this room");
       GameState.isPuzzleSolved = true;
-      objText.setText(
-          "Good Job! You have solved the picture puzzle. Collect the RGB Clue and travel to the"
-              + " door for your final puzzle");
-      rgbClue.setVisible(true);
-      rgbClue.setText(GameState.password);
     } else {
-      status.setText("Not quite! Try again.");
+      status.setText("incorrect!!");
     }
   }
 
@@ -330,16 +307,7 @@ public class PuzController {
 
   @FXML
   private void goBack(ActionEvent event) throws ApiProxyException, IOException {
-    GameState.currentObj = "RGB Puzzle";
     GameState.currentRoom = "lockedroom";
     App.setUi("lockedroom");
-  }
-
-  @FXML
-  private void clickRgb() {
-    GameState.isRgbClueFound = true;
-    rgbClue1.setVisible(true);
-    rgbClue1.setText(GameState.password);
-    rgbClue.setVisible(false);
   }
 }
