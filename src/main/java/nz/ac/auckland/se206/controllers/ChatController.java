@@ -68,7 +68,9 @@ public class ChatController {
     }
 
     if (!GameState.isGameMasterLoaded) {
-      runGpt(new ChatMessage("user", GptPromptEngineering.getRiddleWithGivenWord("vase")));
+      runGpt(
+          new ChatMessage(
+              "user", GptPromptEngineering.getRiddleWithGivenWord("spaceship", hintCounter)));
       GameState.isGameMasterLoaded = true;
     }
     // when the enter key is pressed
@@ -230,7 +232,7 @@ public class ChatController {
 
               // Display the hint count if its medium level
               if (GameState.isMediumPicked) {
-                hintsText.setText("Hints used: " + hintCounter);
+                hintsText.setText("Hints remaining: " + (5 - hintCounter));
               }
             }
           }
