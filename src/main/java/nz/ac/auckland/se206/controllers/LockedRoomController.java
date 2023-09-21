@@ -50,6 +50,7 @@ public class LockedRoomController {
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
+    objText.setText(GameState.getObjective());
     sdCard.setVisible(GameState.isSdCardFound);
     tape.setVisible(GameState.isElectricalTapeFound);
     globe1.setVisible(GameState.isGlobeFound);
@@ -183,7 +184,6 @@ public class LockedRoomController {
   public void clickQuizMaster(MouseEvent event) {
 
     App.setUi("chat");
-
   }
 
   public void startTimer() {

@@ -39,6 +39,7 @@ public class ComputerRoomController {
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
+    objText.setText(GameState.getObjective());
     sdCard.setVisible(GameState.isSdCardFound);
     tape1.setVisible(GameState.isElectricalTapeFound);
     globe.setVisible(GameState.isGlobeFound);
@@ -194,6 +195,7 @@ public class ComputerRoomController {
     tape.setOpacity(0);
     tape.setOnMouseClicked(null);
     GameState.isElectricalTapeFound = true;
+    objText.setText("Good job you have found the electrical tape, now fix the wires.");
     tape1.setVisible(true);
   }
 

@@ -57,6 +57,7 @@ public class ChatController {
    */
   @FXML
   public void initialize() throws ApiProxyException {
+    objText.setText(GameState.getObjective());
     chatTextArea.setText(GameState.chatContents);
     if (!GameState.isGameMasterLoaded) {
       runGpt(new ChatMessage("user", GptPromptEngineering.getRiddleWithGivenWord("vase")));
@@ -72,8 +73,11 @@ public class ChatController {
             // Handle other exceptions appropriately.
           }
         });
-
-    sdCard.setVisible(false);
+    if (!GameState.isSdCardFound) {
+      sdCard.setVisible(GameState.isRiddleResolved);
+    } else {
+      sdCard.setVisible(false);
+    }
     sdCard1.setVisible(GameState.isSdCardFound);
     tape.setVisible(GameState.isElectricalTapeFound);
     globe.setVisible(GameState.isGlobeFound);
@@ -210,6 +214,8 @@ public class ChatController {
               GameState.isRiddleResolved = true;
               sdCard.setVisible(true);
               sdCollect.setText("Collect the SD card!");
+              objText.setText(GameState.getObjective());
+              GameState.currentObj = "Decrypt";
             } else if (lastMsg.getContent().startsWith("hint")
                 || lastMsg.getContent().startsWith("Hint")) {
               hintCounter++;

@@ -148,9 +148,13 @@ public class DecryptController {
     message = message.toLowerCase();
     // check if the message is equal to another string
     if (message.equals("go to the bathroom and fix the " + GameState.randomLight + " light")) {
-      GameState.currentRoom = "computerroom";
-      App.setUi("computerroom");
       GameState.isDecryptCompleted = true;
+      objText.setText(
+          "Good job! You have completed the decryption. Using the message find your next puzzle");
+      incorrect.setText("Good job! You've decrypted the message");
+      // disable the send button and input text
+      sendButton.setDisable(true);
+      inputText.setDisable(true);
     } else {
       incorrect.setText("Incorrect! Try again");
     }
@@ -158,6 +162,9 @@ public class DecryptController {
 
   @FXML
   private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
+    if (GameState.isDecryptCompleted) {
+      GameState.currentObj = "Light Puzzle";
+    }
     GameState.currentRoom = "computerroom";
     App.setUi("computerroom");
   }

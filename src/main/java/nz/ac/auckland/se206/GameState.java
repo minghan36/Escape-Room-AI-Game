@@ -103,7 +103,7 @@ public class GameState {
     timeline.play();
   }
 
-  public String getObjective() {
+  public static String getObjective() {
     if (GameState.currentObj == "Riddle") {
       if (!isRiddleResolved) {
         objMessage = "Talk to the GameMaster to find and solve the challenging riddle.";
@@ -113,47 +113,61 @@ public class GameState {
         return objMessage;
       }
     } else if (GameState.currentObj == "Decrypt") {
-      if (!isDecryptCompleted) {
-        objMessage = "Decrypt the message to find the password.";
+      if (!isSdCardFound) {
+        objMessage = "You need to find the SD Card to access the puzzle!";
+        return objMessage;
+      } else if (!isDecryptCompleted) {
+        objMessage = "Use the SD card to access the Computer containing the message.";
         return objMessage;
       } else {
-        objMessage =
-            "You have decrypted the message. Use the message you've deciphered to find the next"
-                + " puzzle.";
+        objMessage = "";
         return objMessage;
       }
     } else if (GameState.currentObj == "Light Puzzle") {
-      if (!isGlobeFound) {
-        objMessage = "You need to find the picture of the Globe to access the puzzle!";
+      if (!isLightPuzzleStarted) {
+        objMessage =
+            "Find the light which was mentioned in the message and fix it to access the next"
+                + " puzzle.";
         return objMessage;
-      } else if (!isLightPuzzleSolved) {
-        objMessage = "You need to patch the wires to solve the light puzzle using the tape.";
+      } else if (isLightPuzzleStarted && !isElectricalTapeFound) {
+        objMessage =
+            "Find the Electrical Tape needed to patch the wires. Check carefully in each room!";
+        return objMessage;
+      } else if (isElectricalTapeFound) {
+        objMessage = "Good job you have found the electrical tape, now fix the wires.";
         return objMessage;
       } else {
-        objMessage =
-            "You have solved the light puzzle. Collect the Picture of the Globe and travel to your"
-                + " next puzzle.";
-        return objMessage;
+        return "";
       }
+
     } else if (GameState.currentObj == "Picture Puz") {
-      if (!isPuzzleSolved) {
-        objMessage = "Solve the puzzle to find the RGB code.";
+      if (!isGlobeFound) {
+        objMessage = "You need to find the picture of the Globe to access the next puzzle!";
+        return objMessage;
+      } else if (isGlobeFound) {
+        objMessage =
+            "You have found the picture of the Globe. Navigate to the desired room and find the"
+                + " object, using the clue you have been given to access the puzzle.";
+        return objMessage;
+      } else if (!isPuzzleSolved) {
+        objMessage = "You need to solve the picture puzzle to receive your next clue!";
         return objMessage;
       } else {
         objMessage =
-            "You have solved the puzzle. Collect the RGB code and travel to your next puzzle.";
+            "You have solved the picture puzzle. Collect the RGB Clue and travel to the door for"
+                + " your final puzzle";
         return objMessage;
       }
     } else if (GameState.currentObj == "RGB Puzzle") {
       if (!isRgbSolved) {
-        objMessage = "Solve the RGB puzzle to find the SD Card.";
+        objMessage = "You need to solve the RGB puzzle to escape the room.";
         return objMessage;
       } else {
-        objMessage = "You have solved the RGB puzzle. Collect the SD Card and escape the room.";
+        objMessage = "You have solved the RGB puzzle. You have escaped the room!";
         return objMessage;
       }
     } else {
-      return "Error";
+      return "";
     }
   }
 }

@@ -49,6 +49,7 @@ public class BathroomController {
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
+    objText.setText(GameState.getObjective());
     sdCard.setVisible(GameState.isSdCardFound);
     tape.setVisible(GameState.isElectricalTapeFound);
     globe.setVisible(GameState.isGlobeFound);
