@@ -25,8 +25,8 @@ import nz.ac.auckland.se206.GameState;
 /** Controller class for the room view. */
 public class LockedRoomController {
 
-  @FXML private Rectangle toBathroom;
-  @FXML private Rectangle toComputerRoom;
+  @FXML private ImageView toBathroom;
+  @FXML private ImageView toComputerRoom;
   @FXML private Rectangle quizMaster;
   @FXML private Rectangle buttonBlue;
   @FXML private Rectangle buttonRed;
@@ -160,22 +160,30 @@ public class LockedRoomController {
 
   @FXML
   public void highlightBathroom() {
-    toBathroom.setOpacity(0.7);
+    toBathroom.setOpacity(1);
+    toBathroom.setScaleX(1.2);
+    toBathroom.setScaleY(1.2);
   }
 
   @FXML
   public void removeHighlightBathroom() {
-    toBathroom.setOpacity(0.4);
+    toBathroom.setOpacity(0.3);
+    toBathroom.setScaleX(1);
+    toBathroom.setScaleY(1);
   }
 
   @FXML
   public void highlightComputerRoom() {
-    toComputerRoom.setOpacity(0.7);
+    toComputerRoom.setOpacity(1);
+    toComputerRoom.setScaleX(1.2);
+    toComputerRoom.setScaleY(1.2);
   }
 
   @FXML
   public void removeHighlightComputerRoom() {
-    toComputerRoom.setOpacity(0.4);
+    toComputerRoom.setOpacity(0.3);
+    toComputerRoom.setScaleX(1);
+    toComputerRoom.setScaleY(1);
   }
 
   // pressing on the quiz master to open the chat box
