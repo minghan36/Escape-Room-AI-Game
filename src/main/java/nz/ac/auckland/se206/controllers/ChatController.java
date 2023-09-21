@@ -46,8 +46,11 @@ public class ChatController {
   @FXML private ImageView tape;
   @FXML private TextArea objText;
   @FXML private TextArea hintsText;
+  @FXML private ImageView globe;
+  @FXML private Button rgbClue1;
 
   private static int hintCounter = 0;
+
   /**
    * Initializes the chat view, loading the riddle.
    *
@@ -55,10 +58,18 @@ public class ChatController {
    */
   @FXML
   public void initialize() throws ApiProxyException {
+    objText.setText(GameState.getObjective());
     chatTextArea.setText(GameState.chatContents);
-    if(!GameState.isGameMasterLoaded){
-    runGpt(new ChatMessage("user", GptPromptEngineering.getRiddleWithGivenWord("vase")));
-    GameState.isGameMasterLoaded = true;
+    if (GameState.isRgbClueFound) {
+      rgbClue1.setVisible(true);
+      rgbClue1.setText(GameState.password);
+    } else {
+      rgbClue1.setVisible(false);
+    }
+
+    if (!GameState.isGameMasterLoaded) {
+      runGpt(new ChatMessage("user", GptPromptEngineering.getRiddleWithGivenWord("vase")));
+      GameState.isGameMasterLoaded = true;
     }
     // when the enter key is pressed
     inputText.setOnAction(
@@ -70,10 +81,14 @@ public class ChatController {
             // Handle other exceptions appropriately.
           }
         });
-
-    sdCard.setVisible(false);
+    if (!GameState.isSdCardFound) {
+      sdCard.setVisible(GameState.isRiddleResolved);
+    } else {
+      sdCard.setVisible(false);
+    }
     sdCard1.setVisible(GameState.isSdCardFound);
     tape.setVisible(GameState.isElectricalTapeFound);
+    globe.setVisible(GameState.isGlobeFound);
     Timer.setText(GameState.getTimeLeft());
     Thread timeThread =
         new Thread(
@@ -207,6 +222,8 @@ public class ChatController {
               GameState.isRiddleResolved = true;
               sdCard.setVisible(true);
               sdCollect.setText("Collect the SD card!");
+              objText.setText(GameState.getObjective());
+              GameState.currentObj = "Decrypt";
             } else if (lastMsg.getContent().startsWith("hint")
                 || lastMsg.getContent().startsWith("Hint")) {
               hintCounter++;

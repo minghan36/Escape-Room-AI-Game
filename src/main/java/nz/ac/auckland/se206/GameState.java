@@ -39,6 +39,7 @@ public class GameState {
   public static boolean isSdCardFound = false;
   public static boolean isGlobeFound = false;
   public static boolean isGameMasterLoaded = false;
+  public static boolean isRgbClueFound = false;
 
   public static int minutes = 0;
   public static int seconds = 0;
