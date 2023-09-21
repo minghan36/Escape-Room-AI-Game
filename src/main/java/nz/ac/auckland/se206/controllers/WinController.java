@@ -39,10 +39,7 @@ public class WinController {
         new Timeline(
             new KeyFrame(
                 Duration.seconds(movementDuration),
-                new KeyValue(
-                    alein.layoutXProperty(),
-                    900 - alein.getFitWidth())) // Adjust 756 to your screen's width
-            );
+                new KeyValue(alein.layoutXProperty(), 1100 - alein.getFitWidth())));
     moveTimeline.setCycleCount(Timeline.INDEFINITE);
     moveTimeline.setOnFinished(evt -> alein.setLayoutX(0)); // Reset position to leftmost
     moveTimeline.play();
