@@ -205,22 +205,34 @@ public class BathroomController {
   @FXML
   public void clickLightOne() {
     GameState.isLightPuzzleStarted = true;
-    GameState.currentRoom = "light";
-    App.setUi("light");
+    if (GameState.isLightPuzzleSolved) {
+      return;
+    } else {
+      GameState.currentRoom = "light";
+      App.setUi("light");
+    }
   }
 
   @FXML
   public void clickLightTwo() {
     GameState.isLightPuzzleStarted = true;
-    GameState.currentRoom = "light";
-    App.setUi("light");
+    if (GameState.isLightPuzzleSolved) {
+      return;
+    } else {
+      GameState.currentRoom = "light";
+      App.setUi("light");
+    }
   }
 
   @FXML
   public void clickLightThree() {
     GameState.isLightPuzzleStarted = true;
-    GameState.currentRoom = "light";
-    App.setUi("light");
+    if (GameState.isLightPuzzleSolved) {
+      return;
+    } else {
+      GameState.currentRoom = "light";
+      App.setUi("light");
+    }
   }
 
   @FXML

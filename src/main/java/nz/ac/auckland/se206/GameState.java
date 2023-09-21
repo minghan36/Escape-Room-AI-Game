@@ -39,6 +39,7 @@ public class GameState {
   public static boolean isSdCardFound = false;
   public static boolean isGlobeFound = false;
   public static boolean isGameMasterLoaded = false;
+  public static boolean isRgbClueFound = false;
 
   public static int minutes = 0;
   public static int seconds = 0;
@@ -126,8 +127,8 @@ public class GameState {
     } else if (GameState.currentObj == "Light Puzzle") {
       if (!isLightPuzzleStarted) {
         objMessage =
-            "Find the light which was mentioned in the message and fix it to access the next"
-                + " puzzle.";
+            "Find the light which was mentioned in the message and fix it to get the next"
+                + " clue.";
         return objMessage;
       } else if (isLightPuzzleStarted && !isElectricalTapeFound) {
         objMessage =
@@ -160,7 +161,7 @@ public class GameState {
       }
     } else if (GameState.currentObj == "RGB Puzzle") {
       if (!isRgbSolved) {
-        objMessage = "You need to solve the RGB puzzle to escape the room.";
+        objMessage = "You need to solve the RGB puzzle to escape the room. Use the clue to do so.";
         return objMessage;
       } else {
         objMessage = "You have solved the RGB puzzle. You have escaped the room!";

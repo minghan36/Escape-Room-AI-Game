@@ -51,6 +51,11 @@ public class LightController {
     tape.setVisible(GameState.isElectricalTapeFound);
     sdCard.setVisible(GameState.isSdCardFound);
     globe.setVisible(false);
+    if (!GameState.isSdCardFound) {
+      globe.setVisible(GameState.isRiddleResolved);
+    } else {
+      globe.setVisible(false);
+    }
     globe1.setVisible(GameState.isGlobeFound);
 
     objText.setText("Fix the wires to turn on the light.");

@@ -63,6 +63,8 @@ public class PuzController {
   @FXML private ImageView tape;
   @FXML private ImageView sdCard;
   @FXML private ImageView globe;
+  @FXML private Button rgbClue;
+  @FXML private Button rgbClue1;
 
   private List<Rectangle> rectangles;
   private List<ImageView> imageViews;
@@ -75,6 +77,12 @@ public class PuzController {
   private Map<Rectangle, int[]> positionMap = new HashMap<>();
 
   public void initialize() {
+    if (GameState.isPuzzleSolved && !GameState.isRgbClueFound) {
+      rgbClue.setVisible(true);
+    } else {
+      rgbClue.setVisible(false);
+    }
+    rgbClue1.setVisible(GameState.isRgbClueFound);
     if (!GameState.isPuzzleSolved) {
       objText.setText(
           "You need to solve the picture puzzle by unscrambling it. Remember you can only move"
@@ -260,8 +268,13 @@ public class PuzController {
     if (isCorrectOrder()) {
       status.setText("Correct");
       GameState.isPuzzleSolved = true;
+      objText.setText(
+          "Good Job! You have solved the picture puzzle. Collect the RGB Clue and travel to the"
+              + " door for your final puzzle");
+      rgbClue.setVisible(false);
+      rgbClue1.setText(GameState.password);
     } else {
-      status.setText("incorrect!!");
+      status.setText("Not quite! Try again.");
     }
   }
 
@@ -311,7 +324,15 @@ public class PuzController {
 
   @FXML
   private void goBack(ActionEvent event) throws ApiProxyException, IOException {
+    GameState.currentObj = "RGB Puzzle";
     GameState.currentRoom = "lockedroom";
     App.setUi("lockedroom");
+  }
+
+  @FXML
+  private void clickRgb() {
+    GameState.isRgbClueFound = true;
+    rgbClue1.setVisible(true);
+    rgbClue.setVisible(false);
   }
 }
