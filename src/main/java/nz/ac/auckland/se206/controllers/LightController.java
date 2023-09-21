@@ -56,6 +56,7 @@ public class LightController {
       rgbClue1.setVisible(false);
     }
     objText.setText(GameState.getObjective());
+    hintsText.setText(GameState.getHint());
     tape.setVisible(GameState.isElectricalTapeFound);
     sdCard.setVisible(GameState.isSdCardFound);
     if (!GameState.isGlobeFound && GameState.isLightPuzzleSolved) {

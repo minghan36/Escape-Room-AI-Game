@@ -77,6 +77,7 @@ public class PuzController {
   private Map<Rectangle, int[]> positionMap = new HashMap<>();
 
   public void initialize() {
+    hintsText.setText(GameState.getHint());
     if (GameState.isPuzzleSolved && !GameState.isRgbClueFound) {
       rgbClue.setVisible(true);
       rgbClue.setText(GameState.password);

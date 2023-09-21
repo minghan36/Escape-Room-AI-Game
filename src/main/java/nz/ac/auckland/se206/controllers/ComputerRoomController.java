@@ -48,6 +48,7 @@ public class ComputerRoomController {
       rgbClue1.setVisible(false);
     }
     objText.setText(GameState.getObjective());
+    hintsText.setText(GameState.getHint());
     sdCard.setVisible(GameState.isSdCardFound);
     tape1.setVisible(GameState.isElectricalTapeFound);
     globe.setVisible(GameState.isGlobeFound);
