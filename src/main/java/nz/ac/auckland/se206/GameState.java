@@ -5,6 +5,7 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.util.Duration;
+import nz.ac.auckland.se206.controllers.ChatController;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 
 /** Represents the state of the game. */
@@ -59,6 +60,7 @@ public class GameState {
 
   public static String currentObj = objectives[0];
   public static String objMessage = "";
+  public static String hintMessage = "";
 
   /**
    * Returns time left in the round.
@@ -102,6 +104,16 @@ public class GameState {
 
     timeline.setCycleCount((GameState.minutes * 60) + GameState.seconds - 1);
     timeline.play();
+  }
+
+  public static String getHint() {
+    if (GameState.isMediumPicked) {
+      return ("Hints Remaining : " + (5 - ChatController.hintCounter) + "\n" + hintMessage);
+    } else if (GameState.isDifficultPicked) {
+      return " no Hints, you got this";
+    } else {
+      return "unlimited hints available";
+    }
   }
 
   public static String getObjective() {

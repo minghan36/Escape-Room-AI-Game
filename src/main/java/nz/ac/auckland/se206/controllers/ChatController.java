@@ -49,7 +49,7 @@ public class ChatController {
   @FXML private ImageView globe;
   @FXML private Button rgbClue1;
 
-  private static int hintCounter = 0;
+  public static int hintCounter = 0;
 
   /**
    * Initializes the chat view, loading the riddle.
@@ -58,7 +58,11 @@ public class ChatController {
    */
   @FXML
   public void initialize() throws ApiProxyException {
+    if (GameState.isMediumPicked) {
+      hintsText.setText("Hints remaining: " + (5 - hintCounter));
+    }
     objText.setText(GameState.getObjective());
+    hintsText.setText(GameState.getHint());
     chatTextArea.setText(GameState.chatContents);
     if (GameState.isRgbClueFound) {
       rgbClue1.setVisible(true);
