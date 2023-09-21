@@ -8,7 +8,7 @@
 
 <AnchorPane fx:id="win" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="756.0" style="-fx-background-color: #071133; -fx-opacity: 0.7;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.WinController">
    <children>
-      <Label layoutX="185.0" layoutY="202.0" text="YOU WIN " textFill="#fca206">
+      <Label layoutX="200.0" layoutY="251.5" text="YOU WIN " textFill="#fca206">
          <font>
             <Font name="Tamil MN" size="85.0" />
          </font>
