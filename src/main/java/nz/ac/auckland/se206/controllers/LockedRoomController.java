@@ -336,7 +336,7 @@ public class LockedRoomController {
     // Adds the letter "B" to the passcode and checks if it is correct if the length of the passcode
     // is now equal to four.
     if (GameState.isPuzzleSolved) {
-      labelPasscode.setText(labelPasscode.getText() + "B");
+      labelPasscode.setText(labelPasscode.getText() + "⏚");
       try {
         Thread.sleep(250);
       } catch (InterruptedException e) {
@@ -354,7 +354,7 @@ public class LockedRoomController {
     // Adds the letter "B" to the passcode and checks if it is correct if the length of the passcode
     // is now equal to four.
     if (GameState.isPuzzleSolved) {
-      labelPasscode.setText(labelPasscode.getText() + "R");
+      labelPasscode.setText(labelPasscode.getText() + "⍀");
       try {
         Thread.sleep(250);
       } catch (InterruptedException e) {
@@ -372,7 +372,7 @@ public class LockedRoomController {
     // Adds the letter "B" to the passcode and checks if it is correct if the length of the passcode
     // is now equal to four.
     if (GameState.isPuzzleSolved) {
-      labelPasscode.setText(labelPasscode.getText() + "G");
+      labelPasscode.setText(labelPasscode.getText() + "☌");
       try {
         Thread.sleep(50);
       } catch (InterruptedException e) {
@@ -390,7 +390,7 @@ public class LockedRoomController {
     // Adds the letter "B" to the passcode and checks if it is correct if the length of the passcode
     // is now equal to four.
     if (GameState.isPuzzleSolved) {
-      labelPasscode.setText(labelPasscode.getText() + "Y");
+      labelPasscode.setText(labelPasscode.getText() + "⊬");
       try {
         Thread.sleep(250);
       } catch (InterruptedException e) {
