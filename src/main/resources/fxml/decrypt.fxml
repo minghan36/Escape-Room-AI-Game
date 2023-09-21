@@ -118,5 +118,15 @@
             <Font name="Telugu MN" size="13.0" />
          </font>
       </Label>
+      <Button fx:id="rgbClue1" layoutX="908.0" layoutY="430.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="68.0" style="-fx-background-color: #2E40F9;" textFill="#fcb141">
+         <font>
+            <Font name="Telugu MN" size="13.0" />
+         </font>
+      </Button>
+      <ImageView fx:id="globe" fitHeight="36.0" fitWidth="42.0" layoutX="844.0" layoutY="430.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/GlobeItem.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

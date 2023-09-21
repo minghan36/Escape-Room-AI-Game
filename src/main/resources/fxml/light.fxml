@@ -110,5 +110,10 @@
             <Font name="Sinhala MN" size="13.0" />
          </font>
       </Label>
+      <Button fx:id="rgbClue1" layoutX="909.0" layoutY="430.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="68.0" style="-fx-background-color: #2E40F9;" textFill="#fcb141">
+         <font>
+            <Font name="Telugu MN" size="13.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

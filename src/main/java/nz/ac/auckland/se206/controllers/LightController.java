@@ -11,6 +11,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
@@ -45,8 +46,15 @@ public class LightController {
   @FXML private ImageView sdCard;
   @FXML private ImageView globe;
   @FXML private ImageView globe1;
+  @FXML private Button rgbClue1;
 
   public void initialize() {
+    if (GameState.isRgbClueFound) {
+      rgbClue1.setVisible(true);
+      rgbClue1.setText(GameState.password);
+    } else {
+      rgbClue1.setVisible(false);
+    }
     objText.setText(GameState.getObjective());
     tape.setVisible(GameState.isElectricalTapeFound);
     sdCard.setVisible(GameState.isSdCardFound);

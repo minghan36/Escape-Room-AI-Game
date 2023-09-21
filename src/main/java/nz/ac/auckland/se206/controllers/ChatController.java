@@ -47,6 +47,7 @@ public class ChatController {
   @FXML private TextArea objText;
   @FXML private TextArea hintsText;
   @FXML private ImageView globe;
+  @FXML private Button rgbClue1;
 
   private static int hintCounter = 0;
 
@@ -59,6 +60,13 @@ public class ChatController {
   public void initialize() throws ApiProxyException {
     objText.setText(GameState.getObjective());
     chatTextArea.setText(GameState.chatContents);
+    if (GameState.isRgbClueFound) {
+      rgbClue1.setVisible(true);
+      rgbClue1.setText(GameState.password);
+    } else {
+      rgbClue1.setVisible(false);
+    }
+
     if (!GameState.isGameMasterLoaded) {
       runGpt(new ChatMessage("user", GptPromptEngineering.getRiddleWithGivenWord("vase")));
       GameState.isGameMasterLoaded = true;

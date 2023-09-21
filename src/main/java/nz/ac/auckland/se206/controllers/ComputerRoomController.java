@@ -10,6 +10,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
@@ -36,9 +37,16 @@ public class ComputerRoomController {
   @FXML private TextArea objText;
   @FXML private TextArea hintsText;
   @FXML private ImageView globe;
+  @FXML private Button rgbClue1;
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
+    if (GameState.isRgbClueFound) {
+      rgbClue1.setVisible(true);
+      rgbClue1.setText(GameState.password);
+    } else {
+      rgbClue1.setVisible(false);
+    }
     objText.setText(GameState.getObjective());
     sdCard.setVisible(GameState.isSdCardFound);
     tape1.setVisible(GameState.isElectricalTapeFound);
@@ -161,9 +169,7 @@ public class ComputerRoomController {
 
   @FXML
   public void enterDecrypt(MouseEvent event) {
-    if (GameState.isDecryptCompleted) {
-      return;
-    } else if (!GameState.isRiddleResolved) {
+    if (!GameState.isRiddleResolved) {
       objText.setText("You need the SD card to access the computer!");
     } else {
       GameState.currentRoom = "decrypt";
@@ -173,9 +179,7 @@ public class ComputerRoomController {
 
   @FXML
   public void increaseSize(MouseEvent event) {
-    if (GameState.isDecryptCompleted) {
-      return;
-    } else if (!GameState.isRiddleResolved) {
+    if (!GameState.isRiddleResolved) {
       return;
     } else {
       hoverImage.setScaleX(1.05); // Increase the size by a factor of 1.2 horizontally

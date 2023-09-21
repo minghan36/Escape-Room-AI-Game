@@ -79,10 +79,16 @@ public class PuzController {
   public void initialize() {
     if (GameState.isPuzzleSolved && !GameState.isRgbClueFound) {
       rgbClue.setVisible(true);
+      rgbClue.setText(GameState.password);
     } else {
       rgbClue.setVisible(false);
     }
-    rgbClue1.setVisible(GameState.isRgbClueFound);
+    if (GameState.isRgbClueFound) {
+      rgbClue1.setVisible(true);
+      rgbClue1.setText(GameState.password);
+    } else {
+      rgbClue1.setVisible(false);
+    }
     if (!GameState.isPuzzleSolved) {
       objText.setText(
           "You need to solve the picture puzzle by unscrambling it. Remember you can only move"
@@ -271,8 +277,8 @@ public class PuzController {
       objText.setText(
           "Good Job! You have solved the picture puzzle. Collect the RGB Clue and travel to the"
               + " door for your final puzzle");
-      rgbClue.setVisible(false);
-      rgbClue1.setText(GameState.password);
+      rgbClue.setVisible(true);
+      rgbClue.setText(GameState.password);
     } else {
       status.setText("Not quite! Try again.");
     }
@@ -333,6 +339,7 @@ public class PuzController {
   private void clickRgb() {
     GameState.isRgbClueFound = true;
     rgbClue1.setVisible(true);
+    rgbClue1.setText(GameState.password);
     rgbClue.setVisible(false);
   }
 }

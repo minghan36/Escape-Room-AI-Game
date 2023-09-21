@@ -10,6 +10,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
@@ -46,9 +47,16 @@ public class BathroomController {
   @FXML private TextArea objText;
   @FXML private TextArea hintsText;
   @FXML private ImageView globe;
+  @FXML private Button rgbClue1;
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
+    if (GameState.isRgbClueFound) {
+      rgbClue1.setVisible(true);
+      rgbClue1.setText(GameState.password);
+    } else {
+      rgbClue1.setVisible(false);
+    }
     objText.setText(GameState.getObjective());
     sdCard.setVisible(GameState.isSdCardFound);
     tape.setVisible(GameState.isElectricalTapeFound);
