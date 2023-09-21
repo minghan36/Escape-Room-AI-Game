@@ -14,7 +14,7 @@ public class GameState {
   public static boolean isRiddleResolved = false;
 
   public static String currentRoom = "lockedroom";
-  public static String chatContents = "hello";
+  public static String chatContents;
 
   public static ChatCompletionRequest chatCompletionRequest =
   new ChatCompletionRequest().setN(1).setTemperature(0.2).setTopP(0.5).setMaxTokens(100);
@@ -38,6 +38,7 @@ public class GameState {
   public static boolean isRgbSolved = false;
   public static boolean isSdCardFound = false;
   public static boolean isGlobeFound = false;
+  public static boolean isGameMasterLoaded = false;
 
   public static int minutes = 0;
   public static int seconds = 0;

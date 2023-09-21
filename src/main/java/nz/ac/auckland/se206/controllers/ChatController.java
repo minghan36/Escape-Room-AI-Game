@@ -23,6 +23,7 @@ import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.gpt.ChatMessage;
+import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
@@ -54,6 +55,10 @@ public class ChatController {
   @FXML
   public void initialize() throws ApiProxyException {
     chatTextArea.setText(GameState.chatContents);
+    if(!GameState.isGameMasterLoaded){
+    runGpt(new ChatMessage("user", GptPromptEngineering.getRiddleWithGivenWord("vase")));
+    GameState.isGameMasterLoaded = true;
+    }
     // when the enter key is pressed
     inputText.setOnAction(
         e -> {
