@@ -78,5 +78,10 @@
             <Image url="@../images/sdcard.png" />
          </image>
       </ImageView>
+      <Label fx:id="labelTranslate" layoutX="31.0" layoutY="198.0" opacity="0.0" prefHeight="106.0" prefWidth="556.0" text="TRANSLATING..." textFill="#494d7b">
+         <font>
+            <Font name="System Bold Italic" size="65.0" />
+         </font>
+      </Label>
   </children>
 </AnchorPane>
