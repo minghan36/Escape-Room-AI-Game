@@ -20,7 +20,6 @@
             <Image url="@../images/Bathroom.png" />
          </image>
       </ImageView>
-      <Rectangle fx:id="toLockedRoom" arcHeight="5.0" arcWidth="5.0" fill="#f7f7f7" height="503.0" onMouseClicked="#enterLockedRoom" onMouseEntered="#highlight" onMouseExited="#removeHighlight" opacity="0.4" stroke="#999999" strokeType="INSIDE" width="26.0" />
       <Canvas fx:id="gameMaster" height="114.0" layoutX="576.0" layoutY="369.0" width="130.0" />
       <Rectangle fx:id="quizMater" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="121.0" layoutX="570.0" layoutY="366.0" onMouseClicked="#clickQuizMaster" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="142.0" />
       <Label fx:id="Timer" layoutX="878.0" layoutY="12.0" prefHeight="53.0" prefWidth="91.0" textFill="#fcb141">
@@ -90,5 +89,11 @@
             <Font name="Telugu MN" size="13.0" />
          </font>
       </Button>
+      <ImageView fx:id="toLockedRoom" fitHeight="150.0" fitWidth="130.0" layoutX="-19.0" layoutY="-8.0" onMouseClicked="#enterLockedRoom" onMouseEntered="#highlight" onMouseExited="#removeHighlight" opacity="0.3" pickOnBounds="true" rotate="180.0">
+         <image>
+            <Image url="@../images/arrow.png" />
+         </image>
+      </ImageView>
+
    </children>
 </Pane>

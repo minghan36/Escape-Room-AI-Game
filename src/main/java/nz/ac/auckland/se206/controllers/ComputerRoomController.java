@@ -24,7 +24,7 @@ import nz.ac.auckland.se206.GameState;
 public class ComputerRoomController {
 
   @FXML private ImageView tape;
-  @FXML private Rectangle toLockedRoom;
+  @FXML private ImageView toLockedRoom;
   @FXML private Rectangle quizMaster;
   @FXML private Canvas gameMaster;
   @FXML private Label Timer;
@@ -136,12 +136,16 @@ public class ComputerRoomController {
 
   @FXML
   public void highlight() {
-    toLockedRoom.setOpacity(0.7);
+    toLockedRoom.setOpacity(1);
+    toLockedRoom.setX(1.2);
+    toLockedRoom.setY(1.2);
   }
 
   @FXML
   public void removeHighlight() {
-    toLockedRoom.setOpacity(0.4);
+    toLockedRoom.setOpacity(0.3);
+    toLockedRoom.setX(1);
+    toLockedRoom.setY(1);
   }
 
   public void startTimer() {
