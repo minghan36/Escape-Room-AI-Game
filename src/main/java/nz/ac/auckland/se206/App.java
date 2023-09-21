@@ -14,8 +14,7 @@ import javafx.stage.Stage;
 public class App extends Application {
 
   private static Scene scene;
-
-  // private static Parent chatParent;
+  private static Parent chatParent;
 
   public static void main(final String[] args) {
     launch();
@@ -45,7 +44,7 @@ public class App extends Application {
    */
   @Override
   public void start(final Stage stage) throws IOException {
-    // chatParent = loadFxml("chat");
+    chatParent = loadFxml("chat");
     Parent root = loadFxml("intro");
     scene = new Scene(root, 1000, 503);
     stage.setScene(scene);
@@ -61,10 +60,10 @@ public class App extends Application {
    * @throws IOException If the file is not found.
    */
   public static void setUi(String fxml) {
-    // if (fxml.equals("chat")) {
-    //   scene.setRoot(chatParent);
-    //   return;
-    // }
+    if (fxml.equals("chat")) {
+      scene.setRoot(chatParent);
+      return;
+    }
     try {
       scene.setRoot(loadFxml(fxml));
     } catch (IOException e) {

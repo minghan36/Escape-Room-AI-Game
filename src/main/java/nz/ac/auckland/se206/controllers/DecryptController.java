@@ -39,20 +39,11 @@ public class DecryptController {
   @FXML private TextArea hintsText;
   @FXML private ImageView tape;
   @FXML private ImageView sdCard;
-  @FXML private ImageView globe;
-  @FXML private Button rgbClue1;
 
   // create array of alien symbols
   private String[] randomLights = {"⎎⟟⍀⌇⏁", "⌇⟒☊⍜⋏⎅", "⏁⊑⟟⍀⎅"};
 
   public void initialize() {
-    if (GameState.isRgbClueFound) {
-      rgbClue1.setVisible(true);
-      rgbClue1.setText(GameState.password);
-    } else {
-      rgbClue1.setVisible(false);
-    }
-    globe.setVisible(GameState.isGlobeFound);
     tape.setVisible(GameState.isElectricalTapeFound);
     sdCard.setVisible(GameState.isSdCardFound);
     Timer.setText(GameState.getTimeLeft());
@@ -114,15 +105,8 @@ public class DecryptController {
         };
     timer.start();
     objText.setText("Decipher the message from the quiz master");
-    if (!GameState.isDecryptCompleted) {
-      message.setText(
-          "☌⍜  ⏁⍜  ⏁⊑⟒  ⏚⏃⏁⊑⍀⍜⍜⋔  ⏃⋏⎅  ⎎⟟⌖  ⏁⊑⟒  " + randomLights[GameState.randomNum] + "  ⌰⟟☌⊑⏁");
-    } else {
-      message.setText(
-          "The message is: Go to the bathroom and fix the " + GameState.randomLight + " light");
-      // disable send and input text
-      sendButton.setDisable(true);
-    }
+    message.setText(
+        "☌⍜  ⏁⍜  ⏁⊑⟒  ⏚⏃⏁⊑⍀⍜⍜⋔  ⏃⋏⎅  ⎎⟟⌖  ⏁⊑⟒  " + randomLights[GameState.randomNum] + "  ⌰⟟☌⊑⏁");
   }
 
   // pressing on the quiz master to open the chat box
@@ -164,13 +148,9 @@ public class DecryptController {
     message = message.toLowerCase();
     // check if the message is equal to another string
     if (message.equals("go to the bathroom and fix the " + GameState.randomLight + " light")) {
+      GameState.currentRoom = "computerroom";
+      App.setUi("computerroom");
       GameState.isDecryptCompleted = true;
-      objText.setText(
-          "Good job! You have completed the decryption. Using the message find your next puzzle");
-      incorrect.setText("Good job! You've decrypted the message");
-      // disable the send button and input text
-      sendButton.setDisable(true);
-      inputText.setDisable(true);
     } else {
       incorrect.setText("Incorrect! Try again");
     }
@@ -178,9 +158,6 @@ public class DecryptController {
 
   @FXML
   private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
-    if (GameState.isDecryptCompleted) {
-      GameState.currentObj = "Light Puzzle";
-    }
     GameState.currentRoom = "computerroom";
     App.setUi("computerroom");
   }

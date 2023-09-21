@@ -11,7 +11,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
@@ -46,24 +45,11 @@ public class LightController {
   @FXML private ImageView sdCard;
   @FXML private ImageView globe;
   @FXML private ImageView globe1;
-  @FXML private Button rgbClue1;
 
   public void initialize() {
-    if (GameState.isRgbClueFound) {
-      rgbClue1.setVisible(true);
-      rgbClue1.setText(GameState.password);
-    } else {
-      rgbClue1.setVisible(false);
-    }
-    objText.setText(GameState.getObjective());
     tape.setVisible(GameState.isElectricalTapeFound);
     sdCard.setVisible(GameState.isSdCardFound);
     globe.setVisible(false);
-    if (!GameState.isSdCardFound) {
-      globe.setVisible(GameState.isRiddleResolved);
-    } else {
-      globe.setVisible(false);
-    }
     globe1.setVisible(GameState.isGlobeFound);
 
     objText.setText("Fix the wires to turn on the light.");
@@ -186,10 +172,6 @@ public class LightController {
 
   @FXML
   private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
-    if (GameState.isLightPuzzleSolved) {
-      GameState.currentObj = "Picture Puz";
-    }
-    GameState.isLightPuzzleStarted = true;
     GameState.currentRoom = "bathroom";
     App.setUi("bathroom");
   }
@@ -204,16 +186,12 @@ public class LightController {
       GameState.wireFixes++;
       if (GameState.wireFixes == 4) {
         lightSuggest.setText("Good Job! Collect your next clue.");
-        objText.setText(
-            "Good Job! You have solved the light puzzle. Collect the Picture of the Globe and"
-                + " travel to your next puzzle.");
+        objText.setText("Navigate to the next puzzle using the clue you have been given.");
         GameState.isLightPuzzleSolved = true;
         globe.setVisible(true);
       }
     } else {
-      objText.setText(
-          "You need to find the Electrical Tape needed to patch the wires. Check every room"
-              + " carefully!");
+      objText.setText("Find something to patch the wires with.");
     }
   }
 
@@ -231,16 +209,12 @@ public class LightController {
       GameState.wireFixes++;
       if (GameState.wireFixes == 4) {
         lightSuggest.setText("Good Job! Collect your next clue.");
-        objText.setText(
-            "Good Job! You have solved the light puzzle. Collect the Picture of the Globe and"
-                + " travel to your next puzzle.");
+        objText.setText("Navigate to the next puzzle using the clue you have been given.");
         GameState.isLightPuzzleSolved = true;
         globe.setVisible(true);
       }
     } else {
-      objText.setText(
-          "You need to find the Electrical Tape needed to patch the wires. Check every room"
-              + " carefully!");
+      objText.setText("Find something to patch the wires with.");
     }
   }
 
@@ -256,16 +230,12 @@ public class LightController {
       GameState.wireFixes++;
       if (GameState.wireFixes == 4) {
         lightSuggest.setText("Good Job! Collect your next clue.");
-        objText.setText(
-            "Good Job! You have solved the light puzzle. Collect the Picture of the Globe and"
-                + " travel to your next puzzle.");
+        objText.setText("Navigate to the next puzzle using the clue you have been given.");
         GameState.isLightPuzzleSolved = true;
         globe.setVisible(true);
       }
     } else {
-      objText.setText(
-          "You need to find the Electrical Tape needed to patch the wires. Check every room"
-              + " carefully!");
+      objText.setText("Find something to patch the wires with.");
     }
   }
 
@@ -279,16 +249,12 @@ public class LightController {
       GameState.wireFixes++;
       if (GameState.wireFixes == 4) {
         lightSuggest.setText("Good Job! Collect your next clue.");
-        objText.setText(
-            "Good Job! You have solved the light puzzle. Collect the Picture of the Globe and"
-                + " travel to your next puzzle.");
+        objText.setText("Navigate to the next puzzle using the clue you have been given.");
         GameState.isLightPuzzleSolved = true;
         globe.setVisible(true);
       }
     } else {
-      objText.setText(
-          "You need to find the Electrical Tape needed to patch the wires. Check every room"
-              + " carefully!");
+      objText.setText("Find something to patch the wires with.");
     }
   }
 
@@ -307,8 +273,6 @@ public class LightController {
   @FXML
   private void clickGlobe() {
     GameState.isGlobeFound = true;
-    GameState.currentObj = "Picture Puz";
-    lightSuggest.setText("");
     globe.setVisible(false);
     globe1.setVisible(true);
   }
