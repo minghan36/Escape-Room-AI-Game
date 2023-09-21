@@ -37,6 +37,7 @@ public class ChatController {
   @FXML private Button sendButton;
   @FXML private Canvas quizMaster;
   @FXML private Label Timer;
+  @FXML private Label labelTranslate;
   private Image[] alienImages;
   private int currentImageIndex = 0;
   @FXML private ImageView sdCard;
@@ -147,6 +148,7 @@ public class ChatController {
    * @throws ApiProxyException if there is an error communicating with the API proxy
    */
   private CompletableFuture<ChatMessage> runGpt(ChatMessage msg) throws ApiProxyException {
+    labelTranslate.setOpacity(0.55);
     GameState.chatCompletionRequest.addMessage(msg);
     CompletableFuture<ChatMessage> completableFuture = new CompletableFuture<>();
 
@@ -162,6 +164,7 @@ public class ChatController {
               Platform.runLater(
                   () -> {
                     appendChatMessage(result.getChatMessage());
+                    labelTranslate.setOpacity(0);
                     completableFuture.complete(result.getChatMessage()); // Complete the future
                   });
             } catch (ApiProxyException e) {
