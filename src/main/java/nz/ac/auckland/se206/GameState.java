@@ -161,7 +161,9 @@ public class GameState {
       }
     } else if (GameState.currentObj == "RGB Puzzle") {
       if (!isRgbSolved) {
-        objMessage = "You need to solve the RGB puzzle to escape the room. Use the clue to do so.";
+        objMessage =
+            "You need to solve the RGB puzzle to escape the room. Use the given clue and the alien"
+                + " alphabet on the computer to unlock the passcode.";
         return objMessage;
       } else {
         objMessage = "You have solved the RGB puzzle. You have escaped the room!";

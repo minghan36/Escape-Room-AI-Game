@@ -39,7 +39,7 @@ public class LockedRoomController {
   @FXML private Canvas gameMaster;
   @FXML private Label Timer;
   @FXML private Label labelPasscode;
-  @FXML private Label labelObjective;
+  // @FXML private Label labelObjective;
   @FXML private ImageView globe;
   private Image[] alienImages;
   private int currentImageIndex = 0;
@@ -62,7 +62,7 @@ public class LockedRoomController {
     sdCard.setVisible(GameState.isSdCardFound);
     tape.setVisible(GameState.isElectricalTapeFound);
     globe1.setVisible(GameState.isGlobeFound);
-    labelObjective.setText(GameState.password);
+    // labelObjective.setText(GameState.password);
     Timer.setText(GameState.getTimeLeft());
     Thread timeThread =
         new Thread(
