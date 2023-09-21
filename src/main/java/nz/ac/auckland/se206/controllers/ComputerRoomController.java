@@ -139,13 +139,20 @@ public class ComputerRoomController {
     toLockedRoom.setOpacity(1);
     toLockedRoom.setX(1.2);
     toLockedRoom.setY(1.2);
+
+    toLockedRoom.setScaleX(1.2);
+    toLockedRoom.setScaleY(1.2);
+
   }
 
   @FXML
   public void removeHighlight() {
     toLockedRoom.setOpacity(0.3);
+
     toLockedRoom.setX(1);
     toLockedRoom.setY(1);
+    toLockedRoom.setScaleX(1);
+    toLockedRoom.setScaleY(1);
   }
 
   public void startTimer() {

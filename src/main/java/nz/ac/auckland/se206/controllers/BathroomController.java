@@ -34,6 +34,7 @@ public class BathroomController {
   @FXML private ImageView lightOne;
   @FXML private ImageView lightTwo;
   @FXML private ImageView lightThree;
+  @FXML private ImageView toLockedRoom;
   @FXML private Ellipse ellipseOne;
   @FXML private Ellipse ellipseTwo;
   @FXML private Ellipse ellipseThree;

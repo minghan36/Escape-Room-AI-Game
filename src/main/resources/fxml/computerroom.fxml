@@ -71,13 +71,16 @@
          <image>
             <Image url="@../images/GlobeItem.png" />
          </image>
-      </ImageView>
+
       <Button fx:id="rgbClue1" layoutX="908.0" layoutY="430.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="68.0" style="-fx-background-color: #2E40F9;" textFill="#fcb141">
          <font>
             <Font name="Telugu MN" size="13.0" />
          </font>
       </Button>
        <ImageView fx:id="toLockedRoom" fitHeight="150.0" fitWidth="130.0" layoutX="646.0" layoutY="-8.0" onMouseClicked="#enterLockedRoom" onMouseEntered="#highlight" onMouseExited="#removeHighlight" opacity="0.3" pickOnBounds="true">
+
+      <ImageView fx:id="toLockedRoom" fitHeight="150.0" fitWidth="130.0" layoutX="646.0" layoutY="-8.0" onMouseClicked="#enterLockedRoom" onMouseEntered="#highlight" onMouseExited="#removeHighlight" opacity="0.3" pickOnBounds="true">
+
          <image>
             <Image url="@../images/arrow.png" />
          </image>

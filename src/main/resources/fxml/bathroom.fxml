@@ -27,11 +27,6 @@
             <Font name="Tamil MN" size="36.0" />
          </font>
       </Label>
-      <ImageView fx:id="lightOne" fitHeight="53.0" fitWidth="30.0" layoutX="33.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/Light1.png" />
-         </image>
-      </ImageView>
       <ImageView fx:id="lightTwo" fitHeight="70.0" fitWidth="30.0" layoutX="114.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Light2.png" />
@@ -42,7 +37,6 @@
             <Image url="@../images/Light3.png" />
          </image>
       </ImageView>
-      <Ellipse fx:id="ellipseOne" fill="#333333" layoutX="46.0" layoutY="135.0" onMouseClicked="#clickLightOne" onMouseEntered="#increaseSizeOne" onMouseExited="#decreaseSizeOne" opacity="0.0" radiusX="16.0" radiusY="30.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
       <Ellipse fx:id="ellipseTwo" fill="#333333" layoutX="129.0" layoutY="145.0" onMouseClicked="#clickLightTwo" onMouseEntered="#increaseSizeTwo" onMouseExited="#decreaseSizeTwo" opacity="0.0" radiusX="16.0" radiusY="23.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
       <Ellipse fx:id="ellipseThree" fill="#333333" layoutX="728.0" layoutY="145.0" onMouseClicked="#clickLightThree" onMouseEntered="#increaseSizeThree" onMouseExited="#decreaseSizeThree" opacity="0.0" radiusX="16.0" radiusY="23.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
       <ImageView fx:id="key" fitHeight="92.0" fitWidth="91.0" layoutX="250.0" layoutY="391.0" pickOnBounds="true" preserveRatio="true" />
@@ -89,11 +83,18 @@
             <Font name="Telugu MN" size="13.0" />
          </font>
       </Button>
+
       <ImageView fx:id="toLockedRoom" fitHeight="150.0" fitWidth="130.0" layoutX="-19.0" layoutY="-8.0" onMouseClicked="#enterLockedRoom" onMouseEntered="#highlight" onMouseExited="#removeHighlight" opacity="0.3" pickOnBounds="true" rotate="180.0">
          <image>
             <Image url="@../images/arrow.png" />
          </image>
       </ImageView>
+      <ImageView fx:id="lightOne" fitHeight="53.0" fitWidth="30.0" layoutX="33.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Light1.png" />
+         </image>
+      </ImageView>
+      <Ellipse fx:id="ellipseOne" fill="#333333" layoutX="46.0" layoutY="135.0" onMouseClicked="#clickLightOne" onMouseEntered="#increaseSizeOne" onMouseExited="#decreaseSizeOne" opacity="0.0" radiusX="16.0" radiusY="30.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
 
    </children>
 </Pane>
