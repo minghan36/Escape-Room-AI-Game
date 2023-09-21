@@ -14,7 +14,7 @@ public class GameState {
   public static boolean isRiddleResolved = false;
 
   public static String currentRoom = "lockedroom";
-  public static String chatContents;
+  public static String chatContents = "";
 
   public static ChatCompletionRequest chatCompletionRequest =
       new ChatCompletionRequest().setN(1).setTemperature(0.2).setTopP(0.5).setMaxTokens(100);
@@ -45,7 +45,7 @@ public class GameState {
   public static int seconds = 0;
   public static int wireFixes = 0;
 
-  public static Timeline timeline;
+  public static Timeline timeline = null;
 
   // choose a random number between zero and two
   public static int randomNum = (int) (Math.random() * 3);
