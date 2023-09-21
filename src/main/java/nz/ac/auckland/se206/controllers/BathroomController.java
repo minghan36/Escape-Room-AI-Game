@@ -58,6 +58,7 @@ public class BathroomController {
       rgbClue1.setVisible(false);
     }
     objText.setText(GameState.getObjective());
+    hintsText.setText(GameState.getHint());
     sdCard.setVisible(GameState.isSdCardFound);
     sdCard.setVisible(GameState.isSdCardFound);
     tape.setVisible(GameState.isElectricalTapeFound);

@@ -59,6 +59,7 @@ public class LockedRoomController {
       rgbClue1.setVisible(false);
     }
     objText.setText(GameState.getObjective());
+    hintsText.setText(GameState.getHint());
     sdCard.setVisible(GameState.isSdCardFound);
     tape.setVisible(GameState.isElectricalTapeFound);
     globe1.setVisible(GameState.isGlobeFound);
