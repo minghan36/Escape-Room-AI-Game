@@ -66,7 +66,7 @@ public class GameState {
     }
   }
 
-  public static String[] randomLetters = {"R", "G", "B", "Y"};
+  public static String[] randomLetters = {"⍀", "☌", "⏚", "⊬"};
   public static String password =
       randomLetters[(int) (Math.random() * 4)]
           + randomLetters[(int) (Math.random() * 4)]
