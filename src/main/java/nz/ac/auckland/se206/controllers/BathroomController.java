@@ -24,7 +24,6 @@ import nz.ac.auckland.se206.GameState;
 
 public class BathroomController {
 
-  @FXML private Rectangle toLockedRoom;
   @FXML private Rectangle quizMaster;
   @FXML private Canvas gameMaster;
   @FXML private Label Timer;
@@ -33,6 +32,7 @@ public class BathroomController {
   @FXML private ImageView lightOne;
   @FXML private ImageView lightTwo;
   @FXML private ImageView lightThree;
+  @FXML private ImageView toLockedRoom;
   @FXML private Ellipse ellipseOne;
   @FXML private Ellipse ellipseTwo;
   @FXML private Ellipse ellipseThree;
@@ -193,12 +193,16 @@ public class BathroomController {
 
   @FXML
   public void highlight() {
-    toLockedRoom.setOpacity(0.7);
+    toLockedRoom.setOpacity(1);
+    toLockedRoom.setScaleX(1.2);
+    toLockedRoom.setScaleY(1.2);
   }
 
   @FXML
   public void removeHighlight() {
-    toLockedRoom.setOpacity(0.4);
+    toLockedRoom.setOpacity(0.3);
+    toLockedRoom.setScaleX(1);
+    toLockedRoom.setScaleY(1);
   }
 
   @FXML
