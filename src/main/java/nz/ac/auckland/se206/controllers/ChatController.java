@@ -23,9 +23,7 @@ import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.gpt.ChatMessage;
-import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
-import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 
@@ -47,8 +45,6 @@ public class ChatController {
   @FXML private TextArea objText;
   @FXML private TextArea hintsText;
 
-  private ChatCompletionRequest chatCompletionRequest;
-
   /**
    * Initializes the chat view, loading the riddle.
    *
@@ -56,6 +52,7 @@ public class ChatController {
    */
   @FXML
   public void initialize() throws ApiProxyException {
+    chatTextArea.setText(GameState.chatContents);
     sdCard.setVisible(false);
     sdCard1.setVisible(GameState.isSdCardFound);
     tape.setVisible(GameState.isElectricalTapeFound);
@@ -67,9 +64,6 @@ public class ChatController {
             });
     timeThread.start();
 
-    chatCompletionRequest =
-        new ChatCompletionRequest().setN(1).setTemperature(0.2).setTopP(0.5).setMaxTokens(100);
-    runGpt(new ChatMessage("user", GptPromptEngineering.getRiddleWithGivenWord("vase")));
     // game master animation
     // Initialize alienImages with your image paths
     alienImages = new Image[] {new Image("images/blink1.png"), new Image("images/blink2.png")};
@@ -136,7 +130,7 @@ public class ChatController {
    * @throws ApiProxyException if there is an error communicating with the API proxy
    */
   private CompletableFuture<ChatMessage> runGpt(ChatMessage msg) throws ApiProxyException {
-    chatCompletionRequest.addMessage(msg);
+    GameState.chatCompletionRequest.addMessage(msg);
     CompletableFuture<ChatMessage> completableFuture = new CompletableFuture<>();
 
     Task<Void> task =
@@ -144,9 +138,9 @@ public class ChatController {
           @Override
           protected Void call() throws Exception {
             try {
-              ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();
+              ChatCompletionResult chatCompletionResult = GameState.chatCompletionRequest.execute();
               Choice result = chatCompletionResult.getChoices().iterator().next();
-              chatCompletionRequest.addMessage(result.getChatMessage());
+              GameState.chatCompletionRequest.addMessage(result.getChatMessage());
 
               Platform.runLater(
                   () -> {
@@ -205,6 +199,7 @@ public class ChatController {
    */
   @FXML
   private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
+    GameState.chatContents = chatTextArea.getText();
     App.setUi(GameState.currentRoom);
   }
 

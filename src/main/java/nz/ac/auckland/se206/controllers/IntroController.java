@@ -9,6 +9,11 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.gpt.ChatMessage;
+import nz.ac.auckland.se206.gpt.GptPromptEngineering;
+import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
+import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
+import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 
 public class IntroController {
 
@@ -33,6 +38,18 @@ public class IntroController {
   @FXML private Label levelDetail;
 
   public void initialize() {
+    Thread thread = new Thread(() ->{
+      GameState.chatCompletionRequest.addMessage(new ChatMessage("user", GptPromptEngineering.getRiddleWithGivenWord("vase")));
+      ChatCompletionResult chatCompletionResult;
+      try{
+        chatCompletionResult = GameState.chatCompletionRequest.execute();
+        Choice result = chatCompletionResult.getChoices().iterator().next();
+        GameState.chatContents = result.getChatMessage().getContent();
+      } catch (ApiProxyException e){
+        e.printStackTrace();
+      }
+    });
+    thread.start();
     // create a translate transition for the label
     TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(2), title);
 
