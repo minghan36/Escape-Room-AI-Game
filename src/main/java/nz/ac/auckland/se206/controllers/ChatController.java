@@ -46,8 +46,10 @@ public class ChatController {
   @FXML private ImageView tape;
   @FXML private TextArea objText;
   @FXML private TextArea hintsText;
+  @FXML private ImageView globe;
 
   private static int hintCounter = 0;
+
   /**
    * Initializes the chat view, loading the riddle.
    *
@@ -56,9 +58,9 @@ public class ChatController {
   @FXML
   public void initialize() throws ApiProxyException {
     chatTextArea.setText(GameState.chatContents);
-    if(!GameState.isGameMasterLoaded){
-    runGpt(new ChatMessage("user", GptPromptEngineering.getRiddleWithGivenWord("vase")));
-    GameState.isGameMasterLoaded = true;
+    if (!GameState.isGameMasterLoaded) {
+      runGpt(new ChatMessage("user", GptPromptEngineering.getRiddleWithGivenWord("vase")));
+      GameState.isGameMasterLoaded = true;
     }
     // when the enter key is pressed
     inputText.setOnAction(
@@ -74,6 +76,7 @@ public class ChatController {
     sdCard.setVisible(false);
     sdCard1.setVisible(GameState.isSdCardFound);
     tape.setVisible(GameState.isElectricalTapeFound);
+    globe.setVisible(GameState.isGlobeFound);
     Timer.setText(GameState.getTimeLeft());
     Thread timeThread =
         new Thread(

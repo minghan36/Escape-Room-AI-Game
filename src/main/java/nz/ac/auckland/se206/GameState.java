@@ -17,7 +17,7 @@ public class GameState {
   public static String chatContents;
 
   public static ChatCompletionRequest chatCompletionRequest =
-  new ChatCompletionRequest().setN(1).setTemperature(0.2).setTopP(0.5).setMaxTokens(100);
+      new ChatCompletionRequest().setN(1).setTemperature(0.2).setTopP(0.5).setMaxTokens(100);
 
   /** Indicates whether the key has been found. */
   public static boolean isKeyFound = false;
@@ -51,6 +51,14 @@ public class GameState {
   // create string array having first second third
   public static String[] randomLights = {"first", "second", "third"};
   public static String randomLight = randomLights[randomNum];
+
+  public static String[] objectives = {
+    "Riddle", "Decrypt", "Light Puzzle", "Picture Puz", "RGB Puzzle"
+  };
+
+  public static String currentObj = objectives[0];
+  public static String objMessage = "";
+
   /**
    * Returns time left in the round.
    *
@@ -93,5 +101,59 @@ public class GameState {
 
     timeline.setCycleCount((GameState.minutes * 60) + GameState.seconds - 1);
     timeline.play();
+  }
+
+  public String getObjective() {
+    if (GameState.currentObj == "Riddle") {
+      if (!isRiddleResolved) {
+        objMessage = "Talk to the GameMaster to find and solve the challenging riddle.";
+        return objMessage;
+      } else {
+        objMessage = "You have solved the riddle. Collect the SD Card for your next puzzle.";
+        return objMessage;
+      }
+    } else if (GameState.currentObj == "Decrypt") {
+      if (!isDecryptCompleted) {
+        objMessage = "Decrypt the message to find the password.";
+        return objMessage;
+      } else {
+        objMessage =
+            "You have decrypted the message. Use the message you've deciphered to find the next"
+                + " puzzle.";
+        return objMessage;
+      }
+    } else if (GameState.currentObj == "Light Puzzle") {
+      if (!isGlobeFound) {
+        objMessage = "You need to find the picture of the Globe to access the puzzle!";
+        return objMessage;
+      } else if (!isLightPuzzleSolved) {
+        objMessage = "You need to patch the wires to solve the light puzzle using the tape.";
+        return objMessage;
+      } else {
+        objMessage =
+            "You have solved the light puzzle. Collect the Picture of the Globe and travel to your"
+                + " next puzzle.";
+        return objMessage;
+      }
+    } else if (GameState.currentObj == "Picture Puz") {
+      if (!isPuzzleSolved) {
+        objMessage = "Solve the puzzle to find the RGB code.";
+        return objMessage;
+      } else {
+        objMessage =
+            "You have solved the puzzle. Collect the RGB code and travel to your next puzzle.";
+        return objMessage;
+      }
+    } else if (GameState.currentObj == "RGB Puzzle") {
+      if (!isRgbSolved) {
+        objMessage = "Solve the RGB puzzle to find the SD Card.";
+        return objMessage;
+      } else {
+        objMessage = "You have solved the RGB puzzle. Collect the SD Card and escape the room.";
+        return objMessage;
+      }
+    } else {
+      return "Error";
+    }
   }
 }
