@@ -66,18 +66,18 @@ public class IntroController {
   }
 
   @FXML
-  public void pickLevel(MouseEvent event) {
+  private void pickLevel(MouseEvent event) {
     // switch to the new scene for the player to pick a level
   }
 
   @FXML
-  public void pickTime(MouseEvent event) {
+  private void pickTime(MouseEvent event) {
     // switch to a new scene for the player to pick a time duration
   }
 
   // Method to start the game and ensuring user has made all the required choices
   @FXML
-  public void startGame(MouseEvent event) {
+  private void startGame(MouseEvent event) {
     if (levelIsPicked && timeIsPicked) {
       Thread timeThread =
           new Thread(

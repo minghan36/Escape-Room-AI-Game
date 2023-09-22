@@ -187,11 +187,11 @@ public class PuzController {
 
   // pressing on the quiz master to open the chat box
   @FXML
-  public void clickQuizMaster(MouseEvent event) {
+  private void clickQuizMaster(MouseEvent event) {
     App.setUi("chat");
   }
 
-  public void startTimer() {
+  private void startTimer() {
     Timeline timeline =
         new Timeline(
             new KeyFrame(
@@ -270,7 +270,7 @@ public class PuzController {
   }
 
   @FXML
-  public void checkPuzzle(ActionEvent event) {
+  private void onCheckPuzzle(ActionEvent event) {
     if (isCorrectOrder()) {
       status.setText("Correct");
       GameState.isPuzzleSolved = true;
@@ -341,7 +341,7 @@ public class PuzController {
   }
 
   @FXML
-  private void goBack(ActionEvent event) throws ApiProxyException, IOException {
+  private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
     GameState.currentObj = "RGB Puzzle";
     GameState.currentRoom = "lockedroom";
     App.setUi("lockedroom");

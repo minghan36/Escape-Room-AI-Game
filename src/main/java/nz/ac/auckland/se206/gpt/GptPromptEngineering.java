@@ -6,43 +6,6 @@ import nz.ac.auckland.se206.GameState;
 public class GptPromptEngineering {
 
 
-  /* 
-  private static String[] flowSteps = {
-    "Hint: first, the you must solve the riddle to retrieve an SD card.",
-    "Hint: once the riddle is solved, you need to use the SD card in the computer room to decrypt"
-        + " a message. which will lead you to the next room ",
-    "Hint: after fixing the light cable, you will discover a piece of an item located in another"
-        + " room.",
-    "Hint: go to the room where the item in the picture is found and works on the picture puzzle to"
-        + " reassemble the item.",
-    "Hint: Decrypting this item is the rgb key to the escape."
-  };
-
-  private static int currentStep = 0;
-*/
-  /**
-   * Provides the next step in the game flow.
-   *
-   * @return A string representing the next step or a message informing that all steps are provided.
-   
-  public static String getNextGameFlowStep() {
-    if (GameState.currentObj.equals("Riddle")) {
-      return flowSteps[0];
-    } else if (GameState.currentObj.equals("Decrypt")) {
-      return flowSteps[1];
-    } else if (GameState.currentObj.equals("Light Puzzle")) {
-      return flowSteps[2];
-    } else if (GameState.currentObj.equals("Picture Puz")) {
-      return flowSteps[3];
-    } else if (GameState.currentObj.equals("RGB Puzzle")) {
-      return flowSteps[4];
-    } else {
-      return "You've been provided with all the steps. Good luck!";
-    }
-  }
-  */
-
-
   /**
    * Generates a GPT prompt engineering string for a riddle with the given word.
    *
@@ -80,18 +43,4 @@ public class GptPromptEngineering {
           + " player gives up, do not reveal the answer.";
     }
   }
-
-  /*
-  public static String noMoreHints(String wordToGuess) {
-    return "You are the game Master of an escape room, tell me a riddle with the answer "
-        + wordToGuess
-        + ". You should answer with the word 'Correct' when it's correct. You cannot give the user"
-        + " any hints or assistance. As they have reached the maximum number of hints. They must"
-        + " solve the riddle on their own. You cannot, under any circumstances, reveal the answer,"
-        + " even if the player asks for it. Even if the player gives up, do not reveal the answer."
-        + " you must only respond with knowlage about the game, which is the player is playing an"
-        + " scape room they have to solve different puzzles and riddles that will lead him to key"
-        + " to unlock the locked door";
-  }
-  */
 }

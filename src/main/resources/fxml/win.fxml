@@ -19,7 +19,7 @@
             <Font name="Sinhala MN" size="24.0" />
          </font>
       </Label>
-      <Button fx:id="buttonReplay" layoutX="465.0" layoutY="305.0" mnemonicParsing="false" onAction="#reset" style="-fx-background-color: #50585D;" text="RESTART" textFill="#fcfbfa">
+      <Button fx:id="buttonReplay" layoutX="465.0" layoutY="305.0" mnemonicParsing="false" onAction="#onReset" style="-fx-background-color: #50585D;" text="RESTART" textFill="#fcfbfa">
          <font>
             <Font name="Tamil MN" size="13.0" />
          </font></Button>

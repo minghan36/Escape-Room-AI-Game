@@ -35,11 +35,11 @@
             <Font name="Tamil MN" size="36.0" />
          </font>
       </Label>
-      <Button fx:id="goBackBtn" layoutX="589.0" layoutY="429.0" mnemonicParsing="false" onAction="#goBack" style="-fx-background-color: #2E40F9;" text="Go Back" textFill="#fcb141">
+      <Button fx:id="goBackBtn" layoutX="589.0" layoutY="429.0" mnemonicParsing="false" onAction="#onGoBack" style="-fx-background-color: #2E40F9;" text="Go Back" textFill="#fcb141">
          <font>
             <Font name="Sinhala MN" size="13.0" />
          </font></Button>
-      <Button fx:id="check" layoutX="40.0" layoutY="429.0" mnemonicParsing="false" onAction="#checkPuzzle" style="-fx-background-color: #2E40F9;" text="Check" textFill="#fcb141">
+      <Button fx:id="check" layoutX="40.0" layoutY="429.0" mnemonicParsing="false" onAction="#onCheckPuzzle" style="-fx-background-color: #2E40F9;" text="Check" textFill="#fcb141">
          <font>
             <Font name="Tamil MN" size="13.0" />
          </font></Button>

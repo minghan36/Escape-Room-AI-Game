@@ -169,7 +169,7 @@ public class LightController {
 
   // pressing on the quiz master to open the chat box
   @FXML
-  public void clickQuizMaster(MouseEvent event) {
+  private void clickQuizMaster(MouseEvent event) {
     App.setUi("chat");
   }
 

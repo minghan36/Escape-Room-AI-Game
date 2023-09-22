@@ -153,7 +153,7 @@ public class LockedRoomController {
    * @param event the key event
    */
   @FXML
-  public void onKeyPressed(KeyEvent event) {
+  private void onKeyPressed(KeyEvent event) {
     System.out.println("key " + event.getCode() + " pressed");
   }
 
@@ -163,7 +163,7 @@ public class LockedRoomController {
    * @param event the key event
    */
   @FXML
-  public void onKeyReleased(KeyEvent event) {
+  private void onKeyReleased(KeyEvent event) {
     System.out.println("key " + event.getCode() + " released");
   }
 
@@ -183,21 +183,21 @@ public class LockedRoomController {
    */
   // Method to enter the bathroom
   @FXML
-  public void enterBathroom() {
+  private void enterBathroom() {
     GameState.currentRoom = "bathroom";
     App.setUi("bathroom");
   }
 
   // Method to enter the computer room
   @FXML
-  public void enterComputerRoom() {
+  private void enterComputerRoom() {
     GameState.currentRoom = "computerroom";
     App.setUi("computerroom");
   }
 
   // Method for the highlighting of arrows when on them
   @FXML
-  public void highlightBathroom() {
+  private void highlightBathroom() {
     toBathroom.setOpacity(1);
     toBathroom.setScaleX(1.2);
     toBathroom.setScaleY(1.2);
@@ -205,7 +205,7 @@ public class LockedRoomController {
 
   // Method for removing the highlight
   @FXML
-  public void removeHighlightBathroom() {
+  private void removeHighlightBathroom() {
     toBathroom.setOpacity(0.3);
     toBathroom.setScaleX(1);
     toBathroom.setScaleY(1);
@@ -213,7 +213,7 @@ public class LockedRoomController {
 
   // Method for the highlighting of arrows when on them
   @FXML
-  public void highlightComputerRoom() {
+  private void highlightComputerRoom() {
     toComputerRoom.setOpacity(1);
     toComputerRoom.setScaleX(1.2);
     toComputerRoom.setScaleY(1.2);
@@ -221,7 +221,7 @@ public class LockedRoomController {
 
   // Method for removing the highlight
   @FXML
-  public void removeHighlightComputerRoom() {
+  private void removeHighlightComputerRoom() {
     toComputerRoom.setOpacity(0.3);
     toComputerRoom.setScaleX(1);
     toComputerRoom.setScaleY(1);
@@ -229,7 +229,7 @@ public class LockedRoomController {
 
   // pressing on the quiz master to open the chat box
   @FXML
-  public void clickQuizMaster(MouseEvent event) {
+  private void clickQuizMaster(MouseEvent event) {
 
     App.setUi("chat");
   }
@@ -259,7 +259,7 @@ public class LockedRoomController {
 
   // Method to increase the globe size
   @FXML
-  public void increaseGlobeSize(MouseEvent event) {
+  private void increaseGlobeSize(MouseEvent event) {
     if (GameState.isLightPuzzleSolved) {
       globe.setScaleX(1.05);
       globe.setScaleY(1.05);
@@ -270,14 +270,14 @@ public class LockedRoomController {
 
   // Method to decrease the globe size
   @FXML
-  public void decreaseGlobeSize(MouseEvent event) {
+  private void decreaseGlobeSize(MouseEvent event) {
     globe.setScaleX(1);
     globe.setScaleY(1);
   }
 
   // Method to enter the blue colour for passcode
   @FXML
-  public void enterBlue() {
+  private void enterBlue() {
     if (GameState.isPuzzleSolved) {
       buttonBlue.setScaleX(1.2);
       buttonBlue.setScaleY(1.2);
@@ -286,7 +286,7 @@ public class LockedRoomController {
 
   // Method to exit the blue colour for passcode
   @FXML
-  public void exitBlue() {
+  private void exitBlue() {
     if (GameState.isPuzzleSolved) {
       buttonBlue.setScaleX(1);
       buttonBlue.setScaleY(1);
@@ -295,7 +295,7 @@ public class LockedRoomController {
 
   // Method to enter the red colour for passcode
   @FXML
-  public void enterRed() {
+  private void enterRed() {
     if (GameState.isPuzzleSolved) {
       buttonRed.setScaleX(1.2);
       buttonRed.setScaleY(1.2);
@@ -304,7 +304,7 @@ public class LockedRoomController {
 
   // Method to exit the red colour for passcode
   @FXML
-  public void exitRed() {
+  private void exitRed() {
     if (GameState.isPuzzleSolved) {
       buttonRed.setScaleX(1);
       buttonRed.setScaleY(1);
@@ -313,7 +313,7 @@ public class LockedRoomController {
 
   // Method to enter the green colour for passcode
   @FXML
-  public void enterGreen() {
+  private void enterGreen() {
     if (GameState.isPuzzleSolved) {
       buttonGreen.setScaleX(1.2);
       buttonGreen.setScaleY(1.2);
@@ -322,7 +322,7 @@ public class LockedRoomController {
 
   // Method to exit the green colour for passcode
   @FXML
-  public void exitGreen() {
+  private void exitGreen() {
     if (GameState.isPuzzleSolved) {
       buttonGreen.setScaleX(1);
       buttonGreen.setScaleY(1);
@@ -331,7 +331,7 @@ public class LockedRoomController {
 
   // Method to enter the yellow colour for passcode
   @FXML
-  public void enterYellow() {
+  private void enterYellow() {
     if (GameState.isPuzzleSolved) {
       buttonYellow.setScaleX(1.2);
       buttonYellow.setScaleY(1.2);
@@ -340,7 +340,7 @@ public class LockedRoomController {
 
   // Method to exit the yellow colour for passcode
   @FXML
-  public void exitYellow() {
+  private void exitYellow() {
     if (GameState.isPuzzleSolved) {
       buttonYellow.setScaleX(1);
       buttonYellow.setScaleY(1);
@@ -473,7 +473,7 @@ public class LockedRoomController {
 
   // Method to click on the globe
   @FXML
-  public void clickGlobe(MouseEvent event) {
+  private void clickGlobe(MouseEvent event) {
     if (!GameState.isGlobeFound) {
       objText.setText("You're missing the globe item required to access the puzzle!");
       return;

@@ -131,20 +131,20 @@ public class ComputerRoomController {
 
   // pressing on the quiz master to open the chat box
   @FXML
-  public void clickQuizMaster(MouseEvent event) {
+  private void clickQuizMaster(MouseEvent event) {
     App.setUi("chat");
   }
 
   // Method to enter the locked room
   @FXML
-  public void enterLockedRoom(MouseEvent event) {
+  private void enterLockedRoom(MouseEvent event) {
     GameState.currentRoom = "lockedroom";
     App.setUi("lockedroom");
   }
 
   // Method for the highlighting of arrows when on them
   @FXML
-  public void highlight() {
+  private void highlight() {
     toLockedRoom.setOpacity(1);
     toLockedRoom.setScaleX(1.2);
     toLockedRoom.setScaleY(1.2);
@@ -152,7 +152,7 @@ public class ComputerRoomController {
 
   // Method for removing the highlight
   @FXML
-  public void removeHighlight() {
+  private void removeHighlight() {
     toLockedRoom.setOpacity(0.3);
     toLockedRoom.setScaleX(1);
     toLockedRoom.setScaleY(1);
@@ -208,7 +208,7 @@ public class ComputerRoomController {
 
   // Method for increasing the size of the image
   @FXML
-  public void increaseSize(MouseEvent event) {
+  private void increaseSize(MouseEvent event) {
     if (!GameState.isRiddleResolved) {
       return;
     } else {
@@ -219,7 +219,7 @@ public class ComputerRoomController {
 
   // Method for decreasing the size of the image
   @FXML
-  public void decreaseSize(MouseEvent event) {
+  private void decreaseSize(MouseEvent event) {
     // decrease the size of the image
     hoverImage.setScaleX(1);
     hoverImage.setScaleY(1);
@@ -251,14 +251,14 @@ public class ComputerRoomController {
 
   // Method for hovering over tape
   @FXML
-  public void increaseTapeSize(MouseEvent event) {
+  private void increaseTapeSize(MouseEvent event) {
     tape.setScaleX(1.2);
     tape.setScaleY(1.2);
   }
 
   // Method for decreasing the size of the tape
   @FXML
-  public void decreaseTapeSize(MouseEvent event) {
+  private void decreaseTapeSize(MouseEvent event) {
     tape.setScaleX(1);
     tape.setScaleY(1);
   }

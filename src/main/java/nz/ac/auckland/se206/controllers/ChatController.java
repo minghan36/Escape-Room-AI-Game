@@ -334,21 +334,21 @@ public class ChatController {
 
   // Method for increasing size the SD card when hovering
   @FXML
-  public void increaseSize() {
+  private void increaseSize() {
     sdCard.setScaleX(1.2);
     sdCard.setScaleY(1.2);
   }
 
   // Method for decreasing size of the SD card when not over it
   @FXML
-  public void decreaseSize() {
+  private void decreaseSize() {
     sdCard.setScaleX(1);
     sdCard.setScaleY(1);
   }
 
   // Method to collect the sd card
   @FXML
-  public void clickSdCard() {
+  private void clickSdCard() {
     GameState.isSdCardFound = true;
     sdCard.setVisible(false);
     sdCollect.setText("");
