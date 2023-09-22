@@ -8,16 +8,13 @@ public class GptPromptEngineering {
   private static String[] flowSteps = {
     "Hint: first, the you must solve the riddle to retrieve an SD card.",
     "Hint: once the riddle is solved, you need to use the SD card in the computer room to decrypt"
-        + " a message.",
-    "Hint: the decrypted message will lead you to the next room where you repair light cables.",
+        + " a message. which will lead you to the next room ",
     "Hint: after fixing the light cable, you will discover a piece of an item located in another"
         + " room.",
     "Hint: go to the room where the item in the picture is found and works on the picture puzzle to"
         + " reassemble the item.",
-    "Hint: Solving this puzzle is the key to the escape."
+    "Hint: Decrypting this item is the rgb key to the escape."
   };
-
-  private static int currentStep = 0;
 
   /**
    * Provides the next step in the game flow.
@@ -25,8 +22,16 @@ public class GptPromptEngineering {
    * @return A string representing the next step or a message informing that all steps are provided.
    */
   public static String getNextGameFlowStep() {
-    if (currentStep < flowSteps.length) {
-      return flowSteps[currentStep++];
+    if (GameState.currentObj.equals("Riddle")) {
+      return flowSteps[0];
+    } else if (GameState.currentObj.equals("Decrypt")) {
+      return flowSteps[1];
+    } else if (GameState.currentObj.equals("Light Puzzle")) {
+      return flowSteps[2];
+    } else if (GameState.currentObj.equals("Picture Puz")) {
+      return flowSteps[3];
+    } else if (GameState.currentObj.equals("RGB Puzzle")) {
+      return flowSteps[4];
     } else {
       return "You've been provided with all the steps. Good luck!";
     }
