@@ -22,6 +22,7 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 
 public class ComputerRoomController {
+  // Intialising variables required for the room
 
   @FXML private ImageView tape;
   @FXML private ImageView toLockedRoom;
@@ -41,26 +42,31 @@ public class ComputerRoomController {
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
+    // Displaying the items which are collected/not collected
     if (GameState.isRgbClueFound) {
       rgbClue1.setVisible(true);
       rgbClue1.setText(GameState.password);
     } else {
       rgbClue1.setVisible(false);
     }
+    // Displaying the items which are collected/not collected
     objText.setText(GameState.getObjective());
     hintsText.setText(GameState.getHint());
     sdCard.setVisible(GameState.isSdCardFound);
     tape1.setVisible(GameState.isElectricalTapeFound);
     globe.setVisible(GameState.isGlobeFound);
+    // Allowing the user to collect the tape only when the light puzzle is started
     if (!GameState.isLightPuzzleStarted) {
       tape.setOnMouseClicked(null);
       tape.setOnMouseEntered(null);
       tape.setOpacity(0);
     }
+    // Tape disappeares once picked up
     if (GameState.isElectricalTapeFound) {
       tape.setOpacity(0);
       tape.setOnMouseClicked(null);
     }
+    // Timer thread
     timer.setText(GameState.getTimeLeft());
     Thread timeThread =
         new Thread(
@@ -129,12 +135,14 @@ public class ComputerRoomController {
     App.setUi("chat");
   }
 
+  // Method to enter the locked room
   @FXML
   public void enterLockedRoom(MouseEvent event) {
     GameState.currentRoom = "lockedroom";
     App.setUi("lockedroom");
   }
 
+  // Method for the highlighting of arrows when on them
   @FXML
   public void highlight() {
     toLockedRoom.setOpacity(1);
@@ -142,6 +150,7 @@ public class ComputerRoomController {
     toLockedRoom.setScaleY(1.2);
   }
 
+  // Method for removing the highlight
   @FXML
   public void removeHighlight() {
     toLockedRoom.setOpacity(0.3);
@@ -149,6 +158,7 @@ public class ComputerRoomController {
     toLockedRoom.setScaleY(1);
   }
 
+  // Method for starting the timer
   public void startTimer() {
     Timeline timeline =
         new Timeline(
@@ -172,25 +182,31 @@ public class ComputerRoomController {
     timeline.play();
   }
 
+  // Method for enterign the decrypt puzzle
   @FXML
   public void enterDecrypt(MouseEvent event) {
+    // Conditions letting the user to enter the puzzle
     if (!GameState.isRiddleResolved || !GameState.isSdCardFound) {
       objText.setText("You need the SD card to access the computer!");
     } else {
       GameState.currentRoom = "decrypt";
-      if (!GameState.isComputerAccessed){
+      if (!GameState.isComputerAccessed) {
+        // Thread to send the prompt to the GPT to over look progress
         Thread thread =
-                    new Thread(
-                        () -> {
-                          GameState.sendPrompt("The player has accessed the computer. The player must decipher an alien message using an onscreen alien alphabet.");
-                        });
-                thread.start();
-      GameState.isComputerAccessed = true;
+            new Thread(
+                () -> {
+                  GameState.sendPrompt(
+                      "The player has accessed the computer. The player must decipher an alien"
+                          + " message using an onscreen alien alphabet.");
+                });
+        thread.start();
+        GameState.isComputerAccessed = true;
       }
       App.setUi("decrypt");
     }
   }
 
+  // Method for increasing the size of the image
   @FXML
   public void increaseSize(MouseEvent event) {
     if (!GameState.isRiddleResolved) {
@@ -201,6 +217,7 @@ public class ComputerRoomController {
     }
   }
 
+  // Method for decreasing the size of the image
   @FXML
   public void decreaseSize(MouseEvent event) {
     // decrease the size of the image
@@ -208,17 +225,23 @@ public class ComputerRoomController {
     hoverImage.setScaleY(1);
   }
 
+  // Method for picking the tape up
   @FXML
   public void clickTape() {
-    if (!GameState.isComputerAccessed){
-        Thread thread =
-                    new Thread(
-                        () -> {
-                          GameState.sendPrompt("The player has gotten the tape. The player must now go back to the broken light and fix the broken wires by simply clicking on areas that appear broken. The player does not need to consider the colours of the wires.");
-                        });
-                thread.start();
+    if (!GameState.isComputerAccessed) {
+      // Thread to send the prompt to the GPT to over look progress
+      Thread thread =
+          new Thread(
+              () -> {
+                GameState.sendPrompt(
+                    "The player has gotten the tape. The player must now go back to the broken"
+                        + " light and fix the broken wires by simply clicking on areas that appear"
+                        + " broken. The player does not need to consider the colours of the"
+                        + " wires.");
+              });
+      thread.start();
       GameState.isComputerAccessed = true;
-      }
+    }
     tape.setOpacity(0);
     tape.setOnMouseClicked(null);
     GameState.isElectricalTapeFound = true;
@@ -226,12 +249,14 @@ public class ComputerRoomController {
     tape1.setVisible(true);
   }
 
+  // Method for hovering over tape
   @FXML
   public void increaseTapeSize(MouseEvent event) {
     tape.setScaleX(1.2);
     tape.setScaleY(1.2);
   }
 
+  // Method for decreasing the size of the tape
   @FXML
   public void decreaseTapeSize(MouseEvent event) {
     tape.setScaleX(1);

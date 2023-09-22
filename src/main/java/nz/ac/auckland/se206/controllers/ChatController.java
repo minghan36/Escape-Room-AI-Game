@@ -32,6 +32,7 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 
 /** Controller class for the chat view. */
 public class ChatController {
+  // Creating the variables for the chat view
   @FXML private TextArea chatTextArea;
   @FXML private TextField inputText;
   @FXML private Button sendButton;
@@ -56,19 +57,22 @@ public class ChatController {
    */
   @FXML
   public void initialize() throws ApiProxyException {
+    // Display the hint count if its medium level
     if (GameState.isMediumPicked) {
       hintsText.setText("Hints remaining: " + (5 - GameState.hintCounter));
     }
+    // Intialising the text area of the scene with game progress
     objText.setText(GameState.getObjective());
     hintsText.setText(GameState.getHint());
     chatTextArea.setText(GameState.chatContents);
+    // Displaying the item if its found
     if (GameState.isRgbClueFound) {
       rgbClue1.setVisible(true);
       rgbClue1.setText(GameState.password);
     } else {
       rgbClue1.setVisible(false);
     }
-
+    // Allowing the rungpt if the gamemaster is loaded
     if (!GameState.isGameMasterLoaded) {
       runGpt(
           new ChatMessage(
@@ -85,15 +89,18 @@ public class ChatController {
             // Handle other exceptions appropriately.
           }
         });
+    // Displaying the sdcard if its found
     if (!GameState.isSdCardFound) {
       sdCard.setVisible(GameState.isRiddleResolved);
     } else {
       sdCard.setVisible(false);
     }
+    // Displaying the items if found/not found
     sdCard1.setVisible(GameState.isSdCardFound);
     tape.setVisible(GameState.isElectricalTapeFound);
     globe.setVisible(GameState.isGlobeFound);
     timer.setText(GameState.getTimeLeft());
+    // thread for the timer
     Thread timeThread =
         new Thread(
             () -> {
@@ -125,6 +132,7 @@ public class ChatController {
   }
 
   private void startAnimation() {
+    // Animation for the gamemaster
     GraphicsContext gc = quizMaster.getGraphicsContext2D();
     AnimationTimer timer =
         new AnimationTimer() {
@@ -215,65 +223,36 @@ public class ChatController {
     if (message.trim().isEmpty()) {
       return;
     }
-
+    // Sends prompts to the GPT api to overlook the gameflow and game progress if the user does ask
+    // for a hint
     if (GameState.hintCounter == 5) {
-                Thread thread =
-                    new Thread(
-                        () -> {
-                          GameState.sendPrompt("The player has reached their hint limit. Do not provide any help to the player. Do not give the player any hints. Do not tell the player the next step.");
-                        });
-                thread.start();
-    }
-
-    if(GameState.isDifficultPicked){
       Thread thread =
-                    new Thread(
-                        () -> {
-                          GameState.sendPrompt("The player is in difficult mode. Do not provide any help to the player. Do not give the player any hints. Do not tell the player the next step.");
-                        });
-                thread.start();
+          new Thread(
+              () -> {
+                GameState.sendPrompt(
+                    "The player has reached their hint limit. Do not provide any help to the"
+                        + " player. Do not give the player any hints. Do not tell the player the"
+                        + " next step.");
+              });
+      thread.start();
+    }
+    // Sends prompts to the GPT api to overlook the gameflow and game progress if the user does not
+    // ask for a hint
+    if (GameState.isDifficultPicked) {
+      Thread thread =
+          new Thread(
+              () -> {
+                GameState.sendPrompt(
+                    "The player is in difficult mode. Do not provide any help to the player. Do not"
+                        + " give the player any hints. Do not tell the player the next step.");
+              });
+      thread.start();
     }
 
     inputText.clear();
     ChatMessage msg = new ChatMessage("user", message);
     appendChatMessage(msg);
-
-    /*
-    if (GameState.isMediumPicked && GameState.hintCounter >= 5) {
-      Pattern helpPattern = Pattern.compile("(help|hint)", Pattern.CASE_INSENSITIVE);
-      Matcher helpMatcher = helpPattern.matcher(message);
-
-      if (helpMatcher.find() && GameState.hintCounter >= 5) {
-        appendChatMessage(new ChatMessage("assistant", "All hints have been used up."));
-        return;
-      }
-    }
-
-    if (!GameState.isDifficultPicked) {
-      Pattern pattern =
-          Pattern.compile(
-              "(what'?s? next|how do I continue|what should I do now |next |do |then |after)",
-              Pattern.CASE_INSENSITIVE);
-      Matcher matcher = pattern.matcher(message);
-      if (matcher.find()) {
-        if (GameState.isMediumPicked && GameState.hintCounter >= 5) {
-          appendChatMessage(
-              new ChatMessage("assistant", "You've reached the maximum number of hints allowed."));
-          return;
-        }
-
-        String nextStepMessage = GptPromptEngineering.getNextGameFlowStep();
-        appendChatMessage(new ChatMessage("assistant", nextStepMessage));
-
-        if (GameState.isMediumPicked) {
-          GameState.hintCounter++;
-          hintsText.setText("Hints Remaining: " + (5 - GameState.hintCounter));
-        }
-        return;
-      }
-    }
-    */
-
+    // Checking the riddle answer of the user to the riddle given
     CompletableFuture<ChatMessage> future = runGpt(msg);
     future.thenAccept(
         lastMsg -> {
@@ -284,22 +263,32 @@ public class ChatController {
               sdCollect.setText("Collect the SD card!");
               objText.setText(GameState.getObjective());
               GameState.currentObj = "Decrypt";
+              // Creating prompt for the GPT api to overlook the gameflow and game progress
               Thread thread =
-                    new Thread(
-                        () -> {
-                          GameState.sendPrompt("The player has solved the riddle and received an SD card. The player must"
-                          + " now find and access the computer in the computer room by clicking on the computer.");
-                        });
-                thread.start();
+                  new Thread(
+                      () -> {
+                        GameState.sendPrompt(
+                            "The player has solved the riddle and received an SD card. The player"
+                                + " must now find and access the computer in the computer room by"
+                                + " clicking on the computer.");
+                      });
+              thread.start();
             } else if (lastMsg.getContent().contains("hint: ")
-                || lastMsg.getContent().contains("Hint: ")|| lastMsg.getContent().contains("Clue: ")|| lastMsg.getContent().contains("clue: ")) {
-                  if(GameState.hintCounter<5){
-              GameState.hintCounter++;
-                  }
-                  GameState.latestHint = lastMsg.getContent();
+                || lastMsg.getContent().contains("Hint: ")
+                || lastMsg.getContent().contains("Clue: ")
+                || lastMsg.getContent().contains("clue: ")) {
+              // Updating hint counter
+              if (GameState.hintCounter < 5) {
+                GameState.hintCounter++;
+              }
+              GameState.latestHint = lastMsg.getContent();
               // Display the hint count if its medium level
               if (GameState.isMediumPicked && GameState.hintCounter <= 5) {
-                hintsText.setText("Hints Remaining: " + (5 - GameState.hintCounter) +"\n"+GameState.latestHint);
+                hintsText.setText(
+                    "Hints Remaining: "
+                        + (5 - GameState.hintCounter)
+                        + "\n"
+                        + GameState.latestHint);
               }
             }
           }
@@ -319,6 +308,7 @@ public class ChatController {
     App.setUi(GameState.currentRoom);
   }
 
+  // Method for the timer
   public void startTimer() {
     Timeline timeline =
         new Timeline(
@@ -342,18 +332,21 @@ public class ChatController {
     timeline.play();
   }
 
+  // Method for increasing size the SD card when hovering
   @FXML
   public void increaseSize() {
     sdCard.setScaleX(1.2);
     sdCard.setScaleY(1.2);
   }
 
+  // Method for decreasing size of the SD card when not over it
   @FXML
   public void decreaseSize() {
     sdCard.setScaleX(1);
     sdCard.setScaleY(1);
   }
 
+  // Method to collect the sd card
   @FXML
   public void clickSdCard() {
     GameState.isSdCardFound = true;
