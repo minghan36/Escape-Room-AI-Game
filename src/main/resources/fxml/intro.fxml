@@ -15,7 +15,7 @@
             <Image url="@../images/intro.png" />
          </image>
       </ImageView>
-      <Label fx:id="title" layoutX="374.0" layoutY="14.0" text="Mission 206" textFill="#ffa723">
+      <Label fx:id="title" layoutX="135.0" layoutY="19.0" text="Cosmic Conundrum: The Alien Escape" textFill="#ffa723">
          <font>
             <Font name="Tamil MN" size="41.0" />
          </font>
@@ -30,7 +30,7 @@
             <Image url="@../images/blue_button02.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="503.0" layoutY="427.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="494.0" layoutY="427.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/red_button00.png" />
          </image>
@@ -45,12 +45,12 @@
             <Font name="Tamil MN" size="18.0" />
          </font>
       </Label>
-      <Label contentDisplay="CENTER" layoutX="569.0" layoutY="438.0" text="START" textAlignment="CENTER" textFill="#3640ab">
+      <Label contentDisplay="CENTER" layoutX="560.0" layoutY="439.0" text="START" textAlignment="CENTER" textFill="#3640ab">
          <font>
             <Font name="Tamil MN" size="22.0" />
          </font>
       </Label>
-      <Rectangle fx:id="start" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="47.0" layoutX="503.0" layoutY="427.0" onMouseClicked="#startGame" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+      <Rectangle fx:id="start" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="47.0" layoutX="494.0" layoutY="428.0" onMouseClicked="#startGame" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
       <Button fx:id="easy" layoutX="28.0" layoutY="179.0" mnemonicParsing="false" onMouseClicked="#easyPicked" prefHeight="28.0" prefWidth="98.0" style="-fx-background-color: #2E40F9;" text="EASY" textFill="#fcb141">
          <font>
             <Font name="Tamil MN" size="15.0" />
@@ -116,7 +116,7 @@
             <Image url="@../images/blue_button02.png" />
          </image>
       </ImageView>
-      <Label layoutX="549.0" layoutY="116.0" text="OBJECTIVES" textFill="#fcb141">
+      <Label layoutX="549.0" layoutY="116.0" text="OBJECTIVE" textFill="#fcb141">
          <font>
             <Font name="Tamil MN" size="18.0" />
          </font>
@@ -126,10 +126,20 @@
             <Font name="Telugu MN" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="levelDetail" layoutX="26.0" layoutY="310.0" prefHeight="28.0" prefWidth="683.0" textFill="#fffffe">
+      <Label fx:id="levelDetail" layoutX="26.0" layoutY="295.0" prefHeight="62.0" prefWidth="391.0" textFill="#fffffe" wrapText="true">
          <font>
             <Font name="Telugu MN" size="13.0" />
          </font>
       </Label>
+      <Label layoutX="473.0" layoutY="144.0" prefHeight="267.0" prefWidth="242.0" text="Welcome, brave adventurer, to the heart of this alien spaceship. Your mission, should you choose to accept it, is to overcome all my challenges and puzzles to unlock the sealed doors, and make your escape. Time is of the essence, for if you do not escape in time, you will be trapped in this alien realm for eternity. The fate of your escape rests in your wits and determination. Best of luck, and may you unlock the secrets of the cosmos!" textFill="WHITE" wrapText="true">
+         <font>
+            <Font name="Tamil MN" size="14.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="alien" fitHeight="150.0" fitWidth="200.0" layoutX="781.0" layoutY="189.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/move1.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>

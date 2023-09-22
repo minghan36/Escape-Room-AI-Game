@@ -219,7 +219,7 @@ public class BathroomController {
   @FXML
   public void clickLightOne() {
     GameState.isLightPuzzleStarted = true;
-    if (GameState.isLightPuzzleSolved) {
+    if (GameState.isLightPuzzleSolved && GameState.isGlobeFound) {
       return;
     } else {
       GameState.currentRoom = "light";
@@ -230,7 +230,7 @@ public class BathroomController {
   @FXML
   public void clickLightTwo() {
     GameState.isLightPuzzleStarted = true;
-    if (GameState.isLightPuzzleSolved) {
+    if (GameState.isLightPuzzleSolved && GameState.isGlobeFound) {
       return;
     } else {
       GameState.currentRoom = "light";
@@ -241,7 +241,7 @@ public class BathroomController {
   @FXML
   public void clickLightThree() {
     GameState.isLightPuzzleStarted = true;
-    if (GameState.isLightPuzzleSolved) {
+    if (GameState.isLightPuzzleSolved && GameState.isGlobeFound) {
       return;
     } else {
       GameState.currentRoom = "light";
