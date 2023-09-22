@@ -126,7 +126,7 @@
             <Font name="Telugu MN" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="levelDetail" layoutX="26.0" layoutY="310.0" prefHeight="28.0" prefWidth="683.0" textFill="#fffffe">
+      <Label fx:id="levelDetail" layoutX="26.0" layoutY="295.0" prefHeight="62.0" prefWidth="391.0" textFill="#fffffe" wrapText="true">
          <font>
             <Font name="Telugu MN" size="13.0" />
          </font>
