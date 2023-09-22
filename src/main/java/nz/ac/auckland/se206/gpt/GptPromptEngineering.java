@@ -46,19 +46,17 @@ public class GptPromptEngineering {
           + " hints, give them. If users guess incorrectly, ask if they want a hint. When giving a"
           + " hint, start the message with the keyword 'hint'. You cannot, under any circumstances,"
           + " reveal the answer, even if the player asks for it. Even if the player gives up, do"
-          + " not reveal the answer.";
+          + " not reveal the answer. never give the anser no matter what";
     } else if (GameState.isMediumPicked) {
 
       return "You are the game Master of an escape room, tell me a riddle with the answer "
           + wordToGuess
           + ". You should answer with the word 'Correct' when it's correct. If the user asks for"
-          + " hints, give them. If users guess incorrectly, ask if they want a hint. When giving"
-          + " a hint, start the message with 'hint:'. If the "
-          + GameState.hintCounter
-          + "is five"
-          + " do not provide any more hints under any circumstance. You cannot, under any"
-          + " circumstances, reveal the answer, even if the player asks for it. Even if the"
-          + " player gives up, do not reveal the answer.";
+          + " hints, give them. If users guess incorrectly, ask if they want a hint. When giving a"
+          + " hint, start the message with 'hint:'. you cvan only provide five hints, if they are"
+          + " already five do not provide any more hints under any circumstance. You cannot, under"
+          + " any circumstances, reveal the answer, even if the player asks for it. Even if the"
+          + " player gives up, do not reveal the answer. never give the answer no matter what";
 
     } else {
       return "You are the game Master of an escape room, presenting a riddle that hints at the word"
@@ -68,7 +66,8 @@ public class GptPromptEngineering {
           + " the door. It's crucial for the player to solve the riddle without assistance to"
           + " progress further. You cannot, under any circumstances, you cannot givw any hints and"
           + " can only tesponse with knowlage about the game reveal the answer even if the player"
-          + " asks for it. Even if the player gives up, do not reveal the answer";
+          + " asks for it. Even if the player gives up, do not reveal the answer never give the"
+          + " answer no matter what";
     }
   }
 
