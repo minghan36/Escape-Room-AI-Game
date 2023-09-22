@@ -6,7 +6,6 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.util.Duration;
-import nz.ac.auckland.se206.controllers.ChatController;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 
 /** Represents the state of the game. */
@@ -46,6 +45,7 @@ public class GameState {
   public static int minutes = 0;
   public static int seconds = 0;
   public static int wireFixes = 0;
+  public static int hintCounter = 0;
 
   public static Timeline timeline = null;
 
@@ -120,7 +120,7 @@ public class GameState {
 
   public static String getHint() {
     if (GameState.isMediumPicked) {
-      return ("Hints Remaining : " + (5 - ChatController.hintCounter) + "\n" + hintMessage);
+      return ("Hints Remaining : " + (5 - hintCounter) + "\n" + hintMessage);
     } else if (GameState.isDifficultPicked) {
       return " no Hints, you got this";
     } else {
