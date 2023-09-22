@@ -51,8 +51,6 @@ public class ChatController {
   @FXML private ImageView globe;
   @FXML private Button rgbClue1;
 
-  public static int hintCounter = 0;
-
   /**
    * Initializes the chat view, loading the riddle.
    *
@@ -61,7 +59,7 @@ public class ChatController {
   @FXML
   public void initialize() throws ApiProxyException {
     if (GameState.isMediumPicked) {
-      hintsText.setText("Hints remaining: " + (5 - hintCounter));
+      hintsText.setText("Hints remaining: " + (5 - GameState.hintCounter));
     }
     objText.setText(GameState.getObjective());
     hintsText.setText(GameState.getHint());
@@ -74,9 +72,7 @@ public class ChatController {
     }
 
     if (!GameState.isGameMasterLoaded) {
-      runGpt(
-          new ChatMessage(
-              "user", GptPromptEngineering.getRiddleWithGivenWord("spaceship", hintCounter)));
+      runGpt(new ChatMessage("user", GptPromptEngineering.getRiddleWithGivenWord("spaceship")));
       GameState.isGameMasterLoaded = true;
     }
     // when the enter key is pressed
@@ -214,28 +210,38 @@ public class ChatController {
    */
   @FXML
   private void onSendMessage(ActionEvent event) throws ApiProxyException, IOException {
+
     String message = inputText.getText();
     if (message.trim().isEmpty()) {
       return;
     }
+
     inputText.clear();
     ChatMessage msg = new ChatMessage("user", message);
     appendChatMessage(msg);
 
-    Pattern pattern =
-        Pattern.compile(
-            "(what'?s? next|how do I continue|what should I do now |next |do |then)",
-            Pattern.CASE_INSENSITIVE);
-    Matcher matcher = pattern.matcher(message);
-    if (matcher.find()) {
-      String nextStepMessage = GptPromptEngineering.getNextGameFlowStep();
-      appendChatMessage(new ChatMessage("assistant", nextStepMessage));
+    if (!GameState.isDifficultPicked) {
+      Pattern pattern =
+          Pattern.compile(
+              "(what'?s? next|how do I continue|what should I do now |next |do |then)",
+              Pattern.CASE_INSENSITIVE);
+      Matcher matcher = pattern.matcher(message);
+      if (matcher.find()) {
+        if (GameState.isMediumPicked && GameState.hintCounter >= 5) {
+          appendChatMessage(
+              new ChatMessage("assistant", "You've reached the maximum number of hints allowed."));
+          return;
+        }
 
-      if (GameState.isMediumPicked) {
-        hintCounter++;
-        hintsText.setText("Hints Remaining: " + (5 - hintCounter));
+        String nextStepMessage = GptPromptEngineering.getNextGameFlowStep();
+        appendChatMessage(new ChatMessage("assistant", nextStepMessage));
+
+        if (GameState.isMediumPicked) {
+          GameState.hintCounter++;
+          hintsText.setText("Hints Remaining: " + (5 - GameState.hintCounter));
+        }
+        return;
       }
-      return;
     }
 
     CompletableFuture<ChatMessage> future = runGpt(msg);
@@ -250,11 +256,11 @@ public class ChatController {
               GameState.currentObj = "Decrypt";
             } else if (lastMsg.getContent().contains("hint: ")
                 || lastMsg.getContent().contains("Hint: ")) {
-              hintCounter++;
+              GameState.hintCounter++;
 
               // Display the hint count if its medium level
-              if (GameState.isMediumPicked) {
-                hintsText.setText("Hints Remaining: " + (5 - hintCounter));
+              if (GameState.isMediumPicked && GameState.hintCounter <= 5) {
+                hintsText.setText("Hints Remaining: " + (5 - GameState.hintCounter));
               }
             }
           }

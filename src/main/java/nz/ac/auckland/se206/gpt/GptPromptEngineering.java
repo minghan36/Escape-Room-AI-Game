@@ -25,7 +25,6 @@ public class GptPromptEngineering {
    * @return A string representing the next step or a message informing that all steps are provided.
    */
   public static String getNextGameFlowStep() {
-
     if (currentStep < flowSteps.length) {
       return flowSteps[currentStep++];
     } else {
@@ -39,9 +38,9 @@ public class GptPromptEngineering {
    * @param wordToGuess the word to be guessed in the riddle
    * @return the generated prompt engineering string
    */
-  public static String getRiddleWithGivenWord(String wordToGuess, int hintCounter) {
+  public static String getRiddleWithGivenWord(String wordToGuess) {
     if (GameState.isEasyPicked) {
-      return "You are the AI of an escape room, tell me a riddle with the answer "
+      return "You are the game Master of an escape room, tell me a riddle with the answer "
           + wordToGuess
           + ". You should answer with the word 'Correct' when it's correct. If the user asks for"
           + " hints, give them. If users guess incorrectly, ask if they want a hint. When giving a"
@@ -50,22 +49,38 @@ public class GptPromptEngineering {
           + " not reveal the answer.";
     } else if (GameState.isMediumPicked) {
 
-      return "You are the AI of an escape room, tell me a riddle with the answer "
+      return "You are the game Master of an escape room, tell me a riddle with the answer "
           + wordToGuess
           + ". You should answer with the word 'Correct' when it's correct. If the user asks for"
           + " hints, give them. If users guess incorrectly, ask if they want a hint. When giving"
-          + " a hint, start the message with 'hint:'. If the user was already provided with five"
-          + " hints, do not provide any more hints under any circumstance. You cannot, under any"
+          + " a hint, start the message with 'hint:'. If the "
+          + GameState.hintCounter
+          + "is five"
+          + " do not provide any more hints under any circumstance. You cannot, under any"
           + " circumstances, reveal the answer, even if the player asks for it. Even if the"
           + " player gives up, do not reveal the answer.";
 
     } else {
-      return "You are the AI of an escape room, tell me a riddle with the answer "
+      return "You are the game Master of an escape room, tell me a riddle with the answer "
           + wordToGuess
           + ". You should answer with the word 'Correct' when it's correct. You cannot give the"
           + " user any hints or assistance. They must solve the riddle on their own. You cannot,"
           + " under any circumstances, reveal the answer, even if the player asks for it. Even if"
-          + " the player gives up, do not reveal the answer.";
+          + " the player gives up, do not reveal the answer. you must only respond with knowlage"
+          + " about the game, which is the player is playing an scape room they have to solve"
+          + " different puzzles and riddles that will lead him to key to unlock the locked door";
     }
+  }
+
+  public static String noMoreHints(String wordToGuess) {
+    return "You are the game Master of an escape room, tell me a riddle with the answer "
+        + wordToGuess
+        + ". You should answer with the word 'Correct' when it's correct. You cannot give the user"
+        + " any hints or assistance. As they have reached the maximum number of hints. They must"
+        + " solve the riddle on their own. You cannot, under any circumstances, reveal the answer,"
+        + " even if the player asks for it. Even if the player gives up, do not reveal the answer."
+        + " you must only respond with knowlage about the game, which is the player is playing an"
+        + " scape room they have to solve different puzzles and riddles that will lead him to key"
+        + " to unlock the locked door";
   }
 }
