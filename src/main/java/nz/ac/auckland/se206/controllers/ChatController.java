@@ -38,7 +38,7 @@ public class ChatController {
   @FXML private TextField inputText;
   @FXML private Button sendButton;
   @FXML private Canvas quizMaster;
-  @FXML private Label Timer;
+  @FXML private Label timer;
   @FXML private Label labelTranslate;
   private Image[] alienImages;
   private int currentImageIndex = 0;
@@ -93,7 +93,7 @@ public class ChatController {
     sdCard1.setVisible(GameState.isSdCardFound);
     tape.setVisible(GameState.isElectricalTapeFound);
     globe.setVisible(GameState.isGlobeFound);
-    Timer.setText(GameState.getTimeLeft());
+    timer.setText(GameState.getTimeLeft());
     Thread timeThread =
         new Thread(
             () -> {
@@ -303,7 +303,7 @@ public class ChatController {
                         new Runnable() {
                           @Override
                           public void run() {
-                            Timer.setText(GameState.getTimeLeft());
+                            timer.setText(GameState.getTimeLeft());
                           }
                         });
                   }

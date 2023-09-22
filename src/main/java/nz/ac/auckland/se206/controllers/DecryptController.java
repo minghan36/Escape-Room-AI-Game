@@ -26,7 +26,7 @@ import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 public class DecryptController {
 
-  @FXML private Label Timer;
+  @FXML private Label timer;
   @FXML private TextField inputText;
   @FXML private Button sendButton;
   @FXML private Label incorrect;
@@ -67,7 +67,7 @@ public class DecryptController {
     globe.setVisible(GameState.isGlobeFound);
     tape.setVisible(GameState.isElectricalTapeFound);
     sdCard.setVisible(GameState.isSdCardFound);
-    Timer.setText(GameState.getTimeLeft());
+    timer.setText(GameState.getTimeLeft());
     Thread timeThread =
         new Thread(
             () -> {
@@ -157,7 +157,7 @@ public class DecryptController {
                         new Runnable() {
                           @Override
                           public void run() {
-                            Timer.setText(GameState.getTimeLeft());
+                            timer.setText(GameState.getTimeLeft());
                           }
                         });
                   }
