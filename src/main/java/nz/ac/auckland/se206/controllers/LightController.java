@@ -207,6 +207,12 @@ public class LightController {
         objText.setText(
             "Good Job! You have solved the light puzzle. Collect the Picture of the Globe and"
                 + " travel to your next puzzle.");
+                Thread thread =
+                    new Thread(
+                        () -> {
+                          GameState.sendPrompt("The player has fixed the broken light. The player has received a picture of a globe that can be found in the room with the locked door. The player must now go and click on the globe to access the next part of the puzzle.");
+                        });
+                thread.start();
         GameState.isLightPuzzleSolved = true;
         globe.setVisible(true);
       }
@@ -234,6 +240,12 @@ public class LightController {
         objText.setText(
             "Good Job! You have solved the light puzzle. Collect the Picture of the Globe and"
                 + " travel to your next puzzle.");
+                Thread thread =
+                    new Thread(
+                        () -> {
+                          GameState.sendPrompt("The player has fixed the broken light. The player has received a picture of a globe that can be found in the room with the locked door. The player must now go and click on the globe to access the next part of the puzzle.");
+                        });
+                thread.start();
         GameState.isLightPuzzleSolved = true;
         globe.setVisible(true);
       }
@@ -259,6 +271,12 @@ public class LightController {
         objText.setText(
             "Good Job! You have solved the light puzzle. Collect the Picture of the Globe and"
                 + " travel to your next puzzle.");
+                Thread thread =
+                    new Thread(
+                        () -> {
+                          GameState.sendPrompt("The player has fixed the broken light. The player has received a picture of a globe that can be found in the room with the locked door. The player must now go and click on the globe to access the next part of the puzzle.");
+                        });
+                thread.start();
         GameState.isLightPuzzleSolved = true;
         globe.setVisible(true);
       }
@@ -282,6 +300,12 @@ public class LightController {
         objText.setText(
             "Good Job! You have solved the light puzzle. Collect the Picture of the Globe and"
                 + " travel to your next puzzle.");
+                Thread thread =
+                    new Thread(
+                        () -> {
+                          GameState.sendPrompt("The player has fixed the broken light. The player has received a picture of a globe that can be found in the room with the locked door. The player must now go and click on the globe to access the next part of the puzzle.");
+                        });
+                thread.start();
         GameState.isLightPuzzleSolved = true;
         globe.setVisible(true);
       }

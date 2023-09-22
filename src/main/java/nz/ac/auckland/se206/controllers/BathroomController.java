@@ -218,7 +218,15 @@ public class BathroomController {
 
   @FXML
   public void clickLightOne() {
+    if (!GameState.isLightPuzzleStarted){
+      Thread thread =
+                  new Thread(
+                      () -> {
+                        GameState.sendPrompt("The player has access behind the light. Some wires are broken. The player has to find the electrical tape to patch the wires with. The electrical tape can be found on the ground in the computer room.");
+                      });
+              thread.start();
     GameState.isLightPuzzleStarted = true;
+    }
     if (GameState.isLightPuzzleSolved && GameState.isGlobeFound) {
       return;
     } else {
@@ -229,7 +237,15 @@ public class BathroomController {
 
   @FXML
   public void clickLightTwo() {
+    if (!GameState.isLightPuzzleStarted){
+      Thread thread =
+                  new Thread(
+                      () -> {
+                        GameState.sendPrompt("The player has access behind the light. Some wires are broken. The player has to find the electrical tape to patch the wires with. The electrical tape can be found on the ground in the computer room.");
+                      });
+              thread.start();
     GameState.isLightPuzzleStarted = true;
+    }
     if (GameState.isLightPuzzleSolved && GameState.isGlobeFound) {
       return;
     } else {
@@ -240,7 +256,15 @@ public class BathroomController {
 
   @FXML
   public void clickLightThree() {
+    if (!GameState.isLightPuzzleStarted){
+      Thread thread =
+                  new Thread(
+                      () -> {
+                        GameState.sendPrompt("The player has access behind the light. Some wires are broken. The player has to find the electrical tape to patch the wires with. The electrical tape can be found on the ground in the computer room.");
+                      });
+              thread.start();
     GameState.isLightPuzzleStarted = true;
+    }
     if (GameState.isLightPuzzleSolved && GameState.isGlobeFound) {
       return;
     } else {

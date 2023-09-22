@@ -426,6 +426,13 @@ public class LockedRoomController {
       objText.setText("You're missing the globe item required to access the puzzle!");
       return;
     } else {
+      Thread thread =
+                    new Thread(
+                        () -> {
+                          GameState.sendPrompt("The player has found the globe and started the jigsaw puzzle. The jigsaw puzzle represent an image of part of the locked room.");
+                        });
+                thread.start();
+                GameState.isGlobeAccessed = true;
       App.setUi("puz");
     }
   }

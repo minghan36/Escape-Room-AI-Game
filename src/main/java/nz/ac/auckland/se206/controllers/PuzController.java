@@ -278,6 +278,12 @@ public class PuzController {
       objText.setText(
           "Good Job! You have solved the picture puzzle. Collect the RGB Clue and travel to the"
               + " door for your final puzzle");
+              Thread thread =
+                    new Thread(
+                        () -> {
+                          GameState.sendPrompt("The player has solved the jigsaw puzzle and has received the passcode to the locked door. The passcode is in an alien language and can be translated using the alien alphabet on the computer. Each letter of the passcode represents a coloured button.");
+                        });
+                thread.start();
       rgbClue.setVisible(true);
       rgbClue.setText(GameState.password);
     } else {

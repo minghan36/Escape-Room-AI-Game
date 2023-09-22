@@ -173,6 +173,12 @@ public class DecryptController {
       // disable the send button and input text
       sendButton.setDisable(true);
       inputText.setDisable(true);
+      Thread thread =
+                    new Thread(
+                        () -> {
+                          GameState.sendPrompt("The player has deciphered the message. The player now has to go to the bathroom and fix the"+GameState.randomLight+"light by looking behind it. To get behind the light the player only need to click on the light.");
+                        });
+                thread.start();
     } else {
       incorrect.setText("Incorrect! Try again");
     }
