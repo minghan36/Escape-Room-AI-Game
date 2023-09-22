@@ -13,6 +13,7 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 
 public class EndController {
+  // Intialisng all the variables for the scene
   @FXML private ImageView alien;
   @FXML private Button buttonReplay;
 
@@ -49,13 +50,16 @@ public class EndController {
     moveTimeline.play();
   }
 
+  // Switching the image
   private void switchImage() {
     currentImageIndex = (currentImageIndex + 1) % 4;
     alien.setImage(runningImages[currentImageIndex]);
   }
 
+  // Resetting the game
   @FXML
   private void reset() {
+    // Resetting all the variables
     GameState.currentRoom = "lockedroom";
     GameState.chatContents = "";
     GameState.chatCompletionRequest =
