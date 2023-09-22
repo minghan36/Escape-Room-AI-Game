@@ -37,7 +37,7 @@ public class LockedRoomController {
   @FXML private Rectangle rectangleDoorTwo;
   @FXML private Rectangle rectangleDoorThree;
   @FXML private Canvas gameMaster;
-  @FXML private Label Timer;
+  @FXML private Label timer;
   @FXML private Label labelPasscode;
   @FXML private Label labelObjective;
   @FXML private ImageView globe;
@@ -64,7 +64,7 @@ public class LockedRoomController {
     tape.setVisible(GameState.isElectricalTapeFound);
     globe1.setVisible(GameState.isGlobeFound);
     // labelObjective.setText(GameState.password);
-    Timer.setText(GameState.getTimeLeft());
+    timer.setText(GameState.getTimeLeft());
     Thread timeThread =
         new Thread(
             () -> {
@@ -216,7 +216,7 @@ public class LockedRoomController {
                         new Runnable() {
                           @Override
                           public void run() {
-                            Timer.setText(GameState.getTimeLeft());
+                            timer.setText(GameState.getTimeLeft());
                           }
                         });
                   }

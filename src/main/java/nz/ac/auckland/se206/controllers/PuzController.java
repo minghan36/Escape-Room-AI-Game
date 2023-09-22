@@ -51,7 +51,7 @@ public class PuzController {
   @FXML private ImageView pic8;
   @FXML private ImageView pic9;
   @FXML private Label status;
-  @FXML private Label Timer;
+  @FXML private Label timer;
   @FXML private Button check;
   @FXML private Button goBackBtn;
   @FXML private Canvas gameMaster;
@@ -100,7 +100,7 @@ public class PuzController {
     tape.setVisible(GameState.isElectricalTapeFound);
     sdCard.setVisible(GameState.isSdCardFound);
     globe.setVisible(GameState.isGlobeFound);
-    Timer.setText(GameState.getTimeLeft());
+    timer.setText(GameState.getTimeLeft());
     Thread timeThread =
         new Thread(
             () -> {
@@ -205,7 +205,7 @@ public class PuzController {
                         new Runnable() {
                           @Override
                           public void run() {
-                            Timer.setText(GameState.getTimeLeft());
+                            timer.setText(GameState.getTimeLeft());
                           }
                         });
                   }

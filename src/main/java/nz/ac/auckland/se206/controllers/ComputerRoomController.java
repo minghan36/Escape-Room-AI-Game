@@ -27,7 +27,7 @@ public class ComputerRoomController {
   @FXML private ImageView toLockedRoom;
   @FXML private Rectangle quizMaster;
   @FXML private Canvas gameMaster;
-  @FXML private Label Timer;
+  @FXML private Label timer;
   @FXML private Rectangle decrypt;
   private Image[] alienImages;
   private int currentImageIndex = 0;
@@ -61,7 +61,7 @@ public class ComputerRoomController {
       tape.setOpacity(0);
       tape.setOnMouseClicked(null);
     }
-    Timer.setText(GameState.getTimeLeft());
+    timer.setText(GameState.getTimeLeft());
     Thread timeThread =
         new Thread(
             () -> {
@@ -162,7 +162,7 @@ public class ComputerRoomController {
                         new Runnable() {
                           @Override
                           public void run() {
-                            Timer.setText(GameState.getTimeLeft());
+                            timer.setText(GameState.getTimeLeft());
                           }
                         });
                   }

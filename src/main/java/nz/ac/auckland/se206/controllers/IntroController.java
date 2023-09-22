@@ -14,7 +14,7 @@ import nz.ac.auckland.se206.GameState;
 public class IntroController {
 
   @FXML private Rectangle time;
-  @FXML private Rectangle Start;
+  @FXML private Rectangle start;
   @FXML private Label title;
   @FXML private Button easy;
   @FXML private Button medium;
