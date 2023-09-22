@@ -12,7 +12,7 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 
 public class IntroController {
-
+  // Intialisng all the variables required for the scene
   @FXML private Rectangle time;
   @FXML private Rectangle start;
   @FXML private Label title;
@@ -75,6 +75,7 @@ public class IntroController {
     // switch to a new scene for the player to pick a time duration
   }
 
+  // Method to start the game and ensuring user has made all the required choices
   @FXML
   private void startGame(MouseEvent event) {
     if (levelIsPicked && timeIsPicked) {
@@ -90,9 +91,10 @@ public class IntroController {
     }
   }
 
-
+  // Method for the easy level
   @FXML
   private void easyPicked(MouseEvent event) {
+    // Sertting all the details
     levelIsPicked = true;
     chooseEasy.setText("CHOSEN");
     chooseDifficult.setText("");
@@ -108,8 +110,10 @@ public class IntroController {
             + " Gamemaster");
   }
 
+  // Method for the medium level
   @FXML
   private void mediumPicked(MouseEvent event) {
+    // Setting all the details
     levelIsPicked = true;
     GameState.isMediumPicked = true;
     GameState.isEasyPicked = false;
@@ -125,8 +129,10 @@ public class IntroController {
             + " Gamemaster, but feel free to talk to him");
   }
 
+  // Method for the difficult level
   @FXML
   private void difficultPicked(MouseEvent event) {
+    // Setting all the details
     levelIsPicked = true;
     GameState.isDifficultPicked = true;
     GameState.isEasyPicked = false;
@@ -142,8 +148,10 @@ public class IntroController {
             + " Gamemaster, but feel free to talk to him");
   }
 
+  // Method for the amount of time
   @FXML
   private void twoPicked(MouseEvent event) {
+    // Setting all the details
     timeIsPicked = true;
     GameState.minutes = 2;
     minTwo.setText("CHOSEN");
@@ -155,8 +163,10 @@ public class IntroController {
     }
   }
 
+  // Method for the amount of time
   @FXML
   private void fourPicked(MouseEvent event) {
+    // Setting all the details
     timeIsPicked = true;
     GameState.minutes = 4;
     minFour.setText("CHOSEN");
@@ -167,8 +177,10 @@ public class IntroController {
     }
   }
 
+  // Method for the amount of time
   @FXML
   private void sixPicked(MouseEvent event) {
+    // Setting all the details
     timeIsPicked = true;
     GameState.minutes = 6;
     minSix.setText("CHOSEN");

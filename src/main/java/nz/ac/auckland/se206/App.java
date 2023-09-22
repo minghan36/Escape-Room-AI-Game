@@ -52,7 +52,7 @@ public class App extends Application {
     stage.show();
     stage.setResizable(false);
     root.requestFocus();
-
+    // Speech thread allowing text to speech
     Thread initSpeechThread =
         new Thread(
             () -> {
@@ -73,10 +73,6 @@ public class App extends Application {
    * @throws IOException If the file is not found.
    */
   public static void setUi(String fxml) {
-    // if (fxml.equals("chat")) {
-    //   scene.setRoot(chatParent);
-    //   return;
-    // }
     try {
       scene.setRoot(loadFxml(fxml));
     } catch (IOException e) {

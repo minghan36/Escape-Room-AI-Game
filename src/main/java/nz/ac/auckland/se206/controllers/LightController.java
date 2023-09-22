@@ -25,6 +25,7 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 public class LightController {
+  // Intialising all the variables for the scene
 
   @FXML private Circle behindLight;
   @FXML private Label timer;
@@ -49,16 +50,19 @@ public class LightController {
   @FXML private Button rgbClue1;
 
   public void initialize() {
+    // Intialisng the items collected by the user/ will collect from the scene
     if (GameState.isRgbClueFound) {
       rgbClue1.setVisible(true);
       rgbClue1.setText(GameState.password);
     } else {
       rgbClue1.setVisible(false);
     }
+    // Intialisng the objectives and hints section of the scene
     objText.setText(GameState.getObjective());
     hintsText.setText(GameState.getHint());
     tape.setVisible(GameState.isElectricalTapeFound);
     sdCard.setVisible(GameState.isSdCardFound);
+    // Intialisng the items collected by the user/ will collect from the scene
     if (!GameState.isGlobeFound && GameState.isLightPuzzleSolved) {
       globe.setVisible(GameState.isRiddleResolved);
     } else {
@@ -70,10 +74,12 @@ public class LightController {
     } else {
       objText.setText("Fix the wires to turn on the light.");
     }
+    // Checking if the light wires are fixed
     if (GameState.isWireOneFixed) {
       fixOne.setOpacity(1);
       fixOne.setOnMouseClicked(null);
     }
+    // Checking if the light wires are fixed
     if (GameState.isWireTwoFixed) {
       fixTwoOne.setOpacity(1);
       fixTwoTwo.setOpacity(1);
@@ -82,21 +88,25 @@ public class LightController {
       fixTwoTwo.setOnMouseClicked(null);
       fixTwoThree.setOnMouseClicked(null);
     }
+    // Checking if the light wires are fixed
     if (GameState.isWireThreeFixed) {
       fixThreeOne.setOpacity(1);
       fixThreeTwo.setOpacity(1);
       fixThreeOne.setOnMouseClicked(null);
       fixThreeTwo.setOnMouseClicked(null);
     }
+    // Checking if the light wires are fixed
     if (GameState.isWireFourFixed) {
       fixFour.setOpacity(1);
       fixFour.setOnMouseClicked(null);
     }
+    // If all of them are fixed display the mesage
     if (GameState.wireFixes == 4) {
       lightSuggest.setText("All the wires have been fixed.");
     }
     lightSuggest.setWrapText(true);
     timer.setText(GameState.getTimeLeft());
+    // timer thread
     Thread timeThread =
         new Thread(
             () -> {
@@ -130,6 +140,7 @@ public class LightController {
     translateTransition.play();
   }
 
+  // Starting animation for the gamemaster
   private void startAnimation() {
     GraphicsContext gc = gameMaster.getGraphicsContext2D();
     AnimationTimer timer =
@@ -162,7 +173,8 @@ public class LightController {
     App.setUi("chat");
   }
 
-  private void startTimer() {
+  // Starting timer for the timer in the scene
+  public void startTimer() {
     Timeline timeline =
         new Timeline(
             new KeyFrame(
@@ -183,9 +195,9 @@ public class LightController {
 
     timeline.setCycleCount((GameState.minutes * 60) + GameState.seconds - 1);
     timeline.play();
-
   }
 
+  // Go back method for th ego back button once the user leaves the room
   @FXML
   private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
     if (GameState.isLightPuzzleSolved) {
@@ -196,9 +208,12 @@ public class LightController {
     App.setUi("bathroom");
   }
 
+  // method for fixing the break
   @FXML
   private void clickBreakOne() {
+    // Checking if the electrical tape is found
     if (GameState.isElectricalTapeFound) {
+      // Patching the wire
       objText.setText("Patch the wires with the electrical tape.");
       fixOne.setOpacity(1);
       GameState.isWireOneFixed = true;
@@ -209,12 +224,17 @@ public class LightController {
         objText.setText(
             "Good Job! You have solved the light puzzle. Collect the Picture of the Globe and"
                 + " travel to your next puzzle.");
-                Thread thread =
-                    new Thread(
-                        () -> {
-                          GameState.sendPrompt("The player has fixed the broken light. The player has received a picture of a globe that can be found in the room with the locked door. The player must now go and click on the globe to access the next part of the puzzle.");
-                        });
-                thread.start();
+        // Sending prompt to gpt to update game flow and progress
+        Thread thread =
+            new Thread(
+                () -> {
+                  GameState.sendPrompt(
+                      "The player has fixed the broken light. The player has received a picture of"
+                          + " a globe that can be found in the room with the locked door. The"
+                          + " player must now go and click on the globe to access the next part of"
+                          + " the puzzle.");
+                });
+        thread.start();
         GameState.isLightPuzzleSolved = true;
         globe.setVisible(true);
       }
@@ -227,7 +247,9 @@ public class LightController {
 
   @FXML
   private void clickBreakTwo() {
+    // Checking if the electrical tape is found
     if (GameState.isElectricalTapeFound) {
+      // Patching the wire
       objText.setText("Patch the wires with the electrical tape.");
       fixTwoOne.setOpacity(1);
       fixTwoTwo.setOpacity(1);
@@ -242,12 +264,17 @@ public class LightController {
         objText.setText(
             "Good Job! You have solved the light puzzle. Collect the Picture of the Globe and"
                 + " travel to your next puzzle.");
-                Thread thread =
-                    new Thread(
-                        () -> {
-                          GameState.sendPrompt("The player has fixed the broken light. The player has received a picture of a globe that can be found in the room with the locked door. The player must now go and click on the globe to access the next part of the puzzle.");
-                        });
-                thread.start();
+        // Sending prompt to gpt to update game flow and progress
+        Thread thread =
+            new Thread(
+                () -> {
+                  GameState.sendPrompt(
+                      "The player has fixed the broken light. The player has received a picture of"
+                          + " a globe that can be found in the room with the locked door. The"
+                          + " player must now go and click on the globe to access the next part of"
+                          + " the puzzle.");
+                });
+        thread.start();
         GameState.isLightPuzzleSolved = true;
         globe.setVisible(true);
       }
@@ -260,7 +287,9 @@ public class LightController {
 
   @FXML
   private void clickBreakThree() {
+    // Checking if the electrical tape is found
     if (GameState.isElectricalTapeFound) {
+      // Patching the wire
       objText.setText("Patch the wires with the electrical tape.");
       fixThreeOne.setOpacity(1);
       fixThreeTwo.setOpacity(1);
@@ -273,12 +302,17 @@ public class LightController {
         objText.setText(
             "Good Job! You have solved the light puzzle. Collect the Picture of the Globe and"
                 + " travel to your next puzzle.");
-                Thread thread =
-                    new Thread(
-                        () -> {
-                          GameState.sendPrompt("The player has fixed the broken light. The player has received a picture of a globe that can be found in the room with the locked door. The player must now go and click on the globe to access the next part of the puzzle.");
-                        });
-                thread.start();
+        // Sending prompt to gpt to update game flow and progress
+        Thread thread =
+            new Thread(
+                () -> {
+                  GameState.sendPrompt(
+                      "The player has fixed the broken light. The player has received a picture of"
+                          + " a globe that can be found in the room with the locked door. The"
+                          + " player must now go and click on the globe to access the next part of"
+                          + " the puzzle.");
+                });
+        thread.start();
         GameState.isLightPuzzleSolved = true;
         globe.setVisible(true);
       }
@@ -291,7 +325,9 @@ public class LightController {
 
   @FXML
   private void clickBreakFour() {
+    // Checking if the electrical tape is found
     if (GameState.isElectricalTapeFound) {
+      // Patching the wire
       objText.setText("Patch the wires with the electrical tape.");
       fixFour.setOpacity(1);
       GameState.isWireFourFixed = true;
@@ -302,12 +338,17 @@ public class LightController {
         objText.setText(
             "Good Job! You have solved the light puzzle. Collect the Picture of the Globe and"
                 + " travel to your next puzzle.");
-                Thread thread =
-                    new Thread(
-                        () -> {
-                          GameState.sendPrompt("The player has fixed the broken light. The player has received a picture of a globe that can be found in the room with the locked door. The player must now go and click on the globe to access the next part of the puzzle.");
-                        });
-                thread.start();
+        // Sending prompt to gpt to update game flow and progress
+        Thread thread =
+            new Thread(
+                () -> {
+                  GameState.sendPrompt(
+                      "The player has fixed the broken light. The player has received a picture of"
+                          + " a globe that can be found in the room with the locked door. The"
+                          + " player must now go and click on the globe to access the next part of"
+                          + " the puzzle.");
+                });
+        thread.start();
         GameState.isLightPuzzleSolved = true;
         globe.setVisible(true);
       }
@@ -318,18 +359,21 @@ public class LightController {
     }
   }
 
+  // Increasing size of the globe
   @FXML
   private void increaseGlobeSize() {
     globe.setScaleX(1.2);
     globe.setScaleY(1.2);
   }
 
+  // Decreasing size of the globe
   @FXML
   private void decreaseGlobeSize() {
     globe.setScaleX(1);
     globe.setScaleY(1);
   }
 
+  // Method for clicking the globe
   @FXML
   private void clickGlobe() {
     GameState.isGlobeFound = true;

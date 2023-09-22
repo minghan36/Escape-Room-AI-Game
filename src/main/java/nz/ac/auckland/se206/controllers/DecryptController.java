@@ -25,6 +25,7 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 public class DecryptController {
+  // Intialisng the variables for the scene
 
   @FXML private Label timer;
   @FXML private TextField inputText;
@@ -56,8 +57,9 @@ public class DecryptController {
             // Handle other exceptions appropriately.
           }
         });
-
+    // Intiailising the hints, objectives seciton of the scene
     hintsText.setText(GameState.getHint());
+    // Intialising the the items that the user has collected/ will collect from the scene
     if (GameState.isRgbClueFound) {
       rgbClue1.setVisible(true);
       rgbClue1.setText(GameState.password);
@@ -68,6 +70,7 @@ public class DecryptController {
     tape.setVisible(GameState.isElectricalTapeFound);
     sdCard.setVisible(GameState.isSdCardFound);
     timer.setText(GameState.getTimeLeft());
+    // Timer thread
     Thread timeThread =
         new Thread(
             () -> {
@@ -101,6 +104,7 @@ public class DecryptController {
     translateTransition.play();
   }
 
+  // Animation initsialiser for the alien images
   private void startAnimation() {
     GraphicsContext gc = gameMaster.getGraphicsContext2D();
     AnimationTimer timer =
@@ -125,12 +129,14 @@ public class DecryptController {
           }
         };
     timer.start();
+    // Setting the scene up with the objectives, hint and the message
     if (GameState.isDecryptCompleted) {
       objText.setText(GameState.getObjective());
     } else {
       objText.setText("Decipher the message from the quiz master");
     }
     if (!GameState.isDecryptCompleted) {
+      // Setting the decrypt message
       message.setText(
           "☌⍜  ⏁⍜  ⏁⊑⟒  ⏚⏃⏁⊑⍀⍜⍜⋔  ⏃⋏⎅  ⎎⟟⌖  ⏁⊑⟒  " + randomLights[GameState.randomNum] + "  ⌰⟟☌⊑⏁");
     } else {
@@ -148,7 +154,8 @@ public class DecryptController {
     App.setUi("chat");
   }
 
-  private void startTimer() {
+  // Starting the timer for the scene
+  public void startTimer() {
     Timeline timeline =
         new Timeline(
             new KeyFrame(
@@ -173,6 +180,7 @@ public class DecryptController {
 
   @FXML
   private void onSendMessage(ActionEvent event) throws ApiProxyException, IOException {
+    // Getting the user message for the decryption puzzle
     String message = inputText.getText();
     if (message.trim().isEmpty()) {
       return;
@@ -189,18 +197,25 @@ public class DecryptController {
       sendButton.setDisable(true);
       inputText.setDisable(true);
       Thread thread =
-                    new Thread(
-                        () -> {
-                          GameState.sendPrompt("The player has deciphered the message. The player now has to go to the bathroom and fix the"+GameState.randomLight+"light by looking behind it. To get behind the light the player only need to click on the light.");
-                        });
-                thread.start();
+          new Thread(
+              () -> {
+                GameState.sendPrompt(
+                    "The player has deciphered the message. The player now has to go to the"
+                        + " bathroom and fix the"
+                        + GameState.randomLight
+                        + "light by looking behind it. To get behind the light the player only need"
+                        + " to click on the light.");
+              });
+      thread.start();
     } else {
       incorrect.setText("Incorrect! Try again");
     }
   }
 
+  // Method for the go back button when the user wants to leave the room
   @FXML
   private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
+    // if the user has completed the decryption puzzle but not ocmpleted light
     if (GameState.isDecryptCompleted && !GameState.isLightPuzzleSolved) {
       GameState.currentObj = "Light Puzzle";
     }

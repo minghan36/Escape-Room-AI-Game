@@ -14,7 +14,7 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 
 public class WinController {
-
+  //Intialising variables for the scene
   @FXML private ImageView alein;
   @FXML private Button buttonReplay;
   @FXML private Label timeLeft;
@@ -58,9 +58,10 @@ public class WinController {
     currentImageIndex = (currentImageIndex + 1) % 4;
     alein.setImage(runningImages[currentImageIndex]);
   }
-
+  //Creating a reset method to reset the game
   @FXML
-  private void onReset() {
+  private void reset() {
+    //resetting all the variables
     GameState.currentRoom = "lockedroom";
     GameState.chatContents = "";
     GameState.chatCompletionRequest =
