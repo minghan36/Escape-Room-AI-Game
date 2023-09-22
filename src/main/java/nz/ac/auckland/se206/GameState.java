@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206;
 
+import java.io.IOException;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -99,10 +100,21 @@ public class GameState {
                     } else if (GameState.seconds > 0) {
                       GameState.seconds--;
                     }
+                    if (GameState.minutes == 0 && GameState.seconds == 0) {
+                      timeline.stop();
+                      // set room to End
+                      GameState.currentRoom = "End";
+                      try {
+                        App.setRoot("End");
+                      } catch (IOException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                      }
+                    }
                   }
                 }));
 
-    timeline.setCycleCount((GameState.minutes * 60) + GameState.seconds - 1);
+    timeline.setCycleCount((GameState.minutes * 60) + GameState.seconds);
     timeline.play();
   }
 

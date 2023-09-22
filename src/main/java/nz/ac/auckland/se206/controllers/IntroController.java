@@ -4,6 +4,7 @@ import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
@@ -31,6 +32,7 @@ public class IntroController {
   @FXML private Button sixMin;
   @FXML private Label startStatus;
   @FXML private Label levelDetail;
+  @FXML private ImageView alien;
 
   public void initialize() {
     // create a translate transition for the label
@@ -47,6 +49,20 @@ public class IntroController {
 
     // Start the animation
     translateTransition.play();
+
+    TranslateTransition translateTransition1 = new TranslateTransition(Duration.seconds(2), alien);
+
+    // set the Y-axis translation value
+    translateTransition1.setByY(-10);
+
+    // set the number of cycles for the animation
+    translateTransition1.setCycleCount(TranslateTransition.INDEFINITE);
+
+    // Set auto-reverse to true to make the label return to its original position
+    translateTransition1.setAutoReverse(true);
+
+    // Start the animation
+    translateTransition1.play();
   }
 
   @FXML
