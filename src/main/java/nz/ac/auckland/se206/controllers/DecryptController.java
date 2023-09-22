@@ -46,6 +46,17 @@ public class DecryptController {
   private String[] randomLights = {"⎎⟟⍀⌇⏁", "⌇⟒☊⍜⋏⎅", "⏁⊑⟟⍀⎅"};
 
   public void initialize() {
+    // when the enter key is pressed
+    inputText.setOnAction(
+        e -> {
+          try {
+            onSendMessage(e);
+          } catch (ApiProxyException | IOException ex) {
+            ex.printStackTrace();
+            // Handle other exceptions appropriately.
+          }
+        });
+
     hintsText.setText(GameState.getHint());
     if (GameState.isRgbClueFound) {
       rgbClue1.setVisible(true);
