@@ -178,6 +178,9 @@ public class ComputerRoomController {
       objText.setText("You need the SD card to access the computer!");
     } else {
       GameState.currentRoom = "decrypt";
+      if (!GameState.isComputerAccessed){
+        
+      }
       App.setUi("decrypt");
     }
   }

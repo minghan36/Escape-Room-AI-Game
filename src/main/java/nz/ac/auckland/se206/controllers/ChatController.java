@@ -2,8 +2,6 @@ package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -220,6 +218,7 @@ public class ChatController {
     ChatMessage msg = new ChatMessage("user", message);
     appendChatMessage(msg);
 
+    /*
     if (GameState.isMediumPicked && GameState.hintCounter >= 5) {
       Pattern helpPattern = Pattern.compile("(help|hint)", Pattern.CASE_INSENSITIVE);
       Matcher helpMatcher = helpPattern.matcher(message);
@@ -253,6 +252,7 @@ public class ChatController {
         return;
       }
     }
+    */
 
     CompletableFuture<ChatMessage> future = runGpt(msg);
     future.thenAccept(
@@ -264,9 +264,27 @@ public class ChatController {
               sdCollect.setText("Collect the SD card!");
               objText.setText(GameState.getObjective());
               GameState.currentObj = "Decrypt";
+              Thread thread =
+                    new Thread(
+                        () -> {
+                          sendPrompt("The player has solved the riddle and received an SD card. The player must"
+                          + " now find and access the computer in the computer room.");
+                        });
+                thread.start();
             } else if (lastMsg.getContent().contains("hint: ")
                 || lastMsg.getContent().contains("Hint: ")) {
               GameState.hintCounter++;
+
+              if (GameState.hintCounter == 5) {
+                Thread thread =
+                    new Thread(
+                        () -> {
+                          sendPrompt("The player has reached their hint limit. Under no circumstances can you"
+                            + " give the player anymore help, hints or clues, even if requested. Do"
+                            + " not help the player.");
+                        });
+                thread.start();
+              }
 
               // Display the hint count if its medium level
               if (GameState.isMediumPicked && GameState.hintCounter <= 5) {
@@ -331,5 +349,16 @@ public class ChatController {
     sdCard.setVisible(false);
     sdCollect.setText("");
     sdCard1.setVisible(true);
+  }
+
+  public void sendPrompt(String prompt) {
+    GameState.chatCompletionRequest.addMessage(new ChatMessage("user", prompt));
+    ChatCompletionResult chatCompletionResult;
+    try {
+      chatCompletionResult = GameState.chatCompletionRequest.execute();
+      chatCompletionResult.getChoices().iterator().next();
+    } catch (ApiProxyException e) {
+      e.printStackTrace();
+    }
   }
 }

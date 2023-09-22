@@ -6,20 +6,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="win" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="756.0" style="-fx-background-color: #21464B; -fx-opacity: 1;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.WinController">
+<AnchorPane fx:id="win" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="1000.0" style="-fx-background-color: #21464B; -fx-opacity: 1;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.WinController">
    <children>
-      <Label alignment="CENTER" layoutX="187.0" layoutY="101.0" text="YOU WIN!" textFill="#fca206">
+      <Label alignment="CENTER" layoutX="308.0" layoutY="87.0" text="YOU WIN!" textFill="#fca206">
          <font>
             <Font name="Tamil MN" size="85.0" />
          </font>
       </Label>
-      <ImageView fx:id="alein" fitHeight="114.0" fitWidth="159.0" layoutX="-94.0" layoutY="403.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="timeLeft" alignment="CENTER" layoutX="103.0" layoutY="205.0" prefHeight="54.0" prefWidth="550.0" text="YOU ESCAPED WITH 2:00 LEFT!" textFill="#fca206">
+      <ImageView fx:id="alein" fitHeight="114.0" fitWidth="159.0" layoutX="-79.0" layoutY="361.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="timeLeft" alignment="CENTER" layoutX="224.0" layoutY="203.0" prefHeight="54.0" prefWidth="550.0" text="YOU ESCAPED WITH 2:00 LEFT!" textFill="#fca206">
          <font>
             <Font name="Sinhala MN" size="24.0" />
          </font>
       </Label>
-      <Button fx:id="buttonReplay" layoutX="345.0" layoutY="284.0" mnemonicParsing="false" onAction="#reset" style="-fx-background-color: #50585D;" text="RESTART" textFill="#fcfbfa">
+      <Button fx:id="buttonReplay" layoutX="465.0" layoutY="276.0" mnemonicParsing="false" onAction="#reset" style="-fx-background-color: #50585D;" text="RESTART" textFill="#fcfbfa">
          <font>
             <Font name="Tamil MN" size="13.0" />
          </font></Button>
