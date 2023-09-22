@@ -220,6 +220,16 @@ public class ChatController {
     ChatMessage msg = new ChatMessage("user", message);
     appendChatMessage(msg);
 
+    if (GameState.isMediumPicked && GameState.hintCounter >= 5) {
+      Pattern helpPattern = Pattern.compile("(help|hint)", Pattern.CASE_INSENSITIVE);
+      Matcher helpMatcher = helpPattern.matcher(message);
+
+      if (helpMatcher.find() && GameState.hintCounter >= 5) {
+        appendChatMessage(new ChatMessage("assistant", "All hints have been used up."));
+        return;
+      }
+    }
+
     if (!GameState.isDifficultPicked) {
       Pattern pattern =
           Pattern.compile(
