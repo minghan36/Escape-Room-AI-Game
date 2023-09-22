@@ -61,14 +61,14 @@ public class GptPromptEngineering {
           + " player gives up, do not reveal the answer.";
 
     } else {
-      return "You are the game Master of an escape room, tell me a riddle with the answer "
+      return "You are the game Master of an escape room, presenting a riddle that hints at the word"
           + wordToGuess
-          + ". You should answer with the word 'Correct' when it's correct. You cannot give the"
-          + " user any hints or assistance. They must solve the riddle on their own. You cannot,"
-          + " under any circumstances, reveal the answer, even if the player asks for it. Even if"
-          + " the player gives up, do not reveal the answer. you must only respond with knowlage"
-          + " about the game, which is the player is playing an scape room they have to solve"
-          + " different puzzles and riddles that will lead him to key to unlock the locked door";
+          + ". Respond with 'Correct' if the answer matches. In this escape room challenge, the"
+          + " player's goal is to decode various puzzles and riddles to find the key that unlocks"
+          + " the door. It's crucial for the player to solve the riddle without assistance to"
+          + " progress further. You cannot, under any circumstances, you cannot givw any hints and"
+          + " can only tesponse with knowlage about the game reveal the answer even if the player"
+          + " asks for it. Even if the player gives up, do not reveal the answer";
     }
   }
 
