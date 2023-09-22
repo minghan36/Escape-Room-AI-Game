@@ -125,31 +125,31 @@ public class ComputerRoomController {
 
   // pressing on the quiz master to open the chat box
   @FXML
-  public void clickQuizMaster(MouseEvent event) {
+  private void clickQuizMaster(MouseEvent event) {
     App.setUi("chat");
   }
 
   @FXML
-  public void enterLockedRoom(MouseEvent event) {
+  private void enterLockedRoom(MouseEvent event) {
     GameState.currentRoom = "lockedroom";
     App.setUi("lockedroom");
   }
 
   @FXML
-  public void highlight() {
+  private void highlight() {
     toLockedRoom.setOpacity(1);
     toLockedRoom.setScaleX(1.2);
     toLockedRoom.setScaleY(1.2);
   }
 
   @FXML
-  public void removeHighlight() {
+  private void removeHighlight() {
     toLockedRoom.setOpacity(0.3);
     toLockedRoom.setScaleX(1);
     toLockedRoom.setScaleY(1);
   }
 
-  public void startTimer() {
+  private void startTimer() {
     Timeline timeline =
         new Timeline(
             new KeyFrame(
@@ -173,7 +173,7 @@ public class ComputerRoomController {
   }
 
   @FXML
-  public void enterDecrypt(MouseEvent event) {
+  private void enterDecrypt(MouseEvent event) {
     if (!GameState.isRiddleResolved || !GameState.isSdCardFound) {
       objText.setText("You need the SD card to access the computer!");
     } else {
@@ -192,7 +192,7 @@ public class ComputerRoomController {
   }
 
   @FXML
-  public void increaseSize(MouseEvent event) {
+  private void increaseSize(MouseEvent event) {
     if (!GameState.isRiddleResolved) {
       return;
     } else {
@@ -202,14 +202,14 @@ public class ComputerRoomController {
   }
 
   @FXML
-  public void decreaseSize(MouseEvent event) {
+  private void decreaseSize(MouseEvent event) {
     // decrease the size of the image
     hoverImage.setScaleX(1);
     hoverImage.setScaleY(1);
   }
 
   @FXML
-  public void clickTape() {
+  private void clickTape() {
     if (!GameState.isComputerAccessed){
         Thread thread =
                     new Thread(
@@ -227,13 +227,13 @@ public class ComputerRoomController {
   }
 
   @FXML
-  public void increaseTapeSize(MouseEvent event) {
+  private void increaseTapeSize(MouseEvent event) {
     tape.setScaleX(1.2);
     tape.setScaleY(1.2);
   }
 
   @FXML
-  public void decreaseTapeSize(MouseEvent event) {
+  private void decreaseTapeSize(MouseEvent event) {
     tape.setScaleX(1);
     tape.setScaleY(1);
   }

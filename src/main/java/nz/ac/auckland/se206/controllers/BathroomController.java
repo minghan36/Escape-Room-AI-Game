@@ -40,8 +40,6 @@ public class BathroomController {
   @FXML private Circle puzzle;
   @FXML private ImageView key;
   @FXML private Label label;
-  // private Image[] keyImages;
-  // private int currentKeyImageIndex = 0;
   @FXML private ImageView sdCard;
   @FXML private ImageView tape;
   @FXML private TextArea objText;
@@ -192,32 +190,32 @@ public class BathroomController {
 
   // pressing on the quiz master to open the chat box
   @FXML
-  public void clickQuizMaster(MouseEvent event) {
+  private void clickQuizMaster(MouseEvent event) {
     App.setUi("chat");
   }
 
   @FXML
-  public void enterLockedRoom(MouseEvent event) {
+  private void enterLockedRoom(MouseEvent event) {
     GameState.currentRoom = "lockedroom";
     App.setUi("lockedroom");
   }
 
   @FXML
-  public void highlight() {
+  private void highlight() {
     toLockedRoom.setOpacity(1);
     toLockedRoom.setScaleX(1.2);
     toLockedRoom.setScaleY(1.2);
   }
 
   @FXML
-  public void removeHighlight() {
+  private void removeHighlight() {
     toLockedRoom.setOpacity(0.3);
     toLockedRoom.setScaleX(1);
     toLockedRoom.setScaleY(1);
   }
 
   @FXML
-  public void clickLightOne() {
+  private void clickLightOne() {
     if (!GameState.isLightPuzzleStarted){
       Thread thread =
                   new Thread(
@@ -236,7 +234,7 @@ public class BathroomController {
   }
 
   @FXML
-  public void clickLightTwo() {
+  private void clickLightTwo() {
     if (!GameState.isLightPuzzleStarted){
       Thread thread =
                   new Thread(
@@ -255,7 +253,7 @@ public class BathroomController {
   }
 
   @FXML
-  public void clickLightThree() {
+  private void clickLightThree() {
     if (!GameState.isLightPuzzleStarted){
       Thread thread =
                   new Thread(
@@ -274,16 +272,14 @@ public class BathroomController {
   }
 
   @FXML
-  public void openPuzzle(MouseEvent event) {
+  private void openPuzzle(MouseEvent event) {
     if (GameState.isLightPuzzleSolved) {
       GameState.currentRoom = "puz";
       App.setUi("puz");
-    } else {
-
     }
   }
 
-  public void startTimer() {
+  private void startTimer() {
     Timeline timeline =
         new Timeline(
             new KeyFrame(
@@ -307,7 +303,7 @@ public class BathroomController {
   }
 
   @FXML
-  public void increaseSizeOne(MouseEvent event) {
+  private void increaseSizeOne(MouseEvent event) {
     ellipseOne.setScaleX(1.2);
     ellipseOne.setScaleY(1.2);
     lightOne.setScaleX(1.2);
@@ -315,7 +311,7 @@ public class BathroomController {
   }
 
   @FXML
-  public void increaseSizeTwo(MouseEvent event) {
+  private void increaseSizeTwo(MouseEvent event) {
     ellipseTwo.setScaleX(1.2);
     ellipseTwo.setScaleY(1.2);
     lightTwo.setScaleX(1.2);
@@ -323,7 +319,7 @@ public class BathroomController {
   }
 
   @FXML
-  public void increaseSizeThree(MouseEvent event) {
+  private void increaseSizeThree(MouseEvent event) {
     ellipseThree.setScaleX(1.2);
     ellipseThree.setScaleY(1.2);
     lightThree.setScaleX(1.2);
@@ -331,7 +327,7 @@ public class BathroomController {
   }
 
   @FXML
-  public void decreaseSizeOne(MouseEvent event) {
+  private void decreaseSizeOne(MouseEvent event) {
     ellipseOne.setScaleX(1);
     ellipseOne.setScaleY(1);
     lightOne.setScaleX(1);
@@ -339,7 +335,7 @@ public class BathroomController {
   }
 
   @FXML
-  public void decreaseSizeTwo(MouseEvent event) {
+  private void decreaseSizeTwo(MouseEvent event) {
     ellipseTwo.setScaleX(1);
     ellipseTwo.setScaleY(1);
     lightTwo.setScaleX(1);
@@ -347,7 +343,7 @@ public class BathroomController {
   }
 
   @FXML
-  public void decreaseSizeThree(MouseEvent event) {
+  private void decreaseSizeThree(MouseEvent event) {
     ellipseThree.setScaleX(1);
     ellipseThree.setScaleY(1);
     lightThree.setScaleX(1);

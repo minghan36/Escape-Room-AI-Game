@@ -16,7 +16,6 @@ public class App extends Application {
 
   private static Scene scene;
 
-  // private static Parent chatParent;
 
   public static void main(final String[] args) {
     launch();

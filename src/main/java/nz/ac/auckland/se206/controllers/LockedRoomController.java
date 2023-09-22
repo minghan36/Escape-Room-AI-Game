@@ -132,7 +132,7 @@ public class LockedRoomController {
    * @param event the key event
    */
   @FXML
-  public void onKeyPressed(KeyEvent event) {
+  private void onKeyPressed(KeyEvent event) {
     System.out.println("key " + event.getCode() + " pressed");
   }
 
@@ -142,7 +142,7 @@ public class LockedRoomController {
    * @param event the key event
    */
   @FXML
-  public void onKeyReleased(KeyEvent event) {
+  private void onKeyReleased(KeyEvent event) {
     System.out.println("key " + event.getCode() + " released");
   }
 
@@ -157,40 +157,40 @@ public class LockedRoomController {
    *     alert.setHeaderText(headerText); alert.setContentText(message); alert.showAndWait(); }
    */
   @FXML
-  public void enterBathroom() {
+  private void enterBathroom() {
     GameState.currentRoom = "bathroom";
     App.setUi("bathroom");
   }
 
   @FXML
-  public void enterComputerRoom() {
+  private void enterComputerRoom() {
     GameState.currentRoom = "computerroom";
     App.setUi("computerroom");
   }
 
   @FXML
-  public void highlightBathroom() {
+  private void highlightBathroom() {
     toBathroom.setOpacity(1);
     toBathroom.setScaleX(1.2);
     toBathroom.setScaleY(1.2);
   }
 
   @FXML
-  public void removeHighlightBathroom() {
+  private void removeHighlightBathroom() {
     toBathroom.setOpacity(0.3);
     toBathroom.setScaleX(1);
     toBathroom.setScaleY(1);
   }
 
   @FXML
-  public void highlightComputerRoom() {
+  private void highlightComputerRoom() {
     toComputerRoom.setOpacity(1);
     toComputerRoom.setScaleX(1.2);
     toComputerRoom.setScaleY(1.2);
   }
 
   @FXML
-  public void removeHighlightComputerRoom() {
+  private void removeHighlightComputerRoom() {
     toComputerRoom.setOpacity(0.3);
     toComputerRoom.setScaleX(1);
     toComputerRoom.setScaleY(1);
@@ -198,12 +198,12 @@ public class LockedRoomController {
 
   // pressing on the quiz master to open the chat box
   @FXML
-  public void clickQuizMaster(MouseEvent event) {
+  private void clickQuizMaster(MouseEvent event) {
 
     App.setUi("chat");
   }
 
-  public void startTimer() {
+  private void startTimer() {
     Timeline timeline =
         new Timeline(
             new KeyFrame(
@@ -227,7 +227,7 @@ public class LockedRoomController {
   }
 
   @FXML
-  public void increaseGlobeSize(MouseEvent event) {
+  private void increaseGlobeSize(MouseEvent event) {
     if (GameState.isLightPuzzleSolved) {
       globe.setScaleX(1.05);
       globe.setScaleY(1.05);
@@ -237,13 +237,13 @@ public class LockedRoomController {
   }
 
   @FXML
-  public void decreaseGlobeSize(MouseEvent event) {
+  private void decreaseGlobeSize(MouseEvent event) {
     globe.setScaleX(1);
     globe.setScaleY(1);
   }
 
   @FXML
-  public void enterBlue() {
+  private void enterBlue() {
     if (GameState.isPuzzleSolved) {
       buttonBlue.setScaleX(1.2);
       buttonBlue.setScaleY(1.2);
@@ -251,7 +251,7 @@ public class LockedRoomController {
   }
 
   @FXML
-  public void exitBlue() {
+  private void exitBlue() {
     if (GameState.isPuzzleSolved) {
       buttonBlue.setScaleX(1);
       buttonBlue.setScaleY(1);
@@ -259,7 +259,7 @@ public class LockedRoomController {
   }
 
   @FXML
-  public void enterRed() {
+  private void enterRed() {
     if (GameState.isPuzzleSolved) {
       buttonRed.setScaleX(1.2);
       buttonRed.setScaleY(1.2);
@@ -267,7 +267,7 @@ public class LockedRoomController {
   }
 
   @FXML
-  public void exitRed() {
+  private void exitRed() {
     if (GameState.isPuzzleSolved) {
       buttonRed.setScaleX(1);
       buttonRed.setScaleY(1);
@@ -275,7 +275,7 @@ public class LockedRoomController {
   }
 
   @FXML
-  public void enterGreen() {
+  private void enterGreen() {
     if (GameState.isPuzzleSolved) {
       buttonGreen.setScaleX(1.2);
       buttonGreen.setScaleY(1.2);
@@ -283,7 +283,7 @@ public class LockedRoomController {
   }
 
   @FXML
-  public void exitGreen() {
+  private void exitGreen() {
     if (GameState.isPuzzleSolved) {
       buttonGreen.setScaleX(1);
       buttonGreen.setScaleY(1);
@@ -291,7 +291,7 @@ public class LockedRoomController {
   }
 
   @FXML
-  public void enterYellow() {
+  private void enterYellow() {
     if (GameState.isPuzzleSolved) {
       buttonYellow.setScaleX(1.2);
       buttonYellow.setScaleY(1.2);
@@ -299,7 +299,7 @@ public class LockedRoomController {
   }
 
   @FXML
-  public void exitYellow() {
+  private void exitYellow() {
     if (GameState.isPuzzleSolved) {
       buttonYellow.setScaleX(1);
       buttonYellow.setScaleY(1);
@@ -349,7 +349,7 @@ public class LockedRoomController {
   }
 
   @FXML
-  public void clickBlue(MouseEvent event) {
+  private void clickBlue(MouseEvent event) {
     // Adds the letter "B" to the passcode and checks if it is correct if the length of the passcode
     // is now equal to four.
     if (GameState.isPuzzleSolved) {
@@ -367,7 +367,7 @@ public class LockedRoomController {
   }
 
   @FXML
-  public void clickRed(MouseEvent event) {
+  private void clickRed(MouseEvent event) {
     // Adds the letter "B" to the passcode and checks if it is correct if the length of the passcode
     // is now equal to four.
     if (GameState.isPuzzleSolved) {
@@ -385,7 +385,7 @@ public class LockedRoomController {
   }
 
   @FXML
-  public void clickGreen(MouseEvent event) {
+  private void clickGreen(MouseEvent event) {
     // Adds the letter "B" to the passcode and checks if it is correct if the length of the passcode
     // is now equal to four.
     if (GameState.isPuzzleSolved) {
@@ -403,7 +403,7 @@ public class LockedRoomController {
   }
 
   @FXML
-  public void clickYellow(MouseEvent event) {
+  private void clickYellow(MouseEvent event) {
     // Adds the letter "B" to the passcode and checks if it is correct if the length of the passcode
     // is now equal to four.
     if (GameState.isPuzzleSolved) {
@@ -421,7 +421,7 @@ public class LockedRoomController {
   }
 
   @FXML
-  public void clickGlobe(MouseEvent event) {
+  private void clickGlobe(MouseEvent event) {
     if (!GameState.isGlobeFound) {
       objText.setText("You're missing the globe item required to access the puzzle!");
       return;

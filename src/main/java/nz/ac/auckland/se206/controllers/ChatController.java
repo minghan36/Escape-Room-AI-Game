@@ -238,42 +238,6 @@ public class ChatController {
     ChatMessage msg = new ChatMessage("user", message);
     appendChatMessage(msg);
 
-    /*
-    if (GameState.isMediumPicked && GameState.hintCounter >= 5) {
-      Pattern helpPattern = Pattern.compile("(help|hint)", Pattern.CASE_INSENSITIVE);
-      Matcher helpMatcher = helpPattern.matcher(message);
-
-      if (helpMatcher.find() && GameState.hintCounter >= 5) {
-        appendChatMessage(new ChatMessage("assistant", "All hints have been used up."));
-        return;
-      }
-    }
-
-    if (!GameState.isDifficultPicked) {
-      Pattern pattern =
-          Pattern.compile(
-              "(what'?s? next|how do I continue|what should I do now |next |do |then |after)",
-              Pattern.CASE_INSENSITIVE);
-      Matcher matcher = pattern.matcher(message);
-      if (matcher.find()) {
-        if (GameState.isMediumPicked && GameState.hintCounter >= 5) {
-          appendChatMessage(
-              new ChatMessage("assistant", "You've reached the maximum number of hints allowed."));
-          return;
-        }
-
-        String nextStepMessage = GptPromptEngineering.getNextGameFlowStep();
-        appendChatMessage(new ChatMessage("assistant", nextStepMessage));
-
-        if (GameState.isMediumPicked) {
-          GameState.hintCounter++;
-          hintsText.setText("Hints Remaining: " + (5 - GameState.hintCounter));
-        }
-        return;
-      }
-    }
-    */
-
     CompletableFuture<ChatMessage> future = runGpt(msg);
     future.thenAccept(
         lastMsg -> {
@@ -343,19 +307,19 @@ public class ChatController {
   }
 
   @FXML
-  public void increaseSize() {
+  private void increaseSize() {
     sdCard.setScaleX(1.2);
     sdCard.setScaleY(1.2);
   }
 
   @FXML
-  public void decreaseSize() {
+  private void decreaseSize() {
     sdCard.setScaleX(1);
     sdCard.setScaleY(1);
   }
 
   @FXML
-  public void clickSdCard() {
+  private void clickSdCard() {
     GameState.isSdCardFound = true;
     sdCard.setVisible(false);
     sdCollect.setText("");

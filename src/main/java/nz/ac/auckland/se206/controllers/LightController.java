@@ -158,11 +158,11 @@ public class LightController {
 
   // pressing on the quiz master to open the chat box
   @FXML
-  public void clickQuizMaster(MouseEvent event) {
+  private void clickQuizMaster(MouseEvent event) {
     App.setUi("chat");
   }
 
-  public void startTimer() {
+  private void startTimer() {
     Timeline timeline =
         new Timeline(
             new KeyFrame(
@@ -183,7 +183,6 @@ public class LightController {
 
     timeline.setCycleCount((GameState.minutes * 60) + GameState.seconds - 1);
     timeline.play();
-    // randomLight.setText(GameState.randomLight);
 
   }
 

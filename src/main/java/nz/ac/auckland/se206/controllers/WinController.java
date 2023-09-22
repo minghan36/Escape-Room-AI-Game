@@ -60,7 +60,7 @@ public class WinController {
   }
 
   @FXML
-  private void reset() {
+  private void onReset() {
     GameState.currentRoom = "lockedroom";
     GameState.chatContents = "";
     GameState.chatCompletionRequest =
