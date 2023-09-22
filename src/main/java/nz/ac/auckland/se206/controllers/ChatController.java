@@ -2,6 +2,8 @@ package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -220,6 +222,22 @@ public class ChatController {
     ChatMessage msg = new ChatMessage("user", message);
     appendChatMessage(msg);
 
+    Pattern pattern =
+        Pattern.compile(
+            "(what'?s? next|how do I continue|what should I do now |next |do |then)",
+            Pattern.CASE_INSENSITIVE);
+    Matcher matcher = pattern.matcher(message);
+    if (matcher.find()) {
+      String nextStepMessage = GptPromptEngineering.getNextGameFlowStep();
+      appendChatMessage(new ChatMessage("assistant", nextStepMessage));
+
+      if (GameState.isMediumPicked) {
+        hintCounter++;
+        hintsText.setText("Hints Remaining: " + (5 - hintCounter));
+      }
+      return;
+    }
+
     CompletableFuture<ChatMessage> future = runGpt(msg);
     future.thenAccept(
         lastMsg -> {
@@ -230,13 +248,13 @@ public class ChatController {
               sdCollect.setText("Collect the SD card!");
               objText.setText(GameState.getObjective());
               GameState.currentObj = "Decrypt";
-            } else if (lastMsg.getContent().startsWith("hint")
-                || lastMsg.getContent().startsWith("Hint")) {
+            } else if (lastMsg.getContent().contains("hint: ")
+                || lastMsg.getContent().contains("Hint: ")) {
               hintCounter++;
 
               // Display the hint count if its medium level
               if (GameState.isMediumPicked) {
-                hintsText.setText("Hints remaining: " + (5 - hintCounter));
+                hintsText.setText("Hints Remaining: " + (5 - hintCounter));
               }
             }
           }
