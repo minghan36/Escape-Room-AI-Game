@@ -22,7 +22,7 @@ public class GameState {
   public static String latestHint = "";
 
   public static ChatCompletionRequest chatCompletionRequest =
-      new ChatCompletionRequest().setN(1).setTemperature(1).setTopP(0.8).setMaxTokens(100);
+      new ChatCompletionRequest().setN(1).setTemperature(0.1).setTopP(0.5).setMaxTokens(100);
 
   /** Indicates whether the key has been found. */
   public static boolean isKeyFound = false;
@@ -69,6 +69,9 @@ public class GameState {
   public static String currentObj = objectives[0];
   public static String objMessage = "";
   public static String hintMessage = "";
+  public static String[] riddleAnswers = {"jupiter", "galaxy", "star"};
+
+  public static String riddleAnswer = riddleAnswers[randomNum];
 
   /**
    * Returns time left in the round.

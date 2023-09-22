@@ -27,7 +27,7 @@ public class BathroomController {
 
   @FXML private Rectangle quizMaster;
   @FXML private Canvas gameMaster;
-  @FXML private Label Timer;
+  @FXML private Label timer;
   private Image[] alienImages;
   private int currentImageIndex = 0;
   @FXML private ImageView lightOne;
@@ -96,7 +96,7 @@ public class BathroomController {
       key.setOpacity(0);
       puzzle.setOnMouseClicked(null);
     }
-    Timer.setText(GameState.getTimeLeft());
+    timer.setText(GameState.getTimeLeft());
     Thread timeThread =
         new Thread(
             () -> {
@@ -296,7 +296,7 @@ public class BathroomController {
                         new Runnable() {
                           @Override
                           public void run() {
-                            Timer.setText(GameState.getTimeLeft());
+                            timer.setText(GameState.getTimeLeft());
                           }
                         });
                   }

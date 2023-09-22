@@ -30,7 +30,7 @@
       <Rectangle fx:id="p7" arcHeight="5.0" arcWidth="5.0" height="95.0" layoutX="38.0" layoutY="302.0" onMouseClicked="#swap" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="175.0" />
       <Rectangle fx:id="p9" arcHeight="5.0" arcWidth="5.0" height="95.0" layoutX="390.0" layoutY="302.0" onMouseClicked="#swap" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="175.0" />
       <Rectangle fx:id="p8" arcHeight="5.0" arcWidth="5.0" height="95.0" layoutX="214.0" layoutY="302.0" onMouseClicked="#swap" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="175.0" />
-      <Label fx:id="Timer" layoutX="878.0" layoutY="12.0" textFill="#fcb141">
+      <Label fx:id="timer" layoutX="878.0" layoutY="12.0" textFill="#fcb141">
          <font>
             <Font name="Tamil MN" size="36.0" />
          </font>
@@ -87,7 +87,7 @@
             <Image url="@../images/GlobeItem.png" />
          </image>
       </ImageView>
-      <Button fx:id="rgbClue" layoutX="596.0" layoutY="167.0" mnemonicParsing="false" onMouseClicked="#clickRgb" prefHeight="36.0" prefWidth="68.0" style="-fx-background-color: #2E40F9;" textFill="#fcb141">
+      <Button fx:id="rgbClue" layoutX="630.0" layoutY="170.0" mnemonicParsing="false" onMouseClicked="#clickRgb" prefHeight="36.0" prefWidth="68.0" style="-fx-background-color: #2E40F9;" textFill="#fcb141">
          <font>
             <Font name="Tamil MN" size="13.0" />
          </font>
@@ -97,5 +97,10 @@
             <Font name="Telugu MN" size="13.0" />
          </font>
       </Button>
+      <Label fx:id="collect" layoutX="597.0" layoutY="124.0" prefHeight="17.0" prefWidth="134.0" textFill="#f8f7f7">
+         <font>
+            <Font name="Tamil MN" size="13.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

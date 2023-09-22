@@ -36,7 +36,7 @@ public class ChatController {
   @FXML private TextField inputText;
   @FXML private Button sendButton;
   @FXML private Canvas quizMaster;
-  @FXML private Label Timer;
+  @FXML private Label timer;
   @FXML private Label labelTranslate;
   private Image[] alienImages;
   private int currentImageIndex = 0;
@@ -70,7 +70,9 @@ public class ChatController {
     }
 
     if (!GameState.isGameMasterLoaded) {
-      runGpt(new ChatMessage("user", GptPromptEngineering.getRiddleWithGivenWord("spaceship")));
+      runGpt(
+          new ChatMessage(
+              "user", GptPromptEngineering.getRiddleWithGivenWord(GameState.riddleAnswer)));
       GameState.isGameMasterLoaded = true;
     }
     // when the enter key is pressed
@@ -91,7 +93,7 @@ public class ChatController {
     sdCard1.setVisible(GameState.isSdCardFound);
     tape.setVisible(GameState.isElectricalTapeFound);
     globe.setVisible(GameState.isGlobeFound);
-    Timer.setText(GameState.getTimeLeft());
+    timer.setText(GameState.getTimeLeft());
     Thread timeThread =
         new Thread(
             () -> {
@@ -250,7 +252,7 @@ public class ChatController {
     if (!GameState.isDifficultPicked) {
       Pattern pattern =
           Pattern.compile(
-              "(what'?s? next|how do I continue|what should I do now |next |do |then)",
+              "(what'?s? next|how do I continue|what should I do now |next |do |then |after)",
               Pattern.CASE_INSENSITIVE);
       Matcher matcher = pattern.matcher(message);
       if (matcher.find()) {
@@ -330,7 +332,7 @@ public class ChatController {
                         new Runnable() {
                           @Override
                           public void run() {
-                            Timer.setText(GameState.getTimeLeft());
+                            timer.setText(GameState.getTimeLeft());
                           }
                         });
                   }

@@ -51,7 +51,7 @@ public class PuzController {
   @FXML private ImageView pic8;
   @FXML private ImageView pic9;
   @FXML private Label status;
-  @FXML private Label Timer;
+  @FXML private Label timer;
   @FXML private Button check;
   @FXML private Button goBackBtn;
   @FXML private Canvas gameMaster;
@@ -65,6 +65,7 @@ public class PuzController {
   @FXML private ImageView globe;
   @FXML private Button rgbClue;
   @FXML private Button rgbClue1;
+  @FXML private Label collect;
 
   private List<Rectangle> rectangles;
   private List<ImageView> imageViews;
@@ -100,7 +101,7 @@ public class PuzController {
     tape.setVisible(GameState.isElectricalTapeFound);
     sdCard.setVisible(GameState.isSdCardFound);
     globe.setVisible(GameState.isGlobeFound);
-    Timer.setText(GameState.getTimeLeft());
+    timer.setText(GameState.getTimeLeft());
     Thread timeThread =
         new Thread(
             () -> {
@@ -187,9 +188,7 @@ public class PuzController {
   // pressing on the quiz master to open the chat box
   @FXML
   public void clickQuizMaster(MouseEvent event) {
-    if (!GameState.isRiddleResolved) {
-      App.setUi("chat");
-    }
+    App.setUi("chat");
   }
 
   public void startTimer() {
@@ -205,7 +204,7 @@ public class PuzController {
                         new Runnable() {
                           @Override
                           public void run() {
-                            Timer.setText(GameState.getTimeLeft());
+                            timer.setText(GameState.getTimeLeft());
                           }
                         });
                   }
@@ -286,6 +285,8 @@ public class PuzController {
                 thread.start();
       rgbClue.setVisible(true);
       rgbClue.setText(GameState.password);
+      collect.setText("Collect!");
+      check.disableProperty().setValue(true);
     } else {
       status.setText("Not quite! Try again.");
     }
@@ -348,5 +349,6 @@ public class PuzController {
     rgbClue1.setVisible(true);
     rgbClue1.setText(GameState.password);
     rgbClue.setVisible(false);
+    collect.setText("");
   }
 }

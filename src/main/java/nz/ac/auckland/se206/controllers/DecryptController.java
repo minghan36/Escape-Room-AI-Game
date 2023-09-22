@@ -26,7 +26,7 @@ import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 public class DecryptController {
 
-  @FXML private Label Timer;
+  @FXML private Label timer;
   @FXML private TextField inputText;
   @FXML private Button sendButton;
   @FXML private Label incorrect;
@@ -46,6 +46,17 @@ public class DecryptController {
   private String[] randomLights = {"⎎⟟⍀⌇⏁", "⌇⟒☊⍜⋏⎅", "⏁⊑⟟⍀⎅"};
 
   public void initialize() {
+    // when the enter key is pressed
+    inputText.setOnAction(
+        e -> {
+          try {
+            onSendMessage(e);
+          } catch (ApiProxyException | IOException ex) {
+            ex.printStackTrace();
+            // Handle other exceptions appropriately.
+          }
+        });
+
     hintsText.setText(GameState.getHint());
     if (GameState.isRgbClueFound) {
       rgbClue1.setVisible(true);
@@ -56,7 +67,7 @@ public class DecryptController {
     globe.setVisible(GameState.isGlobeFound);
     tape.setVisible(GameState.isElectricalTapeFound);
     sdCard.setVisible(GameState.isSdCardFound);
-    Timer.setText(GameState.getTimeLeft());
+    timer.setText(GameState.getTimeLeft());
     Thread timeThread =
         new Thread(
             () -> {
@@ -114,7 +125,11 @@ public class DecryptController {
           }
         };
     timer.start();
-    objText.setText("Decipher the message from the quiz master");
+    if (GameState.isDecryptCompleted) {
+      objText.setText(GameState.getObjective());
+    } else {
+      objText.setText("Decipher the message from the quiz master");
+    }
     if (!GameState.isDecryptCompleted) {
       message.setText(
           "☌⍜  ⏁⍜  ⏁⊑⟒  ⏚⏃⏁⊑⍀⍜⍜⋔  ⏃⋏⎅  ⎎⟟⌖  ⏁⊑⟒  " + randomLights[GameState.randomNum] + "  ⌰⟟☌⊑⏁");
@@ -146,7 +161,7 @@ public class DecryptController {
                         new Runnable() {
                           @Override
                           public void run() {
-                            Timer.setText(GameState.getTimeLeft());
+                            timer.setText(GameState.getTimeLeft());
                           }
                         });
                   }
@@ -186,7 +201,7 @@ public class DecryptController {
 
   @FXML
   private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
-    if (GameState.isDecryptCompleted) {
+    if (GameState.isDecryptCompleted && !GameState.isLightPuzzleSolved) {
       GameState.currentObj = "Light Puzzle";
     }
     GameState.currentRoom = "computerroom";

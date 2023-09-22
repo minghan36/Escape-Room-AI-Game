@@ -27,7 +27,7 @@ import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 public class LightController {
 
   @FXML private Circle behindLight;
-  @FXML private Label Timer;
+  @FXML private Label timer;
   @FXML private Canvas gameMaster;
   @FXML private Rectangle quizMaster;
   @FXML private ImageView fixOne;
@@ -65,8 +65,11 @@ public class LightController {
       globe.setVisible(false);
     }
     globe1.setVisible(GameState.isGlobeFound);
-
-    objText.setText("Fix the wires to turn on the light.");
+    if (GameState.isLightPuzzleSolved) {
+      objText.setText(GameState.getObjective());
+    } else {
+      objText.setText("Fix the wires to turn on the light.");
+    }
     if (GameState.isWireOneFixed) {
       fixOne.setOpacity(1);
       fixOne.setOnMouseClicked(null);
@@ -90,10 +93,10 @@ public class LightController {
       fixFour.setOnMouseClicked(null);
     }
     if (GameState.wireFixes == 4) {
-      lightSuggest.setText("All the wires have been fixed. Good Job!");
+      lightSuggest.setText("All the wires have been fixed.");
     }
     lightSuggest.setWrapText(true);
-    Timer.setText(GameState.getTimeLeft());
+    timer.setText(GameState.getTimeLeft());
     Thread timeThread =
         new Thread(
             () -> {
@@ -172,7 +175,7 @@ public class LightController {
                         new Runnable() {
                           @Override
                           public void run() {
-                            Timer.setText(GameState.getTimeLeft());
+                            timer.setText(GameState.getTimeLeft());
                           }
                         });
                   }
