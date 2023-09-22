@@ -46,6 +46,7 @@ public class DecryptController {
   private String[] randomLights = {"⎎⟟⍀⌇⏁", "⌇⟒☊⍜⋏⎅", "⏁⊑⟟⍀⎅"};
 
   public void initialize() {
+    hintsText.setText(GameState.getHint());
     if (GameState.isRgbClueFound) {
       rgbClue1.setVisible(true);
       rgbClue1.setText(GameState.password);
