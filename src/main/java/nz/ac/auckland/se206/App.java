@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import nz.ac.auckland.se206.speech.TextToSpeech;
 
 /**
  * This is the entry point of the JavaFX application, while you can change this class, it should
@@ -52,6 +53,18 @@ public class App extends Application {
     stage.show();
     stage.setResizable(false);
     root.requestFocus();
+
+    Thread initSpeechThread =
+        new Thread(
+            () -> {
+              TextToSpeech textToSpeech = new TextToSpeech();
+              textToSpeech.speak(
+                  "Welcome, challengers. I am the Alien Gamemaster, creator of this intricate lair"
+                      + " and spaceship. Solve my riddle, overcome my challenges, or be trapped"
+                      + " forever. Good Luck");
+            });
+    initSpeechThread.setDaemon(true);
+    initSpeechThread.start();
   }
 
   /**
