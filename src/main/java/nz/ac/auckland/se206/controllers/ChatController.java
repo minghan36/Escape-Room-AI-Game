@@ -72,7 +72,9 @@ public class ChatController {
     }
 
     if (!GameState.isGameMasterLoaded) {
-      runGpt(new ChatMessage("user", GptPromptEngineering.getRiddleWithGivenWord("spaceship")));
+      runGpt(
+          new ChatMessage(
+              "user", GptPromptEngineering.getRiddleWithGivenWord(GameState.riddleAnswer)));
       GameState.isGameMasterLoaded = true;
     }
     // when the enter key is pressed
