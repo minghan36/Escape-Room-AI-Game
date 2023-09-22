@@ -87,7 +87,7 @@
             <Image url="@../images/GlobeItem.png" />
          </image>
       </ImageView>
-      <Button fx:id="rgbClue" layoutX="596.0" layoutY="167.0" mnemonicParsing="false" onMouseClicked="#clickRgb" prefHeight="36.0" prefWidth="68.0" style="-fx-background-color: #2E40F9;" textFill="#fcb141">
+      <Button fx:id="rgbClue" layoutX="630.0" layoutY="170.0" mnemonicParsing="false" onMouseClicked="#clickRgb" prefHeight="36.0" prefWidth="68.0" style="-fx-background-color: #2E40F9;" textFill="#fcb141">
          <font>
             <Font name="Tamil MN" size="13.0" />
          </font>
@@ -97,5 +97,10 @@
             <Font name="Telugu MN" size="13.0" />
          </font>
       </Button>
+      <Label fx:id="collect" layoutX="597.0" layoutY="124.0" prefHeight="17.0" prefWidth="134.0" textFill="#f8f7f7">
+         <font>
+            <Font name="Tamil MN" size="13.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -125,7 +125,11 @@ public class DecryptController {
           }
         };
     timer.start();
-    objText.setText("Decipher the message from the quiz master");
+    if (GameState.isDecryptCompleted) {
+      objText.setText(GameState.getObjective());
+    } else {
+      objText.setText("Decipher the message from the quiz master");
+    }
     if (!GameState.isDecryptCompleted) {
       message.setText(
           "☌⍜  ⏁⍜  ⏁⊑⟒  ⏚⏃⏁⊑⍀⍜⍜⋔  ⏃⋏⎅  ⎎⟟⌖  ⏁⊑⟒  " + randomLights[GameState.randomNum] + "  ⌰⟟☌⊑⏁");
@@ -191,7 +195,7 @@ public class DecryptController {
 
   @FXML
   private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
-    if (GameState.isDecryptCompleted) {
+    if (GameState.isDecryptCompleted && !GameState.isLightPuzzleSolved) {
       GameState.currentObj = "Light Puzzle";
     }
     GameState.currentRoom = "computerroom";
