@@ -93,6 +93,9 @@ public class WinController {
     GameState.objMessage = "";
     GameState.isRiddleResolved = false;
     GameState.hintMessage = "";
+    GameState.hintCounter = 0;
+    GameState.isComputerAccessed = false;
+    GameState.isGlobeAccessed = false;
     GameState.password =
         GameState.randomLetters[(int) (Math.random() * 4)]
             + GameState.randomLetters[(int) (Math.random() * 4)]

@@ -178,6 +178,15 @@ public class ComputerRoomController {
       objText.setText("You need the SD card to access the computer!");
     } else {
       GameState.currentRoom = "decrypt";
+      if (!GameState.isComputerAccessed){
+        Thread thread =
+                    new Thread(
+                        () -> {
+                          GameState.sendPrompt("The player has accessed the computer. The player must decipher an alien message using an onscreen alien alphabet.");
+                        });
+                thread.start();
+      GameState.isComputerAccessed = true;
+      }
       App.setUi("decrypt");
     }
   }
@@ -201,6 +210,15 @@ public class ComputerRoomController {
 
   @FXML
   public void clickTape() {
+    if (!GameState.isComputerAccessed){
+        Thread thread =
+                    new Thread(
+                        () -> {
+                          GameState.sendPrompt("The player has gotten the tape. The player must now go back to the broken light and fix the broken wires by simply clicking on areas that appear broken. The player does not need to consider the colours of the wires.");
+                        });
+                thread.start();
+      GameState.isComputerAccessed = true;
+      }
     tape.setOpacity(0);
     tape.setOnMouseClicked(null);
     GameState.isElectricalTapeFound = true;

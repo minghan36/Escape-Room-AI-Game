@@ -6,7 +6,10 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.util.Duration;
+import nz.ac.auckland.se206.gpt.ChatMessage;
+import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
+import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
 
 /** Represents the state of the game. */
 public class GameState {
@@ -16,6 +19,7 @@ public class GameState {
 
   public static String currentRoom = "lockedroom";
   public static String chatContents = "";
+  public static String latestHint = "";
 
   public static ChatCompletionRequest chatCompletionRequest =
       new ChatCompletionRequest().setN(1).setTemperature(0.1).setTopP(0.5).setMaxTokens(100);
@@ -41,6 +45,9 @@ public class GameState {
   public static boolean isGlobeFound = false;
   public static boolean isGameMasterLoaded = false;
   public static boolean isRgbClueFound = false;
+
+  public static boolean isComputerAccessed = false;
+  public static boolean isGlobeAccessed = false;
 
   public static int minutes = 0;
   public static int seconds = 0;
@@ -123,11 +130,22 @@ public class GameState {
 
   public static String getHint() {
     if (GameState.isMediumPicked) {
-      return ("Hints Remaining : " + (5 - hintCounter) + "\n" + hintMessage);
+      return ("Hints Remaining : " + (5 - hintCounter) + "\n" + latestHint);
     } else if (GameState.isDifficultPicked) {
       return " no Hints, you got this";
     } else {
       return "unlimited hints available";
+    }
+  }
+
+   public static void sendPrompt(String prompt) {
+    chatCompletionRequest.addMessage(new ChatMessage("user", prompt));
+    ChatCompletionResult chatCompletionResult;
+    try {
+      chatCompletionResult = chatCompletionRequest.execute();
+      chatCompletionResult.getChoices().iterator().next();
+    } catch (ApiProxyException e) {
+      e.printStackTrace();
     }
   }
 

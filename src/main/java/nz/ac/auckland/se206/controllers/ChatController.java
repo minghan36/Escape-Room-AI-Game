@@ -2,8 +2,6 @@ package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -218,10 +216,29 @@ public class ChatController {
       return;
     }
 
+    if (GameState.hintCounter == 5) {
+                Thread thread =
+                    new Thread(
+                        () -> {
+                          GameState.sendPrompt("The player has reached their hint limit. Do not provide any help to the player. Do not give the player any hints. Do not tell the player the next step.");
+                        });
+                thread.start();
+    }
+
+    if(GameState.isDifficultPicked){
+      Thread thread =
+                    new Thread(
+                        () -> {
+                          GameState.sendPrompt("The player is in difficult mode. Do not provide any help to the player. Do not give the player any hints. Do not tell the player the next step.");
+                        });
+                thread.start();
+    }
+
     inputText.clear();
     ChatMessage msg = new ChatMessage("user", message);
     appendChatMessage(msg);
 
+    /*
     if (GameState.isMediumPicked && GameState.hintCounter >= 5) {
       Pattern helpPattern = Pattern.compile("(help|hint)", Pattern.CASE_INSENSITIVE);
       Matcher helpMatcher = helpPattern.matcher(message);
@@ -255,6 +272,7 @@ public class ChatController {
         return;
       }
     }
+    */
 
     CompletableFuture<ChatMessage> future = runGpt(msg);
     future.thenAccept(
@@ -266,13 +284,22 @@ public class ChatController {
               sdCollect.setText("Collect the SD card!");
               objText.setText(GameState.getObjective());
               GameState.currentObj = "Decrypt";
+              Thread thread =
+                    new Thread(
+                        () -> {
+                          GameState.sendPrompt("The player has solved the riddle and received an SD card. The player must"
+                          + " now find and access the computer in the computer room by clicking on the computer.");
+                        });
+                thread.start();
             } else if (lastMsg.getContent().contains("hint: ")
-                || lastMsg.getContent().contains("Hint: ")) {
+                || lastMsg.getContent().contains("Hint: ")|| lastMsg.getContent().contains("Clue: ")|| lastMsg.getContent().contains("clue: ")) {
+                  if(GameState.hintCounter<5){
               GameState.hintCounter++;
-
+                  }
+                  GameState.latestHint = lastMsg.getContent();
               // Display the hint count if its medium level
               if (GameState.isMediumPicked && GameState.hintCounter <= 5) {
-                hintsText.setText("Hints Remaining: " + (5 - GameState.hintCounter));
+                hintsText.setText("Hints Remaining: " + (5 - GameState.hintCounter) +"\n"+GameState.latestHint);
               }
             }
           }
