@@ -65,8 +65,11 @@ public class LightController {
       globe.setVisible(false);
     }
     globe1.setVisible(GameState.isGlobeFound);
-
-    objText.setText("Fix the wires to turn on the light.");
+    if (GameState.isLightPuzzleSolved) {
+      objText.setText(GameState.getObjective());
+    } else {
+      objText.setText("Fix the wires to turn on the light.");
+    }
     if (GameState.isWireOneFixed) {
       fixOne.setOpacity(1);
       fixOne.setOnMouseClicked(null);
@@ -90,7 +93,7 @@ public class LightController {
       fixFour.setOnMouseClicked(null);
     }
     if (GameState.wireFixes == 4) {
-      lightSuggest.setText("All the wires have been fixed. Good Job!");
+      lightSuggest.setText("All the wires have been fixed.");
     }
     lightSuggest.setWrapText(true);
     timer.setText(GameState.getTimeLeft());

@@ -65,6 +65,7 @@ public class PuzController {
   @FXML private ImageView globe;
   @FXML private Button rgbClue;
   @FXML private Button rgbClue1;
+  @FXML private Label collect;
 
   private List<Rectangle> rectangles;
   private List<ImageView> imageViews;
@@ -187,9 +188,7 @@ public class PuzController {
   // pressing on the quiz master to open the chat box
   @FXML
   public void clickQuizMaster(MouseEvent event) {
-    if (!GameState.isRiddleResolved) {
-      App.setUi("chat");
-    }
+    App.setUi("chat");
   }
 
   public void startTimer() {
@@ -280,6 +279,8 @@ public class PuzController {
               + " door for your final puzzle");
       rgbClue.setVisible(true);
       rgbClue.setText(GameState.password);
+      collect.setText("Collect!");
+      check.disableProperty().setValue(true);
     } else {
       status.setText("Not quite! Try again.");
     }
@@ -342,5 +343,6 @@ public class PuzController {
     rgbClue1.setVisible(true);
     rgbClue1.setText(GameState.password);
     rgbClue.setVisible(false);
+    collect.setText("");
   }
 }
