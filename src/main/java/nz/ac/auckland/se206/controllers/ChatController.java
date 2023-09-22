@@ -233,7 +233,7 @@ public class ChatController {
     if (!GameState.isDifficultPicked) {
       Pattern pattern =
           Pattern.compile(
-              "(what'?s? next|how do I continue|what should I do now |next |do |then)",
+              "(what'?s? next|how do I continue|what should I do now |next |do |then |after)",
               Pattern.CASE_INSENSITIVE);
       Matcher matcher = pattern.matcher(message);
       if (matcher.find()) {
