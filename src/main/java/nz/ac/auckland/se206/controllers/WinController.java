@@ -60,7 +60,7 @@ public class WinController {
   }
   //Creating a reset method to reset the game
   @FXML
-  private void reset() {
+  private void onReset() {
     //resetting all the variables
     GameState.currentRoom = "lockedroom";
     GameState.chatContents = "";
@@ -97,6 +97,7 @@ public class WinController {
     GameState.hintCounter = 0;
     GameState.isComputerAccessed = false;
     GameState.isGlobeAccessed = false;
+    GameState.riddleAnswer = GameState.riddleAnswers[(int) (Math.random() * 3)];
     GameState.password =
         GameState.randomLetters[(int) (Math.random() * 4)]
             + GameState.randomLetters[(int) (Math.random() * 4)]

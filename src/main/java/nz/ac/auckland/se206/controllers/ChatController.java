@@ -276,7 +276,9 @@ public class ChatController {
             } else if (lastMsg.getContent().contains("hint: ")
                 || lastMsg.getContent().contains("Hint: ")
                 || lastMsg.getContent().contains("Clue: ")
-                || lastMsg.getContent().contains("clue: ")) {
+                || lastMsg.getContent().contains("clue: ")
+                || lastMsg.getContent().contains("Help: ")
+                || lastMsg.getContent().contains("help: ")) {
               // Updating hint counter
               if (GameState.hintCounter < 5) {
                 GameState.hintCounter++;

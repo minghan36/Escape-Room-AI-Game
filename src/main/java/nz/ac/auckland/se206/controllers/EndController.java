@@ -95,6 +95,7 @@ public class EndController {
     GameState.hintCounter = 0;
     GameState.isComputerAccessed = false;
     GameState.isGlobeAccessed = false;
+    GameState.riddleAnswer = GameState.riddleAnswers[(int) (Math.random() * 3)];
     GameState.password =
         GameState.randomLetters[(int) (Math.random() * 4)]
             + GameState.randomLetters[(int) (Math.random() * 4)]

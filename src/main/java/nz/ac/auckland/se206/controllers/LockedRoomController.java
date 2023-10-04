@@ -366,7 +366,6 @@ public class LockedRoomController {
       rectangleDoorTwo.setOpacity(0);
       rectangleDoorThree.setOpacity(0);
       GameState.isRgbSolved = true;
-
     } else {
       labelPasscode.setText("");
     }
