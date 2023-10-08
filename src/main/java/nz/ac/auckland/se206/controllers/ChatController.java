@@ -73,10 +73,20 @@ public class ChatController {
       rgbClue1.setVisible(false);
     }
     // Allowing the rungpt if the gamemaster is loaded
-    if (!GameState.isGameMasterLoaded) {
+    if (!GameState.isGameMasterLoaded && GameState.isEasyPicked) {
       runGpt(
           new ChatMessage(
-              "user", GptPromptEngineering.getRiddleWithGivenWord(GameState.riddleAnswer)));
+              "user", GptPromptEngineering.getRiddleWithGivenWordEasy(GameState.riddleAnswer)));
+      GameState.isGameMasterLoaded = true;
+    } else if (!GameState.isGameMasterLoaded && GameState.isMediumPicked) {
+      runGpt(
+          new ChatMessage(
+              "user", GptPromptEngineering.getRiddleWithGivenWordMedium(GameState.riddleAnswer)));
+      GameState.isGameMasterLoaded = true;
+    } else if (!GameState.isGameMasterLoaded && GameState.isDifficultPicked) {
+      runGpt(
+          new ChatMessage(
+              "user", GptPromptEngineering.getRiddleWithGivenWordHard(GameState.riddleAnswer)));
       GameState.isGameMasterLoaded = true;
     }
     // when the enter key is pressed
