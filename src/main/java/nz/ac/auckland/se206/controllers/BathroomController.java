@@ -23,6 +23,7 @@ import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 
+/** Controller class for the Bathroom view. */
 public class BathroomController {
 
   // Creating variables required for the FXML scene
@@ -39,7 +40,6 @@ public class BathroomController {
   @FXML private Ellipse ellipseTwo;
   @FXML private Ellipse ellipseThree;
   @FXML private Circle puzzle;
-  @FXML private ImageView key;
   @FXML private Label label;
   @FXML private ImageView sdCard;
   @FXML private ImageView tape;
@@ -95,11 +95,6 @@ public class BathroomController {
       ellipseOne.setOnMouseClicked(null);
       ellipseOne.setOnMouseEntered(null);
     }
-    // Making sure the player can't click on the puzzle if it's already solved
-    if (GameState.isPuzzleSolved) {
-      key.setOpacity(0);
-      puzzle.setOnMouseClicked(null);
-    }
     // Timing thread for the timer
     timer.setText(GameState.getTimeLeft());
     Thread timeThread =
@@ -137,7 +132,7 @@ public class BathroomController {
     translateTransition.play();
   }
 
-  // Method starts the animation for the Gamemaster movements
+  /** Starts the animation of the Gamemaster. */
   private void startAnimation() {
     GraphicsContext gc = gameMaster.getGraphicsContext2D();
     AnimationTimer timer =
@@ -164,20 +159,28 @@ public class BathroomController {
     timer.start();
   }
 
-  // pressing on the quiz master to open the chat box
+  /**
+   * Handles the click event on the Gamemaster to open chat view.
+   *
+   * @param event the key event
+   */
   @FXML
   private void clickQuizMaster(MouseEvent event) {
     App.setUi("chat");
   }
 
-  // Enters the lcoked room
+  /**
+   * Handles the click event on the left arrow to enter the locked room view
+   *
+   * @param event the key event
+   */
   @FXML
   private void enterLockedRoom(MouseEvent event) {
     GameState.currentRoom = "lockedroom";
     App.setUi("lockedroom");
   }
 
-  // Highlights the arrows when the mouse is over them
+  /** Enlarges the left arrow when the arrow hovers over it. */
   @FXML
   private void highlight() {
     toLockedRoom.setOpacity(1);
@@ -185,7 +188,7 @@ public class BathroomController {
     toLockedRoom.setScaleY(1.2);
   }
 
-  // Removes the highlights once mouse has left
+  /** Removes the enlargement when the mouse leaves the left arrow. */
   @FXML
   private void removeHighlight() {
     toLockedRoom.setOpacity(0.3);
@@ -193,7 +196,10 @@ public class BathroomController {
     toLockedRoom.setScaleY(1);
   }
 
-  // Method for the first light
+  /**
+   * Handles the click event of the first light to enter the light scene if decrypt puzzle is
+   * solved.
+   */
   @FXML
   public void clickLightOne() {
     if (!GameState.isLightPuzzleStarted) {
@@ -219,6 +225,10 @@ public class BathroomController {
     }
   }
 
+  /**
+   * Handles the click event of the second light to enter the light scene if decrypt puzzle is
+   * solved.
+   */
   @FXML
   public void clickLightTwo() {
     // Creaating the prompts for the hints for GPT flow when user enters light
@@ -244,6 +254,10 @@ public class BathroomController {
     }
   }
 
+  /**
+   * Handles the click event of the Third light to enter the light scene if decrypt puzzle is
+   * solved.
+   */
   @FXML
   public void clickLightThree() {
     // Creaating the prompts for the hints for GPT flow when user enters light
@@ -269,16 +283,7 @@ public class BathroomController {
     }
   }
 
-  // Method for the puzzle
-  @FXML
-  private void openPuzzle(MouseEvent event) {
-    if (GameState.isLightPuzzleSolved) {
-      GameState.currentRoom = "puz";
-      App.setUi("puz");
-    }
-  }
-
-  // Method for the timer to start running
+  /** Starts updating the timer accordingly */
   public void startTimer() {
     Timeline timeline =
         new Timeline(
@@ -302,7 +307,11 @@ public class BathroomController {
     timeline.play();
   }
 
-  // Method for the hovering of lights when the mouse is over them
+  /**
+   * Handles the mouse enter event on the first light to increase it's size.
+   *
+   * @param event the mouse event
+   */
   @FXML
   private void increaseSizeOne(MouseEvent event) {
     ellipseOne.setScaleX(1.2);
@@ -311,7 +320,11 @@ public class BathroomController {
     lightOne.setScaleY(1.2);
   }
 
-  // Method for the hovering of lights when the mouse is over them
+  /**
+   * Handles the mouse enter event on the second light to increase it's size.
+   *
+   * @param event the mouse event
+   */
   @FXML
   private void increaseSizeTwo(MouseEvent event) {
     ellipseTwo.setScaleX(1.2);
@@ -320,7 +333,11 @@ public class BathroomController {
     lightTwo.setScaleY(1.2);
   }
 
-  // Method for the hovering of lights when the mouse is over them
+  /**
+   * Handles the mouse enter event on the third light to increase it's size.
+   *
+   * @param event the mouse event
+   */
   @FXML
   private void increaseSizeThree(MouseEvent event) {
     ellipseThree.setScaleX(1.2);
@@ -329,7 +346,11 @@ public class BathroomController {
     lightThree.setScaleY(1.2);
   }
 
-  // Method for the hovering of lights when the mouse is not over them
+  /**
+   * Handles the mouse exit event on the first light to increase it's size.
+   *
+   * @param event the mouse event
+   */
   @FXML
   private void decreaseSizeOne(MouseEvent event) {
     ellipseOne.setScaleX(1);
@@ -338,7 +359,11 @@ public class BathroomController {
     lightOne.setScaleY(1);
   }
 
-  // Method for the hovering of lights when the mouse is not over them
+  /**
+   * Handles the mouse exit event on the second light to increase it's size.
+   *
+   * @param event the mouse event
+   */
   @FXML
   private void decreaseSizeTwo(MouseEvent event) {
     ellipseTwo.setScaleX(1);
@@ -347,7 +372,11 @@ public class BathroomController {
     lightTwo.setScaleY(1);
   }
 
-  // Method for the hovering of lights when the mouse is not over them
+  /**
+   * Handles the mouse exit event on the third light to increase it's size.
+   *
+   * @param event the mouse event
+   */
   @FXML
   private void decreaseSizeThree(MouseEvent event) {
     ellipseThree.setScaleX(1);

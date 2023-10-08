@@ -103,6 +103,7 @@ public class ComputerRoomController {
     translateTransition.play();
   }
 
+  /** Starts the animation for the Gamemaster. */
   private void startAnimation() {
     GraphicsContext gc = gameMaster.getGraphicsContext2D();
     AnimationTimer timer =
@@ -129,20 +130,28 @@ public class ComputerRoomController {
     timer.start();
   }
 
-  // pressing on the quiz master to open the chat box
+  /**
+   * Handles the click event on the Gamemaster to enter chat view
+   *
+   * @param event the mouse event
+   */
   @FXML
   private void clickQuizMaster(MouseEvent event) {
     App.setUi("chat");
   }
 
-  // Method to enter the locked room
+  /**
+   * Handles the click event on the right arrow to open locked room view
+   *
+   * @param event the mouse event
+   */
   @FXML
   private void enterLockedRoom(MouseEvent event) {
     GameState.currentRoom = "lockedroom";
     App.setUi("lockedroom");
   }
 
-  // Method for the highlighting of arrows when on them
+  /** Highlights the right arrow when the mouse hovers. */
   @FXML
   private void highlight() {
     toLockedRoom.setOpacity(1);
@@ -150,7 +159,7 @@ public class ComputerRoomController {
     toLockedRoom.setScaleY(1.2);
   }
 
-  // Method for removing the highlight
+  /** Removes highlight on right arrow when the mouse stops hovering. */
   @FXML
   private void removeHighlight() {
     toLockedRoom.setOpacity(0.3);
@@ -158,7 +167,7 @@ public class ComputerRoomController {
     toLockedRoom.setScaleY(1);
   }
 
-  // Method for starting the timer
+  /** Starts updating timer according to time left. */
   public void startTimer() {
     Timeline timeline =
         new Timeline(
@@ -182,7 +191,11 @@ public class ComputerRoomController {
     timeline.play();
   }
 
-  // Method for enterign the decrypt puzzle
+  /**
+   * Handles the click event on the middle computer to enter the decryption puzzle view.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void enterDecrypt(MouseEvent event) {
     // Conditions letting the user to enter the puzzle
@@ -206,7 +219,11 @@ public class ComputerRoomController {
     }
   }
 
-  // Method for increasing the size of the image
+  /**
+   * Handles the mouse enter event on the middle computer image.
+   *
+   * @param event the mouse event
+   */
   @FXML
   private void increaseSize(MouseEvent event) {
     if (!GameState.isRiddleResolved) {
@@ -217,7 +234,11 @@ public class ComputerRoomController {
     }
   }
 
-  // Method for decreasing the size of the image
+  /**
+   * Handles the mouse exit event on the middle computer image.
+   *
+   * @param event the mouse event
+   */
   @FXML
   private void decreaseSize(MouseEvent event) {
     // decrease the size of the image
@@ -225,7 +246,7 @@ public class ComputerRoomController {
     hoverImage.setScaleY(1);
   }
 
-  // Method for picking the tape up
+  /** Moves tape to inventory on mouse click. */
   @FXML
   public void clickTape() {
     if (!GameState.isComputerAccessed) {
@@ -249,14 +270,22 @@ public class ComputerRoomController {
     tape1.setVisible(true);
   }
 
-  // Method for hovering over tape
+  /**
+   * Handles the mouse enter event on the tape image.
+   *
+   * @param event the mouse event
+   */
   @FXML
   private void increaseTapeSize(MouseEvent event) {
     tape.setScaleX(1.2);
     tape.setScaleY(1.2);
   }
 
-  // Method for decreasing the size of the tape
+  /**
+   * Handles the mouse exit event on the tape image.
+   *
+   * @param event the mouse event
+   */
   @FXML
   private void decreaseTapeSize(MouseEvent event) {
     tape.setScaleX(1);

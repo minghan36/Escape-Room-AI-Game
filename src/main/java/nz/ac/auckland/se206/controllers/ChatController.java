@@ -141,6 +141,7 @@ public class ChatController {
     startAnimation();
   }
 
+  /** Starts the animation of the Gamemaster. */
   private void startAnimation() {
     // Animation for the gamemaster
     GraphicsContext gc = quizMaster.getGraphicsContext2D();
@@ -345,20 +346,21 @@ public class ChatController {
   }
 
   // Method for increasing size the SD card when hovering
+  /** Highlights the sd card when the mouse hovers over. */
   @FXML
   private void increaseSize() {
     sdCard.setScaleX(1.2);
     sdCard.setScaleY(1.2);
   }
 
-  // Method for decreasing size of the SD card when not over it
+  /** Un-highlights the sd card when the mouse stops hovering. */
   @FXML
   private void decreaseSize() {
     sdCard.setScaleX(1);
     sdCard.setScaleY(1);
   }
 
-  // Method to collect the sd card
+  /** Moves sd card into 'inventory' when user clicks on it. */
   @FXML
   private void clickSdCard() {
     GameState.isSdCardFound = true;

@@ -46,6 +46,7 @@ public class DecryptController {
   // create array of alien symbols
   private String[] randomLights = {"⎎⟟⍀⌇⏁", "⌇⟒☊⍜⋏⎅", "⏁⊑⟟⍀⎅"};
 
+  /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
     // when the enter key is pressed
     inputText.setOnAction(
@@ -104,7 +105,7 @@ public class DecryptController {
     translateTransition.play();
   }
 
-  // Animation initsialiser for the alien images
+  /** Starts the animation movement for the Gamemaster image. */
   private void startAnimation() {
     GraphicsContext gc = gameMaster.getGraphicsContext2D();
     AnimationTimer timer =
@@ -148,13 +149,17 @@ public class DecryptController {
     }
   }
 
-  // pressing on the quiz master to open the chat box
+  /**
+   * Handles the click event on the Gamemaster to open the chat view.
+   *
+   * @param event the mouse click event.
+   */
   @FXML
   private void clickQuizMaster(MouseEvent event) {
     App.setUi("chat");
   }
 
-  // Starting the timer for the scene
+  /** Starts updating the timer according to the time left. */
   public void startTimer() {
     Timeline timeline =
         new Timeline(
@@ -178,6 +183,13 @@ public class DecryptController {
     timeline.play();
   }
 
+  /**
+   * Sends the decoded message to be checked.
+   *
+   * @throws ApiProxyException if there is an error communicating with the API proxy
+   * @throws IOException if there is an error in an input or output operation
+   * @param event the event that starts sending the message, (mouse click or enter button.)
+   */
   @FXML
   private void onSendMessage(ActionEvent event) throws ApiProxyException, IOException {
     // Getting the user message for the decryption puzzle
@@ -212,9 +224,13 @@ public class DecryptController {
     }
   }
 
-  // Method for the go back button when the user wants to leave the room
+  /**
+   * Initializes the previous room view.
+   *
+   * @param event the event that starts changing to previous room view, (mouse click).
+   */
   @FXML
-  private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
+  private void onGoBack(ActionEvent event) {
     // if the user has completed the decryption puzzle but not ocmpleted light
     if (GameState.isDecryptCompleted && !GameState.isLightPuzzleSolved) {
       GameState.currentObj = "Light Puzzle";
