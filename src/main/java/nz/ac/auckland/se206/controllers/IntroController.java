@@ -13,26 +13,44 @@ import nz.ac.auckland.se206.GameState;
 
 public class IntroController {
   // Intialisng all the variables required for the scene
-  @FXML private Rectangle time;
-  @FXML private Rectangle start;
-  @FXML private Label title;
-  @FXML private Button easy;
-  @FXML private Button medium;
-  @FXML private Button difficult;
+  @FXML
+  private Rectangle time;
+  @FXML
+  private Rectangle start;
+  @FXML
+  private Label title;
+  @FXML
+  private Button easy;
+  @FXML
+  private Button medium;
+  @FXML
+  private Button difficult;
   private boolean levelIsPicked;
   private boolean timeIsPicked;
-  @FXML private Label chooseEasy;
-  @FXML private Label chooseMedium;
-  @FXML private Label chooseDifficult;
-  @FXML private Label minTwo;
-  @FXML private Label minFour;
-  @FXML private Label minSix;
-  @FXML private Button twoMin;
-  @FXML private Button fourMin;
-  @FXML private Button sixMin;
-  @FXML private Label startStatus;
-  @FXML private Label levelDetail;
-  @FXML private ImageView alien;
+  @FXML
+  private Label chooseEasy;
+  @FXML
+  private Label chooseMedium;
+  @FXML
+  private Label chooseDifficult;
+  @FXML
+  private Label minTwo;
+  @FXML
+  private Label minFour;
+  @FXML
+  private Label minSix;
+  @FXML
+  private Button twoMin;
+  @FXML
+  private Button fourMin;
+  @FXML
+  private Button sixMin;
+  @FXML
+  private Label startStatus;
+  @FXML
+  private Label levelDetail;
+  @FXML
+  private ImageView alien;
 
   public void initialize() {
     // create a translate transition for the label
@@ -79,14 +97,17 @@ public class IntroController {
   @FXML
   private void startGame(MouseEvent event) {
     if (levelIsPicked && timeIsPicked) {
-      Thread timeThread =
-          new Thread(
-              () -> {
-                GameState.startTimer();
-              });
+      // Only starting the thread if the user has chosen a difficulty level and a time
+      // limit
+      Thread timeThread = new Thread(
+          () -> {
+            GameState.startTimer();
+          });
       timeThread.start();
+      // Switching to the locked room scene so the user can begin their escape
       App.setUi("lockedroom");
     } else {
+      // Telling the user to pick a level and a time duration
       startStatus.setText("Please pick a level and a time duration");
     }
   }

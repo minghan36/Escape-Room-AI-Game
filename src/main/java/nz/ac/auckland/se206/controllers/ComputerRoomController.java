@@ -24,21 +24,34 @@ import nz.ac.auckland.se206.GameState;
 public class ComputerRoomController {
   // Intialising variables required for the room
 
-  @FXML private ImageView tape;
-  @FXML private ImageView toLockedRoom;
-  @FXML private Rectangle quizMaster;
-  @FXML private Canvas gameMaster;
-  @FXML private Label timer;
-  @FXML private Rectangle decrypt;
+  @FXML
+  private ImageView tape;
+  @FXML
+  private ImageView toLockedRoom;
+  @FXML
+  private Rectangle quizMaster;
+  @FXML
+  private Canvas gameMaster;
+  @FXML
+  private Label timer;
+  @FXML
+  private Rectangle decrypt;
   private Image[] alienImages;
   private int currentImageIndex = 0;
-  @FXML private ImageView hoverImage;
-  @FXML private ImageView tape1;
-  @FXML private ImageView sdCard;
-  @FXML private TextArea objText;
-  @FXML private TextArea hintsText;
-  @FXML private ImageView globe;
-  @FXML private Button rgbClue1;
+  @FXML
+  private ImageView hoverImage;
+  @FXML
+  private ImageView tape1;
+  @FXML
+  private ImageView sdCard;
+  @FXML
+  private TextArea objText;
+  @FXML
+  private TextArea hintsText;
+  @FXML
+  private ImageView globe;
+  @FXML
+  private Button rgbClue1;
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
@@ -68,27 +81,24 @@ public class ComputerRoomController {
     }
     // Timer thread
     timer.setText(GameState.getTimeLeft());
-    Thread timeThread =
-        new Thread(
-            () -> {
-              startTimer();
-            });
+    Thread timeThread = new Thread(
+        () -> {
+          startTimer();
+        });
     timeThread.start();
     // game master animation
     // Initialize alienImages with your image paths
-    alienImages =
-        new Image[] {
-          new Image("images/move1.png"),
-          new Image("images/move2.png"),
-          new Image("images/move3.png"),
-          new Image("images/move4.png")
-        };
+    alienImages = new Image[] {
+        new Image("images/move1.png"),
+        new Image("images/move2.png"),
+        new Image("images/move3.png"),
+        new Image("images/move4.png")
+    };
 
     // Start the animation
     startAnimation();
 
-    TranslateTransition translateTransition =
-        new TranslateTransition(Duration.seconds(2), gameMaster);
+    TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(2), gameMaster);
 
     // set the Y-axis translation value
     translateTransition.setByY(-10);
@@ -105,27 +115,26 @@ public class ComputerRoomController {
 
   private void startAnimation() {
     GraphicsContext gc = gameMaster.getGraphicsContext2D();
-    AnimationTimer timer =
-        new AnimationTimer() {
-          private long lastTime = 0;
-          private final long frameDurationMillis = 100; // 1000 milliseconds = 1 second
+    AnimationTimer timer = new AnimationTimer() {
+      private long lastTime = 0;
+      private final long frameDurationMillis = 100; // 1000 milliseconds = 1 second
 
-          @Override
-          public void handle(long currentTime) {
-            if (currentTime - lastTime >= frameDurationMillis * 1_000_000) {
-              if (currentImageIndex < alienImages.length) {
-                gc.clearRect(0, 0, gameMaster.getWidth(), gameMaster.getHeight());
-                gc.drawImage(alienImages[currentImageIndex], 0, 0);
-                currentImageIndex++;
-                // Check if we have displayed all images; if so, reset the index to 0
-                if (currentImageIndex >= alienImages.length) {
-                  currentImageIndex = 0;
-                }
-                lastTime = currentTime;
-              }
+      @Override
+      public void handle(long currentTime) {
+        if (currentTime - lastTime >= frameDurationMillis * 1_000_000) {
+          if (currentImageIndex < alienImages.length) {
+            gc.clearRect(0, 0, gameMaster.getWidth(), gameMaster.getHeight());
+            gc.drawImage(alienImages[currentImageIndex], 0, 0);
+            currentImageIndex++;
+            // Check if we have displayed all images; if so, reset the index to 0
+            if (currentImageIndex >= alienImages.length) {
+              currentImageIndex = 0;
             }
+            lastTime = currentTime;
           }
-        };
+        }
+      }
+    };
     timer.start();
   }
 
@@ -160,23 +169,22 @@ public class ComputerRoomController {
 
   // Method for starting the timer
   public void startTimer() {
-    Timeline timeline =
-        new Timeline(
-            new KeyFrame(
-                Duration.seconds(1),
-                new EventHandler<ActionEvent>() {
-                  @Override
-                  public void handle(ActionEvent event) {
-                    // Counts down the timer.
-                    Platform.runLater(
-                        new Runnable() {
-                          @Override
-                          public void run() {
-                            timer.setText(GameState.getTimeLeft());
-                          }
-                        });
-                  }
-                }));
+    Timeline timeline = new Timeline(
+        new KeyFrame(
+            Duration.seconds(1),
+            new EventHandler<ActionEvent>() {
+              @Override
+              public void handle(ActionEvent event) {
+                // Counts down the timer.
+                Platform.runLater(
+                    new Runnable() {
+                      @Override
+                      public void run() {
+                        timer.setText(GameState.getTimeLeft());
+                      }
+                    });
+              }
+            }));
 
     timeline.setCycleCount((GameState.minutes * 60) + GameState.seconds - 1);
     timeline.play();
@@ -192,13 +200,12 @@ public class ComputerRoomController {
       GameState.currentRoom = "decrypt";
       if (!GameState.isComputerAccessed) {
         // Thread to send the prompt to the GPT to over look progress
-        Thread thread =
-            new Thread(
-                () -> {
-                  GameState.sendPrompt(
-                      "The player has accessed the computer. The player must decipher an alien"
-                          + " message using an onscreen alien alphabet.");
-                });
+        Thread thread = new Thread(
+            () -> {
+              GameState.sendPrompt(
+                  "The player has accessed the computer. The player must decipher an alien"
+                      + " message using an onscreen alien alphabet.");
+            });
         thread.start();
         GameState.isComputerAccessed = true;
       }
@@ -230,15 +237,14 @@ public class ComputerRoomController {
   public void clickTape() {
     if (!GameState.isComputerAccessed) {
       // Thread to send the prompt to the GPT to over look progress
-      Thread thread =
-          new Thread(
-              () -> {
-                GameState.sendPrompt(
-                    "The player has gotten the tape. The player must now go back to the broken"
-                        + " light and fix the broken wires by simply clicking on areas that appear"
-                        + " broken. The player does not need to consider the colours of the"
-                        + " wires.");
-              });
+      Thread thread = new Thread(
+          () -> {
+            GameState.sendPrompt(
+                "The player has gotten the tape. The player must now go back to the broken"
+                    + " light and fix the broken wires by simply clicking on areas that appear"
+                    + " broken. The player does not need to consider the colours of the"
+                    + " wires.");
+          });
       thread.start();
       GameState.isComputerAccessed = true;
     }
