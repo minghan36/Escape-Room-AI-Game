@@ -16,56 +16,35 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 
+/** Controller class for the Bathroom view. */
 public class BathroomController {
 
   // Creating variables required for the FXML scene
-  @FXML
-  private Rectangle quizMaster;
-  @FXML
-  private Canvas gameMaster;
-  @FXML
-  private Label timer;
+  @FXML private Rectangle quizMaster;
+  @FXML private Canvas gameMaster;
+  @FXML private Label timer;
   private Image[] alienImages;
   private int currentImageIndex = 0;
-  @FXML
-  private ImageView lightOne;
-  @FXML
-  private ImageView lightTwo;
-  @FXML
-  private ImageView lightThree;
-  @FXML
-  private ImageView toLockedRoom;
-  @FXML
-  private Ellipse ellipseOne;
-  @FXML
-  private Ellipse ellipseTwo;
-  @FXML
-  private Ellipse ellipseThree;
-  @FXML
-  private Circle puzzle;
-  @FXML
-  private ImageView key;
-  @FXML
-  private Label label;
-  @FXML
-  private ImageView sdCard;
-  @FXML
-  private ImageView tape;
-  @FXML
-  private TextArea objText;
-  @FXML
-  private TextArea hintsText;
-  @FXML
-  private ImageView globe;
-  @FXML
-  private Button rgbClue1;
+  @FXML private ImageView lightOne;
+  @FXML private ImageView lightTwo;
+  @FXML private ImageView lightThree;
+  @FXML private ImageView toLockedRoom;
+  @FXML private Ellipse ellipseOne;
+  @FXML private Ellipse ellipseTwo;
+  @FXML private Ellipse ellipseThree;
+  @FXML private Label label;
+  @FXML private ImageView sdCard;
+  @FXML private ImageView tape;
+  @FXML private TextArea objText;
+  @FXML private TextArea hintsText;
+  @FXML private ImageView globe;
+  @FXML private Button rgbClue1;
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
@@ -116,31 +95,29 @@ public class BathroomController {
       ellipseOne.setOnMouseClicked(null);
       ellipseOne.setOnMouseEntered(null);
     }
-    // Making sure the player can't click on the puzzle if it's already solved
-    if (GameState.isPuzzleSolved) {
-      key.setOpacity(0);
-      puzzle.setOnMouseClicked(null);
-    }
     // Timing thread for the timer
     timer.setText(GameState.getTimeLeft());
-    Thread timeThread = new Thread(
-        () -> {
-          startTimer();
-        });
+    Thread timeThread =
+        new Thread(
+            () -> {
+              startTimer();
+            });
     timeThread.start();
     // game master animation
     // Initialize alienImages with your image paths
-    alienImages = new Image[] {
-        new Image("images/move1.png"),
-        new Image("images/move2.png"),
-        new Image("images/move3.png"),
-        new Image("images/move4.png")
-    };
+    alienImages =
+        new Image[] {
+          new Image("images/move1.png"),
+          new Image("images/move2.png"),
+          new Image("images/move3.png"),
+          new Image("images/move4.png")
+        };
 
     // Start the animation
     startAnimation();
 
-    TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(2), gameMaster);
+    TranslateTransition translateTransition =
+        new TranslateTransition(Duration.seconds(2), gameMaster);
 
     // set the Y-axis translation value
     translateTransition.setByY(-10);
@@ -155,46 +132,55 @@ public class BathroomController {
     translateTransition.play();
   }
 
-  // Method starts the animation for the Gamemaster movements
+  /** Starts the animation of the Gamemaster. */
   private void startAnimation() {
     GraphicsContext gc = gameMaster.getGraphicsContext2D();
-    AnimationTimer timer = new AnimationTimer() {
-      private long lastTime = 0;
-      private final long frameDurationMillis = 100; // 1000 milliseconds = 1 second
+    AnimationTimer timer =
+        new AnimationTimer() {
+          private long lastTime = 0;
+          private final long frameDurationMillis = 100; // 1000 milliseconds = 1 second
 
-      @Override
-      public void handle(long currentTime) {
-        if (currentTime - lastTime >= frameDurationMillis * 1_000_000) {
-          if (currentImageIndex < alienImages.length) {
-            gc.clearRect(0, 0, gameMaster.getWidth(), gameMaster.getHeight());
-            gc.drawImage(alienImages[currentImageIndex], 0, 0);
-            currentImageIndex++;
-            // Check if we have displayed all images; if so, reset the index to 0
-            if (currentImageIndex >= alienImages.length) {
-              currentImageIndex = 0;
+          @Override
+          public void handle(long currentTime) {
+            if (currentTime - lastTime >= frameDurationMillis * 1_000_000) {
+              if (currentImageIndex < alienImages.length) {
+                gc.clearRect(0, 0, gameMaster.getWidth(), gameMaster.getHeight());
+                gc.drawImage(alienImages[currentImageIndex], 0, 0);
+                currentImageIndex++;
+                // Check if we have displayed all images; if so, reset the index to 0
+                if (currentImageIndex >= alienImages.length) {
+                  currentImageIndex = 0;
+                }
+                lastTime = currentTime;
+              }
             }
-            lastTime = currentTime;
           }
-        }
-      }
-    };
+        };
     timer.start();
   }
 
-  // pressing on the quiz master to open the chat box
+  /**
+   * Handles the click event on the Gamemaster to open chat view.
+   *
+   * @param event the key event
+   */
   @FXML
   private void clickQuizMaster(MouseEvent event) {
     App.setUi("chat");
   }
 
-  // Enters the lcoked room
+  /**
+   * Handles the click event on the left arrow to enter the locked room view
+   *
+   * @param event the key event
+   */
   @FXML
   private void enterLockedRoom(MouseEvent event) {
     GameState.currentRoom = "lockedroom";
     App.setUi("lockedroom");
   }
 
-  // Highlights the arrows when the mouse is over them
+  /** Enlarges the left arrow when the arrow hovers over it. */
   @FXML
   private void highlight() {
     toLockedRoom.setOpacity(1);
@@ -202,7 +188,7 @@ public class BathroomController {
     toLockedRoom.setScaleY(1.2);
   }
 
-  // Removes the highlights once mouse has left
+  /** Removes the enlargement when the mouse leaves the left arrow. */
   @FXML
   private void removeHighlight() {
     toLockedRoom.setOpacity(0.3);
@@ -210,18 +196,22 @@ public class BathroomController {
     toLockedRoom.setScaleY(1);
   }
 
-  // Method for the first light
+  /**
+   * Handles the click event of the first light to enter the light scene if decrypt puzzle is
+   * solved.
+   */
   @FXML
   public void clickLightOne() {
     if (!GameState.isLightPuzzleStarted) {
       // Creaating the prompts for the hints for GPT flow when user enters light
-      Thread thread = new Thread(
-          () -> {
-            GameState.sendPrompt(
-                "The player has access behind the light. Some wires are broken. The player has"
-                    + " to find the electrical tape to patch the wires with. The electrical"
-                    + " tape can be found on the ground in the computer room.");
-          });
+      Thread thread =
+          new Thread(
+              () -> {
+                GameState.sendPrompt(
+                    "The player has access behind the light. Some wires are broken. The player has"
+                        + " to find the electrical tape to patch the wires with. The electrical"
+                        + " tape can be found on the ground in the computer room.");
+              });
       thread.start();
       GameState.isLightPuzzleStarted = true;
     }
@@ -236,17 +226,22 @@ public class BathroomController {
     }
   }
 
+  /**
+   * Handles the click event of the second light to enter the light scene if decrypt puzzle is
+   * solved.
+   */
   @FXML
   public void clickLightTwo() {
     // Creaating the prompts for the hints for GPT flow when user enters light
     if (!GameState.isLightPuzzleStarted) {
-      Thread thread = new Thread(
-          () -> {
-            GameState.sendPrompt(
-                "The player has access behind the light. Some wires are broken. The player has"
-                    + " to find the electrical tape to patch the wires with. The electrical"
-                    + " tape can be found on the ground in the computer room.");
-          });
+      Thread thread =
+          new Thread(
+              () -> {
+                GameState.sendPrompt(
+                    "The player has access behind the light. Some wires are broken. The player has"
+                        + " to find the electrical tape to patch the wires with. The electrical"
+                        + " tape can be found on the ground in the computer room.");
+              });
       thread.start();
       GameState.isLightPuzzleStarted = true;
     }
@@ -261,17 +256,22 @@ public class BathroomController {
     }
   }
 
+  /**
+   * Handles the click event of the Third light to enter the light scene if decrypt puzzle is
+   * solved.
+   */
   @FXML
   public void clickLightThree() {
     // Creaating the prompts for the hints for GPT flow when user enters light
     if (!GameState.isLightPuzzleStarted) {
-      Thread thread = new Thread(
-          () -> {
-            GameState.sendPrompt(
-                "The player has access behind the light. Some wires are broken. The player has"
-                    + " to find the electrical tape to patch the wires with. The electrical"
-                    + " tape can be found on the ground in the computer room.");
-          });
+      Thread thread =
+          new Thread(
+              () -> {
+                GameState.sendPrompt(
+                    "The player has access behind the light. Some wires are broken. The player has"
+                        + " to find the electrical tape to patch the wires with. The electrical"
+                        + " tape can be found on the ground in the computer room.");
+              });
       thread.start();
       GameState.isLightPuzzleStarted = true;
       // If user has collected the globe and solved the puzzle, they can't click on
@@ -286,39 +286,35 @@ public class BathroomController {
     }
   }
 
-  // Method for the puzzle
-  @FXML
-  private void openPuzzle(MouseEvent event) {
-    if (GameState.isLightPuzzleSolved) {
-      GameState.currentRoom = "puz";
-      App.setUi("puz");
-    }
-  }
-
-  // Method for the timer to start running
+  /** Starts updating the timer accordingly */
   public void startTimer() {
-    Timeline timeline = new Timeline(
-        new KeyFrame(
-            Duration.seconds(1),
-            new EventHandler<ActionEvent>() {
-              @Override
-              public void handle(ActionEvent event) {
-                // Counts down the timer.
-                Platform.runLater(
-                    new Runnable() {
-                      @Override
-                      public void run() {
-                        timer.setText(GameState.getTimeLeft());
-                      }
-                    });
-              }
-            }));
+    Timeline timeline =
+        new Timeline(
+            new KeyFrame(
+                Duration.seconds(1),
+                new EventHandler<ActionEvent>() {
+                  @Override
+                  public void handle(ActionEvent event) {
+                    // Counts down the timer.
+                    Platform.runLater(
+                        new Runnable() {
+                          @Override
+                          public void run() {
+                            timer.setText(GameState.getTimeLeft());
+                          }
+                        });
+                  }
+                }));
 
     timeline.setCycleCount((GameState.minutes * 60) + GameState.seconds - 1);
     timeline.play();
   }
 
-  // Method for the hovering of lights when the mouse is over them
+  /**
+   * Handles the mouse enter event on the first light to increase it's size.
+   *
+   * @param event the mouse event
+   */
   @FXML
   private void increaseSizeOne(MouseEvent event) {
     ellipseOne.setScaleX(1.2);
@@ -327,7 +323,11 @@ public class BathroomController {
     lightOne.setScaleY(1.2);
   }
 
-  // Method for the hovering of lights when the mouse is over them
+  /**
+   * Handles the mouse enter event on the second light to increase it's size.
+   *
+   * @param event the mouse event
+   */
   @FXML
   private void increaseSizeTwo(MouseEvent event) {
     ellipseTwo.setScaleX(1.2);
@@ -336,7 +336,11 @@ public class BathroomController {
     lightTwo.setScaleY(1.2);
   }
 
-  // Method for the hovering of lights when the mouse is over them
+  /**
+   * Handles the mouse enter event on the third light to increase it's size.
+   *
+   * @param event the mouse event
+   */
   @FXML
   private void increaseSizeThree(MouseEvent event) {
     ellipseThree.setScaleX(1.2);
@@ -345,7 +349,11 @@ public class BathroomController {
     lightThree.setScaleY(1.2);
   }
 
-  // Method for the hovering of lights when the mouse is not over them
+  /**
+   * Handles the mouse exit event on the first light to increase it's size.
+   *
+   * @param event the mouse event
+   */
   @FXML
   private void decreaseSizeOne(MouseEvent event) {
     ellipseOne.setScaleX(1);
@@ -354,7 +362,11 @@ public class BathroomController {
     lightOne.setScaleY(1);
   }
 
-  // Method for the hovering of lights when the mouse is not over them
+  /**
+   * Handles the mouse exit event on the second light to increase it's size.
+   *
+   * @param event the mouse event
+   */
   @FXML
   private void decreaseSizeTwo(MouseEvent event) {
     ellipseTwo.setScaleX(1);
@@ -363,7 +375,11 @@ public class BathroomController {
     lightTwo.setScaleY(1);
   }
 
-  // Method for the hovering of lights when the mouse is not over them
+  /**
+   * Handles the mouse exit event on the third light to increase it's size.
+   *
+   * @param event the mouse event
+   */
   @FXML
   private void decreaseSizeThree(MouseEvent event) {
     ellipseThree.setScaleX(1);

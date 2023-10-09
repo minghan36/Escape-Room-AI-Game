@@ -1,6 +1,5 @@
 package nz.ac.auckland.se206.controllers;
 
-import java.io.IOException;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -22,52 +21,33 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 public class LightController {
   // Intialising all the variables for the scene
 
-  @FXML
-  private Circle behindLight;
-  @FXML
-  private Label timer;
-  @FXML
-  private Canvas gameMaster;
-  @FXML
-  private Rectangle quizMaster;
-  @FXML
-  private ImageView fixOne;
-  @FXML
-  private ImageView fixTwoOne;
-  @FXML
-  private ImageView fixTwoTwo;
-  @FXML
-  private Rectangle fixTwoThree;
-  @FXML
-  private ImageView fixThreeOne;
-  @FXML
-  private ImageView fixThreeTwo;
-  @FXML
-  private ImageView fixFour;
-  @FXML
-  private Label lightSuggest;
+  @FXML private Circle behindLight;
+  @FXML private Label timer;
+  @FXML private Canvas gameMaster;
+  @FXML private Rectangle quizMaster;
+  @FXML private ImageView fixOne;
+  @FXML private ImageView fixTwoOne;
+  @FXML private ImageView fixTwoTwo;
+  @FXML private Rectangle fixTwoThree;
+  @FXML private ImageView fixThreeOne;
+  @FXML private ImageView fixThreeTwo;
+  @FXML private ImageView fixFour;
+  @FXML private Label lightSuggest;
   private Image[] alienImages;
   private int currentImageIndex = 0;
-  @FXML
-  private TextArea objText;
-  @FXML
-  private TextArea hintsText;
-  @FXML
-  private ImageView tape;
-  @FXML
-  private ImageView sdCard;
-  @FXML
-  private ImageView globe;
-  @FXML
-  private ImageView globe1;
-  @FXML
-  private Button rgbClue1;
+  @FXML private TextArea objText;
+  @FXML private TextArea hintsText;
+  @FXML private ImageView tape;
+  @FXML private ImageView sdCard;
+  @FXML private ImageView globe;
+  @FXML private ImageView globe1;
+  @FXML private Button rgbClue1;
 
+  /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
     // Intialisng the items collected by the user/ will collect from the scene
     if (GameState.isRgbClueFound) {
@@ -126,22 +106,25 @@ public class LightController {
     lightSuggest.setWrapText(true);
     timer.setText(GameState.getTimeLeft());
     // timer thread
-    Thread timeThread = new Thread(
-        () -> {
-          startTimer();
-        });
+    Thread timeThread =
+        new Thread(
+            () -> {
+              startTimer();
+            });
     timeThread.start();
-    alienImages = new Image[] {
-        new Image("images/move1.png"),
-        new Image("images/move2.png"),
-        new Image("images/move3.png"),
-        new Image("images/move4.png")
-    };
+    alienImages =
+        new Image[] {
+          new Image("images/move1.png"),
+          new Image("images/move2.png"),
+          new Image("images/move3.png"),
+          new Image("images/move4.png")
+        };
 
     // Start the animation
     startAnimation();
 
-    TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(2), gameMaster);
+    TranslateTransition translateTransition =
+        new TranslateTransition(Duration.seconds(2), gameMaster);
 
     // set the Y-axis translation value
     translateTransition.setByY(-10);
@@ -156,64 +139,74 @@ public class LightController {
     translateTransition.play();
   }
 
-  // Starting animation for the gamemaster
+  /** Starts the animation of the Gamemaster. */
   private void startAnimation() {
     GraphicsContext gc = gameMaster.getGraphicsContext2D();
-    AnimationTimer timer = new AnimationTimer() {
-      private long lastTime = 0;
-      private final long frameDurationMillis = 100; // 1000 milliseconds = 1 second
+    AnimationTimer timer =
+        new AnimationTimer() {
+          private long lastTime = 0;
+          private final long frameDurationMillis = 100; // 1000 milliseconds = 1 second
 
-      @Override
-      public void handle(long currentTime) {
-        if (currentTime - lastTime >= frameDurationMillis * 1_000_000) {
-          if (currentImageIndex < alienImages.length) {
-            gc.clearRect(0, 0, gameMaster.getWidth(), gameMaster.getHeight());
-            gc.drawImage(alienImages[currentImageIndex], 0, 0);
-            currentImageIndex++;
-            // Check if we have displayed all images; if so, reset the index to 0
-            if (currentImageIndex >= alienImages.length) {
-              currentImageIndex = 0;
+          @Override
+          public void handle(long currentTime) {
+            if (currentTime - lastTime >= frameDurationMillis * 1_000_000) {
+              if (currentImageIndex < alienImages.length) {
+                gc.clearRect(0, 0, gameMaster.getWidth(), gameMaster.getHeight());
+                gc.drawImage(alienImages[currentImageIndex], 0, 0);
+                currentImageIndex++;
+                // Check if we have displayed all images; if so, reset the index to 0
+                if (currentImageIndex >= alienImages.length) {
+                  currentImageIndex = 0;
+                }
+                lastTime = currentTime;
+              }
             }
-            lastTime = currentTime;
           }
-        }
-      }
-    };
+        };
     timer.start();
   }
 
-  // pressing on the quiz master to open the chat box
+  /**
+   * Handles mouse click on the game master. Opens chat view.
+   *
+   * @param event Mouse click event.
+   */
   @FXML
   private void clickQuizMaster(MouseEvent event) {
     App.setUi("chat");
   }
 
-  // Starting timer for the timer in the scene
+  /** Begins updating timer according to time left in the game. */
   public void startTimer() {
-    Timeline timeline = new Timeline(
-        new KeyFrame(
-            Duration.seconds(1),
-            new EventHandler<ActionEvent>() {
-              @Override
-              public void handle(ActionEvent event) {
-                // Counts down the timer.
-                Platform.runLater(
-                    new Runnable() {
-                      @Override
-                      public void run() {
-                        timer.setText(GameState.getTimeLeft());
-                      }
-                    });
-              }
-            }));
+    Timeline timeline =
+        new Timeline(
+            new KeyFrame(
+                Duration.seconds(1),
+                new EventHandler<ActionEvent>() {
+                  @Override
+                  public void handle(ActionEvent event) {
+                    // Counts down the timer.
+                    Platform.runLater(
+                        new Runnable() {
+                          @Override
+                          public void run() {
+                            timer.setText(GameState.getTimeLeft());
+                          }
+                        });
+                  }
+                }));
 
     timeline.setCycleCount((GameState.minutes * 60) + GameState.seconds - 1);
     timeline.play();
   }
 
-  // Go back method for th ego back button once the user leaves the room
+  /**
+   * Handles action event on go back button. Changes to bathroom view.
+   *
+   * @param event Action event on button.
+   */
   @FXML
-  private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
+  private void onGoBack(ActionEvent event) {
     if (GameState.isLightPuzzleSolved) {
       GameState.currentObj = "Picture Puz";
     }
@@ -222,7 +215,7 @@ public class LightController {
     App.setUi("bathroom");
   }
 
-  // method for fixing the break
+  /** Fixes the first broken wire. */
   @FXML
   private void clickBreakOne() {
     // Checking if the electrical tape is found
@@ -239,14 +232,15 @@ public class LightController {
             "Good Job! You have solved the light puzzle. Collect the Picture of the Globe and"
                 + " travel to your next puzzle.");
         // Sending prompt to gpt to update game flow and progress
-        Thread thread = new Thread(
-            () -> {
-              GameState.sendPrompt(
-                  "The player has fixed the broken light. The player has received a picture of"
-                      + " a globe that can be found in the room with the locked door. The"
-                      + " player must now go and click on the globe to access the next part of"
-                      + " the puzzle.");
-            });
+        Thread thread =
+            new Thread(
+                () -> {
+                  GameState.sendPrompt(
+                      "The player has fixed the broken light. The player has received a picture of"
+                          + " a globe that can be found in the room with the locked door. The"
+                          + " player must now go and click on the globe to access the next part of"
+                          + " the puzzle.");
+                });
         thread.start();
         GameState.isLightPuzzleSolved = true;
         globe.setVisible(true);
@@ -258,6 +252,7 @@ public class LightController {
     }
   }
 
+  /** Fixes the second broken wire. */
   @FXML
   private void clickBreakTwo() {
     // Checking if the electrical tape is found
@@ -278,14 +273,15 @@ public class LightController {
             "Good Job! You have solved the light puzzle. Collect the Picture of the Globe and"
                 + " travel to your next puzzle.");
         // Sending prompt to gpt to update game flow and progress
-        Thread thread = new Thread(
-            () -> {
-              GameState.sendPrompt(
-                  "The player has fixed the broken light. The player has received a picture of"
-                      + " a globe that can be found in the room with the locked door. The"
-                      + " player must now go and click on the globe to access the next part of"
-                      + " the puzzle.");
-            });
+        Thread thread =
+            new Thread(
+                () -> {
+                  GameState.sendPrompt(
+                      "The player has fixed the broken light. The player has received a picture of"
+                          + " a globe that can be found in the room with the locked door. The"
+                          + " player must now go and click on the globe to access the next part of"
+                          + " the puzzle.");
+                });
         thread.start();
         GameState.isLightPuzzleSolved = true;
         globe.setVisible(true);
@@ -297,6 +293,7 @@ public class LightController {
     }
   }
 
+  /** Fixes the third broken wire. */
   @FXML
   private void clickBreakThree() {
     // Checking if the electrical tape is found
@@ -315,14 +312,15 @@ public class LightController {
             "Good Job! You have solved the light puzzle. Collect the Picture of the Globe and"
                 + " travel to your next puzzle.");
         // Sending prompt to gpt to update game flow and progress
-        Thread thread = new Thread(
-            () -> {
-              GameState.sendPrompt(
-                  "The player has fixed the broken light. The player has received a picture of"
-                      + " a globe that can be found in the room with the locked door. The"
-                      + " player must now go and click on the globe to access the next part of"
-                      + " the puzzle.");
-            });
+        Thread thread =
+            new Thread(
+                () -> {
+                  GameState.sendPrompt(
+                      "The player has fixed the broken light. The player has received a picture of"
+                          + " a globe that can be found in the room with the locked door. The"
+                          + " player must now go and click on the globe to access the next part of"
+                          + " the puzzle.");
+                });
         thread.start();
         GameState.isLightPuzzleSolved = true;
         globe.setVisible(true);
@@ -334,6 +332,7 @@ public class LightController {
     }
   }
 
+  /** Fixes the fourth broken wire. */
   @FXML
   private void clickBreakFour() {
     // Checking if the electrical tape is found
@@ -350,14 +349,15 @@ public class LightController {
             "Good Job! You have solved the light puzzle. Collect the Picture of the Globe and"
                 + " travel to your next puzzle.");
         // Sending prompt to gpt to update game flow and progress
-        Thread thread = new Thread(
-            () -> {
-              GameState.sendPrompt(
-                  "The player has fixed the broken light. The player has received a picture of"
-                      + " a globe that can be found in the room with the locked door. The"
-                      + " player must now go and click on the globe to access the next part of"
-                      + " the puzzle.");
-            });
+        Thread thread =
+            new Thread(
+                () -> {
+                  GameState.sendPrompt(
+                      "The player has fixed the broken light. The player has received a picture of"
+                          + " a globe that can be found in the room with the locked door. The"
+                          + " player must now go and click on the globe to access the next part of"
+                          + " the puzzle.");
+                });
         thread.start();
         GameState.isLightPuzzleSolved = true;
         globe.setVisible(true);
@@ -369,21 +369,21 @@ public class LightController {
     }
   }
 
-  // Increasing size of the globe
+  /** Highlights the given puzzle piece when mouse hovers. */
   @FXML
   private void increaseGlobeSize() {
     globe.setScaleX(1.2);
     globe.setScaleY(1.2);
   }
 
-  // Decreasing size of the globe
+  /** Unhighlights the given puzzle piece when mouse stops hover. */
   @FXML
   private void decreaseGlobeSize() {
     globe.setScaleX(1);
     globe.setScaleY(1);
   }
 
-  // Method for clicking the globe
+  /** Moves the puzzle piece item to inventory. */
   @FXML
   private void clickGlobe() {
     GameState.isGlobeFound = true;

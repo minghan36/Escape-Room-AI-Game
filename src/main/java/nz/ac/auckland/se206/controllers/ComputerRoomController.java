@@ -24,34 +24,21 @@ import nz.ac.auckland.se206.GameState;
 public class ComputerRoomController {
   // Intialising variables required for the room
 
-  @FXML
-  private ImageView tape;
-  @FXML
-  private ImageView toLockedRoom;
-  @FXML
-  private Rectangle quizMaster;
-  @FXML
-  private Canvas gameMaster;
-  @FXML
-  private Label timer;
-  @FXML
-  private Rectangle decrypt;
+  @FXML private ImageView tape;
+  @FXML private ImageView toLockedRoom;
+  @FXML private Rectangle quizMaster;
+  @FXML private Canvas gameMaster;
+  @FXML private Label timer;
+  @FXML private Rectangle decrypt;
   private Image[] alienImages;
   private int currentImageIndex = 0;
-  @FXML
-  private ImageView hoverImage;
-  @FXML
-  private ImageView tape1;
-  @FXML
-  private ImageView sdCard;
-  @FXML
-  private TextArea objText;
-  @FXML
-  private TextArea hintsText;
-  @FXML
-  private ImageView globe;
-  @FXML
-  private Button rgbClue1;
+  @FXML private ImageView hoverImage;
+  @FXML private ImageView tape1;
+  @FXML private ImageView sdCard;
+  @FXML private TextArea objText;
+  @FXML private TextArea hintsText;
+  @FXML private ImageView globe;
+  @FXML private Button rgbClue1;
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
@@ -81,24 +68,27 @@ public class ComputerRoomController {
     }
     // Timer thread
     timer.setText(GameState.getTimeLeft());
-    Thread timeThread = new Thread(
-        () -> {
-          startTimer();
-        });
+    Thread timeThread =
+        new Thread(
+            () -> {
+              startTimer();
+            });
     timeThread.start();
     // game master animation
     // Initialize alienImages with your image paths
-    alienImages = new Image[] {
-        new Image("images/move1.png"),
-        new Image("images/move2.png"),
-        new Image("images/move3.png"),
-        new Image("images/move4.png")
-    };
+    alienImages =
+        new Image[] {
+          new Image("images/move1.png"),
+          new Image("images/move2.png"),
+          new Image("images/move3.png"),
+          new Image("images/move4.png")
+        };
 
     // Start the animation
     startAnimation();
 
-    TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(2), gameMaster);
+    TranslateTransition translateTransition =
+        new TranslateTransition(Duration.seconds(2), gameMaster);
 
     // set the Y-axis translation value
     translateTransition.setByY(-10);
@@ -113,45 +103,55 @@ public class ComputerRoomController {
     translateTransition.play();
   }
 
+  /** Starts the animation for the Gamemaster. */
   private void startAnimation() {
     GraphicsContext gc = gameMaster.getGraphicsContext2D();
-    AnimationTimer timer = new AnimationTimer() {
-      private long lastTime = 0;
-      private final long frameDurationMillis = 100; // 1000 milliseconds = 1 second
+    AnimationTimer timer =
+        new AnimationTimer() {
+          private long lastTime = 0;
+          private final long frameDurationMillis = 100; // 1000 milliseconds = 1 second
 
-      @Override
-      public void handle(long currentTime) {
-        if (currentTime - lastTime >= frameDurationMillis * 1_000_000) {
-          if (currentImageIndex < alienImages.length) {
-            gc.clearRect(0, 0, gameMaster.getWidth(), gameMaster.getHeight());
-            gc.drawImage(alienImages[currentImageIndex], 0, 0);
-            currentImageIndex++;
-            // Check if we have displayed all images; if so, reset the index to 0
-            if (currentImageIndex >= alienImages.length) {
-              currentImageIndex = 0;
+          @Override
+          public void handle(long currentTime) {
+            if (currentTime - lastTime >= frameDurationMillis * 1_000_000) {
+              if (currentImageIndex < alienImages.length) {
+                gc.clearRect(0, 0, gameMaster.getWidth(), gameMaster.getHeight());
+                gc.drawImage(alienImages[currentImageIndex], 0, 0);
+                currentImageIndex++;
+                // Check if we have displayed all images; if so, reset the index to 0
+                if (currentImageIndex >= alienImages.length) {
+                  currentImageIndex = 0;
+                }
+                lastTime = currentTime;
+              }
             }
-            lastTime = currentTime;
           }
-        }
-      }
-    };
+        };
     timer.start();
   }
 
-  // pressing on the quiz master to open the chat box
+  /**
+   * Handles the click event on the Gamemaster to enter chat view
+   *
+   * @param event the mouse event
+   */
   @FXML
   private void clickQuizMaster(MouseEvent event) {
     App.setUi("chat");
   }
 
-  // Method to enter the locked room
+  /**
+   * Handles the click event on the right arrow to open locked room view
+   *
+   * @param event the mouse event
+   */
   @FXML
   private void enterLockedRoom(MouseEvent event) {
     GameState.currentRoom = "lockedroom";
     App.setUi("lockedroom");
   }
 
-  // Method for the highlighting of arrows when on them
+  /** Highlights the right arrow when the mouse hovers. */
   @FXML
   private void highlight() {
     toLockedRoom.setOpacity(1);
@@ -159,7 +159,7 @@ public class ComputerRoomController {
     toLockedRoom.setScaleY(1.2);
   }
 
-  // Method for removing the highlight
+  /** Removes highlight on right arrow when the mouse stops hovering. */
   @FXML
   private void removeHighlight() {
     toLockedRoom.setOpacity(0.3);
@@ -167,30 +167,35 @@ public class ComputerRoomController {
     toLockedRoom.setScaleY(1);
   }
 
-  // Method for starting the timer
+  /** Starts updating timer according to time left. */
   public void startTimer() {
-    Timeline timeline = new Timeline(
-        new KeyFrame(
-            Duration.seconds(1),
-            new EventHandler<ActionEvent>() {
-              @Override
-              public void handle(ActionEvent event) {
-                // Counts down the timer.
-                Platform.runLater(
-                    new Runnable() {
-                      @Override
-                      public void run() {
-                        timer.setText(GameState.getTimeLeft());
-                      }
-                    });
-              }
-            }));
+    Timeline timeline =
+        new Timeline(
+            new KeyFrame(
+                Duration.seconds(1),
+                new EventHandler<ActionEvent>() {
+                  @Override
+                  public void handle(ActionEvent event) {
+                    // Counts down the timer.
+                    Platform.runLater(
+                        new Runnable() {
+                          @Override
+                          public void run() {
+                            timer.setText(GameState.getTimeLeft());
+                          }
+                        });
+                  }
+                }));
 
     timeline.setCycleCount((GameState.minutes * 60) + GameState.seconds - 1);
     timeline.play();
   }
 
-  // Method for enterign the decrypt puzzle
+  /**
+   * Handles the click event on the middle computer to enter the decryption puzzle view.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void enterDecrypt(MouseEvent event) {
     // Conditions letting the user to enter the puzzle
@@ -200,12 +205,13 @@ public class ComputerRoomController {
       GameState.currentRoom = "decrypt";
       if (!GameState.isComputerAccessed) {
         // Thread to send the prompt to the GPT to over look progress
-        Thread thread = new Thread(
-            () -> {
-              GameState.sendPrompt(
-                  "The player has accessed the computer. The player must decipher an alien"
-                      + " message using an onscreen alien alphabet.");
-            });
+        Thread thread =
+            new Thread(
+                () -> {
+                  GameState.sendPrompt(
+                      "The player has accessed the computer. The player must decipher an alien"
+                          + " message using an onscreen alien alphabet.");
+                });
         thread.start();
         GameState.isComputerAccessed = true;
       }
@@ -213,7 +219,11 @@ public class ComputerRoomController {
     }
   }
 
-  // Method for increasing the size of the image
+  /**
+   * Handles the mouse enter event on the middle computer image.
+   *
+   * @param event the mouse event
+   */
   @FXML
   private void increaseSize(MouseEvent event) {
     if (!GameState.isRiddleResolved) {
@@ -224,7 +234,11 @@ public class ComputerRoomController {
     }
   }
 
-  // Method for decreasing the size of the image
+  /**
+   * Handles the mouse exit event on the middle computer image.
+   *
+   * @param event the mouse event
+   */
   @FXML
   private void decreaseSize(MouseEvent event) {
     // decrease the size of the image
@@ -232,19 +246,20 @@ public class ComputerRoomController {
     hoverImage.setScaleY(1);
   }
 
-  // Method for picking the tape up
+  /** Moves tape to inventory on mouse click. */
   @FXML
   public void clickTape() {
     if (!GameState.isComputerAccessed) {
       // Thread to send the prompt to the GPT to over look progress
-      Thread thread = new Thread(
-          () -> {
-            GameState.sendPrompt(
-                "The player has gotten the tape. The player must now go back to the broken"
-                    + " light and fix the broken wires by simply clicking on areas that appear"
-                    + " broken. The player does not need to consider the colours of the"
-                    + " wires.");
-          });
+      Thread thread =
+          new Thread(
+              () -> {
+                GameState.sendPrompt(
+                    "The player has gotten the tape. The player must now go back to the broken"
+                        + " light and fix the broken wires by simply clicking on areas that appear"
+                        + " broken. The player does not need to consider the colours of the"
+                        + " wires.");
+              });
       thread.start();
       GameState.isComputerAccessed = true;
     }
@@ -255,14 +270,22 @@ public class ComputerRoomController {
     tape1.setVisible(true);
   }
 
-  // Method for hovering over tape
+  /**
+   * Handles the mouse enter event on the tape image.
+   *
+   * @param event the mouse event
+   */
   @FXML
   private void increaseTapeSize(MouseEvent event) {
     tape.setScaleX(1.2);
     tape.setScaleY(1.2);
   }
 
-  // Method for decreasing the size of the tape
+  /**
+   * Handles the mouse exit event on the tape image.
+   *
+   * @param event the mouse event
+   */
   @FXML
   private void decreaseTapeSize(MouseEvent event) {
     tape.setScaleX(1);

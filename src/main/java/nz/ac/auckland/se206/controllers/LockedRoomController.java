@@ -27,50 +27,29 @@ import nz.ac.auckland.se206.GameState;
 public class LockedRoomController {
   // Intialising all the variables
 
-  @FXML
-  private ImageView toBathroom;
-  @FXML
-  private ImageView toComputerRoom;
-  @FXML
-  private Rectangle quizMaster;
-  @FXML
-  private Rectangle buttonBlue;
-  @FXML
-  private Rectangle buttonRed;
-  @FXML
-  private Rectangle buttonGreen;
-  @FXML
-  private Rectangle buttonYellow;
-  @FXML
-  private Rectangle rectangleDoorOne;
-  @FXML
-  private Rectangle rectangleDoorTwo;
-  @FXML
-  private Rectangle rectangleDoorThree;
-  @FXML
-  private Canvas gameMaster;
-  @FXML
-  private Label timer;
-  @FXML
-  private Label labelPasscode;
-  @FXML
-  private Label labelObjective;
-  @FXML
-  private ImageView globe;
+  @FXML private ImageView toBathroom;
+  @FXML private ImageView toComputerRoom;
+  @FXML private Rectangle quizMaster;
+  @FXML private Rectangle buttonBlue;
+  @FXML private Rectangle buttonRed;
+  @FXML private Rectangle buttonGreen;
+  @FXML private Rectangle buttonYellow;
+  @FXML private Rectangle rectangleDoorOne;
+  @FXML private Rectangle rectangleDoorTwo;
+  @FXML private Rectangle rectangleDoorThree;
+  @FXML private Canvas gameMaster;
+  @FXML private Label timer;
+  @FXML private Label labelPasscode;
+  @FXML private Label labelObjective;
+  @FXML private ImageView globe;
   private Image[] alienImages;
   private int currentImageIndex = 0;
-  @FXML
-  private ImageView tape;
-  @FXML
-  private ImageView sdCard;
-  @FXML
-  private TextArea objText;
-  @FXML
-  private TextArea hintsText;
-  @FXML
-  private ImageView globe1;
-  @FXML
-  private Button rgbClue1;
+  @FXML private ImageView tape;
+  @FXML private ImageView sdCard;
+  @FXML private TextArea objText;
+  @FXML private TextArea hintsText;
+  @FXML private ImageView globe1;
+  @FXML private Button rgbClue1;
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
@@ -89,24 +68,27 @@ public class LockedRoomController {
     globe1.setVisible(GameState.isGlobeFound);
     timer.setText(GameState.getTimeLeft());
     // Timer thread
-    Thread timeThread = new Thread(
-        () -> {
-          startTimer();
-        });
+    Thread timeThread =
+        new Thread(
+            () -> {
+              startTimer();
+            });
     timeThread.start();
     // game master animation
     // Initialize alienImages with your image paths
-    alienImages = new Image[] {
-        new Image("images/move1.png"),
-        new Image("images/move2.png"),
-        new Image("images/move3.png"),
-        new Image("images/move4.png")
-    };
+    alienImages =
+        new Image[] {
+          new Image("images/move1.png"),
+          new Image("images/move2.png"),
+          new Image("images/move3.png"),
+          new Image("images/move4.png")
+        };
 
     // Start the animation
     startAnimation();
 
-    TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(2), gameMaster);
+    TranslateTransition translateTransition =
+        new TranslateTransition(Duration.seconds(2), gameMaster);
 
     // set the Y-axis translation value
     translateTransition.setByY(-10);
@@ -121,29 +103,30 @@ public class LockedRoomController {
     translateTransition.play();
   }
 
-  // Starting animation for the game master
+  /** Starts the animation of the Gamemaster. */
   private void startAnimation() {
     GraphicsContext gc = gameMaster.getGraphicsContext2D();
-    AnimationTimer timer = new AnimationTimer() {
-      private long lastTime = 0;
-      private final long frameDurationMillis = 100; // 1000 milliseconds = 1 second
+    AnimationTimer timer =
+        new AnimationTimer() {
+          private long lastTime = 0;
+          private final long frameDurationMillis = 100; // 1000 milliseconds = 1 second
 
-      @Override
-      public void handle(long currentTime) {
-        if (currentTime - lastTime >= frameDurationMillis * 1_000_000) {
-          if (currentImageIndex < alienImages.length) {
-            gc.clearRect(0, 0, gameMaster.getWidth(), gameMaster.getHeight());
-            gc.drawImage(alienImages[currentImageIndex], 0, 0);
-            currentImageIndex++;
-            // Check if we have displayed all images; if so, reset the index to 0
-            if (currentImageIndex >= alienImages.length) {
-              currentImageIndex = 0;
+          @Override
+          public void handle(long currentTime) {
+            if (currentTime - lastTime >= frameDurationMillis * 1_000_000) {
+              if (currentImageIndex < alienImages.length) {
+                gc.clearRect(0, 0, gameMaster.getWidth(), gameMaster.getHeight());
+                gc.drawImage(alienImages[currentImageIndex], 0, 0);
+                currentImageIndex++;
+                // Check if we have displayed all images; if so, reset the index to 0
+                if (currentImageIndex >= alienImages.length) {
+                  currentImageIndex = 0;
+                }
+                lastTime = currentTime;
+              }
             }
-            lastTime = currentTime;
           }
-        }
-      }
-    };
+        };
     timer.start();
   }
 
@@ -167,35 +150,21 @@ public class LockedRoomController {
     System.out.println("key " + event.getCode() + " released");
   }
 
-  /**
-   * Displays a dialog box with the given title, header text, and message.
-   *
-   * @param title      the title of the dialog box
-   * @param headerText the header text of the dialog box
-   * @param message    the message content of the dialog box
-   *                   <p>
-   *                   private void showDialog(String title, String headerText,
-   *                   String message) { Alert alert =
-   *                   new Alert(Alert.AlertType.INFORMATION);
-   *                   alert.setTitle(title);
-   *                   alert.setHeaderText(headerText);
-   *                   alert.setContentText(message); alert.showAndWait(); }
-   */
-  // Method to enter the bathroom
+  /** Changes room view to bathroom view. */
   @FXML
   private void enterBathroom() {
     GameState.currentRoom = "bathroom";
     App.setUi("bathroom");
   }
 
-  // Method to enter the computer room
+  /** Changes room view to Computer room view. */
   @FXML
   private void enterComputerRoom() {
     GameState.currentRoom = "computerroom";
     App.setUi("computerroom");
   }
 
-  // Method for the highlighting of arrows when on them
+  /** Highlights the navigation arrow towards the bathroom when mouse hovers over arrow. */
   @FXML
   private void highlightBathroom() {
     toBathroom.setOpacity(1);
@@ -203,7 +172,7 @@ public class LockedRoomController {
     toBathroom.setScaleY(1.2);
   }
 
-  // Method for removing the highlight
+  /** Unhighlights the navigation arrow towards the bathroom when mouse stops hover over arrow. */
   @FXML
   private void removeHighlightBathroom() {
     toBathroom.setOpacity(0.3);
@@ -211,7 +180,7 @@ public class LockedRoomController {
     toBathroom.setScaleY(1);
   }
 
-  // Method for the highlighting of arrows when on them
+  /** Highlights the navigation arrow towards the Computer room when mouse hovers over arrow. */
   @FXML
   private void highlightComputerRoom() {
     toComputerRoom.setOpacity(1);
@@ -219,7 +188,9 @@ public class LockedRoomController {
     toComputerRoom.setScaleY(1.2);
   }
 
-  // Method for removing the highlight
+  /**
+   * Unhighlights the navigation arrow towards the Computer room when mouse stops hover over arrow.
+   */
   @FXML
   private void removeHighlightComputerRoom() {
     toComputerRoom.setOpacity(0.3);
@@ -227,37 +198,46 @@ public class LockedRoomController {
     toComputerRoom.setScaleY(1);
   }
 
-  // pressing on the quiz master to open the chat box
+  /**
+   * Handles mouse click on the Gamemaster to change to chat view.
+   *
+   * @param event Mouse click event
+   */
   @FXML
   private void clickQuizMaster(MouseEvent event) {
 
     App.setUi("chat");
   }
 
-  // Method to start the timer
+  /** Begins updating timer label according to time left in the game. */
   public void startTimer() {
-    Timeline timeline = new Timeline(
-        new KeyFrame(
-            Duration.seconds(1),
-            new EventHandler<ActionEvent>() {
-              @Override
-              public void handle(ActionEvent event) {
-                // Counts down the timer.
-                Platform.runLater(
-                    new Runnable() {
-                      @Override
-                      public void run() {
-                        timer.setText(GameState.getTimeLeft());
-                      }
-                    });
-              }
-            }));
+    Timeline timeline =
+        new Timeline(
+            new KeyFrame(
+                Duration.seconds(1),
+                new EventHandler<ActionEvent>() {
+                  @Override
+                  public void handle(ActionEvent event) {
+                    // Counts down the timer.
+                    Platform.runLater(
+                        new Runnable() {
+                          @Override
+                          public void run() {
+                            timer.setText(GameState.getTimeLeft());
+                          }
+                        });
+                  }
+                }));
 
     timeline.setCycleCount((GameState.minutes * 60) + GameState.seconds - 1);
     timeline.play();
   }
 
-  // Method to increase the globe size
+  /**
+   * Handles mouse enter event on the globe to highlight globe
+   *
+   * @param event mouse enter event
+   */
   @FXML
   private void increaseGlobeSize(MouseEvent event) {
     if (GameState.isLightPuzzleSolved) {
@@ -268,14 +248,18 @@ public class LockedRoomController {
     }
   }
 
-  // Method to decrease the globe size
+  /**
+   * Handles mouse exit event on the globe to un-highlight globe
+   *
+   * @param event mouse exit event
+   */
   @FXML
   private void decreaseGlobeSize(MouseEvent event) {
     globe.setScaleX(1);
     globe.setScaleY(1);
   }
 
-  // Method to enter the blue colour for passcode
+  /** Highlights the blue button when mouse hovers over. */
   @FXML
   private void enterBlue() {
     if (GameState.isPuzzleSolved) {
@@ -284,7 +268,7 @@ public class LockedRoomController {
     }
   }
 
-  // Method to exit the blue colour for passcode
+  /** Un-highlights the blue button when mouse stops hover. */
   @FXML
   private void exitBlue() {
     if (GameState.isPuzzleSolved) {
@@ -293,7 +277,7 @@ public class LockedRoomController {
     }
   }
 
-  // Method to enter the red colour for passcode
+  /** Highlights the red button when mouse hovers over. */
   @FXML
   private void enterRed() {
     if (GameState.isPuzzleSolved) {
@@ -302,7 +286,7 @@ public class LockedRoomController {
     }
   }
 
-  // Method to exit the red colour for passcode
+  /** Un-highlights the red button when mouse stops hover. */
   @FXML
   private void exitRed() {
     if (GameState.isPuzzleSolved) {
@@ -311,7 +295,7 @@ public class LockedRoomController {
     }
   }
 
-  // Method to enter the green colour for passcode
+  /** Highlights the green button when mouse hovers over. */
   @FXML
   private void enterGreen() {
     if (GameState.isPuzzleSolved) {
@@ -320,7 +304,7 @@ public class LockedRoomController {
     }
   }
 
-  // Method to exit the green colour for passcode
+  /** Un-highlights the green button when mouse stops hover. */
   @FXML
   private void exitGreen() {
     if (GameState.isPuzzleSolved) {
@@ -329,7 +313,7 @@ public class LockedRoomController {
     }
   }
 
-  // Method to enter the yellow colour for passcode
+  /** Highlights the yellow button when mouse hovers over. */
   @FXML
   private void enterYellow() {
     if (GameState.isPuzzleSolved) {
@@ -338,7 +322,7 @@ public class LockedRoomController {
     }
   }
 
-  // Method to exit the yellow colour for passcode
+  /** Un-highlights the yellow button when mouse stops hover. */
   @FXML
   private void exitYellow() {
     if (GameState.isPuzzleSolved) {
@@ -347,7 +331,7 @@ public class LockedRoomController {
     }
   }
 
-  // Checks the user passcode
+  /** Checks if entered passcode matches the correct code. */
   private void checkPasscode() {
     // If passcode is correct, pauses the timer.
     if (labelPasscode.getText().equals(GameState.password)) {
@@ -371,26 +355,31 @@ public class LockedRoomController {
     }
   }
 
-  // Method to end the game
+  /** Changes view to win view when passcode is correct */
   public void endGame() {
     // create a to mintues delay
     // then go to the win screen
     if (GameState.isRgbSolved) {
-      Timeline timeline = new Timeline(
-          new KeyFrame(
-              Duration.seconds(1.2),
-              new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                  GameState.currentRoom = "win";
-                  App.setUi("win");
-                }
-              }));
+      Timeline timeline =
+          new Timeline(
+              new KeyFrame(
+                  Duration.seconds(1.2),
+                  new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                      GameState.currentRoom = "win";
+                      App.setUi("win");
+                    }
+                  }));
       timeline.play();
     }
   }
 
-  // Method to click on the blue colour for passcode
+  /**
+   * Handles mouse click event on the blue button. Enters the code and checks.
+   *
+   * @param event mouse click event.
+   */
   @FXML
   public void clickBlue(MouseEvent event) {
     // Adds the letter "B" to the passcode and checks if it is correct if the length
@@ -410,7 +399,11 @@ public class LockedRoomController {
     }
   }
 
-  // Method to click on the red colour for passcode
+  /**
+   * Handles mouse click event on the red button. Enters the code and checks.
+   *
+   * @param event mouse click event.
+   */
   @FXML
   public void clickRed(MouseEvent event) {
     // Adds the letter "B" to the passcode and checks if it is correct if the length
@@ -430,7 +423,11 @@ public class LockedRoomController {
     }
   }
 
-  // Method to click on the green colour for passcode
+  /**
+   * Handles mouse click event on the green button. Enters the code and checks.
+   *
+   * @param event mouse click event.
+   */
   @FXML
   public void clickGreen(MouseEvent event) {
     // Adds the letter "B" to the passcode and checks if it is correct if the length
@@ -450,7 +447,11 @@ public class LockedRoomController {
     }
   }
 
-  // Method to click on the yellow colour for passcode
+  /**
+   * Handles mouse click event on the yellow button. Enters the code and checks.
+   *
+   * @param event mouse click event.
+   */
   @FXML
   public void clickYellow(MouseEvent event) {
     // Adds the letter "B" to the passcode and checks if it is correct if the length
@@ -470,7 +471,11 @@ public class LockedRoomController {
     }
   }
 
-  // Method to click on the globe
+  /**
+   * Handles mouse click event on the globe. Changes view to puzzle view.
+   *
+   * @param event mouse click event.
+   */
   @FXML
   private void clickGlobe(MouseEvent event) {
     if (!GameState.isGlobeFound) {
@@ -478,12 +483,13 @@ public class LockedRoomController {
       return;
     } else {
       // Sending prompt to GPT for the usre progress and gameflow
-      Thread thread = new Thread(
-          () -> {
-            GameState.sendPrompt(
-                "The player has found the globe and started the jigsaw puzzle. The jigsaw"
-                    + " puzzle represent an image of part of the locked room.");
-          });
+      Thread thread =
+          new Thread(
+              () -> {
+                GameState.sendPrompt(
+                    "The player has found the globe and started the jigsaw puzzle. The jigsaw"
+                        + " puzzle represent an image of part of the locked room.");
+              });
       thread.start();
       GameState.isGlobeAccessed = true;
       App.setUi("puz");
