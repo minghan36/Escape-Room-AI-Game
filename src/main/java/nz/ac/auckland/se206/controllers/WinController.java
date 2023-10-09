@@ -14,7 +14,7 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 
 public class WinController {
-  //Intialising variables for the scene
+  // Intialising variables for the scene
   @FXML private ImageView alein;
   @FXML private Button buttonReplay;
   @FXML private Label timeLeft;
@@ -58,14 +58,20 @@ public class WinController {
     currentImageIndex = (currentImageIndex + 1) % 4;
     alein.setImage(runningImages[currentImageIndex]);
   }
-  //Creating a reset method to reset the game
+
+  // Creating a reset method to reset the game so that the user is able to play
+  // again without having
+  // to restart
   @FXML
   private void onReset() {
-    //resetting all the variables
+    // resetting all the variables
     GameState.currentRoom = "lockedroom";
     GameState.chatContents = "";
     GameState.chatCompletionRequest =
         new ChatCompletionRequest().setN(1).setTemperature(0.2).setTopP(0.5).setMaxTokens(100);
+    // Setting all the item and puzzle variables to false, so that the user has to
+    // complete the
+    // puzzles again to escape
     GameState.isKeyFound = false;
     GameState.isElectricalTapeFound = false;
     GameState.isEasyPicked = false;
@@ -84,6 +90,7 @@ public class WinController {
     GameState.isGlobeFound = false;
     GameState.isGameMasterLoaded = false;
     GameState.isRgbClueFound = false;
+    // Resetting the game attributes such as the timer and the objectives
     GameState.minutes = 0;
     GameState.seconds = 0;
     GameState.wireFixes = 0;
@@ -96,6 +103,7 @@ public class WinController {
     GameState.hintMessage = "";
     GameState.hintCounter = 0;
     GameState.isComputerAccessed = false;
+    // Resetting the game attributes such as the puzzles and puzzle answers
     GameState.isGlobeAccessed = false;
     GameState.riddleAnswer = GameState.riddleAnswers[(int) (Math.random() * 3)];
     GameState.password =
@@ -103,6 +111,9 @@ public class WinController {
             + GameState.randomLetters[(int) (Math.random() * 4)]
             + GameState.randomLetters[(int) (Math.random() * 4)]
             + GameState.randomLetters[(int) (Math.random() * 4)];
+    // Setting the room to the intro room so the user is directed back to the intro
+    // room when
+    // restart is clicked
     App.setUi("intro");
   }
 }

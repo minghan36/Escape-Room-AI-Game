@@ -27,30 +27,47 @@ import nz.ac.auckland.se206.GameState;
 public class BathroomController {
 
   // Creating variables required for the FXML scene
-  @FXML private Rectangle quizMaster;
-  @FXML private Canvas gameMaster;
-  @FXML private Label timer;
+  @FXML
+  private Rectangle quizMaster;
+  @FXML
+  private Canvas gameMaster;
+  @FXML
+  private Label timer;
   private Image[] alienImages;
   private int currentImageIndex = 0;
-  @FXML private ImageView lightOne;
-  @FXML private ImageView lightTwo;
-  @FXML private ImageView lightThree;
-  @FXML private ImageView toLockedRoom;
-  @FXML private Ellipse ellipseOne;
-  @FXML private Ellipse ellipseTwo;
-  @FXML private Ellipse ellipseThree;
-  @FXML private Circle puzzle;
-  @FXML private Label label;
-  @FXML private ImageView sdCard;
-  @FXML private ImageView tape;
-  @FXML private TextArea objText;
-  @FXML private TextArea hintsText;
-  @FXML private ImageView globe;
-  @FXML private Button rgbClue1;
+  @FXML
+  private ImageView lightOne;
+  @FXML
+  private ImageView lightTwo;
+  @FXML
+  private ImageView lightThree;
+  @FXML
+  private ImageView toLockedRoom;
+  @FXML
+  private Ellipse ellipseOne;
+  @FXML
+  private Ellipse ellipseTwo;
+  @FXML
+  private Ellipse ellipseThree;
+  @FXML
+  private Label label;
+  @FXML
+  private ImageView sdCard;
+  @FXML
+  private ImageView tape;
+  @FXML
+  private TextArea objText;
+  @FXML
+  private TextArea hintsText;
+  @FXML
+  private ImageView globe;
+  @FXML
+  private Button rgbClue1;
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
-    // Making sure the RGB clue is still able to be picked up if the user accidentally leaves the
+    // Making sure the RGB clue is still able to be picked up if the user
+    // accidentally leaves the
     // room
     if (GameState.isRgbClueFound) {
       rgbClue1.setVisible(true);
@@ -71,7 +88,8 @@ public class BathroomController {
       ellipseTwo.setOpacity(0.45);
       ellipseThree.setOpacity(0.45);
     }
-    // Making sure the player can't click on the lights if the decrypt puzzle is solved
+    // Making sure the player can't click on the lights if the decrypt puzzle is
+    // solved
     if (!GameState.isDecryptCompleted) {
       ellipseOne.setOnMouseClicked(null);
       ellipseOne.setOnMouseEntered(null);
@@ -97,27 +115,24 @@ public class BathroomController {
     }
     // Timing thread for the timer
     timer.setText(GameState.getTimeLeft());
-    Thread timeThread =
-        new Thread(
-            () -> {
-              startTimer();
-            });
+    Thread timeThread = new Thread(
+        () -> {
+          startTimer();
+        });
     timeThread.start();
     // game master animation
     // Initialize alienImages with your image paths
-    alienImages =
-        new Image[] {
-          new Image("images/move1.png"),
-          new Image("images/move2.png"),
-          new Image("images/move3.png"),
-          new Image("images/move4.png")
-        };
+    alienImages = new Image[] {
+        new Image("images/move1.png"),
+        new Image("images/move2.png"),
+        new Image("images/move3.png"),
+        new Image("images/move4.png")
+    };
 
     // Start the animation
     startAnimation();
 
-    TranslateTransition translateTransition =
-        new TranslateTransition(Duration.seconds(2), gameMaster);
+    TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(2), gameMaster);
 
     // set the Y-axis translation value
     translateTransition.setByY(-10);
@@ -135,27 +150,26 @@ public class BathroomController {
   /** Starts the animation of the Gamemaster. */
   private void startAnimation() {
     GraphicsContext gc = gameMaster.getGraphicsContext2D();
-    AnimationTimer timer =
-        new AnimationTimer() {
-          private long lastTime = 0;
-          private final long frameDurationMillis = 100; // 1000 milliseconds = 1 second
+    AnimationTimer timer = new AnimationTimer() {
+      private long lastTime = 0;
+      private final long frameDurationMillis = 100; // 1000 milliseconds = 1 second
 
-          @Override
-          public void handle(long currentTime) {
-            if (currentTime - lastTime >= frameDurationMillis * 1_000_000) {
-              if (currentImageIndex < alienImages.length) {
-                gc.clearRect(0, 0, gameMaster.getWidth(), gameMaster.getHeight());
-                gc.drawImage(alienImages[currentImageIndex], 0, 0);
-                currentImageIndex++;
-                // Check if we have displayed all images; if so, reset the index to 0
-                if (currentImageIndex >= alienImages.length) {
-                  currentImageIndex = 0;
-                }
-                lastTime = currentTime;
-              }
+      @Override
+      public void handle(long currentTime) {
+        if (currentTime - lastTime >= frameDurationMillis * 1_000_000) {
+          if (currentImageIndex < alienImages.length) {
+            gc.clearRect(0, 0, gameMaster.getWidth(), gameMaster.getHeight());
+            gc.drawImage(alienImages[currentImageIndex], 0, 0);
+            currentImageIndex++;
+            // Check if we have displayed all images; if so, reset the index to 0
+            if (currentImageIndex >= alienImages.length) {
+              currentImageIndex = 0;
             }
+            lastTime = currentTime;
           }
-        };
+        }
+      }
+    };
     timer.start();
   }
 
@@ -204,18 +218,18 @@ public class BathroomController {
   public void clickLightOne() {
     if (!GameState.isLightPuzzleStarted) {
       // Creaating the prompts for the hints for GPT flow when user enters light
-      Thread thread =
-          new Thread(
-              () -> {
-                GameState.sendPrompt(
-                    "The player has access behind the light. Some wires are broken. The player has"
-                        + " to find the electrical tape to patch the wires with. The electrical"
-                        + " tape can be found on the ground in the computer room.");
-              });
+      Thread thread = new Thread(
+          () -> {
+            GameState.sendPrompt(
+                "The player has access behind the light. Some wires are broken. The player has"
+                    + " to find the electrical tape to patch the wires with. The electrical"
+                    + " tape can be found on the ground in the computer room.");
+          });
       thread.start();
       GameState.isLightPuzzleStarted = true;
     }
-    // If user has collected the globe and solved the puzzle, they can't click on the lights
+    // If user has collected the globe and solved the puzzle, they can't click on
+    // the lights
     if (GameState.isLightPuzzleSolved && GameState.isGlobeFound) {
       return;
     } else {
@@ -233,22 +247,22 @@ public class BathroomController {
   public void clickLightTwo() {
     // Creaating the prompts for the hints for GPT flow when user enters light
     if (!GameState.isLightPuzzleStarted) {
-      Thread thread =
-          new Thread(
-              () -> {
-                GameState.sendPrompt(
-                    "The player has access behind the light. Some wires are broken. The player has"
-                        + " to find the electrical tape to patch the wires with. The electrical"
-                        + " tape can be found on the ground in the computer room.");
-              });
+      Thread thread = new Thread(
+          () -> {
+            GameState.sendPrompt(
+                "The player has access behind the light. Some wires are broken. The player has"
+                    + " to find the electrical tape to patch the wires with. The electrical"
+                    + " tape can be found on the ground in the computer room.");
+          });
       thread.start();
       GameState.isLightPuzzleStarted = true;
     }
-    // If user has collected the globe and solved the puzzle, they can't click on the lights
+    // If user has collected the globe and solved the puzzle, they can't click on
+    // the lights
     if (GameState.isLightPuzzleSolved && GameState.isGlobeFound) {
       return;
     } else {
-      //  Otherwise, they can click on the lights
+      // Otherwise, they can click on the lights
       GameState.currentRoom = "light";
       App.setUi("light");
     }
@@ -262,17 +276,17 @@ public class BathroomController {
   public void clickLightThree() {
     // Creaating the prompts for the hints for GPT flow when user enters light
     if (!GameState.isLightPuzzleStarted) {
-      Thread thread =
-          new Thread(
-              () -> {
-                GameState.sendPrompt(
-                    "The player has access behind the light. Some wires are broken. The player has"
-                        + " to find the electrical tape to patch the wires with. The electrical"
-                        + " tape can be found on the ground in the computer room.");
-              });
+      Thread thread = new Thread(
+          () -> {
+            GameState.sendPrompt(
+                "The player has access behind the light. Some wires are broken. The player has"
+                    + " to find the electrical tape to patch the wires with. The electrical"
+                    + " tape can be found on the ground in the computer room.");
+          });
       thread.start();
       GameState.isLightPuzzleStarted = true;
-      // If user has collected the globe and solved the puzzle, they can't click on the lights
+      // If user has collected the globe and solved the puzzle, they can't click on
+      // the lights
     }
     if (GameState.isLightPuzzleSolved && GameState.isGlobeFound) {
       return;
@@ -285,23 +299,22 @@ public class BathroomController {
 
   /** Starts updating the timer accordingly */
   public void startTimer() {
-    Timeline timeline =
-        new Timeline(
-            new KeyFrame(
-                Duration.seconds(1),
-                new EventHandler<ActionEvent>() {
-                  @Override
-                  public void handle(ActionEvent event) {
-                    // Counts down the timer.
-                    Platform.runLater(
-                        new Runnable() {
-                          @Override
-                          public void run() {
-                            timer.setText(GameState.getTimeLeft());
-                          }
-                        });
-                  }
-                }));
+    Timeline timeline = new Timeline(
+        new KeyFrame(
+            Duration.seconds(1),
+            new EventHandler<ActionEvent>() {
+              @Override
+              public void handle(ActionEvent event) {
+                // Counts down the timer.
+                Platform.runLater(
+                    new Runnable() {
+                      @Override
+                      public void run() {
+                        timer.setText(GameState.getTimeLeft());
+                      }
+                    });
+              }
+            }));
 
     timeline.setCycleCount((GameState.minutes * 60) + GameState.seconds - 1);
     timeline.play();
