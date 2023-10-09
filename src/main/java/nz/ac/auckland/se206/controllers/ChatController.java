@@ -175,7 +175,16 @@ public class ChatController {
    * @param msg the chat message to append
    */
   private void appendChatMessage(ChatMessage msg) {
-    chatTextArea.appendText(msg.getRole() + ": " + msg.getContent() + "\n\n");
+
+    String emojiRepresentation = "";
+    if (msg.getRole().equals("user")) {
+      emojiRepresentation = "👤: ";
+      chatTextArea.setStyle("-fx-text-fill: blue;");
+    } else if (msg.getRole().equals("assistant")) {
+      emojiRepresentation = "⏃⌰⟟⟒⋏: ";
+      chatTextArea.setStyle("-fx-text-fill: green;");
+    }
+    chatTextArea.appendText(emojiRepresentation + msg.getContent() + "\n\n");
   }
 
   /**
