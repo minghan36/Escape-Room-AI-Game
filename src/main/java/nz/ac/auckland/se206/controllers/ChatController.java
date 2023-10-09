@@ -33,42 +33,27 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 /** Controller class for the chat view. */
 public class ChatController {
   // Creating the variables for the chat view
-  @FXML
-  private TextArea chatTextArea;
-  @FXML
-  private TextField inputText;
-  @FXML
-  private Button sendButton;
-  @FXML
-  private Canvas quizMaster;
-  @FXML
-  private Label timer;
-  @FXML
-  private Label labelTranslate;
+  @FXML private TextArea chatTextArea;
+  @FXML private TextField inputText;
+  @FXML private Button sendButton;
+  @FXML private Canvas quizMaster;
+  @FXML private Label timer;
+  @FXML private Label labelTranslate;
   private Image[] alienImages;
   private int currentImageIndex = 0;
-  @FXML
-  private ImageView sdCard;
-  @FXML
-  private Label sdCollect;
-  @FXML
-  private ImageView sdCard1;
-  @FXML
-  private ImageView tape;
-  @FXML
-  private TextArea objText;
-  @FXML
-  private TextArea hintsText;
-  @FXML
-  private ImageView globe;
-  @FXML
-  private Button rgbClue1;
+  @FXML private ImageView sdCard;
+  @FXML private Label sdCollect;
+  @FXML private ImageView sdCard1;
+  @FXML private ImageView tape;
+  @FXML private TextArea objText;
+  @FXML private TextArea hintsText;
+  @FXML private ImageView globe;
+  @FXML private Button rgbClue1;
 
   /**
    * Initializes the chat view, loading the riddle.
    *
-   * @throws ApiProxyException if there is an error communicating with the API
-   *                           proxy
+   * @throws ApiProxyException if there is an error communicating with the API proxy
    */
   @FXML
   public void initialize() throws ApiProxyException {
@@ -126,17 +111,19 @@ public class ChatController {
     globe.setVisible(GameState.isGlobeFound);
     timer.setText(GameState.getTimeLeft());
     // thread for the timer
-    Thread timeThread = new Thread(
-        () -> {
-          startTimer();
-        });
+    Thread timeThread =
+        new Thread(
+            () -> {
+              startTimer();
+            });
     timeThread.start();
 
     // game master animation
     // Initialize alienImages with your image paths
-    alienImages = new Image[] { new Image("images/blink1.png"), new Image("images/blink2.png") };
+    alienImages = new Image[] {new Image("images/blink1.png"), new Image("images/blink2.png")};
 
-    TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(2), quizMaster);
+    TranslateTransition translateTransition =
+        new TranslateTransition(Duration.seconds(2), quizMaster);
 
     // set the Y-axis translation value
     translateTransition.setByY(-10);
@@ -158,26 +145,27 @@ public class ChatController {
   private void startAnimation() {
     // Animation for the gamemaster
     GraphicsContext gc = quizMaster.getGraphicsContext2D();
-    AnimationTimer timer = new AnimationTimer() {
-      private long lastTime = 0;
-      private final long frameDurationMillis = 1000; // 1000 milliseconds = 1 second
+    AnimationTimer timer =
+        new AnimationTimer() {
+          private long lastTime = 0;
+          private final long frameDurationMillis = 1000; // 1000 milliseconds = 1 second
 
-      @Override
-      public void handle(long currentTime) {
-        if (currentTime - lastTime >= frameDurationMillis * 1_000_000) {
-          if (currentImageIndex < alienImages.length) {
-            gc.clearRect(0, 0, quizMaster.getWidth(), quizMaster.getHeight());
-            gc.drawImage(alienImages[currentImageIndex], 0, 0);
-            currentImageIndex++;
-            // Check if we have displayed all images; if so, reset the index to 0
-            if (currentImageIndex >= alienImages.length) {
-              currentImageIndex = 0;
+          @Override
+          public void handle(long currentTime) {
+            if (currentTime - lastTime >= frameDurationMillis * 1_000_000) {
+              if (currentImageIndex < alienImages.length) {
+                gc.clearRect(0, 0, quizMaster.getWidth(), quizMaster.getHeight());
+                gc.drawImage(alienImages[currentImageIndex], 0, 0);
+                currentImageIndex++;
+                // Check if we have displayed all images; if so, reset the index to 0
+                if (currentImageIndex >= alienImages.length) {
+                  currentImageIndex = 0;
+                }
+                lastTime = currentTime;
+              }
             }
-            lastTime = currentTime;
           }
-        }
-      }
-    };
+        };
     timer.start();
   }
 
@@ -195,36 +183,36 @@ public class ChatController {
    *
    * @param msg the chat message to process
    * @return the response chat message
-   * @throws ApiProxyException if there is an error communicating with the API
-   *                           proxy
+   * @throws ApiProxyException if there is an error communicating with the API proxy
    */
   private CompletableFuture<ChatMessage> runGpt(ChatMessage msg) throws ApiProxyException {
     labelTranslate.setOpacity(0.55);
     GameState.chatCompletionRequest.addMessage(msg);
     CompletableFuture<ChatMessage> completableFuture = new CompletableFuture<>();
 
-    Task<Void> task = new Task<Void>() {
-      @Override
-      protected Void call() throws Exception {
-        try {
-          ChatCompletionResult chatCompletionResult = GameState.chatCompletionRequest.execute();
-          Choice result = chatCompletionResult.getChoices().iterator().next();
-          GameState.chatCompletionRequest.addMessage(result.getChatMessage());
+    Task<Void> task =
+        new Task<Void>() {
+          @Override
+          protected Void call() throws Exception {
+            try {
+              ChatCompletionResult chatCompletionResult = GameState.chatCompletionRequest.execute();
+              Choice result = chatCompletionResult.getChoices().iterator().next();
+              GameState.chatCompletionRequest.addMessage(result.getChatMessage());
 
-          Platform.runLater(
-              () -> {
-                appendChatMessage(result.getChatMessage());
-                labelTranslate.setOpacity(0);
-                completableFuture.complete(result.getChatMessage()); // Complete the future
-              });
-        } catch (ApiProxyException e) {
-          // TODO handle exception appropriately
-          e.printStackTrace();
-          completableFuture.completeExceptionally(e); // Complete the future exceptionally
-        }
-        return null;
-      }
-    };
+              Platform.runLater(
+                  () -> {
+                    appendChatMessage(result.getChatMessage());
+                    labelTranslate.setOpacity(0);
+                    completableFuture.complete(result.getChatMessage()); // Complete the future
+                  });
+            } catch (ApiProxyException e) {
+              // TODO handle exception appropriately
+              e.printStackTrace();
+              completableFuture.completeExceptionally(e); // Complete the future exceptionally
+            }
+            return null;
+          }
+        };
 
     Thread thread = new Thread(task);
     thread.start();
@@ -236,9 +224,8 @@ public class ChatController {
    * Sends a message to the GPT model.
    *
    * @param event the action event triggered by the send button
-   * @throws ApiProxyException if there is an error communicating with the API
-   *                           proxy
-   * @throws IOException       if there is an I/O error
+   * @throws ApiProxyException if there is an error communicating with the API proxy
+   * @throws IOException if there is an I/O error
    */
   @FXML
   private void onSendMessage(ActionEvent event) throws ApiProxyException, IOException {
@@ -251,25 +238,27 @@ public class ChatController {
     // the user does ask
     // for a hint
     if (GameState.hintCounter == 5) {
-      Thread thread = new Thread(
-          () -> {
-            GameState.sendPrompt(
-                "The player has reached their hint limit. Do not provide any help to the"
-                    + " player. Do not give the player any hints. Do not tell the player the"
-                    + " next step.");
-          });
+      Thread thread =
+          new Thread(
+              () -> {
+                GameState.sendPrompt(
+                    "The player has reached their hint limit. Do not provide any help to the"
+                        + " player. Do not give the player any hints. Do not tell the player the"
+                        + " next step.");
+              });
       thread.start();
     }
     // Sends prompts to the GPT api to overlook the gameflow and game progress if
     // the user does not
     // ask for a hint
     if (GameState.isDifficultPicked) {
-      Thread thread = new Thread(
-          () -> {
-            GameState.sendPrompt(
-                "The player is in difficult mode. Do not provide any help to the player. Do not"
-                    + " give the player any hints. Do not tell the player the next step.");
-          });
+      Thread thread =
+          new Thread(
+              () -> {
+                GameState.sendPrompt(
+                    "The player is in difficult mode. Do not provide any help to the player. Do not"
+                        + " give the player any hints. Do not tell the player the next step.");
+              });
       thread.start();
     }
 
@@ -288,13 +277,14 @@ public class ChatController {
               objText.setText(GameState.getObjective());
               GameState.currentObj = "Decrypt";
               // Creating prompt for the GPT api to overlook the gameflow and game progress
-              Thread thread = new Thread(
-                  () -> {
-                    GameState.sendPrompt(
-                        "The player has solved the riddle and received an SD card. The player"
-                            + " must now find and access the computer in the computer room by"
-                            + " clicking on the computer.");
-                  });
+              Thread thread =
+                  new Thread(
+                      () -> {
+                        GameState.sendPrompt(
+                            "The player has solved the riddle and received an SD card. The player"
+                                + " must now find and access the computer in the computer room by"
+                                + " clicking on the computer.");
+                      });
               thread.start();
             } else if (lastMsg.getContent().contains("hint: ")
                 || lastMsg.getContent().contains("Hint: ")
@@ -324,9 +314,8 @@ public class ChatController {
    * Navigates back to the previous view.
    *
    * @param event the action event triggered by the go back button
-   * @throws ApiProxyException if there is an error communicating with the API
-   *                           proxy
-   * @throws IOException       if there is an I/O error
+   * @throws ApiProxyException if there is an error communicating with the API proxy
+   * @throws IOException if there is an I/O error
    */
   @FXML
   private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
@@ -336,22 +325,23 @@ public class ChatController {
 
   // Method for the timer
   public void startTimer() {
-    Timeline timeline = new Timeline(
-        new KeyFrame(
-            Duration.seconds(1),
-            new EventHandler<ActionEvent>() {
-              @Override
-              public void handle(ActionEvent event) {
-                // Counts down the timer.
-                Platform.runLater(
-                    new Runnable() {
-                      @Override
-                      public void run() {
-                        timer.setText(GameState.getTimeLeft());
-                      }
-                    });
-              }
-            }));
+    Timeline timeline =
+        new Timeline(
+            new KeyFrame(
+                Duration.seconds(1),
+                new EventHandler<ActionEvent>() {
+                  @Override
+                  public void handle(ActionEvent event) {
+                    // Counts down the timer.
+                    Platform.runLater(
+                        new Runnable() {
+                          @Override
+                          public void run() {
+                            timer.setText(GameState.getTimeLeft());
+                          }
+                        });
+                  }
+                }));
 
     timeline.setCycleCount((GameState.minutes * 60) + GameState.seconds - 1);
     timeline.play();

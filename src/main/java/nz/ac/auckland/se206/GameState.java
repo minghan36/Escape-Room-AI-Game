@@ -98,7 +98,7 @@ public class GameState {
           + randomLetters[(int) (Math.random() * 4)]
           + randomLetters[(int) (Math.random() * 4)];
 
-  // Intialising the timer for the game
+  /** Starts the timer of the game based on user's chosen setting. */
   public static void startTimer() {
     timeline =
         new Timeline(
@@ -132,7 +132,7 @@ public class GameState {
     timeline.play();
   }
 
-  // Intialising the hint system
+  /** Initializes the hint setting based on selected difficulty. */
   public static String getHint() {
     if (GameState.isMediumPicked) {
       return ("Hints Remaining : " + (5 - hintCounter) + "\n" + latestHint);
@@ -143,7 +143,11 @@ public class GameState {
     }
   }
 
-  // Intialising the chat system and prompt system of the GPT API
+  /**
+   * Initializes the conversation with Gamemaster.
+   *
+   * @param prompt prompt that gives riddles.
+   */
   public static void sendPrompt(String prompt) {
     // Adding the message to the chat
     chatCompletionRequest.addMessage(new ChatMessage("user", prompt));
@@ -157,7 +161,7 @@ public class GameState {
     }
   }
 
-  // Creating the objectives of the gaem
+  /** Sets the current objective of the game. */
   public static String getObjective() {
     // For the riddle state
     if (GameState.currentObj == "Riddle") {

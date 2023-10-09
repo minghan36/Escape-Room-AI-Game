@@ -14,14 +14,13 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 
 public class EndController {
   // Intialisng all the variables for the scene
-  @FXML
-  private ImageView alien;
-  @FXML
-  private Button buttonReplay;
+  @FXML private ImageView alien;
+  @FXML private Button buttonReplay;
 
   private Image[] runningImages = new Image[4];
   private int currentImageIndex = 0;
 
+  /** Initializes the room view, it is called when the room loads. */
   @FXML
   public void initialize() {
     // Load images RUN1 to RUN4
@@ -34,16 +33,19 @@ public class EndController {
 
     // Timeline to switch images
     double switchSpeed = 0.2; // adjust for faster or slower switching
-    Timeline switchImageTimeline = new Timeline(new KeyFrame(Duration.seconds(switchSpeed), evt -> switchImage()));
+    Timeline switchImageTimeline =
+        new Timeline(new KeyFrame(Duration.seconds(switchSpeed), evt -> switchImage()));
     switchImageTimeline.setCycleCount(Timeline.INDEFINITE);
     switchImageTimeline.play();
 
     // Timeline to move the ImageView
-    double movementDuration = 10.0; // Adjust this for the entire movement duration across the screen
-    Timeline moveTimeline = new Timeline(
-        new KeyFrame(
-            Duration.seconds(movementDuration),
-            new KeyValue(alien.layoutXProperty(), 1100 - alien.getFitWidth())));
+    double movementDuration =
+        10.0; // Adjust this for the entire movement duration across the screen
+    Timeline moveTimeline =
+        new Timeline(
+            new KeyFrame(
+                Duration.seconds(movementDuration),
+                new KeyValue(alien.layoutXProperty(), 1100 - alien.getFitWidth())));
     moveTimeline.setCycleCount(Timeline.INDEFINITE);
     moveTimeline.setOnFinished(evt -> alien.setLayoutX(0)); // Reset position to leftmost
     moveTimeline.play();
@@ -55,14 +57,14 @@ public class EndController {
     alien.setImage(runningImages[currentImageIndex]);
   }
 
-  // Resetting the game
+  /** Resets the game for the user to play again. */
   @FXML
   private void reset() {
     // Resetting all the variables
     GameState.currentRoom = "lockedroom";
     GameState.chatContents = "";
-    GameState.chatCompletionRequest = new ChatCompletionRequest().setN(1).setTemperature(0.2).setTopP(0.5)
-        .setMaxTokens(100);
+    GameState.chatCompletionRequest =
+        new ChatCompletionRequest().setN(1).setTemperature(0.2).setTopP(0.5).setMaxTokens(100);
     GameState.isKeyFound = false;
     GameState.isElectricalTapeFound = false;
     GameState.isEasyPicked = false;
@@ -100,10 +102,11 @@ public class EndController {
     GameState.isGlobeAccessed = false;
     // Resetting the game attributes such as the puzzles and puzzle answers
     GameState.riddleAnswer = GameState.riddleAnswers[(int) (Math.random() * 3)];
-    GameState.password = GameState.randomLetters[(int) (Math.random() * 4)]
-        + GameState.randomLetters[(int) (Math.random() * 4)]
-        + GameState.randomLetters[(int) (Math.random() * 4)]
-        + GameState.randomLetters[(int) (Math.random() * 4)];
+    GameState.password =
+        GameState.randomLetters[(int) (Math.random() * 4)]
+            + GameState.randomLetters[(int) (Math.random() * 4)]
+            + GameState.randomLetters[(int) (Math.random() * 4)]
+            + GameState.randomLetters[(int) (Math.random() * 4)];
     // Setting the rooom to the intro room so the user is able to restart the game
     // and select their
     // options

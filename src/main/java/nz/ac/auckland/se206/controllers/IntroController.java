@@ -13,45 +13,28 @@ import nz.ac.auckland.se206.GameState;
 
 public class IntroController {
   // Intialisng all the variables required for the scene
-  @FXML
-  private Rectangle time;
-  @FXML
-  private Rectangle start;
-  @FXML
-  private Label title;
-  @FXML
-  private Button easy;
-  @FXML
-  private Button medium;
-  @FXML
-  private Button difficult;
+  @FXML private Rectangle time;
+  @FXML private Rectangle start;
+  @FXML private Label title;
+  @FXML private Button easy;
+  @FXML private Button medium;
+  @FXML private Button difficult;
   private boolean levelIsPicked;
   private boolean timeIsPicked;
-  @FXML
-  private Label chooseEasy;
-  @FXML
-  private Label chooseMedium;
-  @FXML
-  private Label chooseDifficult;
-  @FXML
-  private Label minTwo;
-  @FXML
-  private Label minFour;
-  @FXML
-  private Label minSix;
-  @FXML
-  private Button twoMin;
-  @FXML
-  private Button fourMin;
-  @FXML
-  private Button sixMin;
-  @FXML
-  private Label startStatus;
-  @FXML
-  private Label levelDetail;
-  @FXML
-  private ImageView alien;
+  @FXML private Label chooseEasy;
+  @FXML private Label chooseMedium;
+  @FXML private Label chooseDifficult;
+  @FXML private Label minTwo;
+  @FXML private Label minFour;
+  @FXML private Label minSix;
+  @FXML private Button twoMin;
+  @FXML private Button fourMin;
+  @FXML private Button sixMin;
+  @FXML private Label startStatus;
+  @FXML private Label levelDetail;
+  @FXML private ImageView alien;
 
+  /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
     // create a translate transition for the label
     TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(2), title);
@@ -83,26 +66,22 @@ public class IntroController {
     translateTransition1.play();
   }
 
-  @FXML
-  private void pickLevel(MouseEvent event) {
-    // switch to the new scene for the player to pick a level
-  }
-
-  @FXML
-  private void pickTime(MouseEvent event) {
-    // switch to a new scene for the player to pick a time duration
-  }
-
-  // Method to start the game and ensuring user has made all the required choices
+  /**
+   * Handles the mouse event of clicking on start game. Begins the gaming based on the users choice
+   * of settings.
+   *
+   * @param event The mouse click event.
+   */
   @FXML
   private void startGame(MouseEvent event) {
     if (levelIsPicked && timeIsPicked) {
       // Only starting the thread if the user has chosen a difficulty level and a time
       // limit
-      Thread timeThread = new Thread(
-          () -> {
-            GameState.startTimer();
-          });
+      Thread timeThread =
+          new Thread(
+              () -> {
+                GameState.startTimer();
+              });
       timeThread.start();
       // Switching to the locked room scene so the user can begin their escape
       App.setUi("lockedroom");
@@ -112,7 +91,11 @@ public class IntroController {
     }
   }
 
-  // Method for the easy level
+  /**
+   * Handles the mouse click on easy difficulty selection.
+   *
+   * @param event Mouse click event.
+   */
   @FXML
   private void easyPicked(MouseEvent event) {
     // Sertting all the details
@@ -131,7 +114,11 @@ public class IntroController {
             + " Gamemaster");
   }
 
-  // Method for the medium level
+  /**
+   * Handles the mouse click on medium difficulty selection.
+   *
+   * @param event Mouse click event.
+   */
   @FXML
   private void mediumPicked(MouseEvent event) {
     // Setting all the details
@@ -150,7 +137,11 @@ public class IntroController {
             + " Gamemaster, but feel free to talk to him");
   }
 
-  // Method for the difficult level
+  /**
+   * Handles the mouse click on difficult difficulty selection.
+   *
+   * @param event Mouse click event.
+   */
   @FXML
   private void difficultPicked(MouseEvent event) {
     // Setting all the details
@@ -169,7 +160,11 @@ public class IntroController {
             + " Gamemaster, but feel free to talk to him");
   }
 
-  // Method for the amount of time
+  /**
+   * Handles the mouse click on two minute time limit selection.
+   *
+   * @param event Mouse click event.
+   */
   @FXML
   private void twoPicked(MouseEvent event) {
     // Setting all the details
@@ -184,7 +179,11 @@ public class IntroController {
     }
   }
 
-  // Method for the amount of time
+  /**
+   * Handles the mouse click on four minute time limit selection.
+   *
+   * @param event Mouse click event.
+   */
   @FXML
   private void fourPicked(MouseEvent event) {
     // Setting all the details
@@ -198,7 +197,11 @@ public class IntroController {
     }
   }
 
-  // Method for the amount of time
+  /**
+   * Handles the mouse click on six minute time limit selection.
+   *
+   * @param event Mouse click event.
+   */
   @FXML
   private void sixPicked(MouseEvent event) {
     // Setting all the details

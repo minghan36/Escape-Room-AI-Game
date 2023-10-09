@@ -22,6 +22,7 @@ public class WinController {
   private Image[] runningImages = new Image[4];
   private int currentImageIndex = 0;
 
+  /** Initializes the room view, it is called when the room loads. */
   @FXML
   public void initialize() {
     // Load images RUN1 to RUN4
@@ -54,14 +55,13 @@ public class WinController {
     moveTimeline.play();
   }
 
+  /** Moves image of Gamemaster. */
   private void switchImage() {
     currentImageIndex = (currentImageIndex + 1) % 4;
     alein.setImage(runningImages[currentImageIndex]);
   }
 
-  // Creating a reset method to reset the game so that the user is able to play
-  // again without having
-  // to restart
+  /** Resets the settings of the game for the user to play again. Changes to intro view. */
   @FXML
   private void onReset() {
     // resetting all the variables
