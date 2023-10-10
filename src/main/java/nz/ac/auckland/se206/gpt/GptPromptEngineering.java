@@ -4,14 +4,14 @@ package nz.ac.auckland.se206.gpt;
 public class GptPromptEngineering {
 
   /**
-   * Generates a GPT prompt engineering string for a riddle with the given word.
+   * Generates a GPT prompt engineering string for a riddle with the given word on easy difficulty.
    *
    * @param wordToGuess the word to be guessed in the riddle
    * @return the generated prompt engineering string
    */
   public static String getRiddleWithGivenWordEasy(String wordToGuess) {
     return "You are the AI of an escape room. Provide a riddle for which the answer is "
-        + wordToGuess
+        + wordToGuess // The answer that the riddle is about.
         + ". When the correct answer is provided, respond with 'Correct'. If users guess"
         + " incorrectly, inquire if they desire a hint. If they request a hint or ask about the"
         + " what to do next, start your response with 'Hint:'. "
@@ -20,14 +20,15 @@ public class GptPromptEngineering {
   }
 
   /**
-   * Generates a GPT prompt engineering string for a riddle with the given word.
+   * Generates a GPT prompt engineering string for a riddle with the given word on Medium
+   * difficulty.
    *
    * @param wordToGuess the word to be guessed in the riddle
    * @return the generated prompt engineering string
    */
   public static String getRiddleWithGivenWordMedium(String wordToGuess) {
     return "You are the AI of an escape room. Provide a riddle for which the answer is "
-        + wordToGuess
+        + wordToGuess // The answer that the riddle is about.
         + ". When the correct answer is provided, respond with 'Correct'. If users guess"
         + " incorrectly, inquire if they desire a hint. If they request a hint or ask about the"
         + " what to do next, start your response with 'Hint:'. Provide up to five in total."
@@ -36,14 +37,14 @@ public class GptPromptEngineering {
   }
 
   /**
-   * Generates a GPT prompt engineering string for a riddle with the given word.
+   * Generates a GPT prompt engineering string for a riddle with the given word on Hard difficulty.
    *
    * @param wordToGuess the word to be guessed in the riddle
    * @return the generated prompt engineering string
    */
   public static String getRiddleWithGivenWordHard(String wordToGuess) {
     return "You are the game Master of an escape room, presenting a riddle that hints at the word"
-        + wordToGuess
+        + wordToGuess // The answer that the riddle is about.
         + ". Respond with 'Correct' if the answer matches. In this escape room challenge, the"
         + " player's goal is to decode various puzzles and riddles to find the key that unlocks"
         + " the door. It's crucial for the player to solve the riddle without assistance to"

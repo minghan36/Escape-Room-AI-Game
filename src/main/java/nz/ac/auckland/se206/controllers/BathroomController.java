@@ -162,7 +162,7 @@ public class BathroomController {
   /**
    * Handles the click event on the Gamemaster to open chat view.
    *
-   * @param event the key event
+   * @param event the key event.
    */
   @FXML
   private void clickQuizMaster(MouseEvent event) {
@@ -170,9 +170,9 @@ public class BathroomController {
   }
 
   /**
-   * Handles the click event on the left arrow to enter the locked room view
+   * Handles the click event on the left arrow to enter the locked room view.
    *
-   * @param event the key event
+   * @param event the key event.
    */
   @FXML
   private void enterLockedRoom(MouseEvent event) {
@@ -286,7 +286,7 @@ public class BathroomController {
     }
   }
 
-  /** Starts updating the timer accordingly */
+  /** Starts updating the timer accordingly. */
   public void startTimer() {
     Timeline timeline =
         new Timeline(

@@ -12,6 +12,7 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 
+/** Controller class for the loss screen view. */
 public class EndController {
   // Intialisng all the variables for the scene
   @FXML private ImageView alien;

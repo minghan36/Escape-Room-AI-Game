@@ -13,6 +13,7 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 
+/** Controller class for the Win Screen view. */
 public class WinController {
   // Intialising variables for the scene
   @FXML private ImageView alein;
@@ -55,7 +56,7 @@ public class WinController {
     moveTimeline.play();
   }
 
-  /** Moves image of Gamemaster. */
+  /** Moves image of Gamemaster. Used in the animation of Gamemaster. */
   private void switchImage() {
     currentImageIndex = (currentImageIndex + 1) % 4;
     alein.setImage(runningImages[currentImageIndex]);

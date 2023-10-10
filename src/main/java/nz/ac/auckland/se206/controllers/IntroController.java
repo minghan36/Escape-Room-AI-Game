@@ -11,6 +11,7 @@ import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 
+/** Controller class for the introduction view. */
 public class IntroController {
   // Intialisng all the variables required for the scene
   @FXML private Rectangle time;
