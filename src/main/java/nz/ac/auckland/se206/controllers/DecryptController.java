@@ -64,14 +64,18 @@ public class DecryptController {
     // Intialising the the items that the user has collected/ will collect from the
     // scene
     if (GameState.isRgbClueFound) {
-      rgbClue1.setVisible(true);
+      rgbClue1.setOpacity(1);
       rgbClue1.setText(GameState.password);
-    } else {
-      rgbClue1.setVisible(false);
     }
-    globe.setVisible(GameState.isGlobeFound);
-    tape.setVisible(GameState.isElectricalTapeFound);
-    sdCard.setVisible(GameState.isSdCardFound);
+    if (GameState.isGlobeFound) {
+      globe.setOpacity(1);
+    }
+    if (GameState.isElectricalTapeFound) {
+      tape.setOpacity(1);
+    }
+    if (GameState.isSdCardFound) {
+      sdCard.setOpacity(1);
+    }
     timer.setText(GameState.getTimeLeft());
     // Timer thread
     Thread timeThread =
@@ -188,7 +192,7 @@ public class DecryptController {
   /**
    * Sends the decoded message to be checked.
    *
-   * @param event the event that starts sending the message, (mouse click or enter button.)  
+   * @param event the event that starts sending the message, (mouse click or enter button.)
    * @throws ApiProxyException if there is an error communicating with the API proxy
    * @throws IOException if there is an error in an input or output operation
    */

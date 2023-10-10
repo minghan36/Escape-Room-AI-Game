@@ -52,18 +52,21 @@ public class BathroomController {
     // accidentally leaves the
     // room
     if (GameState.isRgbClueFound) {
-      rgbClue1.setVisible(true);
+      rgbClue1.setOpacity(1);
       rgbClue1.setText(GameState.password);
-    } else {
-      rgbClue1.setVisible(false);
     }
     // Intialising the objectives and hints text plus the items
     objText.setText(GameState.getObjective());
     hintsText.setText(GameState.getHint());
-    sdCard.setVisible(GameState.isSdCardFound);
-    sdCard.setVisible(GameState.isSdCardFound);
-    tape.setVisible(GameState.isElectricalTapeFound);
-    globe.setVisible(GameState.isGlobeFound);
+    if (GameState.isSdCardFound) {
+      sdCard.setOpacity(1);
+    }
+    if (GameState.isElectricalTapeFound) {
+      tape.setOpacity(1);
+    }
+    if (GameState.isGlobeFound) {
+      globe.setOpacity(1);
+    }
     // Dimming the Lights
     if (!GameState.isLightPuzzleSolved) {
       ellipseOne.setOpacity(0.45);

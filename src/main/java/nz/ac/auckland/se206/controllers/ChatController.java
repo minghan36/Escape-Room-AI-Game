@@ -67,10 +67,8 @@ public class ChatController {
     chatTextArea.setText(GameState.chatContents);
     // Displaying the item if its found
     if (GameState.isRgbClueFound) {
-      rgbClue1.setVisible(true);
+      rgbClue1.setOpacity(1);
       rgbClue1.setText(GameState.password);
-    } else {
-      rgbClue1.setVisible(false);
     }
     // Allowing the rungpt if the gamemaster is loaded
     if (!GameState.isGameMasterLoaded && GameState.isEasyPicked) {
@@ -106,9 +104,15 @@ public class ChatController {
       sdCard.setVisible(false);
     }
     // Displaying the items if found/not found
-    sdCard1.setVisible(GameState.isSdCardFound);
-    tape.setVisible(GameState.isElectricalTapeFound);
-    globe.setVisible(GameState.isGlobeFound);
+    if (GameState.isSdCardFound) {
+      sdCard1.setOpacity(1);
+    }
+    if (GameState.isElectricalTapeFound) {
+      tape.setOpacity(1);
+    }
+    if (GameState.isGlobeFound) {
+      globe.setOpacity(1);
+    }
     timer.setText(GameState.getTimeLeft());
     // thread for the timer
     Thread timeThread =
@@ -377,6 +381,6 @@ public class ChatController {
     GameState.isSdCardFound = true;
     sdCard.setVisible(false);
     sdCollect.setText("");
-    sdCard1.setVisible(true);
+    sdCard1.setOpacity(1);
   }
 }

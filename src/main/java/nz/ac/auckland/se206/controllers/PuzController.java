@@ -88,10 +88,8 @@ public class PuzController {
       rgbClue.setVisible(false);
     }
     if (GameState.isRgbClueFound) {
-      rgbClue1.setVisible(true);
+      rgbClue1.setOpacity(1);
       rgbClue1.setText(GameState.password);
-    } else {
-      rgbClue1.setVisible(false);
     }
     if (!GameState.isPuzzleSolved) {
       objText.setText(
@@ -100,9 +98,15 @@ public class PuzController {
     } else {
       objText.setText(GameState.objMessage);
     }
-    tape.setVisible(GameState.isElectricalTapeFound);
-    sdCard.setVisible(GameState.isSdCardFound);
-    globe.setVisible(GameState.isGlobeFound);
+    if (GameState.isElectricalTapeFound) {
+      tape.setOpacity(1);
+    }
+    if (GameState.isSdCardFound) {
+      sdCard.setOpacity(1);
+    }
+    if (GameState.isGlobeFound) {
+      globe.setOpacity(1);
+    }
     timer.setText(GameState.getTimeLeft());
     // Starting the timer thread for the room
     Thread timeThread =
@@ -412,7 +416,7 @@ public class PuzController {
   @FXML
   private void clickRgb() {
     GameState.isRgbClueFound = true;
-    rgbClue1.setVisible(true);
+    rgbClue1.setOpacity(1);
     rgbClue1.setText(GameState.password);
     rgbClue.setVisible(false);
     collect.setText("");

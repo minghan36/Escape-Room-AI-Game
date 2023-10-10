@@ -52,23 +52,27 @@ public class LightController {
   public void initialize() {
     // Intialisng the items collected by the user/ will collect from the scene
     if (GameState.isRgbClueFound) {
-      rgbClue1.setVisible(true);
+      rgbClue1.setOpacity(1);
       rgbClue1.setText(GameState.password);
-    } else {
-      rgbClue1.setVisible(false);
     }
     // Intialisng the objectives and hints section of the scene
     objText.setText(GameState.getObjective());
     hintsText.setText(GameState.getHint());
-    tape.setVisible(GameState.isElectricalTapeFound);
-    sdCard.setVisible(GameState.isSdCardFound);
+    if (GameState.isSdCardFound) {
+      sdCard.setOpacity(1);
+    }
+    if (GameState.isElectricalTapeFound) {
+      tape.setOpacity(1);
+    }
     // Intialisng the items collected by the user/ will collect from the scene
     if (!GameState.isGlobeFound && GameState.isLightPuzzleSolved) {
       globe.setVisible(GameState.isRiddleResolved);
     } else {
       globe.setVisible(false);
     }
-    globe1.setVisible(GameState.isGlobeFound);
+    if (GameState.isGlobeFound) {
+      globe1.setOpacity(1);
+    }
     if (GameState.isLightPuzzleSolved) {
       objText.setText(GameState.getObjective());
     } else {
@@ -391,6 +395,6 @@ public class LightController {
     GameState.currentObj = "Picture Puz";
     lightSuggest.setText("");
     globe.setVisible(false);
-    globe1.setVisible(true);
+    globe1.setOpacity(1);
   }
 }

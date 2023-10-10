@@ -60,17 +60,17 @@
             <Font name="Tamil MN" size="19.0" />
          </font>
       </Label>
-      <ImageView fx:id="tape" fitHeight="36.0" fitWidth="42.0" layoutX="776.0" layoutY="430.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="tape" fitHeight="36.0" fitWidth="42.0" layoutX="776.0" layoutY="430.0" opacity="0.2" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/tape.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="sdCard" fitHeight="36.0" fitWidth="42.0" layoutX="776.0" layoutY="465.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="sdCard" fitHeight="36.0" fitWidth="42.0" layoutX="776.0" layoutY="465.0" opacity="0.2" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/sdcard.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="globe" fitHeight="36.0" fitWidth="42.0" layoutX="844.0" layoutY="430.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="globe" fitHeight="36.0" fitWidth="42.0" layoutX="844.0" layoutY="430.0" opacity="0.2" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/GlobeItem.png" />
          </image>
@@ -86,9 +86,9 @@
          </image>
       </ImageView>
       <Ellipse fx:id="ellipseOne" fill="#333333" layoutX="46.0" layoutY="135.0" onMouseClicked="#clickLightOne" onMouseEntered="#increaseSizeOne" onMouseExited="#decreaseSizeOne" opacity="0.0" radiusX="16.0" radiusY="30.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-      <Button fx:id="rgbClue1" layoutX="911.0" layoutY="430.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="68.0" style="-fx-background-color: #2E40F9;" textFill="#fcb141">
+      <Button fx:id="rgbClue1" layoutX="911.0" layoutY="430.0" mnemonicParsing="false" opacity="0.2" prefHeight="36.0" prefWidth="68.0" style="-fx-background-color: #2E40F9;" textFill="#fcb141">
          <font>
-            <Font name="Telugu MN" size="13.0" />
+            <Font name="Telugu MN" size="16.0" />
          </font>
       </Button>
    </children>

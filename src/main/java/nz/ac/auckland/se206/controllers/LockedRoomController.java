@@ -55,17 +55,21 @@ public class LockedRoomController {
   public void initialize() {
     // Displaying the items which are collected/not collected
     if (GameState.isRgbClueFound) {
-      rgbClue1.setVisible(true);
+      rgbClue1.setOpacity(1);
       rgbClue1.setText(GameState.password);
-    } else {
-      rgbClue1.setVisible(false);
     }
     // Intialisng the hints and objectives section of the scene
     objText.setText(GameState.getObjective());
     hintsText.setText(GameState.getHint());
-    sdCard.setVisible(GameState.isSdCardFound);
-    tape.setVisible(GameState.isElectricalTapeFound);
-    globe1.setVisible(GameState.isGlobeFound);
+    if (GameState.isSdCardFound) {
+      sdCard.setOpacity(1);
+    }
+    if (GameState.isElectricalTapeFound) {
+      tape.setOpacity(1);
+    }
+    if (GameState.isGlobeFound) {
+      globe1.setOpacity(1);
+    }
     timer.setText(GameState.getTimeLeft());
     // Timer thread
     Thread timeThread =
