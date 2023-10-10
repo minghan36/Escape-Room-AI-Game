@@ -45,17 +45,21 @@ public class ComputerRoomController {
   public void initialize() {
     // Displaying the items which are collected/not collected
     if (GameState.isRgbClueFound) {
-      rgbClue1.setVisible(true);
+      rgbClue1.setOpacity(1);
       rgbClue1.setText(GameState.password);
-    } else {
-      rgbClue1.setVisible(false);
     }
     // Displaying the items which are collected/not collected
     objText.setText(GameState.getObjective());
     hintsText.setText(GameState.getHint());
-    sdCard.setVisible(GameState.isSdCardFound);
-    tape1.setVisible(GameState.isElectricalTapeFound);
-    globe.setVisible(GameState.isGlobeFound);
+    if (GameState.isSdCardFound) {
+      sdCard.setOpacity(1);
+    }
+    if (GameState.isElectricalTapeFound) {
+      tape1.setOpacity(1);
+    }
+    if (GameState.isGlobeFound) {
+      globe.setOpacity(1);
+    }
     // Allowing the user to collect the tape only when the light puzzle is started
     if (!GameState.isLightPuzzleStarted) {
       tape.setOnMouseClicked(null);
@@ -268,7 +272,7 @@ public class ComputerRoomController {
     tape.setOnMouseClicked(null);
     GameState.isElectricalTapeFound = true;
     objText.setText("Good job you have found the electrical tape, now fix the wires.");
-    tape1.setVisible(true);
+    tape1.setOpacity(1);
   }
 
   /**

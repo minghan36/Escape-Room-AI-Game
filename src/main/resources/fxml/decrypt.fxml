@@ -103,12 +103,12 @@
       </Label>
       <TextArea fx:id="objText" editable="false" layoutX="776.0" layoutY="93.0" prefHeight="78.0" prefWidth="200.0" wrapText="true" />
       <TextArea fx:id="hintsText" editable="false" layoutX="776.0" layoutY="196.0" prefHeight="200.0" prefWidth="200.0" />
-      <ImageView fx:id="tape" fitHeight="36.0" fitWidth="42.0" layoutX="776.0" layoutY="430.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="tape" fitHeight="36.0" fitWidth="42.0" layoutX="776.0" layoutY="430.0" opacity="0.2" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/tape.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="sdCard" fitHeight="36.0" fitWidth="42.0" layoutX="776.0" layoutY="465.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="sdCard" fitHeight="36.0" fitWidth="42.0" layoutX="776.0" layoutY="465.0" opacity="0.2" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/sdcard.png" />
          </image>
@@ -118,12 +118,12 @@
             <Font name="Telugu MN" size="13.0" />
          </font>
       </Label>
-      <Button fx:id="rgbClue1" layoutX="908.0" layoutY="430.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="68.0" style="-fx-background-color: #2E40F9;" textFill="#fcb141">
+      <Button fx:id="rgbClue1" layoutX="908.0" layoutY="430.0" mnemonicParsing="false" opacity="0.2" prefHeight="36.0" prefWidth="68.0" style="-fx-background-color: #2E40F9;" textFill="#fcb141">
          <font>
-            <Font name="Telugu MN" size="13.0" />
+            <Font name="Telugu MN" size="16.0" />
          </font>
       </Button>
-      <ImageView fx:id="globe" fitHeight="36.0" fitWidth="42.0" layoutX="844.0" layoutY="430.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="globe" fitHeight="36.0" fitWidth="42.0" layoutX="844.0" layoutY="430.0" opacity="0.2" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/GlobeItem.png" />
          </image>
