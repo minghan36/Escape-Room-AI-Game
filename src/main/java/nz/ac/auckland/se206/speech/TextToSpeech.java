@@ -111,4 +111,9 @@ public class TextToSpeech {
       throw new TextToSpeechException(e.getMessage());
     }
   }
+
+  /** Interrupts the current speech. */
+  public void interruptSpeech() {
+    synthesizer.cancelAll();
+  }
 }

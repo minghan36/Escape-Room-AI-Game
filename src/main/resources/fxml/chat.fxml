@@ -9,6 +9,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="chat" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="1000.0" style="-fx-background-color: #101C6C;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ChatController">
@@ -97,5 +98,16 @@
             <Font name="Telugu MN" size="13.0" />
          </font>
       </Button>
+      <Label layoutX="647.0" layoutY="56.0" text="Text To Speech" textFill="#e49133">
+         <font>
+            <Font name="Tamil MN" size="13.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="soundImage" fitHeight="41.0" fitWidth="55.0" layoutX="604.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/musicOn.png" />
+         </image>
+      </ImageView>
+      <Rectangle fx:id="sound" arcHeight="5.0" arcWidth="5.0" fill="#1f25ff" height="41.0" layoutX="600.0" layoutY="44.0" onMouseClicked="#ClickSound" opacity="0.26" stroke="BLACK" strokeType="INSIDE" width="150.0" />
   </children>
 </AnchorPane>
