@@ -75,21 +75,6 @@ public class GameState {
 
   public static String riddleAnswer = riddleAnswers[randomNum];
 
-  /**
-   * Returns time left in the round.
-   *
-   * @return String of the time left in minutes:seconds format.
-   */
-  public static String getTimeLeft() {
-    if (seconds == 0) {
-      return String.valueOf(minutes) + ":00";
-    } else if (seconds < 10) {
-      return String.valueOf(minutes) + ":0" + String.valueOf(seconds);
-    } else {
-      return String.valueOf(minutes) + ":" + String.valueOf(seconds);
-    }
-  }
-
   // Intialising variables for the random letters
   public static String[] randomLetters = {"⍀", "☌", "⏚", "⊬"};
   public static String password =
@@ -233,6 +218,21 @@ public class GameState {
       }
     } else {
       return "";
+    }
+  }
+
+  /**
+   * Returns time left in the round.
+   *
+   * @return String of the time left in minutes:seconds format.
+   */
+  public static String getTimeLeft() {
+    if (seconds == 0) {
+      return String.valueOf(minutes) + ":00";
+    } else if (seconds < 10) {
+      return String.valueOf(minutes) + ":0" + String.valueOf(seconds);
+    } else {
+      return String.valueOf(minutes) + ":" + String.valueOf(seconds);
     }
   }
 }

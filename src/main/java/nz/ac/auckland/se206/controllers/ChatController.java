@@ -332,7 +332,7 @@ public class ChatController {
     App.setUi(GameState.currentRoom);
   }
 
-  // Method for the timer
+  /** Starts updating the timer according to time left in the game. */
   public void startTimer() {
     Timeline timeline =
         new Timeline(

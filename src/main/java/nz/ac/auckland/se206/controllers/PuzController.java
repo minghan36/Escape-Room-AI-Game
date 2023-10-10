@@ -29,6 +29,7 @@ import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 
+/** Controller class for the globe puzzle view. */
 public class PuzController {
   // Intialising variables required for the room and the puzzle
   @FXML private Rectangle p1;
@@ -226,9 +227,9 @@ public class PuzController {
   }
 
   /**
-   * Splits image into 9 pieces for the puzzle
+   * Splits image into 9 pieces for the puzzle.
    *
-   * @param image Original image
+   * @param image Original image.
    * @return List of split up pieces of the puzzle.
    */
   private List<Image> splitImage(Image image) {
@@ -285,6 +286,8 @@ public class PuzController {
   @FXML
   private void swap(MouseEvent event) {
     Rectangle clicked = (Rectangle) event.getSource();
+
+    // Determines when valid images have been selected and swaps accordingly.
     if (firstSelected == null) {
       firstSelected = clicked;
       firstSelected.setOpacity(0.7);

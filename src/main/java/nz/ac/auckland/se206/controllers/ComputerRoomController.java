@@ -21,6 +21,7 @@ import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 
+/** Controller class for the Computer room view. */
 public class ComputerRoomController {
   // Intialising variables required for the room
 
@@ -131,9 +132,9 @@ public class ComputerRoomController {
   }
 
   /**
-   * Handles the click event on the Gamemaster to enter chat view
+   * Handles the click event on the Gamemaster to enter chat view.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   private void clickQuizMaster(MouseEvent event) {
@@ -141,9 +142,9 @@ public class ComputerRoomController {
   }
 
   /**
-   * Handles the click event on the right arrow to open locked room view
+   * Handles the click event on the right arrow to open locked room view.
    *
-   * @param event the mouse event
+   * @param event the mouse event.
    */
   @FXML
   private void enterLockedRoom(MouseEvent event) {

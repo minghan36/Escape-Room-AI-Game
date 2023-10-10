@@ -22,6 +22,7 @@ import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 
+/** Controller class for the light puzzle view. */
 public class LightController {
   // Intialising all the variables for the scene
 

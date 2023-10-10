@@ -24,6 +24,7 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
+/** Controller class for the Decryption Puzzle view. */
 public class DecryptController {
   // Intialisng the variables for the scene
 
@@ -187,9 +188,9 @@ public class DecryptController {
   /**
    * Sends the decoded message to be checked.
    *
+   * @param event the event that starts sending the message, (mouse click or enter button.)  
    * @throws ApiProxyException if there is an error communicating with the API proxy
    * @throws IOException if there is an error in an input or output operation
-   * @param event the event that starts sending the message, (mouse click or enter button.)
    */
   @FXML
   private void onSendMessage(ActionEvent event) throws ApiProxyException, IOException {

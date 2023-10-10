@@ -234,9 +234,9 @@ public class LockedRoomController {
   }
 
   /**
-   * Handles mouse enter event on the globe to highlight globe
+   * Handles mouse enter event on the globe to highlight globe.
    *
-   * @param event mouse enter event
+   * @param event mouse enter event.
    */
   @FXML
   private void increaseGlobeSize(MouseEvent event) {
@@ -249,9 +249,9 @@ public class LockedRoomController {
   }
 
   /**
-   * Handles mouse exit event on the globe to un-highlight globe
+   * Handles mouse exit event on the globe to un-highlight globe.
    *
-   * @param event mouse exit event
+   * @param event mouse exit event.
    */
   @FXML
   private void decreaseGlobeSize(MouseEvent event) {
@@ -355,7 +355,7 @@ public class LockedRoomController {
     }
   }
 
-  /** Changes view to win view when passcode is correct */
+  /** Changes view to win view when passcode is correct. */
   public void endGame() {
     // create a to mintues delay
     // then go to the win screen
