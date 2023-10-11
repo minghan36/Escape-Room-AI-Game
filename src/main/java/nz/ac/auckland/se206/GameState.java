@@ -47,9 +47,10 @@ public class GameState {
   public static boolean isGlobeFound = false;
   public static boolean isGameMasterLoaded = false;
   public static boolean isRgbClueFound = false;
-
+  public static String assistanceSpeech;
   public static boolean isComputerAccessed = false;
   public static boolean isGlobeAccessed = false;
+  public static boolean isSoundOn = true;
   // Intialising variables for the timer
   public static int minutes = 0;
   public static int seconds = 0;

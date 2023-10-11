@@ -19,6 +19,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
@@ -27,6 +29,7 @@ import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
+import nz.ac.auckland.se206.speech.TextToSpeech;
 
 // import javafx.scene.control.Alert;
 
@@ -48,7 +51,11 @@ public class ChatController {
   @FXML private TextArea objText;
   @FXML private TextArea hintsText;
   @FXML private ImageView globe;
+  @FXML private ImageView soundImage;
   @FXML private Button rgbClue1;
+  @FXML private Rectangle sound;
+
+  TextToSpeech textToSpeech = new TextToSpeech();
 
   /**
    * Initializes the chat view, loading the riddle.
@@ -187,7 +194,18 @@ public class ChatController {
     } else if (msg.getRole().equals("assistant")) {
       emojiRepresentation = "⏃⌰⟟⟒⋏: ";
       chatTextArea.setStyle("-fx-text-fill: green;");
+      GameState.assistanceSpeech = msg.getContent();
+      if (GameState.isSoundOn) {
+        Thread assSpeechThread =
+            new Thread(
+                () -> {
+                  textToSpeech.speak(GameState.assistanceSpeech);
+                });
+        assSpeechThread.setDaemon(true);
+        assSpeechThread.start();
+      }
     }
+
     chatTextArea.appendText(emojiRepresentation + msg.getContent() + "\n\n");
   }
 
@@ -382,5 +400,20 @@ public class ChatController {
     sdCard.setVisible(false);
     sdCollect.setText("");
     sdCard1.setOpacity(1);
+  }
+
+  /** change the image to indicate the status of speech */
+  @FXML
+  private void ClickSound(MouseEvent event) {
+    if (GameState.isSoundOn) {
+      Image newImage = new Image("images/musicoff.png");
+      soundImage.setImage(newImage);
+      textToSpeech.interruptSpeech();
+      GameState.isSoundOn = false;
+    } else {
+      Image newImage = new Image("images/musicOn.png");
+      soundImage.setImage(newImage);
+      GameState.isSoundOn = true;
+    }
   }
 }
