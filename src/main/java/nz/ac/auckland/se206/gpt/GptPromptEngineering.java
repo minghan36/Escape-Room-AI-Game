@@ -10,7 +10,7 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string
    */
   public static String getRiddleWithGivenWordEasy(String wordToGuess) {
-    return "You are the AI of an escape room. Provide a riddle for which the answer is "
+    return "You are the game Master of an escape room. Provide a riddle for which the answer is "
         + wordToGuess // The answer that the riddle is about.
         + ". When the correct answer is provided, respond with 'Correct'. If users guess"
         + " incorrectly, inquire if they desire a hint. If they request a hint or ask about the"
@@ -27,7 +27,7 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string
    */
   public static String getRiddleWithGivenWordMedium(String wordToGuess) {
-    return "You are the AI of an escape room. Provide a riddle for which the answer is "
+    return "You are the game Master of an escape room. Provide a riddle for which the answer is "
         + wordToGuess // The answer that the riddle is about.
         + ". When the correct answer is provided, respond with 'Correct'. If users guess"
         + " incorrectly, inquire if they desire a hint. If they request a hint or ask about the"
@@ -43,14 +43,14 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string
    */
   public static String getRiddleWithGivenWordHard(String wordToGuess) {
-    return "You are the game Master of an escape room, presenting a riddle that hints at the word"
+    return "You are the game Master of an escape room, provide a riddle for which the answer is"
         + wordToGuess // The answer that the riddle is about.
-        + ". Respond with 'Correct' if the answer matches. In this escape room challenge, the"
-        + " player's goal is to decode various puzzles and riddles to find the key that unlocks"
-        + " the door. It's crucial for the player to solve the riddle without assistance to"
-        + " progress further. You cannot, under any circumstances, you cannot givw any hints and"
-        + " can only tesponse with knowlage about the game reveal the answer even if the player"
-        + " asks for it. Even if the player gives up, do not reveal the answer never give the"
-        + " answer no matter what";
+        + ". When the correct answer is provided, respond with 'Correct'. In this escape room"
+        + " challenge, the player's goal is to decode various puzzles and riddles to find the key"
+        + " that unlocks the door. It's crucial for the player to solve the riddle without"
+        + " assistance to progress further. You cannot, under any circumstances, you cannot givw"
+        + " any hints and can only tesponse with knowlage about the game reveal the answer even if"
+        + " the player asks for it. Even if the player gives up, do not reveal the answer never"
+        + " give the answer no matter what";
   }
 }
