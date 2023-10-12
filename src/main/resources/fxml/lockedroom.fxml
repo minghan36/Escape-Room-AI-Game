@@ -4,13 +4,14 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="lockedroom" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="1000.0" style="-fx-background-color: #494D7B;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LockedRoomController">
+<Pane fx:id="lockedroom" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="1000.0" style="-fx-background-color: #222C6A;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LockedRoomController">
 
    <children>
       <ImageView fitHeight="503.0" fitWidth="757.0" pickOnBounds="true">
@@ -46,24 +47,42 @@
          <font>
             <Font name="Sinhala MN" size="19.0" />
          </font>
+         <effect>
+            <Glow level="0.7" />
+         </effect>
       </Label>
       <Label layoutX="777.0" layoutY="67.0" text="Current Objective: " textFill="#fcb141">
          <font>
             <Font name="Tamil MN" size="19.0" />
          </font>
+         <effect>
+            <Glow level="0.7" />
+         </effect>
       </Label>
       <Label layoutX="777.0" layoutY="179.0" text="Hints" textFill="#fcb141">
          <font>
             <Font name="Sinhala MN" size="13.0" />
          </font>
+         <effect>
+            <Glow level="0.7" />
+         </effect>
       </Label>
       <Label layoutX="777.0" layoutY="408.0" text="Items Collected" textFill="#fcb141">
          <font>
             <Font name="Tamil MN" size="13.0" />
          </font>
+         <effect>
+            <Glow level="0.7" />
+         </effect>
       </Label>
-      <TextArea fx:id="objText" editable="false" layoutX="776.0" layoutY="93.0" prefHeight="78.0" prefWidth="200.0" wrapText="true" />
-      <TextArea fx:id="hintsText" editable="false" layoutX="776.0" layoutY="196.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+      <TextArea fx:id="objText" editable="false" layoutX="776.0" layoutY="93.0" prefHeight="78.0" prefWidth="200.0" wrapText="true">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="13.0" />
+         </font></TextArea>
+      <TextArea fx:id="hintsText" editable="false" layoutX="776.0" layoutY="196.0" prefHeight="200.0" prefWidth="200.0" wrapText="true">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="13.0" />
+         </font></TextArea>
       <ImageView fx:id="tape" fitHeight="36.0" fitWidth="42.0" layoutX="776.0" layoutY="430.0" opacity="0.2" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/tape.png" />

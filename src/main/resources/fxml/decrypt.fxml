@@ -5,13 +5,14 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="1000.0" style="-fx-background-color: #494D7B;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.DecryptController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="1000.0" style="-fx-background-color: #21464B;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.DecryptController">
    <children>
       <Label layoutX="436.0" layoutY="10.0" text="A    B    C    D    E    F    G " textFill="WHITE">
          <font>
@@ -68,9 +69,9 @@
             <Image url="@../images/18157432-removebg-preview.png" />
          </image>
       </ImageView>
-      <TextArea fx:id="message" editable="false" layoutX="29.0" layoutY="24.0" prefHeight="200.0" prefWidth="370.0" text="☌⍜  ⏁⍜  ⏁⊑⟒  ⏚⏃⏁⊑⍀⍜⍜⋔  ⏃⋏⎅  ⎎⟟⌖  ⏁⊑⟒                       ⌰⟟☌⊑⏁&#10;" wrapText="true">
+      <TextArea fx:id="message" editable="false" layoutX="29.0" layoutY="24.0" prefHeight="200.0" prefWidth="370.0" wrapText="true">
          <font>
-            <Font size="23.0" />
+            <Font name="Arial Rounded MT Bold" size="23.0" />
          </font>
       </TextArea>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8ce89c" height="200.0" layoutX="29.0" layoutY="24.0" opacity="0.37" stroke="BLACK" strokeType="INSIDE" width="370.0" />
@@ -85,24 +86,42 @@
          <font>
             <Font name="Sinhala MN" size="19.0" />
          </font>
+         <effect>
+            <Glow level="0.7" />
+         </effect>
       </Label>
       <Label layoutX="777.0" layoutY="67.0" text="Current Objective: " textFill="#fcb141">
          <font>
             <Font name="Tamil MN" size="19.0" />
          </font>
+         <effect>
+            <Glow level="0.7" />
+         </effect>
       </Label>
       <Label layoutX="777.0" layoutY="179.0" text="Hints" textFill="#fcb141">
          <font>
             <Font name="Sinhala MN" size="13.0" />
          </font>
+         <effect>
+            <Glow level="0.7" />
+         </effect>
       </Label>
       <Label layoutX="777.0" layoutY="408.0" text="Items Collected" textFill="#fcb141">
          <font>
             <Font name="Tamil MN" size="13.0" />
          </font>
+         <effect>
+            <Glow level="0.7" />
+         </effect>
       </Label>
-      <TextArea fx:id="objText" editable="false" layoutX="776.0" layoutY="93.0" prefHeight="78.0" prefWidth="200.0" wrapText="true" />
-      <TextArea fx:id="hintsText" editable="false" layoutX="776.0" layoutY="196.0" prefHeight="200.0" prefWidth="200.0" />
+      <TextArea fx:id="objText" editable="false" layoutX="776.0" layoutY="93.0" prefHeight="78.0" prefWidth="200.0" wrapText="true">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="13.0" />
+         </font></TextArea>
+      <TextArea fx:id="hintsText" editable="false" layoutX="776.0" layoutY="196.0" prefHeight="200.0" prefWidth="200.0">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="13.0" />
+         </font></TextArea>
       <ImageView fx:id="tape" fitHeight="36.0" fitWidth="42.0" layoutX="776.0" layoutY="430.0" opacity="0.2" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/tape.png" />
