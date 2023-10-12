@@ -112,7 +112,11 @@ public class TextToSpeech {
     }
   }
 
-  /** Interrupts the current speech. */
+  /**
+   * Immediately stops and cancels any ongoing speech synthesis. This method is useful when there's
+   * a need to interrupt the synthesizer's current speech output, such as in response to user
+   * actions or other events.
+   */
   public void interruptSpeech() {
     synthesizer.cancelAll();
   }

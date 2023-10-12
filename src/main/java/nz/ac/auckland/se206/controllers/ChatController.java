@@ -55,7 +55,7 @@ public class ChatController {
   @FXML private Button rgbClue1;
   @FXML private Rectangle sound;
 
-  TextToSpeech textToSpeech = new TextToSpeech();
+  private TextToSpeech textToSpeech = new TextToSpeech();
 
   /**
    * Initializes the chat view, loading the riddle.
@@ -402,17 +402,30 @@ public class ChatController {
     sdCard1.setOpacity(1);
   }
 
-  /** change the image to indicate the status of speech */
+  /**
+   * Toggles the sound state and updates the UI accordingly.
+   *
+   * <p>If the sound is currently on, this method will: - Switch to the "sound off" image. -
+   * Interrupt ongoing speech. Otherwise, it will: - Switch to the "sound on" image.
+   *
+   * @param event The triggering MouseEvent.
+   */
   @FXML
-  private void ClickSound(MouseEvent event) {
+  private void toggleSoundOnClick(MouseEvent event) {
+    // check if the sound is currently on
     if (GameState.isSoundOn) {
+      // set the image to represen the sound is off
       Image newImage = new Image("images/musicoff.png");
       soundImage.setImage(newImage);
+      // interrupt any ongoing speech
       textToSpeech.interruptSpeech();
+      // update the game state
       GameState.isSoundOn = false;
     } else {
+      // Set the image to represent the "sound on" state
       Image newImage = new Image("images/musicOn.png");
       soundImage.setImage(newImage);
+      // update the game state
       GameState.isSoundOn = true;
     }
   }
