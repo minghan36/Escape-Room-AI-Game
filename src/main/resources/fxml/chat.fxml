@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -19,7 +20,7 @@
             <Image url="@../images/intro.png" />
          </image>
       </ImageView>
-    <TextArea fx:id="chatTextArea" cache="true" editable="false" layoutX="31.0" layoutY="94.0" prefHeight="299.0" prefWidth="510.0" style="-fx-font-style: Arial Rounded MT Bold; -fx-background-color: #3221a3;" wrapText="true">
+    <TextArea fx:id="chatTextArea" cache="true" editable="false" layoutX="31.0" layoutY="94.0" prefHeight="299.0" prefWidth="510.0" wrapText="true">
          <font>
             <Font name="Arial Rounded MT Bold" size="13.0" />
          </font>
@@ -55,24 +56,42 @@
          <font>
             <Font name="Tamil MN" size="19.0" />
          </font>
+         <effect>
+            <Glow level="0.7" />
+         </effect>
       </Label>
       <Label layoutX="776.0" layoutY="67.0" text="Current Objective:" textFill="#fcb141">
          <font>
             <Font name="Sinhala MN" size="19.0" />
          </font>
+         <effect>
+            <Glow level="0.7" />
+         </effect>
       </Label>
       <Label layoutX="777.0" layoutY="179.0" text="Hints" textFill="#fcb141">
          <font>
             <Font name="Tamil MN" size="13.0" />
          </font>
+         <effect>
+            <Glow level="0.7" />
+         </effect>
       </Label>
       <Label layoutX="777.0" layoutY="408.0" text="Items Collected" textFill="#fcb141">
          <font>
             <Font name="Telugu MN" size="13.0" />
          </font>
+         <effect>
+            <Glow level="0.7" />
+         </effect>
       </Label>
-      <TextArea fx:id="objText" editable="false" layoutX="776.0" layoutY="93.0" prefHeight="78.0" prefWidth="200.0" wrapText="true" />
-      <TextArea fx:id="hintsText" editable="false" layoutX="776.0" layoutY="196.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+      <TextArea fx:id="objText" editable="false" layoutX="776.0" layoutY="93.0" prefHeight="78.0" prefWidth="200.0" wrapText="true">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="13.0" />
+         </font></TextArea>
+      <TextArea fx:id="hintsText" editable="false" layoutX="776.0" layoutY="196.0" prefHeight="200.0" prefWidth="200.0" wrapText="true">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="13.0" />
+         </font></TextArea>
       <ImageView fx:id="tape" fitHeight="36.0" fitWidth="42.0" layoutX="776.0" layoutY="430.0" opacity="0.2" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/tape.png" />
