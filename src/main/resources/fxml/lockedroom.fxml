@@ -25,6 +25,9 @@
          <font>
             <Font name="Telugu MN" size="36.0" />
          </font>
+         <effect>
+            <Glow />
+         </effect>
       </Label>
       <ImageView fx:id="globe" fitHeight="169.0" fitWidth="103.0" layoutX="18.0" layoutY="245.0" onMouseClicked="#clickGlobe" onMouseEntered="#increaseGlobeSize" onMouseExited="#decreaseGlobeSize" pickOnBounds="true" preserveRatio="true">
          <image>

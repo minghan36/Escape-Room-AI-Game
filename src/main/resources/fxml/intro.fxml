@@ -15,7 +15,7 @@
             <Image url="@../images/intro.png" />
          </image>
       </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2847fb" height="253.0" layoutX="467.0" layoutY="169.0" opacity="0.75" stroke="BLACK" strokeType="INSIDE" width="255.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2e40f9" height="253.0" layoutX="467.0" layoutY="169.0" opacity="0.8" stroke="BLACK" strokeType="INSIDE" width="255.0" />
       <Label fx:id="title" layoutX="135.0" layoutY="19.0" text="Cosmic Conundrum: The Alien Escape" textFill="#ffa723">
          <font>
             <Font name="Tamil MN" size="41.0" />
@@ -137,7 +137,7 @@
             <Image url="@../images/move1.png" />
          </image>
       </ImageView>
-      <Label layoutX="474.0" layoutY="161.0" prefHeight="268.0" prefWidth="242.0" text="Welcome, brave adventurer, to the heart of this alien spaceship. Your mission, should you choose to accept it, is to overcome all my challenges and puzzles to unlock the sealed doors, and make your escape. Time is of the essence, for if you do not escape in time, you will be trapped in this alien realm for eternity. The fate of your escape rests in your wits and determination. Best of luck, and may you unlock the secrets of the cosmos!" textFill="#fcb141" wrapText="true">
+      <Label layoutX="474.0" layoutY="161.0" prefHeight="268.0" prefWidth="242.0" text="Welcome, brave adventurer, to the heart of this alien spaceship. Your mission, should you choose to accept it, is to overcome all my challenges and puzzles to unlock the sealed doors, and make your escape. Time is of the essence, for if you do not escape in time, you will be trapped in this alien realm for eternity. The fate of your escape rests in your wits and determination. Best of luck, and may you unlock the secrets of the cosmos!" textFill="#f8f7f6" wrapText="true">
          <font>
             <Font name="Tamil MN" size="14.0" />
          </font>
