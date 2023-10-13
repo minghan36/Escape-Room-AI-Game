@@ -13,7 +13,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
@@ -27,8 +26,8 @@ public class LightController {
   // Intialising all the variables for the scene
 
   @FXML private Circle behindLight;
-  @FXML private Label timer;
-  @FXML private Canvas gameMaster;
+  @FXML private Label lightTimer;
+  @FXML private Canvas lightGameMaster;
   @FXML private Rectangle quizMaster;
   @FXML private ImageView fixOne;
   @FXML private ImageView fixTwoOne;
@@ -38,7 +37,6 @@ public class LightController {
   @FXML private ImageView fixThreeTwo;
   @FXML private ImageView fixFour;
   @FXML private Label lightSuggest;
-  private Image[] alienImages;
   private int currentImageIndex = 0;
   @FXML private TextArea objText;
   @FXML private TextArea hintsText;
@@ -109,27 +107,20 @@ public class LightController {
       lightSuggest.setText("All the wires have been fixed.");
     }
     lightSuggest.setWrapText(true);
-    timer.setText(GameState.getTimeLeft());
+    lightTimer.setText(GameState.getTimeLeft());
     // timer thread
-    Thread timeThread =
+    Thread lightTimeThread =
         new Thread(
             () -> {
-              startTimer();
+              startLightTimer();
             });
-    timeThread.start();
-    alienImages =
-        new Image[] {
-          new Image("images/move1.png"),
-          new Image("images/move2.png"),
-          new Image("images/move3.png"),
-          new Image("images/move4.png")
-        };
+    lightTimeThread.start();
 
     // Start the animation
     startAnimation();
 
     TranslateTransition translateTransition =
-        new TranslateTransition(Duration.seconds(2), gameMaster);
+        new TranslateTransition(Duration.seconds(2), lightGameMaster);
 
     // set the Y-axis translation value
     translateTransition.setByY(-10);
@@ -146,7 +137,7 @@ public class LightController {
 
   /** Starts the animation of the Gamemaster. */
   private void startAnimation() {
-    GraphicsContext gc = gameMaster.getGraphicsContext2D();
+    GraphicsContext gc = lightGameMaster.getGraphicsContext2D();
     AnimationTimer timer =
         new AnimationTimer() {
           private long lastTime = 0;
@@ -155,12 +146,12 @@ public class LightController {
           @Override
           public void handle(long currentTime) {
             if (currentTime - lastTime >= frameDurationMillis * 1_000_000) {
-              if (currentImageIndex < alienImages.length) {
-                gc.clearRect(0, 0, gameMaster.getWidth(), gameMaster.getHeight());
-                gc.drawImage(alienImages[currentImageIndex], 0, 0);
+              if (currentImageIndex < GameState.alienImages.length) {
+                gc.clearRect(0, 0, lightGameMaster.getWidth(), lightGameMaster.getHeight());
+                gc.drawImage(GameState.alienImages[currentImageIndex], 0, 0);
                 currentImageIndex++;
                 // Check if we have displayed all images; if so, reset the index to 0
-                if (currentImageIndex >= alienImages.length) {
+                if (currentImageIndex >= GameState.alienImages.length) {
                   currentImageIndex = 0;
                 }
                 lastTime = currentTime;
@@ -182,8 +173,8 @@ public class LightController {
   }
 
   /** Begins updating timer according to time left in the game. */
-  public void startTimer() {
-    Timeline timeline =
+  public void startLightTimer() {
+    Timeline lightTimeline =
         new Timeline(
             new KeyFrame(
                 Duration.seconds(1),
@@ -195,14 +186,14 @@ public class LightController {
                         new Runnable() {
                           @Override
                           public void run() {
-                            timer.setText(GameState.getTimeLeft());
+                            lightTimer.setText(GameState.getTimeLeft());
                           }
                         });
                   }
                 }));
 
-    timeline.setCycleCount((GameState.minutes * 60) + GameState.seconds - 1);
-    timeline.play();
+    lightTimeline.setCycleCount((GameState.minutes * 60) + GameState.seconds - 1);
+    lightTimeline.play();
   }
 
   /**

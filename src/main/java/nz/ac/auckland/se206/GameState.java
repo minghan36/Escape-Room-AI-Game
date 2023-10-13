@@ -5,6 +5,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.image.Image;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
@@ -57,7 +58,7 @@ public class GameState {
   public static int wireFixes = 0;
   public static int hintCounter = 0;
 
-  public static Timeline timeline = null;
+  public static Timeline gameTimeline = null;
 
   // choose a random number between zero and two
   public static int randomNum = (int) (Math.random() * 3);
@@ -76,6 +77,15 @@ public class GameState {
 
   public static String riddleAnswer = riddleAnswers[randomNum];
 
+  // Initialize alienImages with your image paths
+  public static Image[] alienImages =
+      new Image[] {
+        new Image("images/move1.png"),
+        new Image("images/move2.png"),
+        new Image("images/move3.png"),
+        new Image("images/move4.png")
+      };
+
   // Intialising variables for the random letters
   public static String[] randomLetters = {"⍀", "☌", "⏚", "⊬"};
   public static String password =
@@ -85,8 +95,8 @@ public class GameState {
           + randomLetters[(int) (Math.random() * 4)];
 
   /** Starts the timer of the game based on user's chosen setting. */
-  public static void startTimer() {
-    timeline =
+  public static void startGameTimer() {
+    gameTimeline =
         new Timeline(
             new KeyFrame(
                 Duration.seconds(1),
@@ -101,7 +111,7 @@ public class GameState {
                       GameState.seconds--;
                     }
                     if (GameState.minutes == 0 && GameState.seconds == 0) {
-                      timeline.stop();
+                      gameTimeline.stop();
                       // set room to End
                       GameState.currentRoom = "End";
                       try {
@@ -114,8 +124,8 @@ public class GameState {
                   }
                 }));
 
-    timeline.setCycleCount((GameState.minutes * 60) + GameState.seconds);
-    timeline.play();
+    gameTimeline.setCycleCount((GameState.minutes * 60) + GameState.seconds);
+    gameTimeline.play();
   }
 
   /** Initializes the hint setting based on selected difficulty. */

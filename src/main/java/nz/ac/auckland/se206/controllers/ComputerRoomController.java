@@ -13,7 +13,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
@@ -28,10 +27,9 @@ public class ComputerRoomController {
   @FXML private ImageView tape;
   @FXML private ImageView toLockedRoom;
   @FXML private Rectangle quizMaster;
-  @FXML private Canvas gameMaster;
-  @FXML private Label timer;
+  @FXML private Canvas computerRoomGameMaster;
+  @FXML private Label computerRoomTimer;
   @FXML private Rectangle decrypt;
-  private Image[] alienImages;
   private int currentImageIndex = 0;
   @FXML private ImageView hoverImage;
   @FXML private ImageView tape1;
@@ -72,28 +70,19 @@ public class ComputerRoomController {
       tape.setOnMouseClicked(null);
     }
     // Timer thread
-    timer.setText(GameState.getTimeLeft());
-    Thread timeThread =
+    computerRoomTimer.setText(GameState.getTimeLeft());
+    Thread computerRoomTimeThread =
         new Thread(
             () -> {
-              startTimer();
+              startComputerRoomTimer();
             });
-    timeThread.start();
+    computerRoomTimeThread.start();
     // game master animation
-    // Initialize alienImages with your image paths
-    alienImages =
-        new Image[] {
-          new Image("images/move1.png"),
-          new Image("images/move2.png"),
-          new Image("images/move3.png"),
-          new Image("images/move4.png")
-        };
-
     // Start the animation
     startAnimation();
 
     TranslateTransition translateTransition =
-        new TranslateTransition(Duration.seconds(2), gameMaster);
+        new TranslateTransition(Duration.seconds(2), computerRoomGameMaster);
 
     // set the Y-axis translation value
     translateTransition.setByY(-10);
@@ -110,7 +99,7 @@ public class ComputerRoomController {
 
   /** Starts the animation for the Gamemaster. */
   private void startAnimation() {
-    GraphicsContext gc = gameMaster.getGraphicsContext2D();
+    GraphicsContext gc = computerRoomGameMaster.getGraphicsContext2D();
     AnimationTimer timer =
         new AnimationTimer() {
           private long lastTime = 0;
@@ -119,12 +108,12 @@ public class ComputerRoomController {
           @Override
           public void handle(long currentTime) {
             if (currentTime - lastTime >= frameDurationMillis * 1_000_000) {
-              if (currentImageIndex < alienImages.length) {
-                gc.clearRect(0, 0, gameMaster.getWidth(), gameMaster.getHeight());
-                gc.drawImage(alienImages[currentImageIndex], 0, 0);
+              if (currentImageIndex < GameState.alienImages.length) {
+                gc.clearRect(0, 0, computerRoomGameMaster.getWidth(), computerRoomGameMaster.getHeight());
+                gc.drawImage(GameState.alienImages[currentImageIndex], 0, 0);
                 currentImageIndex++;
                 // Check if we have displayed all images; if so, reset the index to 0
-                if (currentImageIndex >= alienImages.length) {
+                if (currentImageIndex >= GameState.alienImages.length) {
                   currentImageIndex = 0;
                 }
                 lastTime = currentTime;
@@ -173,8 +162,8 @@ public class ComputerRoomController {
   }
 
   /** Starts updating timer according to time left. */
-  public void startTimer() {
-    Timeline timeline =
+  public void startComputerRoomTimer() {
+    Timeline computerRoomTimeline =
         new Timeline(
             new KeyFrame(
                 Duration.seconds(1),
@@ -186,14 +175,14 @@ public class ComputerRoomController {
                         new Runnable() {
                           @Override
                           public void run() {
-                            timer.setText(GameState.getTimeLeft());
+                            computerRoomTimer.setText(GameState.getTimeLeft());
                           }
                         });
                   }
                 }));
 
-    timeline.setCycleCount((GameState.minutes * 60) + GameState.seconds - 1);
-    timeline.play();
+    computerRoomTimeline.setCycleCount((GameState.minutes * 60) + GameState.seconds - 1);
+    computerRoomTimeline.play();
   }
 
   /**

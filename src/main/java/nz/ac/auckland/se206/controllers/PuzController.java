@@ -51,12 +51,11 @@ public class PuzController {
   @FXML private ImageView pic8;
   @FXML private ImageView pic9;
   @FXML private Label status;
-  @FXML private Label timer;
+  @FXML private Label puzzleTimer;
   @FXML private Button check;
   @FXML private Button goBackBtn;
-  @FXML private Canvas gameMaster;
+  @FXML private Canvas puzzleGameMaster;
   @FXML private Rectangle quizMaster;
-  private Image[] alienImages;
   private int currentImageIndex = 0;
   @FXML private TextArea objText;
   @FXML private TextArea hintsText;
@@ -107,28 +106,21 @@ public class PuzController {
     if (GameState.isGlobeFound) {
       globe.setOpacity(1);
     }
-    timer.setText(GameState.getTimeLeft());
+    puzzleTimer.setText(GameState.getTimeLeft());
     // Starting the timer thread for the room
-    Thread timeThread =
+    Thread puzzleTimeThread =
         new Thread(
             () -> {
-              startTimer();
+              startPuzzleTimer();
             });
-    timeThread.start();
-    alienImages =
-        new Image[] {
-          new Image("images/move1.png"),
-          new Image("images/move2.png"),
-          new Image("images/move3.png"),
-          new Image("images/move4.png")
-        };
+    puzzleTimeThread.start();
 
     // Start the animation
     startAnimation();
     // Starting the animations for the gamemaster
 
     TranslateTransition translateTransition =
-        new TranslateTransition(Duration.seconds(2), gameMaster);
+        new TranslateTransition(Duration.seconds(2), puzzleGameMaster);
 
     // set the Y-axis translation value
     translateTransition.setByY(-10);
@@ -169,7 +161,7 @@ public class PuzController {
 
   /** Begins animation of the Gamemaster. */
   private void startAnimation() {
-    GraphicsContext gc = gameMaster.getGraphicsContext2D();
+    GraphicsContext gc = puzzleGameMaster.getGraphicsContext2D();
     AnimationTimer timer =
         new AnimationTimer() {
           private long lastTime = 0;
@@ -178,12 +170,12 @@ public class PuzController {
           @Override
           public void handle(long currentTime) {
             if (currentTime - lastTime >= frameDurationMillis * 1_000_000) {
-              if (currentImageIndex < alienImages.length) {
-                gc.clearRect(0, 0, gameMaster.getWidth(), gameMaster.getHeight());
-                gc.drawImage(alienImages[currentImageIndex], 0, 0);
+              if (currentImageIndex < GameState.alienImages.length) {
+                gc.clearRect(0, 0, puzzleGameMaster.getWidth(), puzzleGameMaster.getHeight());
+                gc.drawImage(GameState.alienImages[currentImageIndex], 0, 0);
                 currentImageIndex++;
                 // Check if we have displayed all images; if so, reset the index to 0
-                if (currentImageIndex >= alienImages.length) {
+                if (currentImageIndex >= GameState.alienImages.length) {
                   currentImageIndex = 0;
                 }
                 lastTime = currentTime;
@@ -205,8 +197,8 @@ public class PuzController {
   }
 
   /** Starts updating label timer according to timeleft in game. */
-  private void startTimer() {
-    Timeline timeline =
+  private void startPuzzleTimer() {
+    Timeline puzzleTimeline =
         new Timeline(
             new KeyFrame(
                 // Setting the time countdown to one second
@@ -220,14 +212,14 @@ public class PuzController {
                           @Override
                           public void run() {
                             // Displaying the time left on the label
-                            timer.setText(GameState.getTimeLeft());
+                            puzzleTimer.setText(GameState.getTimeLeft());
                           }
                         });
                   }
                 }));
 
-    timeline.setCycleCount((GameState.minutes * 60) + GameState.seconds - 1);
-    timeline.play();
+    puzzleTimeline.setCycleCount((GameState.minutes * 60) + GameState.seconds - 1);
+    puzzleTimeline.play();
   }
 
   /**

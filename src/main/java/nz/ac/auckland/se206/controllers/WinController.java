@@ -95,7 +95,7 @@ public class WinController {
     GameState.minutes = 0;
     GameState.seconds = 0;
     GameState.wireFixes = 0;
-    GameState.timeline = null;
+    GameState.gameTimeline = null;
     GameState.randomNum = (int) (Math.random() * 3);
     GameState.randomLight = GameState.randomLights[GameState.randomNum];
     GameState.currentObj = GameState.objectives[0];

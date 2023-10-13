@@ -54,7 +54,7 @@
             <Font name="Telugu MN" size="41.0" />
          </font>
       </Label>
-      <Label fx:id="timer" layoutX="878.0" layoutY="12.0" prefHeight="53.0" prefWidth="91.0" textFill="#fcb141">
+      <Label fx:id="decryptTimer" layoutX="878.0" layoutY="12.0" prefHeight="53.0" prefWidth="91.0" textFill="#fcb141">
          <font>
             <Font name="Tamil MN" size="36.0" />
          </font></Label>
@@ -80,7 +80,7 @@
             <Font name="Telugu MN" size="13.0" />
          </font>
       </Button>
-      <Canvas fx:id="gameMaster" height="89.0" layoutX="643.0" layoutY="322.0" width="115.0" />
+      <Canvas fx:id="decryptGameMaster" height="89.0" layoutX="643.0" layoutY="322.0" width="115.0" />
       <Rectangle fx:id="quizMaster" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="126.0" layoutX="619.0" layoutY="299.0" onMouseClicked="#clickQuizMaster" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="142.0" />
       <Label layoutX="777.0" layoutY="28.0" text="Time:" textFill="#fcb141">
          <font>

@@ -15,7 +15,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
@@ -28,13 +27,12 @@ import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 public class DecryptController {
   // Intialisng the variables for the scene
 
-  @FXML private Label timer;
+  @FXML private Label decryptTimer;
   @FXML private TextField inputText;
   @FXML private Button sendButton;
   @FXML private Label incorrect;
-  @FXML private Canvas gameMaster;
+  @FXML private Canvas decryptGameMaster;
   @FXML private Rectangle quizMaster;
-  private Image[] alienImages;
   private int currentImageIndex = 0;
   @FXML private TextArea message;
   @FXML private TextArea objText;
@@ -76,27 +74,20 @@ public class DecryptController {
     if (GameState.isSdCardFound) {
       sdCard.setOpacity(1);
     }
-    timer.setText(GameState.getTimeLeft());
+    decryptTimer.setText(GameState.getTimeLeft());
     // Timer thread
-    Thread timeThread =
+    Thread decryptTimeThread =
         new Thread(
             () -> {
-              startTimer();
+              startDecryptTimer();
             });
-    timeThread.start();
-    alienImages =
-        new Image[] {
-          new Image("images/move1.png"),
-          new Image("images/move2.png"),
-          new Image("images/move3.png"),
-          new Image("images/move4.png")
-        };
+    decryptTimeThread.start();
 
     // Start the animation
     startAnimation();
 
     TranslateTransition translateTransition =
-        new TranslateTransition(Duration.seconds(2), gameMaster);
+        new TranslateTransition(Duration.seconds(2), decryptGameMaster);
 
     // set the Y-axis translation value
     translateTransition.setByY(-10);
@@ -113,7 +104,7 @@ public class DecryptController {
 
   /** Starts the animation movement for the Gamemaster image. */
   private void startAnimation() {
-    GraphicsContext gc = gameMaster.getGraphicsContext2D();
+    GraphicsContext gc = decryptGameMaster.getGraphicsContext2D();
     AnimationTimer timer =
         new AnimationTimer() {
           private long lastTime = 0;
@@ -122,12 +113,12 @@ public class DecryptController {
           @Override
           public void handle(long currentTime) {
             if (currentTime - lastTime >= frameDurationMillis * 1_000_000) {
-              if (currentImageIndex < alienImages.length) {
-                gc.clearRect(0, 0, gameMaster.getWidth(), gameMaster.getHeight());
-                gc.drawImage(alienImages[currentImageIndex], 0, 0);
+              if (currentImageIndex < GameState.alienImages.length) {
+                gc.clearRect(0, 0, decryptGameMaster.getWidth(), decryptGameMaster.getHeight());
+                gc.drawImage(GameState.alienImages[currentImageIndex], 0, 0);
                 currentImageIndex++;
                 // Check if we have displayed all images; if so, reset the index to 0
-                if (currentImageIndex >= alienImages.length) {
+                if (currentImageIndex >= GameState.alienImages.length) {
                   currentImageIndex = 0;
                 }
                 lastTime = currentTime;
@@ -166,8 +157,8 @@ public class DecryptController {
   }
 
   /** Starts updating the timer according to the time left. */
-  public void startTimer() {
-    Timeline timeline =
+  public void startDecryptTimer() {
+    Timeline decryptTimeline =
         new Timeline(
             new KeyFrame(
                 Duration.seconds(1),
@@ -179,14 +170,14 @@ public class DecryptController {
                         new Runnable() {
                           @Override
                           public void run() {
-                            timer.setText(GameState.getTimeLeft());
+                            decryptTimer.setText(GameState.getTimeLeft());
                           }
                         });
                   }
                 }));
 
-    timeline.setCycleCount((GameState.minutes * 60) + GameState.seconds - 1);
-    timeline.play();
+    decryptTimeline.setCycleCount((GameState.minutes * 60) + GameState.seconds - 1);
+    decryptTimeline.play();
   }
 
   /**
