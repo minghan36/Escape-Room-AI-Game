@@ -54,7 +54,7 @@ public class PuzController {
   @FXML private Label puzzleTimer;
   @FXML private Button check;
   @FXML private Button goBackBtn;
-  @FXML private Canvas puzzleGameMaster;
+  @FXML private Canvas gameMaster;
   @FXML private Rectangle quizMaster;
   private int currentImageIndex = 0;
   @FXML private TextArea objText;
@@ -120,7 +120,7 @@ public class PuzController {
     // Starting the animations for the gamemaster
 
     TranslateTransition translateTransition =
-        new TranslateTransition(Duration.seconds(2), puzzleGameMaster);
+        new TranslateTransition(Duration.seconds(2), gameMaster);
 
     // set the Y-axis translation value
     translateTransition.setByY(-10);
@@ -161,7 +161,7 @@ public class PuzController {
 
   /** Begins animation of the Gamemaster. */
   private void startAnimation() {
-    GraphicsContext gc = puzzleGameMaster.getGraphicsContext2D();
+    GraphicsContext gc = gameMaster.getGraphicsContext2D();
     AnimationTimer timer =
         new AnimationTimer() {
           private long lastTime = 0;
@@ -171,7 +171,7 @@ public class PuzController {
           public void handle(long currentTime) {
             if (currentTime - lastTime >= frameDurationMillis * 1_000_000) {
               if (currentImageIndex < GameState.alienImages.length) {
-                gc.clearRect(0, 0, puzzleGameMaster.getWidth(), puzzleGameMaster.getHeight());
+                gc.clearRect(0, 0, gameMaster.getWidth(), gameMaster.getHeight());
                 gc.drawImage(GameState.alienImages[currentImageIndex], 0, 0);
                 currentImageIndex++;
                 // Check if we have displayed all images; if so, reset the index to 0
