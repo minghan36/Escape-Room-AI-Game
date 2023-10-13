@@ -246,4 +246,55 @@ public class GameState {
       return String.valueOf(minutes) + ":" + String.valueOf(seconds);
     }
   }
+
+  /** Restarts the game and resets all variables to default. */
+  public static void restart() {
+    // resetting all the variables
+    currentRoom = "lockedroom";
+    chatContents = "";
+    chatCompletionRequest =
+        new ChatCompletionRequest().setN(1).setTemperature(0.2).setTopP(0.5).setMaxTokens(100);
+    // Setting all the item and puzzle variables to false, so that the user has to
+    // complete the
+    // puzzles again to escape
+    isKeyFound = false;
+    isElectricalTapeFound = false;
+    isEasyPicked = false;
+    isMediumPicked = false;
+    isDifficultPicked = false;
+    isDecryptCompleted = false;
+    isLightPuzzleStarted = false;
+    isLightPuzzleSolved = false;
+    isPuzzleSolved = false;
+    isWireOneFixed = false;
+    isWireTwoFixed = false;
+    isWireThreeFixed = false;
+    isWireFourFixed = false;
+    isRgbSolved = false;
+    isSdCardFound = false;
+    isGlobeFound = false;
+    isGameMasterLoaded = false;
+    isRgbClueFound = false;
+    // Resetting the game attributes such as the timer and the objectives
+    minutes = 0;
+    seconds = 0;
+    wireFixes = 0;
+    gameTimeline = null;
+    randomNum = (int) (Math.random() * 3);
+    randomLight = randomLights[randomNum];
+    currentObj = objectives[0];
+    objMessage = "";
+    isRiddleResolved = false;
+    hintMessage = "";
+    hintCounter = 0;
+    isComputerAccessed = false;
+    // Resetting the game attributes such as the puzzles and puzzle answers
+    isGlobeAccessed = false;
+    riddleAnswer = riddleAnswers[(int) (Math.random() * 3)];
+    password =
+        randomLetters[(int) (Math.random() * 4)]
+            + randomLetters[(int) (Math.random() * 4)]
+            + randomLetters[(int) (Math.random() * 4)]
+            + randomLetters[(int) (Math.random() * 4)];
+  }
 }

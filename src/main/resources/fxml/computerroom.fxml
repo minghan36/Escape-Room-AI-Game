@@ -20,7 +20,7 @@
          </image>
       </ImageView>
       <Canvas fx:id="computerRoomGameMaster" height="89.0" layoutX="578.0" layoutY="393.0" width="142.0" />
-      <Rectangle fx:id="quizMater" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="121.0" layoutX="578.0" layoutY="361.0" onMouseClicked="#clickQuizMaster" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="142.0" />
+      <Rectangle fx:id="quizMater" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="121.0" layoutX="578.0" layoutY="361.0" onMouseClicked="#clickComputerRoomQuizMaster" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="142.0" />
       <Label fx:id="computerRoomTimer" layoutX="878.0" layoutY="12.0" prefHeight="53.0" prefWidth="91.0" textFill="#fcb141">
          <font>
             <Font name="Telugu MN" size="36.0" />
@@ -91,7 +91,7 @@
             <Image url="@../images/GlobeItem.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="toLockedRoom" fitHeight="150.0" fitWidth="130.0" layoutX="646.0" layoutY="-8.0" onMouseClicked="#enterLockedRoom" onMouseEntered="#highlight" onMouseExited="#removeHighlight" opacity="0.3" pickOnBounds="true">
+      <ImageView fx:id="toLockedRoom" fitHeight="150.0" fitWidth="130.0" layoutX="646.0" layoutY="-8.0" onMouseClicked="#enterLockedRoom" onMouseEntered="#highlightRightArrow" onMouseExited="#removeHighlightRightArrow" opacity="0.3" pickOnBounds="true">
          <image>
             <Image url="@../images/arrow.png" />
          </image>
