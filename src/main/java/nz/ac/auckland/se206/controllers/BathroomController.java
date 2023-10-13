@@ -157,7 +157,7 @@ public class BathroomController {
    * @param event the key event.
    */
   @FXML
-  private void clickQuizMaster(MouseEvent event) {
+  private void clickBathroomQuizMaster(MouseEvent event) {
     App.setUi("chat");
   }
 
@@ -174,7 +174,7 @@ public class BathroomController {
 
   /** Enlarges the left arrow when the arrow hovers over it. */
   @FXML
-  private void highlight() {
+  private void highlightLeftArrow() {
     toLockedRoom.setOpacity(1);
     toLockedRoom.setScaleX(1.2);
     toLockedRoom.setScaleY(1.2);
@@ -182,7 +182,7 @@ public class BathroomController {
 
   /** Removes the enlargement when the mouse leaves the left arrow. */
   @FXML
-  private void removeHighlight() {
+  private void removeHighlightLeftArrow() {
     toLockedRoom.setOpacity(0.3);
     toLockedRoom.setScaleX(1);
     toLockedRoom.setScaleY(1);

@@ -10,7 +10,6 @@ import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 
 /** Controller class for the loss screen view. */
 public class EndController {
@@ -61,53 +60,7 @@ public class EndController {
   /** Resets the game for the user to play again. */
   @FXML
   private void reset() {
-    // Resetting all the variables
-    GameState.currentRoom = "lockedroom";
-    GameState.chatContents = "";
-    GameState.chatCompletionRequest =
-        new ChatCompletionRequest().setN(1).setTemperature(0.2).setTopP(0.5).setMaxTokens(100);
-    GameState.isKeyFound = false;
-    GameState.isElectricalTapeFound = false;
-    GameState.isEasyPicked = false;
-    GameState.isMediumPicked = false;
-    GameState.isDifficultPicked = false;
-    GameState.isDecryptCompleted = false;
-    // Setting all the item and puzzle variables to false, so that the user has to
-    // complete the
-    // puzzles again
-    GameState.isLightPuzzleStarted = false;
-    GameState.isLightPuzzleSolved = false;
-    GameState.isPuzzleSolved = false;
-    GameState.isWireOneFixed = false;
-    GameState.isWireTwoFixed = false;
-    GameState.isWireThreeFixed = false;
-    GameState.isWireFourFixed = false;
-    GameState.isRgbSolved = false;
-    GameState.isSdCardFound = false;
-    GameState.isGlobeFound = false;
-    GameState.isGameMasterLoaded = false;
-    GameState.isRgbClueFound = false;
-    // Resetting the game attributes such as the timer and the objectives
-    GameState.minutes = 0;
-    GameState.seconds = 0;
-    GameState.wireFixes = 0;
-    GameState.gameTimeline = null;
-    GameState.randomNum = (int) (Math.random() * 3);
-    GameState.randomLight = GameState.randomLights[GameState.randomNum];
-    GameState.currentObj = GameState.objectives[0];
-    GameState.objMessage = "";
-    GameState.isRiddleResolved = false;
-    GameState.hintMessage = "";
-    GameState.hintCounter = 0;
-    GameState.isComputerAccessed = false;
-    GameState.isGlobeAccessed = false;
-    // Resetting the game attributes such as the puzzles and puzzle answers
-    GameState.riddleAnswer = GameState.riddleAnswers[(int) (Math.random() * 3)];
-    GameState.password =
-        GameState.randomLetters[(int) (Math.random() * 4)]
-            + GameState.randomLetters[(int) (Math.random() * 4)]
-            + GameState.randomLetters[(int) (Math.random() * 4)]
-            + GameState.randomLetters[(int) (Math.random() * 4)];
+    GameState.restart();
     // Setting the rooom to the intro room so the user is able to restart the game
     // and select their
     // options

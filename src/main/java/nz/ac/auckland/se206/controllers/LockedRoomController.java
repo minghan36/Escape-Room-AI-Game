@@ -108,7 +108,8 @@ public class LockedRoomController {
           public void handle(long currentTime) {
             if (currentTime - lastTime >= frameDurationMillis * 1_000_000) {
               if (currentImageIndex < GameState.alienImages.length) {
-                gc.clearRect(0, 0, lockedRoomGameMaster.getWidth(), lockedRoomGameMaster.getHeight());
+                gc.clearRect(
+                    0, 0, lockedRoomGameMaster.getWidth(), lockedRoomGameMaster.getHeight());
                 gc.drawImage(GameState.alienImages[currentImageIndex], 0, 0);
                 currentImageIndex++;
                 // Check if we have displayed all images; if so, reset the index to 0

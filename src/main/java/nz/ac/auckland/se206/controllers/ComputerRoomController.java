@@ -109,7 +109,8 @@ public class ComputerRoomController {
           public void handle(long currentTime) {
             if (currentTime - lastTime >= frameDurationMillis * 1_000_000) {
               if (currentImageIndex < GameState.alienImages.length) {
-                gc.clearRect(0, 0, computerRoomGameMaster.getWidth(), computerRoomGameMaster.getHeight());
+                gc.clearRect(
+                    0, 0, computerRoomGameMaster.getWidth(), computerRoomGameMaster.getHeight());
                 gc.drawImage(GameState.alienImages[currentImageIndex], 0, 0);
                 currentImageIndex++;
                 // Check if we have displayed all images; if so, reset the index to 0
@@ -130,7 +131,7 @@ public class ComputerRoomController {
    * @param event the mouse event.
    */
   @FXML
-  private void clickQuizMaster(MouseEvent event) {
+  private void clickComputerRoomQuizMaster(MouseEvent event) {
     App.setUi("chat");
   }
 
@@ -147,7 +148,7 @@ public class ComputerRoomController {
 
   /** Highlights the right arrow when the mouse hovers. */
   @FXML
-  private void highlight() {
+  private void highlightRightArrow() {
     toLockedRoom.setOpacity(1);
     toLockedRoom.setScaleX(1.2);
     toLockedRoom.setScaleY(1.2);
@@ -155,7 +156,7 @@ public class ComputerRoomController {
 
   /** Removes highlight on right arrow when the mouse stops hovering. */
   @FXML
-  private void removeHighlight() {
+  private void removeHighlightRightArrow() {
     toLockedRoom.setOpacity(0.3);
     toLockedRoom.setScaleX(1);
     toLockedRoom.setScaleY(1);
