@@ -39,10 +39,10 @@ public class ChatController {
   @FXML private TextArea chatTextArea;
   @FXML private TextField inputText;
   @FXML private Button sendButton;
-  @FXML private Canvas quizMaster;
-  @FXML private Label timer;
+  @FXML private Canvas chatQuizMaster;
+  @FXML private Label chatTimer;
   @FXML private Label labelTranslate;
-  private Image[] alienImages;
+  private Image[] chatAlienImages;
   private int currentImageIndex = 0;
   @FXML private ImageView sdCard;
   @FXML private Label sdCollect;
@@ -120,21 +120,21 @@ public class ChatController {
     if (GameState.isGlobeFound) {
       globe.setOpacity(1);
     }
-    timer.setText(GameState.getTimeLeft());
+    chatTimer.setText(GameState.getTimeLeft());
     // thread for the timer
-    Thread timeThread =
+    Thread chatTimeThread =
         new Thread(
             () -> {
-              startTimer();
+              startChatTimer();
             });
-    timeThread.start();
+    chatTimeThread.start();
 
     // game master animation
     // Initialize alienImages with your image paths
-    alienImages = new Image[] {new Image("images/blink1.png"), new Image("images/blink2.png")};
+    chatAlienImages = new Image[] {new Image("images/blink1.png"), new Image("images/blink2.png")};
 
     TranslateTransition translateTransition =
-        new TranslateTransition(Duration.seconds(2), quizMaster);
+        new TranslateTransition(Duration.seconds(2), chatQuizMaster);
 
     // set the Y-axis translation value
     translateTransition.setByY(-10);
@@ -155,7 +155,7 @@ public class ChatController {
   /** Starts the animation of the Gamemaster. */
   private void startAnimation() {
     // Animation for the gamemaster
-    GraphicsContext gc = quizMaster.getGraphicsContext2D();
+    GraphicsContext gc = chatQuizMaster.getGraphicsContext2D();
     AnimationTimer timer =
         new AnimationTimer() {
           private long lastTime = 0;
@@ -164,12 +164,12 @@ public class ChatController {
           @Override
           public void handle(long currentTime) {
             if (currentTime - lastTime >= frameDurationMillis * 1_000_000) {
-              if (currentImageIndex < alienImages.length) {
-                gc.clearRect(0, 0, quizMaster.getWidth(), quizMaster.getHeight());
-                gc.drawImage(alienImages[currentImageIndex], 0, 0);
+              if (currentImageIndex < chatAlienImages.length) {
+                gc.clearRect(0, 0, chatQuizMaster.getWidth(), chatQuizMaster.getHeight());
+                gc.drawImage(chatAlienImages[currentImageIndex], 0, 0);
                 currentImageIndex++;
                 // Check if we have displayed all images; if so, reset the index to 0
-                if (currentImageIndex >= alienImages.length) {
+                if (currentImageIndex >= chatAlienImages.length) {
                   currentImageIndex = 0;
                 }
                 lastTime = currentTime;
@@ -355,8 +355,8 @@ public class ChatController {
   }
 
   /** Starts updating the timer according to time left in the game. */
-  public void startTimer() {
-    Timeline timeline =
+  public void startChatTimer() {
+    Timeline chatTimeline =
         new Timeline(
             new KeyFrame(
                 Duration.seconds(1),
@@ -368,14 +368,14 @@ public class ChatController {
                         new Runnable() {
                           @Override
                           public void run() {
-                            timer.setText(GameState.getTimeLeft());
+                            chatTimer.setText(GameState.getTimeLeft());
                           }
                         });
                   }
                 }));
 
-    timeline.setCycleCount((GameState.minutes * 60) + GameState.seconds - 1);
-    timeline.play();
+    chatTimeline.setCycleCount((GameState.minutes * 60) + GameState.seconds - 1);
+    chatTimeline.play();
   }
 
   // Method for increasing size the SD card when hovering

@@ -20,9 +20,9 @@
             <Image url="@../images/Bathroom.png" />
          </image>
       </ImageView>
-      <Canvas fx:id="gameMaster" height="114.0" layoutX="576.0" layoutY="369.0" width="130.0" />
+      <Canvas fx:id="bathroomGameMaster" height="114.0" layoutX="576.0" layoutY="369.0" width="130.0" />
       <Rectangle fx:id="quizMater" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="121.0" layoutX="570.0" layoutY="366.0" onMouseClicked="#clickQuizMaster" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="142.0" />
-      <Label fx:id="timer" layoutX="878.0" layoutY="12.0" prefHeight="53.0" prefWidth="91.0" textFill="#fcb141">
+      <Label fx:id="bathroomTimer" layoutX="878.0" layoutY="12.0" prefHeight="53.0" prefWidth="91.0" textFill="#fcb141">
          <font>
             <Font name="Tamil MN" size="36.0" />
          </font>

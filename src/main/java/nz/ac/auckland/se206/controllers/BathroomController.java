@@ -13,7 +13,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Ellipse;
@@ -27,9 +26,8 @@ public class BathroomController {
 
   // Creating variables required for the FXML scene
   @FXML private Rectangle quizMaster;
-  @FXML private Canvas gameMaster;
-  @FXML private Label timer;
-  private Image[] alienImages;
+  @FXML private Canvas bathroomGameMaster;
+  @FXML private Label bathroomTimer;
   private int currentImageIndex = 0;
   @FXML private ImageView lightOne;
   @FXML private ImageView lightTwo;
@@ -99,28 +97,19 @@ public class BathroomController {
       ellipseOne.setOnMouseEntered(null);
     }
     // Timing thread for the timer
-    timer.setText(GameState.getTimeLeft());
-    Thread timeThread =
+    bathroomTimer.setText(GameState.getTimeLeft());
+    Thread bathroomTimeThread =
         new Thread(
             () -> {
-              startTimer();
+              startBathroomTimer();
             });
-    timeThread.start();
+    bathroomTimeThread.start();
     // game master animation
-    // Initialize alienImages with your image paths
-    alienImages =
-        new Image[] {
-          new Image("images/move1.png"),
-          new Image("images/move2.png"),
-          new Image("images/move3.png"),
-          new Image("images/move4.png")
-        };
-
     // Start the animation
     startAnimation();
 
     TranslateTransition translateTransition =
-        new TranslateTransition(Duration.seconds(2), gameMaster);
+        new TranslateTransition(Duration.seconds(2), bathroomGameMaster);
 
     // set the Y-axis translation value
     translateTransition.setByY(-10);
@@ -137,7 +126,7 @@ public class BathroomController {
 
   /** Starts the animation of the Gamemaster. */
   private void startAnimation() {
-    GraphicsContext gc = gameMaster.getGraphicsContext2D();
+    GraphicsContext gc = bathroomGameMaster.getGraphicsContext2D();
     AnimationTimer timer =
         new AnimationTimer() {
           private long lastTime = 0;
@@ -146,12 +135,12 @@ public class BathroomController {
           @Override
           public void handle(long currentTime) {
             if (currentTime - lastTime >= frameDurationMillis * 1_000_000) {
-              if (currentImageIndex < alienImages.length) {
-                gc.clearRect(0, 0, gameMaster.getWidth(), gameMaster.getHeight());
-                gc.drawImage(alienImages[currentImageIndex], 0, 0);
+              if (currentImageIndex < GameState.alienImages.length) {
+                gc.clearRect(0, 0, bathroomGameMaster.getWidth(), bathroomGameMaster.getHeight());
+                gc.drawImage(GameState.alienImages[currentImageIndex], 0, 0);
                 currentImageIndex++;
                 // Check if we have displayed all images; if so, reset the index to 0
-                if (currentImageIndex >= alienImages.length) {
+                if (currentImageIndex >= GameState.alienImages.length) {
                   currentImageIndex = 0;
                 }
                 lastTime = currentTime;
@@ -290,8 +279,8 @@ public class BathroomController {
   }
 
   /** Starts updating the timer accordingly. */
-  public void startTimer() {
-    Timeline timeline =
+  public void startBathroomTimer() {
+    Timeline bathroomTimeline =
         new Timeline(
             new KeyFrame(
                 Duration.seconds(1),
@@ -303,14 +292,14 @@ public class BathroomController {
                         new Runnable() {
                           @Override
                           public void run() {
-                            timer.setText(GameState.getTimeLeft());
+                            bathroomTimer.setText(GameState.getTimeLeft());
                           }
                         });
                   }
                 }));
 
-    timeline.setCycleCount((GameState.minutes * 60) + GameState.seconds - 1);
-    timeline.play();
+    bathroomTimeline.setCycleCount((GameState.minutes * 60) + GameState.seconds - 1);
+    bathroomTimeline.play();
   }
 
   /**

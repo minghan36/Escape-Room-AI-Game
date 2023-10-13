@@ -78,12 +78,12 @@ public class IntroController {
     if (levelIsPicked && timeIsPicked) {
       // Only starting the thread if the user has chosen a difficulty level and a time
       // limit
-      Thread timeThread =
+      Thread gameTimeThread =
           new Thread(
               () -> {
-                GameState.startTimer();
+                GameState.startGameTimer();
               });
-      timeThread.start();
+      gameTimeThread.start();
       // Switching to the locked room scene so the user can begin their escape
       App.setUi("lockedroom");
     } else {
