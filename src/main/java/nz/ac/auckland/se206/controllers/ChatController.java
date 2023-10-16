@@ -55,6 +55,8 @@ public class ChatController {
   @FXML private Button rgbClue1;
   @FXML private Rectangle sound;
 
+  private String gptResponse;
+
   private TextToSpeech textToSpeech = new TextToSpeech();
 
   /**
@@ -77,6 +79,24 @@ public class ChatController {
       rgbClue1.setOpacity(1);
       rgbClue1.setText(GameState.password);
     }
+
+    // if the player exited and the text area was empty run gpt
+    if (GameState.isGameMasterLoaded && chatTextArea.getText().isEmpty()) {
+      if (GameState.isEasyPicked) {
+        runGpt(
+            new ChatMessage(
+                "user", GptPromptEngineering.getRiddleWithGivenWordEasy(GameState.riddleAnswer)));
+      } else if (GameState.isMediumPicked) {
+        runGpt(
+            new ChatMessage(
+                "user", GptPromptEngineering.getRiddleWithGivenWordMedium(GameState.riddleAnswer)));
+      } else {
+        runGpt(
+            new ChatMessage(
+                "user", GptPromptEngineering.getRiddleWithGivenWordHard(GameState.riddleAnswer)));
+      }
+    }
+
     // Allowing the rungpt if the gamemaster is loaded
     if (!GameState.isGameMasterLoaded && GameState.isEasyPicked) {
       runGpt(
@@ -207,6 +227,14 @@ public class ChatController {
     }
 
     chatTextArea.appendText(emojiRepresentation + msg.getContent() + "\n\n");
+    gptResponse = emojiRepresentation + msg.getContent() + "\n\n";
+
+    // ensure that the response is appended even if the player exited the chat view
+    if (chatTextArea.getText().contains(gptResponse)) {
+      GameState.chatContents = chatTextArea.getText();
+    } else {
+      GameState.chatContents = chatTextArea.getText() + "\n\n" + gptResponse + "\n\n";
+    }
   }
 
   /**
@@ -350,7 +378,6 @@ public class ChatController {
    */
   @FXML
   private void onGoBack(ActionEvent event) throws ApiProxyException, IOException {
-    GameState.chatContents = chatTextArea.getText();
     App.setUi(GameState.currentRoom);
   }
 
