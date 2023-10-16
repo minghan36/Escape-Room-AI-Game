@@ -299,7 +299,7 @@ public class ChatController {
     // Sends prompts to the GPT api to overlook the gameflow and game progress if
     // the user does ask
     // for a hint
-    if (GameState.hintCounter == 5) {
+    if (GameState.hintCounter == 5 && GameState.isMediumPicked) {
       Thread thread =
           new Thread(
               () -> {
