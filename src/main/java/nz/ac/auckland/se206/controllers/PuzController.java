@@ -318,9 +318,8 @@ public class PuzController {
               () -> {
                 GameState.sendPrompt(
                     "The player has solved the jigsaw puzzle and has received the passcode to the"
-                        + " locked door. The passcode is in an alien language and can be translated"
-                        + " using the alien alphabet on the computer. Each letter of the passcode"
-                        + " represents a coloured button.");
+                        + " locked door. The user needs to click on the RGB clue to receive the"
+                        + " passcode which will unlock the door.");
               });
       // Starting the thread and setting game items
       thread.start();
@@ -408,6 +407,17 @@ public class PuzController {
   @FXML
   private void clickRgb() {
     GameState.isRgbClueFound = true;
+    Thread thread =
+        new Thread(
+            () -> {
+              GameState.sendPrompt(
+                  "The player has collected the RGB clue containing the passcode. Tell the user to"
+                      + " head to the locked room and enter the passcode to unlock the door using"
+                      + " the four coloured squares. Tell the user to decrypt the passcode on the"
+                      + " clue by using the alphabet in the computer.");
+            });
+    // Starting the thread and setting game items
+    thread.start();
     rgbClue1.setOpacity(1);
     rgbClue1.setText(GameState.password);
     rgbClue.setVisible(false);

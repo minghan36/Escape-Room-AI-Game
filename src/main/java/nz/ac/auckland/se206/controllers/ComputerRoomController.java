@@ -244,7 +244,7 @@ public class ComputerRoomController {
   /** Moves tape to inventory on mouse click. */
   @FXML
   public void clickTape() {
-    if (!GameState.isComputerAccessed) {
+    if (GameState.isComputerAccessed) {
       // Thread to send the prompt to the GPT to over look progress
       Thread thread =
           new Thread(

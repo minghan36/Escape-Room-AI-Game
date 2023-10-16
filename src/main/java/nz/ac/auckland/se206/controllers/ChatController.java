@@ -107,6 +107,9 @@ public class ChatController {
     // Displaying the sdcard if its found
     if (!GameState.isSdCardFound) {
       sdCard.setVisible(GameState.isRiddleResolved);
+      if (GameState.isRiddleResolved) {
+        sdCollect.setText("Collect the SD card!");
+      }
     } else {
       sdCard.setVisible(false);
     }
@@ -312,9 +315,10 @@ public class ChatController {
                   new Thread(
                       () -> {
                         GameState.sendPrompt(
-                            "The player has solved the riddle and received an SD card. The player"
-                                + " must now find and access the computer in the computer room by"
-                                + " clicking on the computer.");
+                            "The player has solved the riddle. Tell the player to find an object in"
+                                + " the room which is a SD card object. The object is not related"
+                                + " to the riddle answer. Be explicit that the object is a SD"
+                                + " card");
                       });
               thread.start();
             } else if (lastMsg.getContent().contains("hint: ")
@@ -397,6 +401,14 @@ public class ChatController {
   @FXML
   private void clickSdCard() {
     GameState.isSdCardFound = true;
+    Thread thread =
+        new Thread(
+            () -> {
+              GameState.sendPrompt(
+                  "The player has collected the SD card. Now tell the user to find an object in any"
+                      + " room which will use the SD Card they just collected.");
+            });
+    thread.start();
     sdCard.setVisible(false);
     sdCollect.setText("");
     sdCard1.setOpacity(1);
