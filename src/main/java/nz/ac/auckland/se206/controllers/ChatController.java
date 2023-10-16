@@ -428,6 +428,8 @@ public class ChatController {
   @FXML
   private void clickSdCard() {
     GameState.isSdCardFound = true;
+    // Sending a prompt to GPT to update the user's progress and to
+    // ensure the right hint is givento the user
     Thread thread =
         new Thread(
             () -> {
