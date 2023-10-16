@@ -133,9 +133,9 @@ public class GameState {
     if (GameState.isMediumPicked) {
       return ("Hints Remaining : " + (5 - hintCounter) + "\n" + latestHint);
     } else if (GameState.isDifficultPicked) {
-      return " no Hints, you got this";
+      return " No hints, you got this!";
     } else {
-      return "unlimited hints available";
+      return "Unlimited number of hints";
     }
   }
 

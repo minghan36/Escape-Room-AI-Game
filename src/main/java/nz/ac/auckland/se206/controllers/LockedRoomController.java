@@ -482,11 +482,13 @@ public class LockedRoomController {
               () -> {
                 GameState.sendPrompt(
                     "The player has found the globe and started the jigsaw puzzle. The jigsaw"
-                        + " puzzle represent an image of part of the locked room.");
+                        + " puzzle represent an image of part of the locked room. Tell the user to"
+                        + " solve the jigsaw puzzle so it creates the image of the locked room");
               });
       thread.start();
       GameState.isGlobeAccessed = true;
       App.setUi("puz");
+      GameState.currentRoom = "puz";
     }
   }
 }

@@ -232,10 +232,9 @@ public class LightController {
             new Thread(
                 () -> {
                   GameState.sendPrompt(
-                      "The player has fixed the broken light. The player has received a picture of"
-                          + " a globe that can be found in the room with the locked door. The"
-                          + " player must now go and click on the globe to access the next part of"
-                          + " the puzzle.");
+                      "The player has fixed the broken light. Tell the user to collect the Globe"
+                          + " clue which has appeared in the room. Tell the user explicitly that"
+                          + " the item is a pictuer of the globe.");
                 });
         thread.start();
         GameState.isLightPuzzleSolved = true;
@@ -273,10 +272,9 @@ public class LightController {
             new Thread(
                 () -> {
                   GameState.sendPrompt(
-                      "The player has fixed the broken light. The player has received a picture of"
-                          + " a globe that can be found in the room with the locked door. The"
-                          + " player must now go and click on the globe to access the next part of"
-                          + " the puzzle.");
+                      "The player has fixed the broken light. Tell the user to collect the Globe"
+                          + " clue which has appeared in the room. Tell the user explicitly that"
+                          + " the item is a pictuer of the globe.");
                 });
         thread.start();
         GameState.isLightPuzzleSolved = true;
@@ -312,10 +310,9 @@ public class LightController {
             new Thread(
                 () -> {
                   GameState.sendPrompt(
-                      "The player has fixed the broken light. The player has received a picture of"
-                          + " a globe that can be found in the room with the locked door. The"
-                          + " player must now go and click on the globe to access the next part of"
-                          + " the puzzle.");
+                      "The player has fixed the broken light. Tell the user to collect the Globe"
+                          + " clue which has appeared in the room. Tell the user explicitly that"
+                          + " the item is a pictuer of the globe.");
                 });
         thread.start();
         GameState.isLightPuzzleSolved = true;
@@ -349,10 +346,9 @@ public class LightController {
             new Thread(
                 () -> {
                   GameState.sendPrompt(
-                      "The player has fixed the broken light. The player has received a picture of"
-                          + " a globe that can be found in the room with the locked door. The"
-                          + " player must now go and click on the globe to access the next part of"
-                          + " the puzzle.");
+                      "The player has fixed the broken light. Tell the user to collect the Globe"
+                          + " clue which has appeared in the room. Tell the user explicitly that"
+                          + " the item is a picture of the globe.");
                 });
         thread.start();
         GameState.isLightPuzzleSolved = true;
@@ -383,6 +379,15 @@ public class LightController {
   @FXML
   private void clickGlobe() {
     GameState.isGlobeFound = true;
+    Thread thread =
+        new Thread(
+            () -> {
+              GameState.sendPrompt(
+                  "The player has now collected the clue of the Globe. Now tell the user to go to"
+                      + " the locked room and click on the globe to access the next puzzle. Be"
+                      + " explicit in telling the user to go to the locked room");
+            });
+    thread.start();
     GameState.currentObj = "Picture Puz";
     lightSuggest.setText("");
     globe.setVisible(false);
