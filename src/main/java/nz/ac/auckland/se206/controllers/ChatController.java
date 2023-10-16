@@ -299,7 +299,7 @@ public class ChatController {
     // Sends prompts to the GPT api to overlook the gameflow and game progress if
     // the user does ask
     // for a hint
-    if (GameState.hintCounter == 5) {
+    if (GameState.hintCounter == 5 && GameState.isMediumPicked) {
       Thread thread =
           new Thread(
               () -> {
@@ -428,6 +428,8 @@ public class ChatController {
   @FXML
   private void clickSdCard() {
     GameState.isSdCardFound = true;
+    // Sending a prompt to GPT to update the user's progress and to
+    // ensure the right hint is givento the user
     Thread thread =
         new Thread(
             () -> {

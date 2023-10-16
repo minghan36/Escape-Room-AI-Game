@@ -379,6 +379,8 @@ public class LightController {
   @FXML
   private void clickGlobe() {
     GameState.isGlobeFound = true;
+    // Sending a prompt to gpt to update it on the user's progress
+    // and the gameflow, to ensure the right hint is being sent.
     Thread thread =
         new Thread(
             () -> {
