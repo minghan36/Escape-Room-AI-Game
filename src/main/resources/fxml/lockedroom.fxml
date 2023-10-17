@@ -43,7 +43,7 @@
       <Rectangle fx:id="rectangleDoorThree" arcHeight="5.0" arcWidth="5.0" fill="#434343" height="45.0" layoutX="204.0" layoutY="24.0" opacity="0.75" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="118.0" />
       <Label fx:id="labelPasscode" alignment="CENTER" contentDisplay="CENTER" layoutX="191.0" layoutY="20.0" prefHeight="53.0" prefWidth="145.0" textAlignment="CENTER">
          <font>
-            <Font size="36.0" />
+            <Font size="32.0" />
          </font>
       </Label>
       <Label layoutX="777.0" layoutY="28.0" text="Time:" textFill="#fcb141">
@@ -112,7 +112,7 @@
             <Image url="@../images/arrow.png" />
          </image>
       </ImageView>
-      <Button fx:id="rgbClue1" layoutX="908.0" layoutY="430.0" mnemonicParsing="false" opacity="0.2" prefHeight="36.0" prefWidth="68.0" style="-fx-background-color: #2E40F9;" textFill="#fcb141">
+      <Button fx:id="rgbClue1" layoutX="897.0" layoutY="429.0" mnemonicParsing="false" opacity="0.2" prefHeight="36.0" prefWidth="89.0" style="-fx-background-color: #2E40F9;" textFill="#fcb141">
          <font>
             <Font name="Telugu MN" size="16.0" />
          </font>
