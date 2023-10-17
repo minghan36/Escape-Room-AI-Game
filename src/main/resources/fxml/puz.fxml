@@ -106,12 +106,12 @@
             <Image url="@../images/GlobeItem.png" />
          </image>
       </ImageView>
-      <Button fx:id="rgbClue" layoutX="630.0" layoutY="170.0" mnemonicParsing="false" onMouseClicked="#clickRgb" prefHeight="36.0" prefWidth="68.0" style="-fx-background-color: #2E40F9;" textFill="#fcb141">
+      <Button fx:id="rgbClue" layoutX="630.0" layoutY="170.0" mnemonicParsing="false" onMouseClicked="#clickRgb" prefHeight="38.0" prefWidth="89.0" style="-fx-background-color: #2E40F9;" textFill="#fcb141">
          <font>
             <Font name="Tamil MN" size="16.0" />
          </font>
       </Button>
-      <Button fx:id="rgbClue1" layoutX="914.0" layoutY="430.0" mnemonicParsing="false" opacity="0.2" prefHeight="36.0" prefWidth="68.0" style="-fx-background-color: #2E40F9;" textFill="#fcb141">
+      <Button fx:id="rgbClue1" layoutX="896.0" layoutY="430.0" mnemonicParsing="false" opacity="0.2" prefHeight="36.0" prefWidth="89.0" style="-fx-background-color: #2E40F9;" textFill="#fcb141">
          <font>
             <Font name="Telugu MN" size="16.0" />
          </font>

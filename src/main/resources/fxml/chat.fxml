@@ -112,7 +112,7 @@
             <Image url="@../images/GlobeItem.png" />
          </image>
       </ImageView>
-      <Button fx:id="rgbClue1" layoutX="912.0" layoutY="430.0" mnemonicParsing="false" opacity="0.2" prefHeight="36.0" prefWidth="68.0" style="-fx-background-color: #2E40F9;" textFill="#fcb141">
+      <Button fx:id="rgbClue1" layoutX="896.0" layoutY="429.0" mnemonicParsing="false" opacity="0.2" prefHeight="36.0" prefWidth="89.0" style="-fx-background-color: #2E40F9;" textFill="#fcb141">
          <font>
             <Font name="Telugu MN" size="16.0" />
          </font>
