@@ -135,7 +135,7 @@ public class GameState {
     } else if (GameState.isDifficultPicked) {
       return " No hints, you got this!";
     } else {
-      return "Unlimited number of hints";
+      return "Unlimited number of hints" + "\n" + latestHint;
     }
   }
 
