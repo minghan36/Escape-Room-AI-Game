@@ -367,6 +367,9 @@ public class ChatController {
                         + (5 - GameState.hintCounter)
                         + "\n"
                         + GameState.latestHint);
+                // Display the hint on easy.
+              } else if (GameState.isEasyPicked) {
+                hintsText.setText("Unlimited number of hints" + "\n" + GameState.latestHint);
               }
             }
           }
