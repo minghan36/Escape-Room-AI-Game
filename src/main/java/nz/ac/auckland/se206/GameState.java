@@ -24,7 +24,7 @@ public class GameState {
   public static String latestHint = "";
   // Running the first instance of GPT
   public static ChatCompletionRequest chatCompletionRequest =
-      new ChatCompletionRequest().setN(1).setTemperature(0.1).setTopP(0.5).setMaxTokens(100);
+      new ChatCompletionRequest().setN(1).setTemperature(0.1).setTopP(0.5).setMaxTokens(70);
 
   /** Indicates whether the key has been found. */
   public static boolean isKeyFound = false;
@@ -253,7 +253,7 @@ public class GameState {
     currentRoom = "lockedroom";
     chatContents = "";
     chatCompletionRequest =
-        new ChatCompletionRequest().setN(1).setTemperature(0.2).setTopP(0.5).setMaxTokens(100);
+        new ChatCompletionRequest().setN(1).setTemperature(0.2).setTopP(0.5).setMaxTokens(70);
     // Setting all the item and puzzle variables to false, so that the user has to
     // complete the
     // puzzles again to escape
